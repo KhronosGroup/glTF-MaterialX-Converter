@@ -38,11 +38,11 @@ jobs:
         cd ..
         python utilities/replace_string.py -s '$TOP' -r '../..' documents/html/index.html
         
-    - name: Run tests
+    - name: Run Unit Tests
       run: |
         python -m unittest discover -s tests -p "test_*.py"
           
-    - name: Create distribution 
+    - name: Create Distribution 
       run: |
         mkdir distribution
         cp README.md distribution
@@ -51,7 +51,7 @@ jobs:
         rm -rf tests/__pycache__    
         cp -R tests distribution  
 
-    - name: Upload artifact
+    - name: Upload Artifact
       uses: actions/upload-pages-artifact@v3
       with:
         name: distribution
