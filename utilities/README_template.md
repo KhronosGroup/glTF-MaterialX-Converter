@@ -83,10 +83,10 @@ graph TB
 ```
 </td>
 <td>
-<a href="./tests/data/checkerboard_graph.mtlx">MTLX</a>
-<a href="./tests/data/checkerboard_graph.gltf">GLTF</a>
+<a href="$TOP/tests/data/checkerboard_graph.mtlx">MTLX</a>
+<a href="$TOP/tests/data/checkerboard_graph.gltf">GLTF</a>
 </td>
-<td><img src="./tests/data/checkerboard_graph.png">
+<td><img src="$TOP/tests/data/checkerboard_graph.png">
 </td>
 </tr>
 
