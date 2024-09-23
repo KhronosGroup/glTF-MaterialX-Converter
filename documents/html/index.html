@@ -116,16 +116,21 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 Introduction</h2>
 <p>This package supports the bi-directional translation between MaterialX material graphs and the glTF Procedural Textures extension.</p>
 <ul>
-<li>The Khronos extensions can be found here: (add)</li>
-<li>The MaterialX specification can be found here: (add)</li>
+<li>The Khronos extensions can be found here:<ul>
+<li><a href="https://github.com/KhronosGroup/glTF/tree/KHR_texture_procedurals/extensions/2.0/Khronos/KHR_texture_procedurals">KHR_texture_procedurals</a></li>
+<li><a href="https://github.com/KhronosGroup/glTF/tree/KHR_texture_procedurals/extensions/2.0/Vendor/EXT_texture_procedurals_mx_1_39">EXT_texture_procedurals_mx_1_39</a></li>
+</ul>
+</li>
+<li>The MaterialX specification documents can be found <a href="https://github.com/AcademySoftwareFoundation/MaterialX/tree/main/documents/Specification">here</a></li>
 </ul>
 <h2><a class="anchor" id="autotoc_md2"></a>
 Requirements</h2>
-<p>The 1.39 release of MaterialX available on PyPi is required.</p>
+<p>The 1.39 release (or patch releases) of MaterialX available on <a href="https://pypi.org/project/MaterialX/">PyPi</a> is required.</p>
 <h2><a class="anchor" id="autotoc_md3"></a>
 Usage</h2>
 <p>The Github repository can be forked / cloned locally and the package built using <code>pip</code> as follows from the root folder:</p>
 <p><code>pip install .</code></p>
+<p>The MaterialX package dependency will be installed if required.</p>
 <h3><a class="anchor" id="autotoc_md4"></a>
 Command Line Interface</h3>
 <p>Command line documentation forthcoming.</p>
@@ -185,7 +190,7 @@ graph TB
     NG_main_output_N_mtlxmix_out --"base_color"--&gt; Gltf_pbr
     Gltf_pbr --"surfaceshader"--&gt; MAT_Gltf_pbr
 </div></code></pre><p class="endtd"></p>
-</td><td><a href="$TOP/tests/data/checkerboard_graph.mtlx">MTLX</a> <a href="$TOP/tests/data/checkerboard_graph.gltf">GLTF</a>  </td><td><p class="starttd"><img src="$TOP/tests/data/checkerboard_graph.png" alt="" class="inline"/>  </p>
+</td><td><a href="../../tests/data/checkerboard_graph.mtlx">MTLX</a> <a href="../../tests/data/checkerboard_graph.gltf">GLTF</a>  </td><td><p class="starttd"><img src="../../tests/data/checkerboard_graph.png" alt="" class="inline"/>  </p>
 <p class="endtd"></p>
 </td></tr>
 </table>
