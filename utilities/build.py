@@ -7,6 +7,9 @@ def build():
         print("> Installing the package...")
         subprocess.run('pip install . -q', check=True)
 
+        # Run the unit tests
+        subprocess.run('python utilities/build_test.py', check=True)
+
         # Build the documentation
         subprocess.run('python utilities/build_docs.py', shell=True, check=True)
 

@@ -4,18 +4,23 @@
 
 This package supports the bi-directional translation between MaterialX material graphs and the glTF Procedural Textures extension.
 
-- The Khronos extensions can be found here: (add)
-- The MaterialX specification can be found here: (add)
+- The Khronos extensions can be found here:
+  - <a href="https://github.com/KhronosGroup/glTF/tree/KHR_texture_procedurals/extensions/2.0/Khronos/KHR_texture_procedurals">KHR_texture_procedurals</a>
+  - <a href="https://github.com/KhronosGroup/glTF/tree/KHR_texture_procedurals/extensions/2.0/Vendor/EXT_texture_procedurals_mx_1_39">EXT_texture_procedurals_mx_1_39</a>
+- The MaterialX specification documents can be found <a href="https://github.com/AcademySoftwareFoundation/MaterialX/tree/main/documents/Specification">here</a>
 
 ### Requirements
 
-The 1.39 release of MaterialX available on PyPi is required.
+The 1.39 release (or patch releases) of MaterialX available on 
+<a href="https://pypi.org/project/MaterialX/">PyPi</a> is required.
 
 ### Usage
 
 The Github repository can be forked / cloned locally and the package built using `pip` as follows from the root folder:
 
 `pip install .`
+
+The MaterialX package dependency will be installed if required. 
 
 #### Command Line Interface
 

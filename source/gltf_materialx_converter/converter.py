@@ -26,8 +26,6 @@ class glTFMaterialXConverter():
         self.logger = lg.getLogger('glTFMtlx')
         lg.basicConfig(level=lg.INFO)  
 
-        self.materixl_version = mx.getVerstionString()
-
     def set_debug(self, debug):
         """
         Set the debug flag for the converter.
