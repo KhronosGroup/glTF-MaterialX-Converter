@@ -46,7 +46,8 @@ The following is some sample data data which shows MaterialX XML document, the c
 
 The two input colors, and a texture coordinate tiling option are exposed on the node graph. The output is a color which is routed to a downstream glTF PBR shading node (glTF material).
 
-```mermaid
+<pre><code class="language-mermaid"><div class="mermaid">
+
 graph TB
     subgraph NG_main
     NG_main_uvtiling([uvtiling:8,8])
@@ -80,13 +81,14 @@ graph TB
     NG_main_N_mtlxdotproduct --"in1"--> NG_main_N_modulo
     NG_main_output_N_mtlxmix_out --"base_color"--> Gltf_pbr
     Gltf_pbr --"surfaceshader"--> MAT_Gltf_pbr
-```
+</div></code></pre>
+
 </td>
 <td>
-<a href="./tests/data/checkerboard_graph.mtlx">MTLX</a>
-<a href="./tests/data/checkerboard_graph.gltf">GLTF</a>
+<a href="$TOP/tests/data/checkerboard_graph.mtlx">MTLX</a>
+<a href="$TOP/tests/data/checkerboard_graph.gltf">GLTF</a>
 </td>
-<td><img src="./tests/data/checkerboard_graph.png">
+<td><img src="$TOP/tests/data/checkerboard_graph.png">
 </td>
 </tr>
 
