@@ -174,18 +174,18 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>: The new working document </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00496">496</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  496</span><span class="keyword">def </span>createWorkingDocument(libraries):</div>
-<div class="line"><span class="lineno">  497</span>    <span class="stringliteral">&#39;&#39;&#39;Create a working document and import any libraries</span></div>
-<div class="line"><span class="lineno">  498</span><span class="stringliteral">    @param libraries: The list of definition libraries to import.</span></div>
-<div class="line"><span class="lineno">  499</span><span class="stringliteral">    @return: The new working document</span></div>
-<div class="line"><span class="lineno">  500</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  501</span>    doc = mx.createDocument()</div>
-<div class="line"><span class="lineno">  502</span>    <span class="keywordflow">for</span> lib <span class="keywordflow">in</span> libraries:</div>
-<div class="line"><span class="lineno">  503</span>        doc.importLibrary(lib)</div>
-<div class="line"><span class="lineno">  504</span> </div>
-<div class="line"><span class="lineno">  505</span>    <span class="keywordflow">return</span> doc</div>
-<div class="line"><span class="lineno">  506</span> </div>
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00500">500</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  500</span><span class="keyword">def </span>createWorkingDocument(libraries):</div>
+<div class="line"><span class="lineno">  501</span>    <span class="stringliteral">&#39;&#39;&#39;Create a working document and import any libraries</span></div>
+<div class="line"><span class="lineno">  502</span><span class="stringliteral">    @param libraries: The list of definition libraries to import.</span></div>
+<div class="line"><span class="lineno">  503</span><span class="stringliteral">    @return: The new working document</span></div>
+<div class="line"><span class="lineno">  504</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  505</span>    doc = mx.createDocument()</div>
+<div class="line"><span class="lineno">  506</span>    <span class="keywordflow">for</span> lib <span class="keywordflow">in</span> libraries:</div>
+<div class="line"><span class="lineno">  507</span>        doc.importLibrary(lib)</div>
+<div class="line"><span class="lineno">  508</span> </div>
+<div class="line"><span class="lineno">  509</span>    <span class="keywordflow">return</span> doc</div>
+<div class="line"><span class="lineno">  510</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -207,15 +207,15 @@ Variables</h2></td></tr>
 <p>Load standard MaierialX libraries. </p>
 <dl class="section return"><dt>Returns</dt><dd>: The standard library and the list of library files. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00488">488</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  488</span><span class="keyword">def </span>loadStandardLibraries():</div>
-<div class="line"><span class="lineno">  489</span>    <span class="stringliteral">&#39;&#39;&#39;Load standard MaierialX libraries.</span></div>
-<div class="line"><span class="lineno">  490</span><span class="stringliteral">    @return: The standard library and the list of library files.</span></div>
-<div class="line"><span class="lineno">  491</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  492</span>    stdlib = mx.createDocument()</div>
-<div class="line"><span class="lineno">  493</span>    libFiles = mx.loadLibraries(mx.getDefaultDataLibraryFolders(), mx.getDefaultDataSearchPath(), stdlib)</div>
-<div class="line"><span class="lineno">  494</span>    <span class="keywordflow">return</span> stdlib, libFiles</div>
-<div class="line"><span class="lineno">  495</span> </div>
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00492">492</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  492</span><span class="keyword">def </span>loadStandardLibraries():</div>
+<div class="line"><span class="lineno">  493</span>    <span class="stringliteral">&#39;&#39;&#39;Load standard MaierialX libraries.</span></div>
+<div class="line"><span class="lineno">  494</span><span class="stringliteral">    @return: The standard library and the list of library files.</span></div>
+<div class="line"><span class="lineno">  495</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  496</span>    stdlib = mx.createDocument()</div>
+<div class="line"><span class="lineno">  497</span>    libFiles = mx.loadLibraries(mx.getDefaultDataLibraryFolders(), mx.getDefaultDataSearchPath(), stdlib)</div>
+<div class="line"><span class="lineno">  498</span>    <span class="keywordflow">return</span> stdlib, libFiles</div>
+<div class="line"><span class="lineno">  499</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -243,16 +243,16 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>: The validation result as a tuple of [valid, errorString]. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00507">507</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  507</span><span class="keyword">def </span>validateDocument(doc):</div>
-<div class="line"><span class="lineno">  508</span>    <span class="stringliteral">&#39;&#39;&#39;Validate a MaterialX document.</span></div>
-<div class="line"><span class="lineno">  509</span><span class="stringliteral">    @param doc: The document to validate.</span></div>
-<div class="line"><span class="lineno">  510</span><span class="stringliteral">    @return: The validation result as a tuple of [valid, errorString].</span></div>
-<div class="line"><span class="lineno">  511</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  512</span>    valid, errorString = doc.validate()</div>
-<div class="line"><span class="lineno">  513</span>    <span class="keywordflow">return</span> valid, errorString</div>
-<div class="line"><span class="lineno">  514</span> </div>
-<div class="line"><span class="lineno">  515</span> </div>
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00511">511</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  511</span><span class="keyword">def </span>validateDocument(doc):</div>
+<div class="line"><span class="lineno">  512</span>    <span class="stringliteral">&#39;&#39;&#39;Validate a MaterialX document.</span></div>
+<div class="line"><span class="lineno">  513</span><span class="stringliteral">    @param doc: The document to validate.</span></div>
+<div class="line"><span class="lineno">  514</span><span class="stringliteral">    @return: The validation result as a tuple of [valid, errorString].</span></div>
+<div class="line"><span class="lineno">  515</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  516</span>    valid, errorString = doc.validate()</div>
+<div class="line"><span class="lineno">  517</span>    <span class="keywordflow">return</span> valid, errorString</div>
+<div class="line"><span class="lineno">  518</span> </div>
+<div class="line"><span class="lineno">  519</span> </div>
 </div><!-- fragment -->
 </div>
 </div>

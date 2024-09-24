@@ -237,6 +237,10 @@ class glTFMaterialXConverter():
             json_node['nodetype'] = node.getCategory()
             nodedef = node.getNodeDef()
 
+            if not nodedef:
+                self.logger.error(f'> Missing nodedef for node: {node.getNamePath()}')
+                continue
+
             if debug and nodedef and nodedef.getNodeGroup():
                 json_node['nodegroup'] = nodedef.getNodeGroup()
 
