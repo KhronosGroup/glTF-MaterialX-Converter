@@ -2,10 +2,13 @@
 # Run from root:
 #   python -m unittest tests.test_core
 
-import unittest, os
+import unittest, os, sys
 import MaterialX as mx
 
+# Add the src directory to the sys.path
 from gltf_materialx_converter import converter as MxGLTFPT
+
+import importlib.util
 
 def haveVersion(major, minor, patch):
     '''
@@ -23,13 +26,22 @@ def haveVersion(major, minor, patch):
                 return True
     return False
 
+def getMaterialxDocument(testCase, inputFile):
+    stdlib, libFiles = MxGLTFPT.loadStandardLibraries()
+    testCase.assertIsNotNone(stdlib)
+
+    if not os.path.exists(inputFile):
+        testCase.fail(f"File not found: {inputFile}")
+    mxdoc = MxGLTFPT.createWorkingDocument([stdlib])      
+    testCase.assertIsNotNone(stdlib)        
+    mx.readFromXmlFile(mxdoc, inputFile)
+    valid, errors = MxGLTFPT.validateDocument(mxdoc)
+    testCase.assertTrue(valid)
+    return mxdoc
+
 class TestConvertFromMtlx(unittest.TestCase):
     # Test conversion from MaterialX to GLTF Procedural Texture
     def test_convert_from_mtlx(self):
-
-        if not haveVersion(1, 39, 0):
-            print("MaterialX version 1.39.0 or higher is required for this test.")
-            return
 
         current_folder = os.path.dirname(__file__)
 
@@ -53,7 +65,16 @@ class TestConvertFromMtlx(unittest.TestCase):
             inputFile = file
             print('\n> Input test file:', file_name)
 
-        self.assertTrue(True)
+            mxdoc = getMaterialxDocument(self, inputFile)
+
+            # Convert from MaterialX to GLTF
+            jsonString, status = converter.convert_from_materialx(mxdoc)
+            self.assertTrue(len(jsonString) > 0)
+            # Write to disk
+            gltf_name = inputFile.replace('.mtlx', '.gltf')
+            with open(gltf_name, 'w') as f:
+                print('> Writing converted glTF file:', gltf_name)
+                f.write(jsonString)
 
 class TestConvertToMtlx(unittest.TestCase):
     # Test conversion from GLTF Procedural Texture to MaterialX

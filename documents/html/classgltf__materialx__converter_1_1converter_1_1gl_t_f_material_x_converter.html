@@ -127,16 +127,29 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae55050ea785c8c0b4c49294ebb1c26d3" id="r_ae55050ea785c8c0b4c49294ebb1c26d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae55050ea785c8c0b4c49294ebb1c26d3">set_debug</a> (self, debug)</td></tr>
 <tr class="memdesc:ae55050ea785c8c0b4c49294ebb1c26d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the debug flag for the converter.  <br /></td></tr>
 <tr class="separator:ae55050ea785c8c0b4c49294ebb1c26d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac23d11b036b75881b2fb00200b7e900c" id="r_ac23d11b036b75881b2fb00200b7e900c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac23d11b036b75881b2fb00200b7e900c">string_to_scalar</a> (self, value, type)</td></tr>
+<tr class="memdesc:ac23d11b036b75881b2fb00200b7e900c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a string to a scalar value.  <br /></td></tr>
+<tr class="separator:ac23d11b036b75881b2fb00200b7e900c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43db9fdaf0c7f0bf13d6bc12e99cd0ba" id="r_a43db9fdaf0c7f0bf13d6bc12e99cd0ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43db9fdaf0c7f0bf13d6bc12e99cd0ba">materialx_graph_to_gltf</a> (self, graph, json, materials)</td></tr>
+<tr class="memdesc:a43db9fdaf0c7f0bf13d6bc12e99cd0ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export a MaterialX nodegraph to a glTF procedural graph.  <br /></td></tr>
+<tr class="separator:a43db9fdaf0c7f0bf13d6bc12e99cd0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dd5fcdb7cf1e8e4de84294775ae2eda" id="r_a4dd5fcdb7cf1e8e4de84294775ae2eda"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4dd5fcdb7cf1e8e4de84294775ae2eda">convert_from_materialx</a> (self, mtlxDoc)</td></tr>
+<tr class="memdesc:a4dd5fcdb7cf1e8e4de84294775ae2eda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert to a glTF document from a MaterialX document.  <br /></td></tr>
+<tr class="separator:a4dd5fcdb7cf1e8e4de84294775ae2eda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a76d4a55f730d618932d8f4b1156010ab" id="r_a76d4a55f730d618932d8f4b1156010ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76d4a55f730d618932d8f4b1156010ab">logger</a> = lg.getLogger('glTFMtlx')</td></tr>
 <tr class="separator:a76d4a55f730d618932d8f4b1156010ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e2ffcbc50f1981c660e9cbf51e829ac" id="r_a0e2ffcbc50f1981c660e9cbf51e829ac"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e2ffcbc50f1981c660e9cbf51e829ac">supported_types</a> = ['boolean', 'string', 'integer', 'matrix33', 'matrix44', 'vector2', 'vector3', 'vector4', 'float', 'color3', 'color4']</td></tr>
+<tr class="separator:a0e2ffcbc50f1981c660e9cbf51e829ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a891ca10001b4621870d9f3b8b00ae531" id="r_a891ca10001b4621870d9f3b8b00ae531"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a891ca10001b4621870d9f3b8b00ae531">array_types</a> = ['matrix33', 'matrix44', 'vector2', 'vector3', 'vector4', 'color3', 'color4']</td></tr>
+<tr class="separator:a891ca10001b4621870d9f3b8b00ae531"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for converting to convert between glTF Texture Procedurals content and MaterialX. </p>
 
-<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00010">10</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00028">28</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a876ab5a3ed460c0d503f743ac230d256" name="a876ab5a3ed460c0d503f743ac230d256"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a876ab5a3ed460c0d503f743ac230d256">&#9670;&#160;</a></span>__init__()</h2>
@@ -156,30 +169,530 @@ Public Attributes</h2></td></tr>
 <p>Constructor. </p>
 <p><b>Attributes</b></p><ul>
 <li>logger : logging.Logger<ul>
-<li>Logger instance for the class, used to log information, warnings, and errors. </li>
+<li>Logger instance for the class, used to log information, warnings, and errors.</li>
+</ul>
+</li>
+<li>add_comments : bool<ul>
+<li>Option to add comments during the conversion to MaterialX.</li>
+</ul>
+</li>
+<li>add_nodedef_strings : bool<ul>
+<li>Option to add node definition strings during the conversion to MaterialX.</li>
+</ul>
+</li>
+<li>supported_types : list of str<ul>
+<li>List of supported data types for conversion.</li>
+</ul>
+</li>
+<li>array_types : list of str<ul>
+<li>List of supported array types for conversion. <br  />
+ </li>
 </ul>
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00015">15</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   15</span>    <span class="keyword">def </span>__init__(self):</div>
-<div class="line"><span class="lineno">   16</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   17</span><span class="stringliteral">        Constructor</span></div>
-<div class="line"><span class="lineno">   18</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   19</span><span class="stringliteral">        **Attributes**</span></div>
-<div class="line"><span class="lineno">   20</span><span class="stringliteral">        - logger : logging.Logger</span></div>
-<div class="line"><span class="lineno">   21</span><span class="stringliteral">            - Logger instance for the class, used to log information, warnings, and errors.</span></div>
-<div class="line"><span class="lineno">   22</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   23</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   24</span>        super().__init__()</div>
-<div class="line"><span class="lineno">   25</span> </div>
-<div class="line"><span class="lineno">   26</span>        self.logger = lg.getLogger(<span class="stringliteral">&#39;glTFMtlx&#39;</span>)</div>
-<div class="line"><span class="lineno">   27</span>        lg.basicConfig(level=lg.INFO)  </div>
-<div class="line"><span class="lineno">   28</span> </div>
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00033">33</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>    <span class="keyword">def </span>__init__(self):</div>
+<div class="line"><span class="lineno">   34</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   35</span><span class="stringliteral">        Constructor</span></div>
+<div class="line"><span class="lineno">   36</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   37</span><span class="stringliteral">        **Attributes**</span></div>
+<div class="line"><span class="lineno">   38</span><span class="stringliteral">        - logger : logging.Logger</span></div>
+<div class="line"><span class="lineno">   39</span><span class="stringliteral">            - Logger instance for the class, used to log information, warnings, and errors.</span></div>
+<div class="line"><span class="lineno">   40</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   41</span><span class="stringliteral">        - add_comments : bool</span></div>
+<div class="line"><span class="lineno">   42</span><span class="stringliteral">            - Option to add comments during the conversion to MaterialX.</span></div>
+<div class="line"><span class="lineno">   43</span><span class="stringliteral">        </span></div>
+<div class="line"><span class="lineno">   44</span><span class="stringliteral">        - add_nodedef_strings : bool</span></div>
+<div class="line"><span class="lineno">   45</span><span class="stringliteral">            - Option to add node definition strings during the conversion to MaterialX.</span></div>
+<div class="line"><span class="lineno">   46</span><span class="stringliteral">        </span></div>
+<div class="line"><span class="lineno">   47</span><span class="stringliteral">        - supported_types : list of str</span></div>
+<div class="line"><span class="lineno">   48</span><span class="stringliteral">            - List of supported data types for conversion.</span></div>
+<div class="line"><span class="lineno">   49</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   50</span><span class="stringliteral">        - array_types : list of str</span></div>
+<div class="line"><span class="lineno">   51</span><span class="stringliteral">            - List of supported array types for conversion.        </span></div>
+<div class="line"><span class="lineno">   52</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   53</span>        self.logger = lg.getLogger(<span class="stringliteral">&#39;glTFMtlx&#39;</span>)</div>
+<div class="line"><span class="lineno">   54</span>        lg.basicConfig(level=lg.INFO)  </div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>        <span class="comment"># Options for conversion from Materialx</span></div>
+<div class="line"><span class="lineno">   57</span>        self.supported_types = [<span class="stringliteral">&#39;boolean&#39;</span>, <span class="stringliteral">&#39;string&#39;</span>, <span class="stringliteral">&#39;integer&#39;</span>, <span class="stringliteral">&#39;matrix33&#39;</span>, <span class="stringliteral">&#39;matrix44&#39;</span>, <span class="stringliteral">&#39;vector2&#39;</span>, <span class="stringliteral">&#39;vector3&#39;</span>, <span class="stringliteral">&#39;vector4&#39;</span>, <span class="stringliteral">&#39;float&#39;</span>, <span class="stringliteral">&#39;color3&#39;</span>, <span class="stringliteral">&#39;color4&#39;</span>]</div>
+<div class="line"><span class="lineno">   58</span>        self.array_types = [<span class="stringliteral">&#39;matrix33&#39;</span>, <span class="stringliteral">&#39;matrix44&#39;</span>, <span class="stringliteral">&#39;vector2&#39;</span>, <span class="stringliteral">&#39;vector3&#39;</span>, <span class="stringliteral">&#39;vector4&#39;</span>, <span class="stringliteral">&#39;color3&#39;</span>, <span class="stringliteral">&#39;color4&#39;</span>]</div>
+<div class="line"><span class="lineno">   59</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4dd5fcdb7cf1e8e4de84294775ae2eda" name="a4dd5fcdb7cf1e8e4de84294775ae2eda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dd5fcdb7cf1e8e4de84294775ae2eda">&#9670;&#160;</a></span>convert_from_materialx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gltf_materialx_converter.converter.glTFMaterialXConverter.convert_from_materialx </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>mtlxDoc</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert to a glTF document from a MaterialX document. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mtlxDoc</td><td>The MaterialX document to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>glTF JSON string and status message. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00329">329</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  329</span>    <span class="keyword">def </span>convert_from_materialx(self, mtlxDoc):</div>
+<div class="line"><span class="lineno">  330</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  331</span><span class="stringliteral">        @brief Convert to a glTF document from a MaterialX document.</span></div>
+<div class="line"><span class="lineno">  332</span><span class="stringliteral">        @param mtlxDoc: The MaterialX document to convert.</span></div>
+<div class="line"><span class="lineno">  333</span><span class="stringliteral">        @return glTF JSON string and status message.</span></div>
+<div class="line"><span class="lineno">  334</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  335</span> </div>
+<div class="line"><span class="lineno">  336</span>        status = <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  337</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> mtlxDoc:</div>
+<div class="line"><span class="lineno">  338</span>            status = <span class="stringliteral">&#39;Invalid document to convert&#39;</span></div>
+<div class="line"><span class="lineno">  339</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span>, status</div>
+<div class="line"><span class="lineno">  340</span> </div>
+<div class="line"><span class="lineno">  341</span>        materials = []</div>
+<div class="line"><span class="lineno">  342</span>        mxMaterials = mtlxDoc.getMaterialNodes()</div>
+<div class="line"><span class="lineno">  343</span>        <span class="keywordflow">if</span> len(mxMaterials) == 0:</div>
+<div class="line"><span class="lineno">  344</span>            self.logger.warning(<span class="stringliteral">&#39;&gt; No materials found in document&#39;</span>)</div>
+<div class="line"><span class="lineno">  345</span>            <span class="comment">#return None, status # No MaterialX materials found in the document</span></div>
+<div class="line"><span class="lineno">  346</span> </div>
+<div class="line"><span class="lineno">  347</span>        json_data = {}</div>
+<div class="line"><span class="lineno">  348</span>        json_asset = {</div>
+<div class="line"><span class="lineno">  349</span>            <span class="stringliteral">&quot;version&quot;</span>: <span class="stringliteral">&quot;2.0&quot;</span>,</div>
+<div class="line"><span class="lineno">  350</span>            <span class="stringliteral">&quot;generator&quot;</span>: <span class="stringliteral">&quot;MaterialX 1.39 / glTF 2.0 procedural texture converter&quot;</span>,</div>
+<div class="line"><span class="lineno">  351</span>        }</div>
+<div class="line"><span class="lineno">  352</span> </div>
+<div class="line"><span class="lineno">  353</span>        inputMaps = {}</div>
+<div class="line"><span class="lineno">  354</span>        <span class="comment"># Supported input mappings</span></div>
+<div class="line"><span class="lineno">  355</span>        inputMaps[MTLX_GLTF_PBR_CATEGORY] = [</div>
+<div class="line"><span class="lineno">  356</span>            [<span class="stringliteral">&#39;base_color&#39;</span>, <span class="stringliteral">&#39;baseColorTexture&#39;</span>, <span class="stringliteral">&#39;pbrMetallicRoughness&#39;</span>]</div>
+<div class="line"><span class="lineno">  357</span>        ]</div>
+<div class="line"><span class="lineno">  358</span> </div>
+<div class="line"><span class="lineno">  359</span>        pbrNodes = {}</div>
+<div class="line"><span class="lineno">  360</span>        fallbackTextureIndex = -1</div>
+<div class="line"><span class="lineno">  361</span>        procs = []</div>
+<div class="line"><span class="lineno">  362</span>        exportGraphNames = []</div>
+<div class="line"><span class="lineno">  363</span> </div>
+<div class="line"><span class="lineno">  364</span>        extensionsUsed = [<span class="stringliteral">&#39;KHR_texture_procedurals&#39;</span>, <span class="stringliteral">&#39;EXT_texture_procedurals_mx_1_39&#39;</span>]</div>
+<div class="line"><span class="lineno">  365</span> </div>
+<div class="line"><span class="lineno">  366</span>        <span class="keywordflow">for</span> mxMaterial <span class="keywordflow">in</span> mxMaterials:</div>
+<div class="line"><span class="lineno">  367</span>            mxshaders = mx.getShaderNodes(mxMaterial)</div>
+<div class="line"><span class="lineno">  368</span>            <span class="keywordflow">for</span> shaderNode <span class="keywordflow">in</span> mxshaders:</div>
+<div class="line"><span class="lineno">  369</span>                category = shaderNode.getCategory()</div>
+<div class="line"><span class="lineno">  370</span>                path = shaderNode.getNamePath()</div>
+<div class="line"><span class="lineno">  371</span>                isPBR = (category == MTLX_GLTF_PBR_CATEGORY)</div>
+<div class="line"><span class="lineno">  372</span>                <span class="keywordflow">if</span> (isPBR) <span class="keywordflow">and</span> pbrNodes.get(path) <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  373</span>                    self.logger.info(f<span class="stringliteral">&#39;&gt; Convert shader to glTF: {shaderNode.getNamePath()}. Category: {category}&#39;</span>)</div>
+<div class="line"><span class="lineno">  374</span>                    pbrNodes[path] = shaderNode</div>
+<div class="line"><span class="lineno">  375</span> </div>
+<div class="line"><span class="lineno">  376</span>                    material = {}</div>
+<div class="line"><span class="lineno">  377</span> </div>
+<div class="line"><span class="lineno">  378</span>                    material[<span class="stringliteral">&#39;name&#39;</span>] = path</div>
+<div class="line"><span class="lineno">  379</span> </div>
+<div class="line"><span class="lineno">  380</span>                    base_color_input = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  381</span>                    base_color_output = <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  382</span>                    inputPairs = inputMaps[category]</div>
+<div class="line"><span class="lineno">  383</span>                    <span class="keywordflow">for</span> inputPair <span class="keywordflow">in</span> inputPairs:</div>
+<div class="line"><span class="lineno">  384</span>                        base_color_input = shaderNode.getInput(inputPair[0])</div>
+<div class="line"><span class="lineno">  385</span>                        base_color_output = inputPair[1]</div>
+<div class="line"><span class="lineno">  386</span> </div>
+<div class="line"><span class="lineno">  387</span>                        <span class="keywordflow">if</span> <span class="keywordflow">not</span> base_color_input:</div>
+<div class="line"><span class="lineno">  388</span>                            <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno">  389</span> </div>
+<div class="line"><span class="lineno">  390</span>                        nodeGraphName = base_color_input.getNodeGraphString()</div>
+<div class="line"><span class="lineno">  391</span>                        <span class="keywordflow">if</span> len(nodeGraphName) == 0:</div>
+<div class="line"><span class="lineno">  392</span>                            <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno">  393</span> </div>
+<div class="line"><span class="lineno">  394</span>                        nodeGraphOutput = base_color_input.getOutputString()</div>
+<div class="line"><span class="lineno">  395</span> </div>
+<div class="line"><span class="lineno">  396</span>                        parent = material</div>
+<div class="line"><span class="lineno">  397</span>                        <span class="keywordflow">if</span> len(inputPair[2]) &gt; 0:</div>
+<div class="line"><span class="lineno">  398</span>                            <span class="keywordflow">if</span> inputPair[2] <span class="keywordflow">not</span> <span class="keywordflow">in</span> material:</div>
+<div class="line"><span class="lineno">  399</span>                                material[inputPair[2]] = {}</div>
+<div class="line"><span class="lineno">  400</span>                            parent = material[inputPair[2]]</div>
+<div class="line"><span class="lineno">  401</span> </div>
+<div class="line"><span class="lineno">  402</span>                        graphIndex = -1</div>
+<div class="line"><span class="lineno">  403</span>                        outputIndex = -1</div>
+<div class="line"><span class="lineno">  404</span>                        <span class="keywordflow">if</span> procs:</div>
+<div class="line"><span class="lineno">  405</span>                            <span class="keywordflow">for</span> i, proc <span class="keywordflow">in</span> enumerate(procs):</div>
+<div class="line"><span class="lineno">  406</span>                                <span class="keywordflow">if</span> proc[<span class="stringliteral">&#39;name&#39;</span>] == nodeGraphName:</div>
+<div class="line"><span class="lineno">  407</span>                                    graphIndex = i</div>
+<div class="line"><span class="lineno">  408</span>                                    <span class="keywordflow">if</span> len(nodeGraphOutput) &gt; 0:</div>
+<div class="line"><span class="lineno">  409</span>                                        <span class="keywordflow">for</span> j, output <span class="keywordflow">in</span> enumerate(proc[<span class="stringliteral">&#39;outputs&#39;</span>]):</div>
+<div class="line"><span class="lineno">  410</span>                                            <span class="keywordflow">if</span> output[<span class="stringliteral">&#39;name&#39;</span>] == nodeGraphOutput:</div>
+<div class="line"><span class="lineno">  411</span>                                                outputIndex = j</div>
+<div class="line"><span class="lineno">  412</span>                                                <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  413</span>                                    <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  414</span> </div>
+<div class="line"><span class="lineno">  415</span>                        <span class="keywordflow">if</span> graphIndex &gt;= 0:</div>
+<div class="line"><span class="lineno">  416</span>                            baseColorTexture = parent[base_color_output] = {}</div>
+<div class="line"><span class="lineno">  417</span>                            baseColorTexture[<span class="stringliteral">&#39;index&#39;</span>] = fallbackTextureIndex</div>
+<div class="line"><span class="lineno">  418</span>                            ext = baseColorTexture[<span class="stringliteral">&#39;extensions&#39;</span>] = {}</div>
+<div class="line"><span class="lineno">  419</span>                            lookup = ext[<span class="stringliteral">&#39;KHR_texture_procedurals&#39;</span>] = {}</div>
+<div class="line"><span class="lineno">  420</span>                            lookup[<span class="stringliteral">&#39;index&#39;</span>] = graphIndex</div>
+<div class="line"><span class="lineno">  421</span>                            <span class="keywordflow">if</span> outputIndex &gt;= 0:</div>
+<div class="line"><span class="lineno">  422</span>                                lookup[<span class="stringliteral">&#39;output&#39;</span>] = outputIndex</div>
+<div class="line"><span class="lineno">  423</span>                        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  424</span>                            graph = mtlxDoc.getNodeGraph(nodeGraphName)</div>
+<div class="line"><span class="lineno">  425</span>                            exportGraphNames.append(nodeGraphName)</div>
+<div class="line"><span class="lineno">  426</span> </div>
+<div class="line"><span class="lineno">  427</span>                            gltfInfo = self.materialx_graph_to_gltf(graph, json_data, materials)</div>
+<div class="line"><span class="lineno">  428</span>                            procs = gltfInfo[0]</div>
+<div class="line"><span class="lineno">  429</span>                            outputNodes = gltfInfo[1]</div>
+<div class="line"><span class="lineno">  430</span>                            fallbackTextureIndex = gltfInfo[3]</div>
+<div class="line"><span class="lineno">  431</span> </div>
+<div class="line"><span class="lineno">  432</span>                            baseColorTexture = parent[base_color_output] = {}</div>
+<div class="line"><span class="lineno">  433</span>                            baseColorTexture[<span class="stringliteral">&#39;index&#39;</span>] = fallbackTextureIndex</div>
+<div class="line"><span class="lineno">  434</span>                            ext = baseColorTexture[<span class="stringliteral">&#39;extensions&#39;</span>] = {}</div>
+<div class="line"><span class="lineno">  435</span>                            lookup = ext[<span class="stringliteral">&#39;KHR_texture_procedurals&#39;</span>] = {}</div>
+<div class="line"><span class="lineno">  436</span>                            lookup[<span class="stringliteral">&#39;index&#39;</span>] = len(procs) - 1</div>
+<div class="line"><span class="lineno">  437</span>                            outputIndex = -1</div>
+<div class="line"><span class="lineno">  438</span> </div>
+<div class="line"><span class="lineno">  439</span>                            <span class="keywordflow">if</span> len(nodeGraphOutput) &gt; 0:</div>
+<div class="line"><span class="lineno">  440</span>                                nodeGraphOutputPath = f<span class="stringliteral">&quot;{nodeGraphName}/{nodeGraphOutput}&quot;</span></div>
+<div class="line"><span class="lineno">  441</span>                                <span class="keywordflow">if</span> nodeGraphOutputPath <span class="keywordflow">in</span> outputNodes:</div>
+<div class="line"><span class="lineno">  442</span>                                    outputIndex = outputNodes[nodeGraphOutputPath]</div>
+<div class="line"><span class="lineno">  443</span>                                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  444</span>                                    self.logger.error(f<span class="stringliteral">&#39;&gt; Failed to find output: {nodeGraphOutput} &#39;</span></div>
+<div class="line"><span class="lineno">  445</span>                                                      <span class="stringliteral">&#39; in: {outputNodes}&#39;</span>)</div>
+<div class="line"><span class="lineno">  446</span>                                lookup[<span class="stringliteral">&#39;output&#39;</span>] = outputIndex</div>
+<div class="line"><span class="lineno">  447</span>                            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  448</span>                                lookup[<span class="stringliteral">&#39;output&#39;</span>] = 0</div>
+<div class="line"><span class="lineno">  449</span> </div>
+<div class="line"><span class="lineno">  450</span>                    <span class="keywordflow">if</span> <span class="stringliteral">&#39;name&#39;</span> <span class="keywordflow">in</span> material:</div>
+<div class="line"><span class="lineno">  451</span>                        materials.append(material)</div>
+<div class="line"><span class="lineno">  452</span> </div>
+<div class="line"><span class="lineno">  453</span>        unconnectedGraphs = []</div>
+<div class="line"><span class="lineno">  454</span>        <span class="keywordflow">for</span> ng <span class="keywordflow">in</span> mtlxDoc.getNodeGraphs():</div>
+<div class="line"><span class="lineno">  455</span>            ng_name = ng.getName()</div>
+<div class="line"><span class="lineno">  456</span>            <span class="keywordflow">if</span> ng.getAttribute(<span class="stringliteral">&#39;nodedef&#39;</span>) <span class="keywordflow">or</span> ng.hasSourceUri():</div>
+<div class="line"><span class="lineno">  457</span>                <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno">  458</span>            <span class="keywordflow">if</span> ng_name <span class="keywordflow">not</span> <span class="keywordflow">in</span> exportGraphNames:</div>
+<div class="line"><span class="lineno">  459</span>                unconnectedGraphs.append(ng_name)</div>
+<div class="line"><span class="lineno">  460</span> </div>
+<div class="line"><span class="lineno">  461</span>                gltfInfo = self.materialx_graph_to_gltf(ng, json_data, materials)</div>
+<div class="line"><span class="lineno">  462</span>                procs = gltfInfo[0]</div>
+<div class="line"><span class="lineno">  463</span>                outputNodes = gltfInfo[1]</div>
+<div class="line"><span class="lineno">  464</span>                fallbackTextureIndex = gltfInfo[3]</div>
+<div class="line"><span class="lineno">  465</span> </div>
+<div class="line"><span class="lineno">  466</span>        <span class="keywordflow">if</span> len(materials) &gt; 0:</div>
+<div class="line"><span class="lineno">  467</span>            json_data[<span class="stringliteral">&#39;materials&#39;</span>] = materials</div>
+<div class="line"><span class="lineno">  468</span>            <span class="keywordflow">if</span> len(unconnectedGraphs) &gt; 0:</div>
+<div class="line"><span class="lineno">  469</span>                status = <span class="stringliteral">&#39;Exported unconnected graphs: &#39;</span> + <span class="stringliteral">&#39;, &#39;</span>.join(unconnectedGraphs)</div>
+<div class="line"><span class="lineno">  470</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  471</span>            <span class="keywordflow">if</span> len(unconnectedGraphs) &gt; 0:</div>
+<div class="line"><span class="lineno">  472</span>                status = <span class="stringliteral">&#39;Exported unconnected graphs: &#39;</span> + <span class="stringliteral">&#39;, &#39;</span>.join(unconnectedGraphs)</div>
+<div class="line"><span class="lineno">  473</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  474</span>                status = <span class="stringliteral">&#39;No appropriate glTF shader graphs found&#39;</span></div>
+<div class="line"><span class="lineno">  475</span> </div>
+<div class="line"><span class="lineno">  476</span>        <span class="keywordflow">if</span> len(procs) &gt; 0:</div>
+<div class="line"><span class="lineno">  477</span>            json_data[<span class="stringliteral">&#39;asset&#39;</span>] = json_asset</div>
+<div class="line"><span class="lineno">  478</span>            json_data[<span class="stringliteral">&#39;extensionsUsed&#39;</span>] = extensionsUsed</div>
+<div class="line"><span class="lineno">  479</span> </div>
+<div class="line"><span class="lineno">  480</span>        jsonString = json.dumps(json_data, indent=2) <span class="keywordflow">if</span> json_data <span class="keywordflow">else</span> <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  481</span>        <span class="keywordflow">if</span> jsonString == <span class="stringliteral">&#39;{}&#39;</span>:</div>
+<div class="line"><span class="lineno">  482</span>            jsonString = <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  483</span> </div>
+<div class="line"><span class="lineno">  484</span>        <span class="keywordflow">return</span> jsonString, status</div>
+<div class="line"><span class="lineno">  485</span> </div>
+<div class="line"><span class="lineno">  486</span><span class="comment"># Utilities</span></div>
+<div class="line"><span class="lineno">  487</span> </div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a43db9fdaf0c7f0bf13d6bc12e99cd0ba" name="a43db9fdaf0c7f0bf13d6bc12e99cd0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43db9fdaf0c7f0bf13d6bc12e99cd0ba">&#9670;&#160;</a></span>materialx_graph_to_gltf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gltf_materialx_converter.converter.glTFMaterialXConverter.materialx_graph_to_gltf </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>graph</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>json</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>materials</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Export a MaterialX nodegraph to a glTF procedural graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">graph</td><td>The MaterialX nodegraph to export. </td></tr>
+    <tr><td class="paramname">json</td><td>The JSON object to export the procedural graph to. </td></tr>
+    <tr><td class="paramname">materials</td><td>The list of materials filter out to export. Default is None meaning to export all materials. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The procedural graph JSON object if successful, otherwise None. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00094">94</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   94</span>    <span class="keyword">def </span>materialx_graph_to_gltf(self, graph, json, materials):</div>
+<div class="line"><span class="lineno">   95</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   96</span><span class="stringliteral">        Export a MaterialX nodegraph to a glTF procedural graph.</span></div>
+<div class="line"><span class="lineno">   97</span><span class="stringliteral">        @param graph: The MaterialX nodegraph to export.</span></div>
+<div class="line"><span class="lineno">   98</span><span class="stringliteral">        @param json: The JSON object to export the procedural graph to.</span></div>
+<div class="line"><span class="lineno">   99</span><span class="stringliteral">        @param materials: The list of materials filter out to export. Default is None</span></div>
+<div class="line"><span class="lineno">  100</span><span class="stringliteral">        meaning to export all materials.</span></div>
+<div class="line"><span class="lineno">  101</span><span class="stringliteral">        @return The procedural graph JSON object if successful, otherwise None.</span></div>
+<div class="line"><span class="lineno">  102</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  103</span>        no_result = [<span class="keywordtype">None</span>, <span class="keywordtype">None</span>, <span class="keywordtype">None</span>]</div>
+<div class="line"><span class="lineno">  104</span> </div>
+<div class="line"><span class="lineno">  105</span>        graph_outputs = graph.getOutputs()</div>
+<div class="line"><span class="lineno">  106</span>        <span class="keywordflow">if</span> len(graph_outputs) == 0:</div>
+<div class="line"><span class="lineno">  107</span>            self.logger.info(<span class="stringliteral">&#39;&gt; No graph outputs found on graph:&#39;</span>, graph.getNamePath())</div>
+<div class="line"><span class="lineno">  108</span>            <span class="keywordflow">return</span> no_result</div>
+<div class="line"><span class="lineno">  109</span> </div>
+<div class="line"><span class="lineno">  110</span>        debug = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  111</span>        use_paths = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>        <span class="comment"># Create fallback texture. Seperate out</span></div>
+<div class="line"><span class="lineno">  114</span>        fallback = <span class="stringliteral">&#39;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4z/AfAAQAAf/zKSWvAAAAAElFTkSuQmCC&#39;</span></div>
+<div class="line"><span class="lineno">  115</span>        fallback_index = -1</div>
+<div class="line"><span class="lineno">  116</span> </div>
+<div class="line"><span class="lineno">  117</span>        image_array = json.get(<span class="stringliteral">&#39;images&#39;</span>, [])</div>
+<div class="line"><span class="lineno">  118</span>        <span class="keywordflow">if</span> <span class="stringliteral">&#39;images&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> json:</div>
+<div class="line"><span class="lineno">  119</span>            json[<span class="stringliteral">&#39;images&#39;</span>] = image_array</div>
+<div class="line"><span class="lineno">  120</span> </div>
+<div class="line"><span class="lineno">  121</span>        <span class="keywordflow">for</span> i, image <span class="keywordflow">in</span> enumerate(image_array):</div>
+<div class="line"><span class="lineno">  122</span>            <span class="keywordflow">if</span> image[<span class="stringliteral">&#39;uri&#39;</span>] == fallback:</div>
+<div class="line"><span class="lineno">  123</span>                fallback_index = i</div>
+<div class="line"><span class="lineno">  124</span>                <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>        fallback_texture_index = -1</div>
+<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">if</span> fallback_index == -1:</div>
+<div class="line"><span class="lineno">  128</span>            image = {</div>
+<div class="line"><span class="lineno">  129</span>                <span class="stringliteral">&#39;uri&#39;</span>: fallback,</div>
+<div class="line"><span class="lineno">  130</span>                <span class="stringliteral">&#39;name&#39;</span>: <span class="stringliteral">&#39;KHR_texture_procedural_fallback&#39;</span></div>
+<div class="line"><span class="lineno">  131</span>            }</div>
+<div class="line"><span class="lineno">  132</span>            image_array.append(image)</div>
+<div class="line"><span class="lineno">  133</span>            fallback_index = len(image_array) - 1</div>
+<div class="line"><span class="lineno">  134</span> </div>
+<div class="line"><span class="lineno">  135</span>        texture_array = json.get(<span class="stringliteral">&#39;textures&#39;</span>, [])</div>
+<div class="line"><span class="lineno">  136</span>        <span class="keywordflow">if</span> <span class="stringliteral">&#39;textures&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> json:</div>
+<div class="line"><span class="lineno">  137</span>            json[<span class="stringliteral">&#39;textures&#39;</span>] = texture_array</div>
+<div class="line"><span class="lineno">  138</span> </div>
+<div class="line"><span class="lineno">  139</span>        <span class="keywordflow">for</span> i, texture <span class="keywordflow">in</span> enumerate(texture_array):</div>
+<div class="line"><span class="lineno">  140</span>            <span class="keywordflow">if</span> texture[<span class="stringliteral">&#39;source&#39;</span>] == fallback_index:</div>
+<div class="line"><span class="lineno">  141</span>                fallback_texture_index = i</div>
+<div class="line"><span class="lineno">  142</span>                <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  143</span> </div>
+<div class="line"><span class="lineno">  144</span>        <span class="keywordflow">if</span> fallback_texture_index == -1:</div>
+<div class="line"><span class="lineno">  145</span>            texture_array.append({<span class="stringliteral">&#39;source&#39;</span>: fallback_index})</div>
+<div class="line"><span class="lineno">  146</span>            fallback_texture_index = len(texture_array) - 1</div>
+<div class="line"><span class="lineno">  147</span> </div>
+<div class="line"><span class="lineno">  148</span>        proc_dict_nodes = {}</div>
+<div class="line"><span class="lineno">  149</span>        proc_dict_inputs = {}</div>
+<div class="line"><span class="lineno">  150</span>        proc_dict_outputs = {}</div>
+<div class="line"><span class="lineno">  151</span> </div>
+<div class="line"><span class="lineno">  152</span>        extensions = json.get(<span class="stringliteral">&#39;extensions&#39;</span>, {})</div>
+<div class="line"><span class="lineno">  153</span>        <span class="keywordflow">if</span> <span class="stringliteral">&#39;extensions&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> json:</div>
+<div class="line"><span class="lineno">  154</span>            json[<span class="stringliteral">&#39;extensions&#39;</span>] = extensions</div>
+<div class="line"><span class="lineno">  155</span> </div>
+<div class="line"><span class="lineno">  156</span>        KHR_texture_procedurals = extensions.get(<span class="stringliteral">&#39;KHR_texture_procedurals&#39;</span>, {})</div>
+<div class="line"><span class="lineno">  157</span>        <span class="keywordflow">if</span> <span class="stringliteral">&#39;KHR_texture_procedurals&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> extensions:</div>
+<div class="line"><span class="lineno">  158</span>            extensions[<span class="stringliteral">&#39;KHR_texture_procedurals&#39;</span>] = KHR_texture_procedurals</div>
+<div class="line"><span class="lineno">  159</span> </div>
+<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">if</span> <span class="stringliteral">&#39;procedurals&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> KHR_texture_procedurals:</div>
+<div class="line"><span class="lineno">  161</span>            KHR_texture_procedurals[<span class="stringliteral">&#39;procedurals&#39;</span>] = []</div>
+<div class="line"><span class="lineno">  162</span> </div>
+<div class="line"><span class="lineno">  163</span>        procs = KHR_texture_procedurals[<span class="stringliteral">&#39;procedurals&#39;</span>]</div>
+<div class="line"><span class="lineno">  164</span>        nodegraph = {</div>
+<div class="line"><span class="lineno">  165</span>            <span class="stringliteral">&#39;name&#39;</span>: graph.getNamePath() <span class="keywordflow">if</span> use_paths <span class="keywordflow">else</span> graph.getName(),</div>
+<div class="line"><span class="lineno">  166</span>            <span class="stringliteral">&#39;nodetype&#39;</span>: graph.getCategory()</div>
+<div class="line"><span class="lineno">  167</span>        }</div>
+<div class="line"><span class="lineno">  168</span> </div>
+<div class="line"><span class="lineno">  169</span>        nodegraph[<span class="stringliteral">&#39;type&#39;</span>] = <span class="stringliteral">&#39;multioutput&#39;</span> <span class="keywordflow">if</span> len(graph_outputs) &gt; 1 <span class="keywordflow">else</span> graph_outputs[0].getType()</div>
+<div class="line"><span class="lineno">  170</span>        nodegraph[<span class="stringliteral">&#39;inputs&#39;</span>] = []</div>
+<div class="line"><span class="lineno">  171</span>        nodegraph[<span class="stringliteral">&#39;outputs&#39;</span>] = []</div>
+<div class="line"><span class="lineno">  172</span>        nodegraph[<span class="stringliteral">&#39;nodes&#39;</span>] = []</div>
+<div class="line"><span class="lineno">  173</span>        procs.append(nodegraph)</div>
+<div class="line"><span class="lineno">  174</span> </div>
+<div class="line"><span class="lineno">  175</span>        metadata = [<span class="stringliteral">&#39;colorspace&#39;</span>, <span class="stringliteral">&#39;unit&#39;</span>, <span class="stringliteral">&#39;unittype&#39;</span>, <span class="stringliteral">&#39;uiname&#39;</span>, <span class="stringliteral">&#39;uimin&#39;</span>, <span class="stringliteral">&#39;uimax&#39;</span>, <span class="stringliteral">&#39;uifolder&#39;</span>, <span class="stringliteral">&#39;doc&#39;</span>]</div>
+<div class="line"><span class="lineno">  176</span> </div>
+<div class="line"><span class="lineno">  177</span>        <span class="keywordflow">for</span> node <span class="keywordflow">in</span> graph.getNodes():</div>
+<div class="line"><span class="lineno">  178</span>            json_node = {<span class="stringliteral">&#39;name&#39;</span>: node.getNamePath() <span class="keywordflow">if</span> use_paths <span class="keywordflow">else</span> node.getName()}</div>
+<div class="line"><span class="lineno">  179</span>            nodegraph[<span class="stringliteral">&#39;nodes&#39;</span>].append(json_node)</div>
+<div class="line"><span class="lineno">  180</span>            proc_dict_nodes[node.getNamePath()] = len(nodegraph[<span class="stringliteral">&#39;nodes&#39;</span>]) - 1</div>
+<div class="line"><span class="lineno">  181</span> </div>
+<div class="line"><span class="lineno">  182</span>        <span class="keywordflow">for</span> input <span class="keywordflow">in</span> graph.getInputs():</div>
+<div class="line"><span class="lineno">  183</span>            json_node = {</div>
+<div class="line"><span class="lineno">  184</span>                <span class="stringliteral">&#39;name&#39;</span>: input.getNamePath() <span class="keywordflow">if</span> use_paths <span class="keywordflow">else</span> input.getName(),</div>
+<div class="line"><span class="lineno">  185</span>                <span class="stringliteral">&#39;nodetype&#39;</span>: input.getCategory()</div>
+<div class="line"><span class="lineno">  186</span>            }</div>
+<div class="line"><span class="lineno">  187</span> </div>
+<div class="line"><span class="lineno">  188</span>            <span class="keywordflow">for</span> meta <span class="keywordflow">in</span> metadata:</div>
+<div class="line"><span class="lineno">  189</span>                <span class="keywordflow">if</span> input.getAttribute(meta):</div>
+<div class="line"><span class="lineno">  190</span>                    json_node[meta] = input.getAttribute(meta)</div>
+<div class="line"><span class="lineno">  191</span> </div>
+<div class="line"><span class="lineno">  192</span>            <span class="keywordflow">if</span> input.getValue() <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  193</span>                input_type = input.getAttribute(mx.TypedElement.TYPE_ATTRIBUTE)</div>
+<div class="line"><span class="lineno">  194</span>                json_node[<span class="stringliteral">&#39;type&#39;</span>] = input_type</div>
+<div class="line"><span class="lineno">  195</span>                <span class="keywordflow">if</span> input_type == mx.FILENAME_TYPE_STRING:</div>
+<div class="line"><span class="lineno">  196</span>                    self.logger.warning(<span class="stringliteral">&#39;&gt; File texture inputs not supported:&#39;</span>, input.getNamePath())</div>
+<div class="line"><span class="lineno">  197</span> </div>
+<div class="line"><span class="lineno">  198</span>                value = input.getValueString()</div>
+<div class="line"><span class="lineno">  199</span>                value = self.string_to_scalar(value, input_type)</div>
+<div class="line"><span class="lineno">  200</span>                json_node[<span class="stringliteral">&#39;value&#39;</span>] = value</div>
+<div class="line"><span class="lineno">  201</span>                nodegraph[<span class="stringliteral">&#39;inputs&#39;</span>].append(json_node)</div>
+<div class="line"><span class="lineno">  202</span>                proc_dict_inputs[input.getNamePath()] = len(nodegraph[<span class="stringliteral">&#39;inputs&#39;</span>]) - 1</div>
+<div class="line"><span class="lineno">  203</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  204</span>                self.logger.error(<span class="stringliteral">&#39;&gt; No value or invalid connection specified for input. Input skipped:&#39;</span>, input.getNamePath())</div>
+<div class="line"><span class="lineno">  205</span> </div>
+<div class="line"><span class="lineno">  206</span>        <span class="keywordflow">for</span> output <span class="keywordflow">in</span> graph_outputs:</div>
+<div class="line"><span class="lineno">  207</span>            json_node = {<span class="stringliteral">&#39;name&#39;</span>: output.getNamePath() <span class="keywordflow">if</span> use_paths <span class="keywordflow">else</span> output.getName()}</div>
+<div class="line"><span class="lineno">  208</span>            nodegraph[<span class="stringliteral">&#39;outputs&#39;</span>].append(json_node)</div>
+<div class="line"><span class="lineno">  209</span>            proc_dict_outputs[output.getNamePath()] = len(nodegraph[<span class="stringliteral">&#39;outputs&#39;</span>]) - 1</div>
+<div class="line"><span class="lineno">  210</span> </div>
+<div class="line"><span class="lineno">  211</span>            json_node[<span class="stringliteral">&#39;nodetype&#39;</span>] = output.getCategory()</div>
+<div class="line"><span class="lineno">  212</span>            json_node[<span class="stringliteral">&#39;type&#39;</span>] = output.getType()</div>
+<div class="line"><span class="lineno">  213</span> </div>
+<div class="line"><span class="lineno">  214</span>            connection = output.getAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE)</div>
+<div class="line"><span class="lineno">  215</span>            <span class="keywordflow">if</span> len(connection) == 0:</div>
+<div class="line"><span class="lineno">  216</span>                connection = output.getAttribute(MTLX_NODE_NAME_ATTRIBUTE)</div>
+<div class="line"><span class="lineno">  217</span> </div>
+<div class="line"><span class="lineno">  218</span>            connection_node = graph.getChild(connection)</div>
+<div class="line"><span class="lineno">  219</span>            <span class="keywordflow">if</span> connection_node:</div>
+<div class="line"><span class="lineno">  220</span>                connection_path = connection_node.getNamePath()</div>
+<div class="line"><span class="lineno">  221</span>                <span class="keywordflow">if</span> debug:</div>
+<div class="line"><span class="lineno">  222</span>                    json_node[<span class="stringliteral">&#39;debug_connection_path&#39;</span>] = connection_path</div>
+<div class="line"><span class="lineno">  223</span> </div>
+<div class="line"><span class="lineno">  224</span>                <span class="keywordflow">if</span> proc_dict_inputs.get(connection_path) <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  225</span>                    json_node[<span class="stringliteral">&#39;input&#39;</span>] = proc_dict_inputs[connection_path]</div>
+<div class="line"><span class="lineno">  226</span>                <span class="keywordflow">elif</span> proc_dict_nodes.get(connection_path) <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  227</span>                    json_node[<span class="stringliteral">&#39;node&#39;</span>] = proc_dict_nodes[connection_path]</div>
+<div class="line"><span class="lineno">  228</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  229</span>                    self.logger.error(f<span class="stringliteral">&#39;&gt; Invalid output connection to: {connection_path}&#39;</span>)</div>
+<div class="line"><span class="lineno">  230</span> </div>
+<div class="line"><span class="lineno">  231</span>                output_string = output.getAttribute(<span class="stringliteral">&#39;output&#39;</span>)</div>
+<div class="line"><span class="lineno">  232</span>                <span class="keywordflow">if</span> len(output_string) &gt; 0:</div>
+<div class="line"><span class="lineno">  233</span>                    json_node[<span class="stringliteral">&#39;output&#39;</span>] = output_string</div>
+<div class="line"><span class="lineno">  234</span> </div>
+<div class="line"><span class="lineno">  235</span>        <span class="keywordflow">for</span> node <span class="keywordflow">in</span> graph.getNodes():</div>
+<div class="line"><span class="lineno">  236</span>            json_node = nodegraph[<span class="stringliteral">&#39;nodes&#39;</span>][proc_dict_nodes[node.getNamePath()]]</div>
+<div class="line"><span class="lineno">  237</span>            json_node[<span class="stringliteral">&#39;nodetype&#39;</span>] = node.getCategory()</div>
+<div class="line"><span class="lineno">  238</span>            nodedef = node.getNodeDef()</div>
+<div class="line"><span class="lineno">  239</span> </div>
+<div class="line"><span class="lineno">  240</span>            <span class="keywordflow">if</span> debug <span class="keywordflow">and</span> nodedef <span class="keywordflow">and</span> nodedef.getNodeGroup():</div>
+<div class="line"><span class="lineno">  241</span>                json_node[<span class="stringliteral">&#39;nodegroup&#39;</span>] = nodedef.getNodeGroup()</div>
+<div class="line"><span class="lineno">  242</span> </div>
+<div class="line"><span class="lineno">  243</span>            <span class="keywordflow">for</span> attr_name <span class="keywordflow">in</span> node.getAttributeNames():</div>
+<div class="line"><span class="lineno">  244</span>                json_node[attr_name] = node.getAttribute(attr_name)</div>
+<div class="line"><span class="lineno">  245</span> </div>
+<div class="line"><span class="lineno">  246</span>            inputs = []</div>
+<div class="line"><span class="lineno">  247</span>            <span class="keywordflow">for</span> input <span class="keywordflow">in</span> node.getInputs():</div>
+<div class="line"><span class="lineno">  248</span>                input_item = {</div>
+<div class="line"><span class="lineno">  249</span>                    <span class="stringliteral">&#39;name&#39;</span>: input.getName(),</div>
+<div class="line"><span class="lineno">  250</span>                    <span class="stringliteral">&#39;nodetype&#39;</span>: <span class="stringliteral">&#39;input&#39;</span></div>
+<div class="line"><span class="lineno">  251</span>                }</div>
+<div class="line"><span class="lineno">  252</span> </div>
+<div class="line"><span class="lineno">  253</span>                <span class="keywordflow">for</span> meta <span class="keywordflow">in</span> metadata:</div>
+<div class="line"><span class="lineno">  254</span>                    <span class="keywordflow">if</span> input.getAttribute(meta):</div>
+<div class="line"><span class="lineno">  255</span>                        input_item[meta] = input.getAttribute(meta)</div>
+<div class="line"><span class="lineno">  256</span> </div>
+<div class="line"><span class="lineno">  257</span>                input_type = input.getAttribute(mx.TypedElement.TYPE_ATTRIBUTE)</div>
+<div class="line"><span class="lineno">  258</span>                input_item[<span class="stringliteral">&#39;type&#39;</span>] = input_type</div>
+<div class="line"><span class="lineno">  259</span> </div>
+<div class="line"><span class="lineno">  260</span>                <span class="keywordflow">if</span> input.getValue() <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  261</span>                    <span class="keywordflow">if</span> input_type == mx.FILENAME_TYPE_STRING:</div>
+<div class="line"><span class="lineno">  262</span>                        self.logger.warning(<span class="stringliteral">&#39;&gt; File texture inputs not supported:&#39;</span>, input.getNamePath())</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>                    value = input.getValueString()</div>
+<div class="line"><span class="lineno">  265</span>                    value = self.string_to_scalar(value, input_type)</div>
+<div class="line"><span class="lineno">  266</span>                    input_item[<span class="stringliteral">&#39;value&#39;</span>] = value</div>
+<div class="line"><span class="lineno">  267</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  268</span>                    is_interface = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  269</span>                    connection = input.getAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE)</div>
+<div class="line"><span class="lineno">  270</span>                    <span class="keywordflow">if</span> <span class="keywordflow">not</span> connection:</div>
+<div class="line"><span class="lineno">  271</span>                        is_interface = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  272</span>                        connection = input.getAttribute(MTLX_NODE_NAME_ATTRIBUTE)</div>
+<div class="line"><span class="lineno">  273</span> </div>
+<div class="line"><span class="lineno">  274</span>                    <span class="keywordflow">if</span> connection:</div>
+<div class="line"><span class="lineno">  275</span>                        connection_node = graph.getChild(connection)</div>
+<div class="line"><span class="lineno">  276</span>                        <span class="keywordflow">if</span> connection_node:</div>
+<div class="line"><span class="lineno">  277</span>                            connection_path = connection_node.getNamePath()</div>
+<div class="line"><span class="lineno">  278</span>                            <span class="keywordflow">if</span> debug:</div>
+<div class="line"><span class="lineno">  279</span>                                input_item[<span class="stringliteral">&#39;debug_connection_path&#39;</span>] = connection_path</div>
+<div class="line"><span class="lineno">  280</span> </div>
+<div class="line"><span class="lineno">  281</span>                            <span class="keywordflow">if</span> is_interface <span class="keywordflow">and</span> proc_dict_inputs.get(connection_path) <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  282</span>                                input_item[<span class="stringliteral">&#39;input&#39;</span>] = proc_dict_inputs[connection_path]</div>
+<div class="line"><span class="lineno">  283</span>                            <span class="keywordflow">elif</span> proc_dict_nodes.get(connection_path) <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  284</span>                                input_item[<span class="stringliteral">&#39;node&#39;</span>] = proc_dict_nodes[connection_path]</div>
+<div class="line"><span class="lineno">  285</span> </div>
+<div class="line"><span class="lineno">  286</span>                            output_string = input.getAttribute(<span class="stringliteral">&#39;output&#39;</span>)</div>
+<div class="line"><span class="lineno">  287</span>                            <span class="keywordflow">if</span> output_string:</div>
+<div class="line"><span class="lineno">  288</span>                                connected_node_outputs = connection_node.getOutputs()</div>
+<div class="line"><span class="lineno">  289</span>                                <span class="keywordflow">for</span> i, connected_output <span class="keywordflow">in</span> enumerate(connected_node_outputs):</div>
+<div class="line"><span class="lineno">  290</span>                                    <span class="keywordflow">if</span> connected_output.getName() == output_string:</div>
+<div class="line"><span class="lineno">  291</span>                                        input_item[<span class="stringliteral">&#39;output&#39;</span>] = i</div>
+<div class="line"><span class="lineno">  292</span>                                        <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  293</span>                        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  294</span>                            self.logger.error(f<span class="stringliteral">&#39;&gt; Invalid input connection to: &#39;</span></div>
+<div class="line"><span class="lineno">  295</span>                                              <span class="stringliteral">&#39;{connection} from input: {input.getNamePath()} &#39;</span></div>
+<div class="line"><span class="lineno">  296</span>                                              <span class="stringliteral">&#39;node: {node.getNamePath()}&#39;</span>)</div>
+<div class="line"><span class="lineno">  297</span> </div>
+<div class="line"><span class="lineno">  298</span>                inputs.append(input_item)</div>
+<div class="line"><span class="lineno">  299</span> </div>
+<div class="line"><span class="lineno">  300</span>            <span class="keywordflow">if</span> inputs:</div>
+<div class="line"><span class="lineno">  301</span>                json_node[<span class="stringliteral">&#39;inputs&#39;</span>] = inputs</div>
+<div class="line"><span class="lineno">  302</span> </div>
+<div class="line"><span class="lineno">  303</span>            outputs = []</div>
+<div class="line"><span class="lineno">  304</span>            <span class="keywordflow">for</span> output <span class="keywordflow">in</span> node.getOutputs():</div>
+<div class="line"><span class="lineno">  305</span>                output_item = {</div>
+<div class="line"><span class="lineno">  306</span>                    <span class="stringliteral">&#39;nodetype&#39;</span>: <span class="stringliteral">&#39;output&#39;</span>,</div>
+<div class="line"><span class="lineno">  307</span>                    <span class="stringliteral">&#39;name&#39;</span>: output.getName(),</div>
+<div class="line"><span class="lineno">  308</span>                    <span class="stringliteral">&#39;type&#39;</span>: output.getType()</div>
+<div class="line"><span class="lineno">  309</span>                }</div>
+<div class="line"><span class="lineno">  310</span>                outputs.append(output_item)</div>
+<div class="line"><span class="lineno">  311</span> </div>
+<div class="line"><span class="lineno">  312</span>            <span class="keywordflow">if</span> nodedef:</div>
+<div class="line"><span class="lineno">  313</span>                <span class="keywordflow">for</span> output <span class="keywordflow">in</span> nodedef.getOutputs():</div>
+<div class="line"><span class="lineno">  314</span>                    <span class="keywordflow">if</span> <span class="keywordflow">not</span> any(output_item[<span class="stringliteral">&#39;name&#39;</span>] == output.getName() <span class="keywordflow">for</span> output_item <span class="keywordflow">in</span> outputs):</div>
+<div class="line"><span class="lineno">  315</span>                        output_item = {</div>
+<div class="line"><span class="lineno">  316</span>                            <span class="stringliteral">&#39;nodetype&#39;</span>: <span class="stringliteral">&#39;output&#39;</span>,</div>
+<div class="line"><span class="lineno">  317</span>                            <span class="stringliteral">&#39;name&#39;</span>: output.getName(),</div>
+<div class="line"><span class="lineno">  318</span>                            <span class="stringliteral">&#39;type&#39;</span>: output.getType()</div>
+<div class="line"><span class="lineno">  319</span>                        }</div>
+<div class="line"><span class="lineno">  320</span>                        outputs.append(output_item)</div>
+<div class="line"><span class="lineno">  321</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  322</span>                self.logger.warning(f<span class="stringliteral">&#39;&gt; Missing nodedef for node: {node.getNamePath()}&#39;</span>)</div>
+<div class="line"><span class="lineno">  323</span> </div>
+<div class="line"><span class="lineno">  324</span>            <span class="keywordflow">if</span> outputs:</div>
+<div class="line"><span class="lineno">  325</span>                json_node[<span class="stringliteral">&#39;outputs&#39;</span>] = outputs</div>
+<div class="line"><span class="lineno">  326</span> </div>
+<div class="line"><span class="lineno">  327</span>        <span class="keywordflow">return</span> [procs, proc_dict_outputs, proc_dict_nodes, fallback_texture_index]</div>
+<div class="line"><span class="lineno">  328</span> </div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="ae55050ea785c8c0b4c49294ebb1c26d3" name="ae55050ea785c8c0b4c49294ebb1c26d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae55050ea785c8c0b4c49294ebb1c26d3">&#9670;&#160;</a></span>set_debug()</h2>
 
@@ -207,23 +720,99 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00029">29</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   29</span>    <span class="keyword">def </span>set_debug(self, debug):</div>
-<div class="line"><span class="lineno">   30</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   31</span><span class="stringliteral">        Set the debug flag for the converter.</span></div>
-<div class="line"><span class="lineno">   32</span><span class="stringliteral">        @param debug: The debug flag.</span></div>
-<div class="line"><span class="lineno">   33</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   34</span>        <span class="keywordflow">if</span> debug:</div>
-<div class="line"><span class="lineno">   35</span>            self.logger.setLevel(lg.DEBUG)</div>
-<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">   37</span>            self.logger.setLevel(lg.INFO)</div>
-<div class="line"><span class="lineno">   38</span>    </div>
-<div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>    </div>
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00060">60</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   60</span>    <span class="keyword">def </span>set_debug(self, debug):</div>
+<div class="line"><span class="lineno">   61</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   62</span><span class="stringliteral">        Set the debug flag for the converter.</span></div>
+<div class="line"><span class="lineno">   63</span><span class="stringliteral">        @param debug: The debug flag.</span></div>
+<div class="line"><span class="lineno">   64</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   65</span>        <span class="keywordflow">if</span> debug:</div>
+<div class="line"><span class="lineno">   66</span>            self.logger.setLevel(lg.DEBUG)</div>
+<div class="line"><span class="lineno">   67</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   68</span>            self.logger.setLevel(lg.INFO)</div>
+<div class="line"><span class="lineno">   69</span>    </div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ac23d11b036b75881b2fb00200b7e900c" name="ac23d11b036b75881b2fb00200b7e900c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac23d11b036b75881b2fb00200b7e900c">&#9670;&#160;</a></span>string_to_scalar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gltf_materialx_converter.converter.glTFMaterialXConverter.string_to_scalar </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>type</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a string to a scalar value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The string value to convert. </td></tr>
+    <tr><td class="paramname">type</td><td>The type of the value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The converted scalar value if successful, otherwise the original string value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00070">70</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   70</span>    <span class="keyword">def </span>string_to_scalar(self, value, type):</div>
+<div class="line"><span class="lineno">   71</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   72</span><span class="stringliteral">        Convert a string to a scalar value.</span></div>
+<div class="line"><span class="lineno">   73</span><span class="stringliteral">        @param value: The string value to convert.</span></div>
+<div class="line"><span class="lineno">   74</span><span class="stringliteral">        @param type: The type of the value.</span></div>
+<div class="line"><span class="lineno">   75</span><span class="stringliteral">        @return The converted scalar value if successful, otherwise the original string value.</span></div>
+<div class="line"><span class="lineno">   76</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   77</span>        return_value = value</div>
+<div class="line"><span class="lineno">   78</span>    </div>
+<div class="line"><span class="lineno">   79</span>        scalar_types = [<span class="stringliteral">&#39;integer&#39;</span>, <span class="stringliteral">&#39;matrix33&#39;</span>, <span class="stringliteral">&#39;matrix44&#39;</span>, <span class="stringliteral">&#39;vector2&#39;</span>, <span class="stringliteral">&#39;vector3&#39;</span>, <span class="stringliteral">&#39;vector4&#39;</span>, <span class="stringliteral">&#39;float&#39;</span>, <span class="stringliteral">&#39;color3&#39;</span>, <span class="stringliteral">&#39;color4&#39;</span>]</div>
+<div class="line"><span class="lineno">   80</span>    </div>
+<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">if</span> type <span class="keywordflow">in</span> scalar_types:</div>
+<div class="line"><span class="lineno">   82</span>            split_value = value.split(<span class="stringliteral">&#39;,&#39;</span>)</div>
+<div class="line"><span class="lineno">   83</span>    </div>
+<div class="line"><span class="lineno">   84</span>            <span class="keywordflow">if</span> len(split_value) &gt; 1:</div>
+<div class="line"><span class="lineno">   85</span>                return_value = list(map(float, split_value))</div>
+<div class="line"><span class="lineno">   86</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   87</span>                <span class="keywordflow">if</span> type == <span class="stringliteral">&#39;integer&#39;</span>:</div>
+<div class="line"><span class="lineno">   88</span>                    return_value = int(value)</div>
+<div class="line"><span class="lineno">   89</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   90</span>                    return_value = float(value)</div>
+<div class="line"><span class="lineno">   91</span>    </div>
+<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">return</span> return_value</div>
+<div class="line"><span class="lineno">   93</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a891ca10001b4621870d9f3b8b00ae531" name="a891ca10001b4621870d9f3b8b00ae531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a891ca10001b4621870d9f3b8b00ae531">&#9670;&#160;</a></span>array_types</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">list gltf_materialx_converter.converter.glTFMaterialXConverter.array_types = ['matrix33', 'matrix44', 'vector2', 'vector3', 'vector4', 'color3', 'color4']</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00058">58</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+
+</div>
+</div>
 <a id="a76d4a55f730d618932d8f4b1156010ab" name="a76d4a55f730d618932d8f4b1156010ab"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a76d4a55f730d618932d8f4b1156010ab">&#9670;&#160;</a></span>logger</h2>
 
@@ -236,7 +825,23 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00026">26</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00053">53</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+
+</div>
+</div>
+<a id="a0e2ffcbc50f1981c660e9cbf51e829ac" name="a0e2ffcbc50f1981c660e9cbf51e829ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e2ffcbc50f1981c660e9cbf51e829ac">&#9670;&#160;</a></span>supported_types</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">list gltf_materialx_converter.converter.glTFMaterialXConverter.supported_types = ['boolean', 'string', 'integer', 'matrix33', 'matrix44', 'vector2', 'vector3', 'vector4', 'float', 'color3', 'color4']</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00057">57</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
 
 </div>
 </div>
