@@ -140,7 +140,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">    8</span>    parser = argparse.ArgumentParser(description=<span class="stringliteral">&quot;Bi-directioanl converter between MaterialX and glTF Texture Procedurals.&quot;</span>)</div>
 <div class="line"><span class="lineno">    9</span>    parser.add_argument(dest=<span class="stringliteral">&quot;input&quot;</span>, help=<span class="stringliteral">&quot;Input file/folder.&quot;</span>)</div>
 <div class="line"><span class="lineno">   10</span>    parser.add_argument(<span class="stringliteral">&quot;-o&quot;</span>, <span class="stringliteral">&quot;--output&quot;</span>, help=<span class="stringliteral">&quot;Output file/folder. Default is current folder.&quot;</span>)</div>
-<div class="line"><span class="lineno">   11</span>    parser.add_argument(<span class="stringliteral">&quot;-s&quot;</span>, <span class="stringliteral">&quot;--sourceType&quot;</span>, default=<span class="stringliteral">&#39;mtlx&#39;</span>, help=<span class="stringliteral">&quot;Source type. Default is &#39;mtlx&#39;.&quot;</span>)</div>
+<div class="line"><span class="lineno">   11</span>    parser.add_argument(<span class="stringliteral">&quot;-s&quot;</span>, <span class="stringliteral">&quot;--sourceType&quot;</span>, default=<span class="stringliteral">&#39;.mtlx&#39;</span>, help=<span class="stringliteral">&quot;Source type. Default is &#39;mtlx&#39;.&quot;</span>)</div>
 <div class="line"><span class="lineno">   12</span>    opts = parser.parse_args()</div>
 <div class="line"><span class="lineno">   13</span>    </div>
 <div class="line"><span class="lineno">   14</span>    logger = lg.getLogger(<span class="stringliteral">&#39;gltfCmd&#39;</span>)</div>
@@ -149,57 +149,59 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   17</span>    fileList = []</div>
 <div class="line"><span class="lineno">   18</span>    extension = <span class="stringliteral">&#39;&#39;</span></div>
 <div class="line"><span class="lineno">   19</span>    <span class="keywordflow">if</span> os.path.isdir(opts.input): </div>
-<div class="line"><span class="lineno">   20</span>        <span class="keywordflow">if</span> opts.sourceType <span class="keywordflow">not</span> <span class="keywordflow">in</span> [<span class="stringliteral">&#39;.mtlx&#39;</span>]:</div>
-<div class="line"><span class="lineno">   21</span>            logger.error(f<span class="stringliteral">&#39;Invalid source type: {opts.sourceType}. Must be either mtlx or gltf.&#39;</span>)</div>
-<div class="line"><span class="lineno">   22</span>            <span class="keywordflow">return</span></div>
-<div class="line"><span class="lineno">   23</span>        extension = opts.sourceType </div>
-<div class="line"><span class="lineno">   24</span>        fileList = MxGLTFPT.getFiles(opts.input, extension)</div>
-<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">   26</span>        extension = os.path.splitext(opts.input)[1]</div>
-<div class="line"><span class="lineno">   27</span>        <span class="keywordflow">if</span> extension <span class="keywordflow">not</span> <span class="keywordflow">in</span> [<span class="stringliteral">&#39;.mtlx&#39;</span>]:</div>
-<div class="line"><span class="lineno">   28</span>            logger.error(f<span class="stringliteral">&#39;Invalid file extension: {extension}. Must be either .mtlx or .gltf.&#39;</span>)</div>
-<div class="line"><span class="lineno">   29</span>            <span class="keywordflow">return</span></div>
-<div class="line"><span class="lineno">   30</span>        fileList.append(opts.input)</div>
-<div class="line"><span class="lineno">   31</span> </div>
-<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> fileList:</div>
-<div class="line"><span class="lineno">   33</span>        logger.info(f<span class="stringliteral">&#39;No MaterialX files found in: {opts.input}&#39;</span>)</div>
-<div class="line"><span class="lineno">   34</span>        <span class="keywordflow">return</span></div>
-<div class="line"><span class="lineno">   35</span>    </div>
-<div class="line"><span class="lineno">   36</span>    stdlib, libFiles = MxGLTFPT.loadStandardLibraries()</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>    converter = MxGLTFPT.glTFMaterialXConverter()</div>
+<div class="line"><span class="lineno">   20</span>        <span class="comment"># TODO: Expand to accept glTF as input</span></div>
+<div class="line"><span class="lineno">   21</span>        <span class="keywordflow">if</span> opts.sourceType <span class="keywordflow">not</span> <span class="keywordflow">in</span> [<span class="stringliteral">&#39;.mtlx&#39;</span>]:</div>
+<div class="line"><span class="lineno">   22</span>            logger.error(f<span class="stringliteral">&#39;Invalid source type: {opts.sourceType}. Must be either mtlx or gltf.&#39;</span>)</div>
+<div class="line"><span class="lineno">   23</span>            <span class="keywordflow">return</span></div>
+<div class="line"><span class="lineno">   24</span>        extension = opts.sourceType </div>
+<div class="line"><span class="lineno">   25</span>        fileList = MxGLTFPT.getFiles(opts.input, extension)</div>
+<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   27</span>        extension = os.path.splitext(opts.input)[1]</div>
+<div class="line"><span class="lineno">   28</span>        <span class="comment"># TODO: Expand to accept glTF as input</span></div>
+<div class="line"><span class="lineno">   29</span>        <span class="keywordflow">if</span> extension <span class="keywordflow">not</span> <span class="keywordflow">in</span> [<span class="stringliteral">&#39;.mtlx&#39;</span>]:</div>
+<div class="line"><span class="lineno">   30</span>            logger.error(f<span class="stringliteral">&#39;Invalid file extension: {extension}. Must be either .mtlx or .gltf.&#39;</span>)</div>
+<div class="line"><span class="lineno">   31</span>            <span class="keywordflow">return</span></div>
+<div class="line"><span class="lineno">   32</span>        fileList.append(opts.input)</div>
+<div class="line"><span class="lineno">   33</span> </div>
+<div class="line"><span class="lineno">   34</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> fileList:</div>
+<div class="line"><span class="lineno">   35</span>        logger.info(f<span class="stringliteral">&#39;No MaterialX files found in: {opts.input}&#39;</span>)</div>
+<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">return</span></div>
+<div class="line"><span class="lineno">   37</span>    </div>
+<div class="line"><span class="lineno">   38</span>    stdlib, libFiles = MxGLTFPT.loadStandardLibraries()</div>
 <div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>    <span class="comment"># Check for output folder option</span></div>
-<div class="line"><span class="lineno">   41</span>    outputFolder = <span class="stringliteral">&#39;.&#39;</span></div>
-<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">if</span> opts.output:</div>
-<div class="line"><span class="lineno">   43</span>        outputFolder = opts.output</div>
-<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> os.path.exists(outputFolder):</div>
-<div class="line"><span class="lineno">   45</span>        os.makedirs(outputFolder)</div>
-<div class="line"><span class="lineno">   46</span> </div>
-<div class="line"><span class="lineno">   47</span>    <span class="keywordflow">if</span> extension == <span class="stringliteral">&#39;.mtlx&#39;</span>:</div>
+<div class="line"><span class="lineno">   40</span>    converter = MxGLTFPT.glTFMaterialXConverter()</div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>    <span class="comment"># Check for output folder option</span></div>
+<div class="line"><span class="lineno">   43</span>    outputFolder = <span class="stringliteral">&#39;.&#39;</span></div>
+<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">if</span> opts.output:</div>
+<div class="line"><span class="lineno">   45</span>        outputFolder = opts.output</div>
+<div class="line"><span class="lineno">   46</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> os.path.exists(outputFolder):</div>
+<div class="line"><span class="lineno">   47</span>        os.makedirs(outputFolder)</div>
 <div class="line"><span class="lineno">   48</span> </div>
-<div class="line"><span class="lineno">   49</span>        <span class="keywordflow">for</span> inputFile <span class="keywordflow">in</span> fileList:</div>
-<div class="line"><span class="lineno">   50</span>            logger.info(f<span class="stringliteral">&#39;Processing: {inputFile}&#39;</span>)</div>
-<div class="line"><span class="lineno">   51</span>            mxdoc = MxGLTFPT.createWorkingDocument([stdlib])      </div>
-<div class="line"><span class="lineno">   52</span>            MxGLTFPT.readMaterialXDocument(mxdoc, inputFile)</div>
-<div class="line"><span class="lineno">   53</span>            valid, errors = MxGLTFPT.validateDocument(mxdoc)</div>
-<div class="line"><span class="lineno">   54</span> </div>
-<div class="line"><span class="lineno">   55</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> valid:</div>
-<div class="line"><span class="lineno">   56</span>                logger.error(f<span class="stringliteral">&#39;MaterialX document: {inputFile} is invalid. Erors: {errors}&#39;</span>)</div>
-<div class="line"><span class="lineno">   57</span>                <span class="keywordflow">continue</span></div>
-<div class="line"><span class="lineno">   58</span> </div>
-<div class="line"><span class="lineno">   59</span>            <span class="keywordflow">if</span> (mxdoc <span class="keywordflow">and</span> mxdoc.validate()):</div>
-<div class="line"><span class="lineno">   60</span>                jsonString, status = converter.convert_from_materialx(mxdoc)</div>
-<div class="line"><span class="lineno">   61</span>                <span class="keywordflow">if</span> jsonString:</div>
-<div class="line"><span class="lineno">   62</span>                    <span class="comment"># Write string to file x.json</span></div>
-<div class="line"><span class="lineno">   63</span>                    outputFile = os.path.join(outputFolder, os.path.basename(inputFile).replace(<span class="stringliteral">&#39;.mtlx&#39;</span>, <span class="stringliteral">&#39;.gltf&#39;</span>))</div>
-<div class="line"><span class="lineno">   64</span>                    <span class="keyword">with</span> open(outputFile, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> f:</div>
-<div class="line"><span class="lineno">   65</span>                        logger.info(f<span class="stringliteral">&#39;Writing glTF: {outputFile}&#39;</span>)</div>
-<div class="line"><span class="lineno">   66</span>                        f.write(jsonString)</div>
-<div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>                <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">   69</span>                    logger.error(f<span class="stringliteral">&#39;Error: {status}&#39;</span>)</div>
-<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   49</span>    <span class="keywordflow">if</span> extension == <span class="stringliteral">&#39;.mtlx&#39;</span>:</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>        <span class="keywordflow">for</span> inputFile <span class="keywordflow">in</span> fileList:</div>
+<div class="line"><span class="lineno">   52</span>            logger.info(f<span class="stringliteral">&#39;Processing: {inputFile}&#39;</span>)</div>
+<div class="line"><span class="lineno">   53</span>            mxdoc = MxGLTFPT.createWorkingDocument([stdlib])      </div>
+<div class="line"><span class="lineno">   54</span>            MxGLTFPT.readMaterialXDocument(mxdoc, inputFile)</div>
+<div class="line"><span class="lineno">   55</span>            valid, errors = MxGLTFPT.validateDocument(mxdoc)</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> valid:</div>
+<div class="line"><span class="lineno">   58</span>                logger.error(f<span class="stringliteral">&#39;MaterialX document: {inputFile} is invalid. Erors: {errors}&#39;</span>)</div>
+<div class="line"><span class="lineno">   59</span>                <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   61</span>            <span class="keywordflow">if</span> (mxdoc <span class="keywordflow">and</span> mxdoc.validate()):</div>
+<div class="line"><span class="lineno">   62</span>                jsonString, status = converter.materialXtoGLTF(mxdoc)</div>
+<div class="line"><span class="lineno">   63</span>                <span class="keywordflow">if</span> jsonString:</div>
+<div class="line"><span class="lineno">   64</span>                    <span class="comment"># Write string to file x.json</span></div>
+<div class="line"><span class="lineno">   65</span>                    outputFile = os.path.join(outputFolder, os.path.basename(inputFile).replace(<span class="stringliteral">&#39;.mtlx&#39;</span>, <span class="stringliteral">&#39;.gltf&#39;</span>))</div>
+<div class="line"><span class="lineno">   66</span>                    <span class="keyword">with</span> open(outputFile, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><span class="lineno">   67</span>                        logger.info(f<span class="stringliteral">&#39;Writing glTF: {outputFile}&#39;</span>)</div>
+<div class="line"><span class="lineno">   68</span>                        f.write(jsonString)</div>
+<div class="line"><span class="lineno">   69</span> </div>
+<div class="line"><span class="lineno">   70</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   71</span>                    logger.error(f<span class="stringliteral">&#39;Error: {status}&#39;</span>)</div>
+<div class="line"><span class="lineno">   72</span> </div>
 </div><!-- fragment -->
 </div>
 </div>

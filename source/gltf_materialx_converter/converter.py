@@ -527,7 +527,29 @@ class glTFMaterialXConverter():
 
         return jsonString, status
 
-# Utilities
+# Utilities : TODO - move out to a separate module
+
+def getFiles(rootPath, extension):
+    '''Get all files with a given extension in a directory.
+    @param rootPath: The root directory to search.
+    @param extension: The file extension to search for.
+    @return: The list of files with the given extension.
+    '''
+    filelist = []
+    exts = (extension)
+    for subdir, dirs, files in os.walk(rootPath):
+        for file in files:
+            if file.lower().endswith(exts):
+                filelist.append(os.path.join(subdir, file)) 
+    return filelist
+
+def readMaterialXDocument(mtlxdoc, inputFile):
+    '''
+    Read a MaterialX document from a file.
+    @param mtlxdoc: The MaterialX document to read into.
+    @param inputFile: The file to read from.
+    '''
+    mx.readFromXmlFile(mtlxdoc, inputFile)
 
 def loadStandardLibraries():
     '''Load standard MaierialX libraries.

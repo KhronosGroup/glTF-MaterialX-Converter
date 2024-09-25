@@ -8,7 +8,7 @@ def main():
     parser = argparse.ArgumentParser(description="Bi-directioanl converter between MaterialX and glTF Texture Procedurals.")
     parser.add_argument(dest="input", help="Input file/folder.")
     parser.add_argument("-o", "--output", help="Output file/folder. Default is current folder.")
-    parser.add_argument("-s", "--sourceType", default='mtlx', help="Source type. Default is 'mtlx'.")
+    parser.add_argument("-s", "--sourceType", default='.mtlx', help="Source type. Default is 'mtlx'.")
     opts = parser.parse_args()
     
     logger = lg.getLogger('gltfCmd')
@@ -17,6 +17,7 @@ def main():
     fileList = []
     extension = ''
     if os.path.isdir(opts.input): 
+        # TODO: Expand to accept glTF as input
         if opts.sourceType not in ['.mtlx']:
             logger.error(f'Invalid source type: {opts.sourceType}. Must be either mtlx or gltf.')
             return
@@ -24,6 +25,7 @@ def main():
         fileList = MxGLTFPT.getFiles(opts.input, extension)
     else:
         extension = os.path.splitext(opts.input)[1]
+        # TODO: Expand to accept glTF as input
         if extension not in ['.mtlx']:
             logger.error(f'Invalid file extension: {extension}. Must be either .mtlx or .gltf.')
             return
@@ -57,7 +59,7 @@ def main():
                 continue
 
             if (mxdoc and mxdoc.validate()):
-                jsonString, status = converter.convert_from_materialx(mxdoc)
+                jsonString, status = converter.materialXtoGLTF(mxdoc)
                 if jsonString:
                     # Write string to file x.json
                     outputFile = os.path.join(outputFolder, os.path.basename(inputFile).replace('.mtlx', '.gltf'))
