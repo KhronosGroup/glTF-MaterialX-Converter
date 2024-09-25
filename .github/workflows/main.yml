@@ -45,7 +45,7 @@ jobs:
     - name: Create Distribution 
       run: |
         mkdir distribution
-        cp README.html distribution
+        cp README.md distribution
         cp -R documents/html distribution
         rm -rf source/gltf_materialx_converter/__pycache__
         cp -R source/gltf_materialx_converter distribution  
