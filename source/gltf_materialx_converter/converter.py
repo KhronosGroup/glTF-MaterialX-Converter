@@ -67,9 +67,9 @@ class glTFMaterialXConverter():
         else:
             self.logger.setLevel(lg.INFO)
     
-    def string_to_scalar(self, value, type):
+    def stringToScalar(self, value, type):
         """
-        Convert a string to a scalar value.
+        Convert a supported MaterialX value string to a JSON scalar value.
         @param value: The string value to convert.
         @param type: The type of the value.
         @return The converted scalar value if successful, otherwise the original string value.
@@ -91,7 +91,7 @@ class glTFMaterialXConverter():
     
         return return_value
 
-    def materialx_graph_to_gltf(self, graph, json, materials):
+    def materialXGraphToGLTF(self, graph, json, materials):
         """
         Export a MaterialX nodegraph to a glTF procedural graph.
         @param graph: The MaterialX nodegraph to export.
@@ -110,7 +110,7 @@ class glTFMaterialXConverter():
         debug = False
         use_paths = False
 
-        # Create fallback texture. Seperate out
+        # Create fallback texture. Separate out
         fallback = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4z/AfAAQAAf/zKSWvAAAAAElFTkSuQmCC'
         fallback_index = -1
 
@@ -149,6 +149,7 @@ class glTFMaterialXConverter():
         proc_dict_inputs = {}
         proc_dict_outputs = {}
 
+        # Set up extensions
         extensions = json.get('extensions', {})
         if 'extensions' not in json:
             json['extensions'] = extensions
@@ -166,19 +167,25 @@ class glTFMaterialXConverter():
             'nodetype': graph.getCategory()
         }
 
+        # Set up dictionaries to track the graph entries for connectivitly lookups
         nodegraph['type'] = 'multioutput' if len(graph_outputs) > 1 else graph_outputs[0].getType()
         nodegraph['inputs'] = []
         nodegraph['outputs'] = []
         nodegraph['nodes'] = []
         procs.append(nodegraph)
 
+        # Setup supported metadata
         metadata = ['colorspace', 'unit', 'unittype', 'uiname', 'uimin', 'uimax', 'uifolder', 'doc']
 
+        # Add nodes to to dictonary. Use path as this is globally unique
+        #
         for node in graph.getNodes():
             json_node = {'name': node.getNamePath() if use_paths else node.getName()}
             nodegraph['nodes'].append(json_node)
             proc_dict_nodes[node.getNamePath()] = len(nodegraph['nodes']) - 1
 
+        # Add inputs to the graph
+        #
         for input in graph.getInputs():
             json_node = {
                 'name': input.getNamePath() if use_paths else input.getName(),
@@ -189,28 +196,38 @@ class glTFMaterialXConverter():
                 if input.getAttribute(meta):
                     json_node[meta] = input.getAttribute(meta)
 
+            # Only values are allowed for graph inputs
             if input.getValue() is not None:
                 input_type = input.getAttribute(mx.TypedElement.TYPE_ATTRIBUTE)
                 json_node['type'] = input_type
+
+                # TODO: Add support for file texture inputs 
                 if input_type == mx.FILENAME_TYPE_STRING:
                     self.logger.warning('> File texture inputs not supported:', input.getNamePath())
 
                 value = input.getValueString()
-                value = self.string_to_scalar(value, input_type)
+                value = self.stringToScalar(value, input_type)
                 json_node['value'] = value
                 nodegraph['inputs'].append(json_node)
+
+                # Add input to dictionary
                 proc_dict_inputs[input.getNamePath()] = len(nodegraph['inputs']) - 1
             else:
                 self.logger.error('> No value or invalid connection specified for input. Input skipped:', input.getNamePath())
 
+        # Add outputs to the graph
+        #
         for output in graph_outputs:
             json_node = {'name': output.getNamePath() if use_paths else output.getName()}
             nodegraph['outputs'].append(json_node)
+            # Add output to dictionary
             proc_dict_outputs[output.getNamePath()] = len(nodegraph['outputs']) - 1
 
             json_node['nodetype'] = output.getCategory()
             json_node['type'] = output.getType()
 
+            # Add connection if any. Only interfacename and nodename
+            # are supported.
             connection = output.getAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE)
             if len(connection) == 0:
                 connection = output.getAttribute(MTLX_NODE_NAME_ATTRIBUTE)
@@ -221,6 +238,7 @@ class glTFMaterialXConverter():
                 if debug:
                     json_node['debug_connection_path'] = connection_path
 
+                # Add an input or node connection
                 if proc_dict_inputs.get(connection_path) is not None:
                     json_node['input'] = proc_dict_inputs[connection_path]
                 elif proc_dict_nodes.get(connection_path) is not None:
@@ -228,15 +246,18 @@ class glTFMaterialXConverter():
                 else:
                     self.logger.error(f'> Invalid output connection to: {connection_path}')
 
+                # Add output qualifier if any
                 output_string = output.getAttribute('output')
                 if len(output_string) > 0:
                     json_node['output'] = output_string
 
+        # Add nodes to the graph
         for node in graph.getNodes():
             json_node = nodegraph['nodes'][proc_dict_nodes[node.getNamePath()]]
             json_node['nodetype'] = node.getCategory()
             nodedef = node.getNodeDef()
 
+            # Skip unsupported nodes
             if not nodedef:
                 self.logger.error(f'> Missing nodedef for node: {node.getNamePath()}')
                 continue
@@ -247,6 +268,8 @@ class glTFMaterialXConverter():
             for attr_name in node.getAttributeNames():
                 json_node[attr_name] = node.getAttribute(attr_name)
 
+            # Add node inputs
+            #
             inputs = []
             for input in node.getInputs():
                 input_item = {
@@ -261,49 +284,54 @@ class glTFMaterialXConverter():
                 input_type = input.getAttribute(mx.TypedElement.TYPE_ATTRIBUTE)
                 input_item['type'] = input_type
 
-                if input.getValue() is not None:
+                # Add connection. Connections superscede values.
+                # Only interfacename and nodename are supported.                
+                is_interface = True
+                connection = input.getAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE)
+                if not connection:
+                    is_interface = False
+                    connection = input.getAttribute(MTLX_NODE_NAME_ATTRIBUTE)
+
+                if connection:
+                    connection_node = graph.getChild(connection)
+                    if connection_node:
+                        connection_path = connection_node.getNamePath()
+                        if debug:
+                            input_item['debug_connection_path'] = connection_path
+
+                        if is_interface and proc_dict_inputs.get(connection_path) is not None:
+                            input_item['input'] = proc_dict_inputs[connection_path]
+                        elif proc_dict_nodes.get(connection_path) is not None:
+                            input_item['node'] = proc_dict_nodes[connection_path]
+
+                        output_string = input.getAttribute('output')
+                        if output_string:
+                            connected_node_outputs = connection_node.getOutputs()
+                            for i, connected_output in enumerate(connected_node_outputs):
+                                if connected_output.getName() == output_string:
+                                    input_item['output'] = i
+                                    break
+                    else:
+                        self.logger.error(f'> Invalid input connection to: '
+                                            '{connection} from input: {input.getNamePath()} '
+                                            'node: {node.getNamePath()}')
+
+                # Node input value if any
+                elif input.getValue() is not None:
                     if input_type == mx.FILENAME_TYPE_STRING:
                         self.logger.warning('> File texture inputs not supported:', input.getNamePath())
 
                     value = input.getValueString()
-                    value = self.string_to_scalar(value, input_type)
-                    input_item['value'] = value
-                else:
-                    is_interface = True
-                    connection = input.getAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE)
-                    if not connection:
-                        is_interface = False
-                        connection = input.getAttribute(MTLX_NODE_NAME_ATTRIBUTE)
-
-                    if connection:
-                        connection_node = graph.getChild(connection)
-                        if connection_node:
-                            connection_path = connection_node.getNamePath()
-                            if debug:
-                                input_item['debug_connection_path'] = connection_path
-
-                            if is_interface and proc_dict_inputs.get(connection_path) is not None:
-                                input_item['input'] = proc_dict_inputs[connection_path]
-                            elif proc_dict_nodes.get(connection_path) is not None:
-                                input_item['node'] = proc_dict_nodes[connection_path]
-
-                            output_string = input.getAttribute('output')
-                            if output_string:
-                                connected_node_outputs = connection_node.getOutputs()
-                                for i, connected_output in enumerate(connected_node_outputs):
-                                    if connected_output.getName() == output_string:
-                                        input_item['output'] = i
-                                        break
-                        else:
-                            self.logger.error(f'> Invalid input connection to: '
-                                              '{connection} from input: {input.getNamePath()} '
-                                              'node: {node.getNamePath()}')
+                    value = self.stringToScalar(value, input_type)
+                    input_item['value'] = value                    
 
                 inputs.append(input_item)
 
+            # Add node inputs list
             if inputs:
                 json_node['inputs'] = inputs
 
+            # Find explicit node outputs
             outputs = []
             for output in node.getOutputs():
                 output_item = {
@@ -313,6 +341,7 @@ class glTFMaterialXConverter():
                 }
                 outputs.append(output_item)
 
+            # Add implicit outputs (based on nodedef)
             if nodedef:
                 for output in nodedef.getOutputs():
                     if not any(output_item['name'] == output.getName() for output_item in outputs):
@@ -325,14 +354,15 @@ class glTFMaterialXConverter():
             else:
                 self.logger.warning(f'> Missing nodedef for node: {node.getNamePath()}')
 
+            # Add to node outputs list
             if outputs:
                 json_node['outputs'] = outputs
 
         return [procs, proc_dict_outputs, proc_dict_nodes, fallback_texture_index]
 
-    def convert_from_materialx(self, mtlxDoc):
+    def materialXtoGLTF(self, mtlxDoc):
         """
-        @brief Convert to a glTF document from a MaterialX document.
+        @brief Convert a MaterialX document to glTF.
         @param mtlxDoc: The MaterialX document to convert.
         @return glTF JSON string and status message.
         """
@@ -369,6 +399,8 @@ class glTFMaterialXConverter():
 
         for mxMaterial in mxMaterials:
             mxshaders = mx.getShaderNodes(mxMaterial)
+
+            # Scan for shaders for the material
             for shaderNode in mxshaders:
                 category = shaderNode.getCategory()
                 path = shaderNode.getNamePath()
@@ -384,6 +416,8 @@ class glTFMaterialXConverter():
                     base_color_input = None
                     base_color_output = ''
                     inputPairs = inputMaps[category]
+
+                    # Scan through support inupt channels
                     for inputPair in inputPairs:
                         base_color_input = shaderNode.getInput(inputPair[0])
                         base_color_output = inputPair[1]
@@ -391,18 +425,23 @@ class glTFMaterialXConverter():
                         if not base_color_input:
                             continue
 
+                        # Check for upstream nodegraph connection. Skip if not found
                         nodeGraphName = base_color_input.getNodeGraphString()
                         if len(nodeGraphName) == 0:
                             continue
 
+                        # Check for upstream nodegraph output connection.
                         nodeGraphOutput = base_color_input.getOutputString()
 
+                        # Determine the parent of the input
                         parent = material
                         if len(inputPair[2]) > 0:
                             if inputPair[2] not in material:
                                 material[inputPair[2]] = {}
                             parent = material[inputPair[2]]
 
+                        # Check for an existing converted graph and / or output index
+                        # in the "procedurals" list
                         graphIndex = -1
                         outputIndex = -1
                         if procs:
@@ -416,6 +455,7 @@ class glTFMaterialXConverter():
                                                 break
                                     break
 
+                        # Make the connection to the input on the material if the graph is already converted
                         if graphIndex >= 0:
                             baseColorTexture = parent[base_color_output] = {}
                             baseColorTexture['index'] = fallbackTextureIndex
@@ -428,7 +468,7 @@ class glTFMaterialXConverter():
                             graph = mtlxDoc.getNodeGraph(nodeGraphName)
                             exportGraphNames.append(nodeGraphName)
 
-                            gltfInfo = self.materialx_graph_to_gltf(graph, json_data, materials)
+                            gltfInfo = self.materialXGraphToGLTF(graph, json_data, materials)
                             procs = gltfInfo[0]
                             outputNodes = gltfInfo[1]
                             fallbackTextureIndex = gltfInfo[3]
@@ -440,6 +480,7 @@ class glTFMaterialXConverter():
                             lookup['index'] = len(procs) - 1
                             outputIndex = -1
 
+                            # Assign an output index if the graph has more than one output
                             if len(nodeGraphOutput) > 0:
                                 nodeGraphOutputPath = f"{nodeGraphName}/{nodeGraphOutput}"
                                 if nodeGraphOutputPath in outputNodes:
@@ -461,8 +502,7 @@ class glTFMaterialXConverter():
                 continue
             if ng_name not in exportGraphNames:
                 unconnectedGraphs.append(ng_name)
-
-                gltfInfo = self.materialx_graph_to_gltf(ng, json_data, materials)
+                gltfInfo = self.materialXGraphToGLTF(ng, json_data, materials)
                 procs = gltfInfo[0]
                 outputNodes = gltfInfo[1]
                 fallbackTextureIndex = gltfInfo[3]

@@ -68,7 +68,7 @@ class TestConvertFromMtlx(unittest.TestCase):
             mxdoc = getMaterialxDocument(self, inputFile)
 
             # Convert from MaterialX to GLTF
-            jsonString, status = converter.convert_from_materialx(mxdoc)
+            jsonString, status = converter.materialXtoGLTF(mxdoc)
             self.assertTrue(len(jsonString) > 0)
             # Write to disk
             gltf_name = inputFile.replace('.mtlx', '.gltf')
