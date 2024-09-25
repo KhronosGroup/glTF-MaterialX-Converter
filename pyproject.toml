@@ -18,6 +18,7 @@ classifiers = [
 ]
 dependencies = [
     "materialx>=1.39",
+    "jsonschema"
 ]
 
 [tool.setuptools.packages.find]

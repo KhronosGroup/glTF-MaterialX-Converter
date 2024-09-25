@@ -5,6 +5,10 @@
 import unittest, os, sys
 import MaterialX as mx
 
+import json
+import jsonschema
+from jsonschema import validate
+
 # Add the src directory to the sys.path
 from gltf_materialx_converter import converter as MxGLTFPT
 
@@ -39,6 +43,7 @@ def getMaterialxDocument(testCase, inputFile):
     testCase.assertTrue(valid)
     return mxdoc
 
+
 class TestConvertFromMtlx(unittest.TestCase):
     # Test conversion from MaterialX to GLTF Procedural Texture
     def test_convert_from_mtlx(self):
@@ -59,6 +64,14 @@ class TestConvertFromMtlx(unittest.TestCase):
 
         converter = MxGLTFPT.glTFMaterialXConverter()
 
+        # Read in schame file
+        schema_file = os.path.join(current_folder, 'schema', 'schema.json')
+        schema = None
+        if os.path.exists(schema_file):
+            with open(schema_file, 'r') as f:
+                schema = json.load(f)
+        print('Schema file:', schema_file,)
+
         # Test each file
         for file, file_name in zip(test_files, test_file_names):
             
@@ -70,6 +83,20 @@ class TestConvertFromMtlx(unittest.TestCase):
             # Convert from MaterialX to GLTF
             jsonString, status = converter.materialXtoGLTF(mxdoc)
             self.assertTrue(len(jsonString) > 0)
+
+            # Test jsonstring vs schema
+            validJSON = False
+            if schema:
+                jsonData = json.loads(jsonString)  # Parse jsonString to a dictionary  
+                try:
+                    validate(instance=jsonData, schema=schema)  # Validate JSON data against the schema
+                    print('> JSON validation successful for:', file_name.replace('.mtlx', '.gltf'))
+                    validJSON = True
+                except jsonschema.exceptions.ValidationError as e:
+                    print('> JSON validation error for:', file_name.replace('.mtlx', '.gltf'))
+                    print(e)                
+            self.assertTrue(validJSON)
+
             # Write to disk
             gltf_name = inputFile.replace('.mtlx', '.gltf')
             with open(gltf_name, 'w') as f:
