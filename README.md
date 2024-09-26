@@ -9,18 +9,19 @@ This package supports the bi-directional translation between MaterialX material 
   - <a href="https://github.com/KhronosGroup/glTF/tree/KHR_texture_procedurals/extensions/2.0/Vendor/EXT_texture_procedurals_mx_1_39">EXT_texture_procedurals_mx_1_39</a>
 - The MaterialX specification documents can be found <a href="https://github.com/AcademySoftwareFoundation/MaterialX/tree/main/documents/Specification">here</a>
 
-### Requirements
+### Dependencies
 
-The 1.39 release (or patch releases) of MaterialX available on 
+- The 1.39 release (or patch releases) of MaterialX available on 
 <a href="https://pypi.org/project/MaterialX/">PyPi</a> is required.
+- The <code>jsonschema</code> package if Schema validation is desired
 
-### Usage
+### Setup
 
 The Github repository can be forked / cloned locally and the package built using `pip` as follows from the root folder:
 
 `pip install .`
 
-The MaterialX package dependency will be installed if required. 
+All dependencies listed will be installed if required. 
 
 #### Command Line Interface
 
