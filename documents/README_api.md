@@ -1,5 +1,7 @@
 ## MaterialX / glTF Procedurals Interop
 
+[![Build Status](https://github.com/KhronosGroup/glTF-MaterialX-Converter/workflows/main/badge.svg)](https://github.com/KhronosGroup/glTF-MaterialX-Converter/actions?query=branch%3Amain)
+
 ### Introduction
 
 This package supports the bi-directional translation between MaterialX material graphs and the glTF Procedural Textures extension.
