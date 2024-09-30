@@ -19,6 +19,7 @@ def haveVersion(major, minor, patch):
     Check if the current vesion matches a given version
     ''' 
     imajor, iminor, ipatch = mx.getVersionIntegers()
+    print(f'Checking MaterialX version: {imajor}.{iminor}.{ipatch}')
 
     if major >= imajor:
         if  major > imajor:
@@ -47,6 +48,10 @@ def getMaterialxDocument(testCase, inputFile):
 class TestConvertFromMtlx(unittest.TestCase):
     # Test conversion from MaterialX to GLTF Procedural Texture
     def test_convert_from_mtlx(self):
+
+        if not haveVersion(1, 39, 0):
+            print("MaterialX version 1.39.0 or higher is required for this test.")
+            return
 
         current_folder = os.path.dirname(__file__)
 

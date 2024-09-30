@@ -46,10 +46,11 @@ jobs:
       run: |
         mkdir distribution
         cp README.md distribution
+        cp -R documents/html distribution
         rm -rf source/gltf_materialx_converter/__pycache__
-        cp -R source/gltf_materialx_converter distribution  
+        cp -R source/gltf_materialx_converter distribution
         rm -rf tests/__pycache__    
-        cp -R tests distribution  
+        cp -R tests distribution
 
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v3

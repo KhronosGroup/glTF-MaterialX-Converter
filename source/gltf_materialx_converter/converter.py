@@ -381,7 +381,7 @@ class glTFMaterialXConverter():
         json_data = {}
         json_asset = {
             "version": "2.0",
-            "generator": "MaterialX 1.39 / glTF 2.0 procedural texture converter",
+            "generator": "MaterialX 1.39 / glTF 2.0 Texture Procedural Converter",
         }
 
         inputMaps = {}
