@@ -58,6 +58,8 @@ The following command can be used to run tests from the root folder:
 The following is a small set of example files used for unit testing. For each MaterialX file the resulting glTF file is given, along with a diagram of how the graph looks and reference image rendered
 using the `MaterialXView` sample application which is available as part of the core MaterialX distribution.
 
+<details open><summary>Examples</summary>
+
 <table>
 <tr>
 <th>Description
@@ -65,8 +67,41 @@ using the `MaterialXView` sample application which is available as part of the c
 <th>Reference Image
 
 <tr>
-<td>The following is a pattern graph that produces a checkerboard pattern. 
+<td>The following is graph that adds 2 inputs and outputs the results to a glTF PBR shading node. 
 
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
+    subgraph graph1
+    graph1_myin1([input:1,0,0])
+    style graph1_myin1  fill:#09D, color:#FFF
+    graph1_myin2([input:0.94902, 0.768627, 0.109804])
+    style graph1_myin2  fill:#09D, color:#FFF
+    graph1_output_color4([output])
+    style graph1_output_color4  fill:#09D, color:#FFF
+    graph1_add_color4[add]
+    end
+    Default([surfacematerial])
+    style Default   fill:#090, color:#FFF
+    gltf_mat[gltf_pbr]
+    graph1_myin2 --"in1"--> graph1_add_color4
+    graph1_myin1 --"in2"--> graph1_add_color4
+    graph1_add_color4 --> graph1_output_color4
+    gltf_mat --"surfaceshader"--> Default
+    graph1_output_color4 --"base_color"--> gltf_mat
+</div></code></pre>
+
+</td>
+<td>
+<a href="$TOP//tests/data/add_graph.mtlx">MTLX</a>
+<a href="$TOP//tests/data/add_graph.gltf">GLTF</a>
+</td>
+<td><img src="$TOP//tests/data/add_graph.png">
+</td>
+</tr>
+
+<tr>
+<td>The following is a pattern graph that produces a checkerboard pattern. 
 The two input colors, and a texture coordinate tiling option are exposed on the node graph. The output is a color which is routed to a downstream glTF PBR shading node (glTF material).
 
 <pre><code class="language-mermaid"><div class="mermaid">
@@ -116,3 +151,5 @@ graph TB
 </tr>
 
 </table>
+
+</details>
