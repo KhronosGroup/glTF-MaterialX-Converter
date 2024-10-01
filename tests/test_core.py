@@ -7,7 +7,7 @@ import MaterialX as mx
 
 import json
 import jsonschema
-from jsonschema import validate
+from jsonschema import validate as json_validate
 
 # Add the src directory to the sys.path
 from gltf_materialx_converter import converter as MxGLTFPT
@@ -94,7 +94,7 @@ class TestConvertFromMtlx(unittest.TestCase):
             if schema:
                 jsonData = json.loads(jsonString)  # Parse jsonString to a dictionary  
                 try:
-                    validate(instance=jsonData, schema=schema)  # Validate JSON data against the schema
+                    json_validate(instance=jsonData, schema=schema)  # Validate JSON data against the schema
                     print('> JSON validation successful for:', file_name.replace('.mtlx', '.gltf'))
                     validJSON = True
                 except jsonschema.exceptions.ValidationError as e:
@@ -133,7 +133,7 @@ class TestConvertToMtlx(unittest.TestCase):
         converter = MxGLTFPT.glTFMaterialXConverter()
 
         for file, file_name in zip(test_files, test_file_names):
-
+            # To be updated when the conversion from GLTF to MaterialX is implemented
             print('\n> Input test file:', file_name)  
 
         self.assertTrue(True)

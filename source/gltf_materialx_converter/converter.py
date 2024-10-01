@@ -575,6 +575,8 @@ def validateDocument(doc):
     @param doc: The document to validate.
     @return: The validation result as a tuple of [valid, errorString].
     '''
+    if not doc:
+        return False, 'Empty document'
     valid, errorString = doc.validate()
     return valid, errorString
 
