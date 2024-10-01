@@ -351,5 +351,5 @@
       "required": ["KHR_texture_procedurals"]
     }
   },
-  "required": ["materials", "extensionsUsed", "extensions"]
+  "required": ["extensionsUsed", "extensions"]
 }

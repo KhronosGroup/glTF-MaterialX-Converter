@@ -500,7 +500,7 @@ $(function(){initNavTree('converter_8py_source.html',''); initResizable(true); }
 <div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        json_data = {}</div>
 <div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>        json_asset = {</div>
 <div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>            <span class="stringliteral">&quot;version&quot;</span>: <span class="stringliteral">&quot;2.0&quot;</span>,</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>            <span class="stringliteral">&quot;generator&quot;</span>: <span class="stringliteral">&quot;MaterialX 1.39 / glTF 2.0 procedural texture converter&quot;</span>,</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>            <span class="stringliteral">&quot;generator&quot;</span>: <span class="stringliteral">&quot;MaterialX 1.39 / glTF 2.0 Texture Procedural Converter&quot;</span>,</div>
 <div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>        }</div>
 <div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span> </div>
 <div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        inputMaps = {}</div>
@@ -705,10 +705,12 @@ $(function(){initNavTree('converter_8py_source.html',''); initResizable(true); }
 <div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span><span class="stringliteral">    @param doc: The document to validate.</span></div>
 <div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span><span class="stringliteral">    @return: The validation result as a tuple of [valid, errorString].</span></div>
 <div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>    valid, errorString = doc.validate()</div>
-<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>    <span class="keywordflow">return</span> valid, errorString</div>
-<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span> </div>
-<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span> </div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> doc:</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>        <span class="keywordflow">return</span> <span class="keyword">False</span>, <span class="stringliteral">&#39;Empty document&#39;</span></div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>    valid, errorString = doc.validate()</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>    <span class="keywordflow">return</span> valid, errorString</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span> </div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span> </div>
 </div>
 <div class="ttc" id="aclassgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter_html"><div class="ttname"><a href="classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html">gltf_materialx_converter.converter.glTFMaterialXConverter</a></div><div class="ttdoc">Class for converting to convert between glTF Texture Procedurals content and MaterialX.</div><div class="ttdef"><b>Definition</b> <a href="#l00028">converter.py:28</a></div></div>
 <div class="ttc" id="aclassgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter_html_a0e2ffcbc50f1981c660e9cbf51e829ac"><div class="ttname"><a href="classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a0e2ffcbc50f1981c660e9cbf51e829ac">gltf_materialx_converter.converter.glTFMaterialXConverter.supported_types</a></div><div class="ttdeci">list supported_types</div><div class="ttdef"><b>Definition</b> <a href="#l00057">converter.py:57</a></div></div>

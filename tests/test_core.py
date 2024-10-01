@@ -7,7 +7,7 @@ import MaterialX as mx
 
 import json
 import jsonschema
-from jsonschema import validate
+from jsonschema import validate as json_validate
 
 # Add the src directory to the sys.path
 from gltf_materialx_converter import converter as MxGLTFPT
@@ -19,6 +19,7 @@ def haveVersion(major, minor, patch):
     Check if the current vesion matches a given version
     ''' 
     imajor, iminor, ipatch = mx.getVersionIntegers()
+    print(f'Checking MaterialX version: {imajor}.{iminor}.{ipatch}')
 
     if major >= imajor:
         if  major > imajor:
@@ -47,6 +48,10 @@ def getMaterialxDocument(testCase, inputFile):
 class TestConvertFromMtlx(unittest.TestCase):
     # Test conversion from MaterialX to GLTF Procedural Texture
     def test_convert_from_mtlx(self):
+
+        if not haveVersion(1, 39, 0):
+            print("MaterialX version 1.39.0 or higher is required for this test.")
+            return
 
         current_folder = os.path.dirname(__file__)
 
@@ -89,7 +94,7 @@ class TestConvertFromMtlx(unittest.TestCase):
             if schema:
                 jsonData = json.loads(jsonString)  # Parse jsonString to a dictionary  
                 try:
-                    validate(instance=jsonData, schema=schema)  # Validate JSON data against the schema
+                    json_validate(instance=jsonData, schema=schema)  # Validate JSON data against the schema
                     print('> JSON validation successful for:', file_name.replace('.mtlx', '.gltf'))
                     validJSON = True
                 except jsonschema.exceptions.ValidationError as e:
@@ -128,7 +133,7 @@ class TestConvertToMtlx(unittest.TestCase):
         converter = MxGLTFPT.glTFMaterialXConverter()
 
         for file, file_name in zip(test_files, test_file_names):
-
+            # To be updated when the conversion from GLTF to MaterialX is implemented
             print('\n> Input test file:', file_name)  
 
         self.assertTrue(True)
