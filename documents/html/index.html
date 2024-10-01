@@ -136,10 +136,10 @@ Setup</h2>
 <p><code>pip install .</code></p>
 <p>All dependencies listed will be installed if required.</p>
 <h3><a class="anchor" id="autotoc_md4"></a>
-Command Line Interface</h3>
-<p>To convert from a MaterialX document to produce a glTF JSON document the <code><a class="el" href="materialx__to__gltf_8py.html">materialx_to_gltf.py</a></code> utility script can be used.</p>
-<p>The following is an example converting a sample file from the test folder. If a schema file is provided then the JSON output will be validated against it.</p>
-<p><code> python <a class="el" href="materialx__to__gltf_8py.html">source/gltf_materialx_converter/materialx_to_gltf.py</a> "tests/data/checkerboard_graph.mtlx" -o "source/gltf_materialx_converter/data/" -s "tests/schema/schema.json"' </code></p>
+Command Line Interfaces</h3>
+<p>To convert from a MaterialX document to produce a glTF JSON document the <code><a class="el" href="materialx__to__gltf_8py.html">materialx_to_gltf.py</a></code> utility script may be used.</p>
+<p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph.gltf</code>.</p>
+<p><code> python <a class="el" href="materialx__to__gltf_8py.html">source/gltf_materialx_converter/materialx_to_gltf.py</a> "tests/data/checkerboard_graph.mtlx" </code></p>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Documentation</h2>
 <h3><a class="anchor" id="autotoc_md6"></a>
@@ -150,7 +150,31 @@ API</h3>
 Tests</h2>
 <p>The following command can be used to run tests from the root folder:</p>
 <p><code> python -m unittest discover -s tests -p "test_*.py" </code></p>
-<h3><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Supported MaterialX Configurations</h2>
+<p>Only specific configurations of MaterialX can be mapped to glTF Texture Procedurals.</p><ol type="1">
+<li>There must be a <code>surfacematerial</code> material node</li>
+<li>There must be a <code>glTF PBR</code> node connected to the surface shader input of the material.</li>
+<li>A single <code>nodegraph</code> with a <code>color3</code> output node which is connected to the base color on the surface shader. The constant node can be replaced with the desired set of nodes, and one or more inputs may be specified to route data into the <code>nodegraph</code>.</li>
+</ol>
+<p>Below is a diagram the minimal graph and it's corresponding MaterialX XML document from the test data area. There are no inputs specified on the <code>nodegraph</code>.</p>
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph LR
+    gltf_Material([surfacematerial:material])
+    style gltf_Material   fill:#090, color:#FFF
+    gltf_Shader[gltf_pbr:surfaceshader]
+    subgraph gltf_procedural
+    gltf_procedural_output_color4([output:color3])
+    style gltf_procedural_output_color4  fill:#09D, color:#FFF
+    gltf_procedural_constant_color4([constant:color3:1,1,1])
+    style gltf_procedural_constant_color4  fill:#888, color:#000
+    end
+    gltf_Shader --"surfaceshader"--&gt; gltf_Material
+    gltf_procedural_constant_color4 --&gt; gltf_procedural_output_color4
+    gltf_procedural_output_color4 --"base_color"--&gt; gltf_Shader
+</div></code></pre><p><a href="../..//tests/data/minimal_graph.mtlx">Minimal MTLX Configuration File</a></p>
+<h3><a class="anchor" id="autotoc_md9"></a>
 Sample Data</h3>
 <p>The following is a small set of example files used for unit testing. For each MaterialX file the resulting glTF file is given, along with a diagram of how the graph looks and reference image rendered using the <code>MaterialXView</code> sample application which is available as part of the core MaterialX distribution.</p>
 <details  open="true">
