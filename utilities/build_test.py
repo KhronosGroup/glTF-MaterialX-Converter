@@ -9,7 +9,9 @@ def build():
         subprocess.run(cmd, check=True)
 
         print("\n>>> Running command line tests...")
-        cmd = 'python source/gltf_materialx_converter/materialx_to_gltf.py "tests/data/checkerboard_graph.mtlx" -o "tests/data/" -s "tests/schema/schema.json"'
+        cmd = 'python source/gltf_materialx_converter/materialx_to_gltf.py "tests/data/checkerboard_graph.mtlx" -s "tests/schema/schema.json; "'
+        subprocess.run(cmd, check=True)
+        cmd = 'rm ./checkerboard_graph.gltf'
         subprocess.run(cmd, check=True)
 
     except subprocess.CalledProcessError as e:

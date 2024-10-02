@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['interfaces_0',['Command Line Interfaces',['../index.html#autotoc_md4',1,'']]],
-  ['interop_1',['MaterialX / glTF Procedurals Interop',['../index.html',1,'']]],
-  ['introduction_2',['Introduction',['../index.html#autotoc_md1',1,'']]]
+  ['functionallyequivalent_0',['functionallyEquivalent',['../classgltf__materialx__converter_1_1utilities_1_1_mtlx_document_compare.html#a5bb2f451d97e09e474967d4e39080833',1,'gltf_materialx_converter::utilities::MtlxDocumentCompare']]]
 ];

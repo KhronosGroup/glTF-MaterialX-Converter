@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getfiles_0',['getFiles',['../namespacegltf__materialx__converter_1_1converter.html#a2434e8dfe3ca3df4c7e8afffc6cc220a',1,'gltf_materialx_converter::converter']]]
+  ['functionallyequivalent_0',['functionallyEquivalent',['../classgltf__materialx__converter_1_1utilities_1_1_mtlx_document_compare.html#a5bb2f451d97e09e474967d4e39080833',1,'gltf_materialx_converter::utilities::MtlxDocumentCompare']]]
 ];
