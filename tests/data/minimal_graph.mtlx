@@ -2,8 +2,6 @@
 <materialx version="1.39" colorspace="lin_rec709">
   <surfacematerial name="gltf_Material" type="material">
     <input name="surfaceshader" type="surfaceshader" nodename="gltf_Shader" />
-    <input name="backsurfaceshader" type="surfaceshader" value="" />
-    <input name="displacementshader" type="displacementshader" value="" />
   </surfacematerial>
   <nodegraph name="gltf_procedural">
     <output name="output_color4" type="color3" nodename="constant_color4" />
