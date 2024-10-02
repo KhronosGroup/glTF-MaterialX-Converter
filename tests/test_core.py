@@ -11,6 +11,7 @@ from jsonschema import validate as json_validate
 
 # Add the src directory to the sys.path
 from gltf_materialx_converter import converter as MxGLTFPT
+from gltf_materialx_converter import utilities as MxGLTFPTUtil
 
 import importlib.util
 
@@ -32,15 +33,18 @@ def haveVersion(major, minor, patch):
     return False
 
 def getMaterialxDocument(testCase, inputFile):
-    stdlib, libFiles = MxGLTFPT.loadStandardLibraries()
+    stdlib, libFiles = MxGLTFPTUtil.loadStandardLibraries()
     testCase.assertIsNotNone(stdlib)
 
     if not os.path.exists(inputFile):
         testCase.fail(f"File not found: {inputFile}")
-    mxdoc = MxGLTFPT.createWorkingDocument([stdlib])      
+    mxdoc = MxGLTFPTUtil.createWorkingDocument([stdlib])      
     testCase.assertIsNotNone(stdlib)        
     mx.readFromXmlFile(mxdoc, inputFile)
-    valid, errors = MxGLTFPT.validateDocument(mxdoc)
+    valid, errors = MxGLTFPTUtil.validateDocument(mxdoc)
+    if not valid:
+        print('> Validation failed for file:', inputFile)
+        print('> ' + errors)
     testCase.assertTrue(valid)
     return mxdoc
 

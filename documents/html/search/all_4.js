@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['getfiles_0',['getFiles',['../namespacegltf__materialx__converter_1_1converter.html#a2434e8dfe3ca3df4c7e8afffc6cc220a',1,'gltf_materialx_converter::converter']]],
-  ['gltf_20procedurals_20interop_1',['MaterialX / glTF Procedurals Interop',['../index.html',1,'']]],
-  ['gltf_5fmaterialx_5fconverter_2',['gltf_materialx_converter',['../namespacegltf__materialx__converter.html',1,'']]],
-  ['gltf_5fmaterialx_5fconverter_3a_3a_5f_5fmain_5f_5f_3',['__main__',['../namespacegltf__materialx__converter_1_1____main____.html',1,'gltf_materialx_converter']]],
-  ['gltf_5fmaterialx_5fconverter_3a_3aconverter_4',['converter',['../namespacegltf__materialx__converter_1_1converter.html',1,'gltf_materialx_converter']]],
-  ['gltf_5fmaterialx_5fconverter_3a_3amaterialx_5fto_5fgltf_5',['materialx_to_gltf',['../namespacegltf__materialx__converter_1_1materialx__to__gltf.html',1,'gltf_materialx_converter']]],
-  ['gltfmaterialxconverter_6',['glTFMaterialXConverter',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html',1,'gltf_materialx_converter::converter']]]
+  ['error_0',['error',['../classgltf__materialx__converter_1_1utilities_1_1_mtlx_document_compare.html#ad984679d5cd657b3ed8189613caa05d3',1,'gltf_materialx_converter.utilities.MtlxDocumentCompare.error'],['../classgltf__materialx__converter_1_1utilities_1_1_mtlx_document_compare.html#af6e9f1b9731f91087d459983d547e1f5',1,'gltf_materialx_converter.utilities.MtlxDocumentCompare.error']]],
+  ['ext_5ftexture_5fprocedurals_5fmx_5f1_5f39_1',['EXT_TEXTURE_PROCEDURALS_MX_1_39',['../namespacegltf__materialx__converter_1_1converter.html#a5da61c62801b47864293c1b1bf234325',1,'gltf_materialx_converter::converter']]]
 ];

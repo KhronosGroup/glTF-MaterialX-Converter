@@ -8,6 +8,7 @@ from jsonschema import validate as json_validate
 import MaterialX as mx
 
 import converter as MxGLTFPT
+import utilities as MxGLTFPTUtil
 
 def main():
     parser = argparse.ArgumentParser(description="Conveter from MaterialX to glTF Texture Procedurals.")
@@ -34,7 +35,7 @@ def main():
         logger.info(f'No MaterialX files found in: {opts.input}')
         return
     
-    stdlib, libFiles = MxGLTFPT.loadStandardLibraries()
+    stdlib, libFiles = MxGLTFPTUtil.loadStandardLibraries()
 
     converter = MxGLTFPT.glTFMaterialXConverter()
 
@@ -55,9 +56,9 @@ def main():
 
     for inputFile in fileList:
         logger.info(f'Processing: {inputFile}')
-        mxdoc = MxGLTFPT.createWorkingDocument([stdlib])    
-        MxGLTFPT.readMaterialXDocument(mxdoc, inputFile)
-        valid, errors = MxGLTFPT.validateDocument(mxdoc)
+        mxdoc = MxGLTFPTUtil.createWorkingDocument([stdlib])    
+        MxGLTFPTUtil.readMaterialXDocument(mxdoc, inputFile)
+        valid, errors = MxGLTFPTUtil.validateDocument(mxdoc)
 
         if not valid:
             logger.error(f'MaterialX document: {inputFile} is invalid. Erors: {errors}')
