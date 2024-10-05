@@ -1,7 +1,6 @@
 var utilities_8py =
 [
-    [ "gltf_materialx_converter.utilities.MtlxDocumentCompare", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_document_compare.html", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_document_compare" ],
-    [ "gltf_materialx_converter.utilities.MTlxShadingModelTranslator", "classgltf__materialx__converter_1_1utilities_1_1_m_tlx_shading_model_translator.html", "classgltf__materialx__converter_1_1utilities_1_1_m_tlx_shading_model_translator" ],
+    [ "gltf_materialx_converter.utilities.MtlxShadingModelTranslator", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator.html", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator" ],
     [ "createWorkingDocument", "utilities_8py.html#a3faedc6e22f2e33f9d916805d4df8776", null ],
     [ "getFiles", "utilities_8py.html#a887008af52786ab012d1d526979f1bad", null ],
     [ "importLibraries", "utilities_8py.html#a6f9828d270d3c5107a82918662a0bcd7", null ],
