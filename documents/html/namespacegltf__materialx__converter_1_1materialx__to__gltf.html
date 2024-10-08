@@ -149,7 +149,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   23</span>    fileList = []</div>
 <div class="line"><span class="lineno">   24</span>    extension = <span class="stringliteral">&#39;.mtlx&#39;</span></div>
 <div class="line"><span class="lineno">   25</span>    <span class="keywordflow">if</span> os.path.isdir(opts.input): </div>
-<div class="line"><span class="lineno">   26</span>        fileList = MxGLTFPT.getFiles(opts.input, extension)</div>
+<div class="line"><span class="lineno">   26</span>        fileList = MxGLTFPT.get_files(opts.input, extension)</div>
 <div class="line"><span class="lineno">   27</span>    <span class="keywordflow">else</span>:</div>
 <div class="line"><span class="lineno">   28</span>        extension = os.path.splitext(opts.input)[1]</div>
 <div class="line"><span class="lineno">   29</span>        <span class="keywordflow">if</span> extension <span class="keywordflow">not</span> <span class="keywordflow">in</span> [<span class="stringliteral">&#39;.mtlx&#39;</span>]:</div>
@@ -161,7 +161,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   35</span>        logger.info(f<span class="stringliteral">&#39;No MaterialX files found in: {opts.input}&#39;</span>)</div>
 <div class="line"><span class="lineno">   36</span>        <span class="keywordflow">return</span></div>
 <div class="line"><span class="lineno">   37</span>    </div>
-<div class="line"><span class="lineno">   38</span>    stdlib, libFiles = MxGLTFPTUtil.loadStandardLibraries()</div>
+<div class="line"><span class="lineno">   38</span>    stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()</div>
 <div class="line"><span class="lineno">   39</span> </div>
 <div class="line"><span class="lineno">   40</span>    converter = MxGLTFPT.glTFMaterialXConverter()</div>
 <div class="line"><span class="lineno">   41</span> </div>
@@ -182,16 +182,16 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   56</span> </div>
 <div class="line"><span class="lineno">   57</span>    <span class="keywordflow">for</span> inputFile <span class="keywordflow">in</span> fileList:</div>
 <div class="line"><span class="lineno">   58</span>        logger.info(f<span class="stringliteral">&#39;Processing: {inputFile}&#39;</span>)</div>
-<div class="line"><span class="lineno">   59</span>        mxdoc = MxGLTFPTUtil.createWorkingDocument([stdlib])    </div>
-<div class="line"><span class="lineno">   60</span>        MxGLTFPTUtil.readMaterialXDocument(mxdoc, inputFile)</div>
-<div class="line"><span class="lineno">   61</span>        valid, errors = MxGLTFPTUtil.validateDocument(mxdoc)</div>
+<div class="line"><span class="lineno">   59</span>        mxdoc = MxGLTFPTUtil.create_working_document([stdlib])    </div>
+<div class="line"><span class="lineno">   60</span>        MxGLTFPTUtil.read_materialX_document(mxdoc, inputFile)</div>
+<div class="line"><span class="lineno">   61</span>        valid, errors = MxGLTFPTUtil.validate_document(mxdoc)</div>
 <div class="line"><span class="lineno">   62</span> </div>
 <div class="line"><span class="lineno">   63</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> valid:</div>
 <div class="line"><span class="lineno">   64</span>            logger.error(f<span class="stringliteral">&#39;MaterialX document: {inputFile} is invalid. Erors: {errors}&#39;</span>)</div>
 <div class="line"><span class="lineno">   65</span>            <span class="keywordflow">continue</span></div>
 <div class="line"><span class="lineno">   66</span> </div>
 <div class="line"><span class="lineno">   67</span>        <span class="comment"># Convert to glTF JSON</span></div>
-<div class="line"><span class="lineno">   68</span>        jsonString, status = converter.materialXtoGLTF(mxdoc)</div>
+<div class="line"><span class="lineno">   68</span>        jsonString, status = converter.materialX_to_glTF(mxdoc)</div>
 <div class="line"><span class="lineno">   69</span>        <span class="keywordflow">if</span> jsonString:</div>
 <div class="line"><span class="lineno">   70</span>            <span class="keywordflow">if</span> schema:</div>
 <div class="line"><span class="lineno">   71</span>                jsonData = json.loads(jsonString)  <span class="comment"># Parse jsonString to a dictionary  </span></div>

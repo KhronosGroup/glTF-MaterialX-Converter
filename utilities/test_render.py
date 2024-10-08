@@ -2,7 +2,7 @@
 import os
 import argparse
 
-def getFiles(inputPath):
+def get_files(inputPath):
     '''
     Get all MaterialX files in a folder, or a single MaterialX file
     @param inputPath: Path to the folder or file
@@ -60,7 +60,7 @@ def main():
             return
 
     #renderCmd = 'D:/Work/materialx/ILM_materialx/build/installed/bin/MaterialXView.exe --screenWidth 256 --screenHeight 256 --captureFilename'
-    inputPaths = getFiles(args.inputPath)
+    inputPaths = get_files(args.inputPath)
     if not inputPaths:
         print('No MaterialX files found')
         return

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['createworkingdocument_0',['createWorkingDocument',['../namespacegltf__materialx__converter_1_1utilities.html#a3faedc6e22f2e33f9d916805d4df8776',1,'gltf_materialx_converter::utilities']]]
+  ['create_5fworking_5fdocument_0',['create_working_document',['../namespacegltf__materialx__converter_1_1utilities.html#a7d3ff2183520447cdd0e8e91f57f93bf',1,'gltf_materialx_converter::utilities']]]
 ];

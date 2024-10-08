@@ -23,7 +23,7 @@ def main():
     fileList = []
     extension = '.mtlx'
     if os.path.isdir(opts.input): 
-        fileList = MxGLTFPT.getFiles(opts.input, extension)
+        fileList = MxGLTFPT.get_files(opts.input, extension)
     else:
         extension = os.path.splitext(opts.input)[1]
         if extension not in ['.mtlx']:
@@ -35,7 +35,7 @@ def main():
         logger.info(f'No MaterialX files found in: {opts.input}')
         return
     
-    stdlib, libFiles = MxGLTFPTUtil.loadStandardLibraries()
+    stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
 
     converter = MxGLTFPT.glTFMaterialXConverter()
 
@@ -56,16 +56,16 @@ def main():
 
     for inputFile in fileList:
         logger.info(f'Processing: {inputFile}')
-        mxdoc = MxGLTFPTUtil.createWorkingDocument([stdlib])    
-        MxGLTFPTUtil.readMaterialXDocument(mxdoc, inputFile)
-        valid, errors = MxGLTFPTUtil.validateDocument(mxdoc)
+        mxdoc = MxGLTFPTUtil.create_working_document([stdlib])    
+        MxGLTFPTUtil.read_materialX_document(mxdoc, inputFile)
+        valid, errors = MxGLTFPTUtil.validate_document(mxdoc)
 
         if not valid:
             logger.error(f'MaterialX document: {inputFile} is invalid. Erors: {errors}')
             continue
 
         # Convert to glTF JSON
-        jsonString, status = converter.materialXtoGLTF(mxdoc)
+        jsonString, status = converter.materialX_to_glTF(mxdoc)
         if jsonString:
             if schema:
                 jsonData = json.loads(jsonString)  # Parse jsonString to a dictionary  

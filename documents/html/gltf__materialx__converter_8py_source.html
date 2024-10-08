@@ -136,7 +136,7 @@ $(function(){initNavTree('gltf__materialx__converter_8py_source.html',''); initR
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            logger.error(f<span class="stringliteral">&#39;Invalid source type: {opts.sourceType}. Must be either mtlx or gltf.&#39;</span>)</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            <span class="keywordflow">return</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        extension = opts.sourceType </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        fileList = MxGLTFPT.getFiles(opts.input, extension)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        fileList = MxGLTFPT.get_files(opts.input, extension)</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">else</span>:</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        extension = os.path.splitext(opts.input)[1]</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="comment"># TODO: Expand to accept glTF as input</span></div>
@@ -149,7 +149,7 @@ $(function(){initNavTree('gltf__materialx__converter_8py_source.html',''); initR
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        logger.info(f<span class="stringliteral">&#39;No MaterialX files found in: {opts.input}&#39;</span>)</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">return</span></div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    stdlib, libFiles = MxGLTFPT.loadStandardLibraries()</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    stdlib, libFiles = MxGLTFPT.load_standard_libraries()</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    converter = MxGLTFPT.glTFMaterialXConverter()</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
@@ -164,16 +164,16 @@ $(function(){initNavTree('gltf__materialx__converter_8py_source.html',''); initR
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">for</span> inputFile <span class="keywordflow">in</span> fileList:</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            logger.info(f<span class="stringliteral">&#39;Processing: {inputFile}&#39;</span>)</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            mxdoc = MxGLTFPT.createWorkingDocument([stdlib])      </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            MxGLTFPT.readMaterialXDocument(mxdoc, inputFile)</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            valid, errors = MxGLTFPT.validateDocument(mxdoc)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            mxdoc = MxGLTFPT.create_working_document([stdlib])      </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            MxGLTFPT.read_materialX_document(mxdoc, inputFile)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            valid, errors = MxGLTFPT.validate_document(mxdoc)</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> valid:</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                logger.error(f<span class="stringliteral">&#39;MaterialX document: {inputFile} is invalid. Erors: {errors}&#39;</span>)</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                <span class="keywordflow">continue</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keywordflow">if</span> (mxdoc <span class="keywordflow">and</span> mxdoc.validate()):</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                jsonString, status = converter.materialXtoGLTF(mxdoc)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                jsonString, status = converter.materialX_to_glTF(mxdoc)</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                <span class="keywordflow">if</span> jsonString:</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                    <span class="comment"># Write string to file x.json</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                    outputFile = os.path.join(outputFolder, os.path.basename(inputFile).replace(<span class="stringliteral">&#39;.mtlx&#39;</span>, <span class="stringliteral">&#39;.gltf&#39;</span>))</div>

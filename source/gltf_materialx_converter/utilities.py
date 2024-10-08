@@ -9,7 +9,7 @@ import json
 import MaterialX as mx
 import logging as lg 
 
-def loadJsonFile(filename):
+def load_json_file(filename):
     '''Load a JSON file.
     @param filename: The file to load.
     @return: The JSON string
@@ -20,7 +20,7 @@ def loadJsonFile(filename):
         jsonString = json.dumps(file, indent=2)
     return jsonString    
 
-def loadStandardLibraries():
+def load_standard_libraries():
     '''Load standard MaierialX libraries.
     @return: The standard library and the list of library files.
     '''
@@ -28,7 +28,7 @@ def loadStandardLibraries():
     libFiles = mx.loadLibraries(mx.getDefaultDataLibraryFolders(), mx.getDefaultDataSearchPath(), stdlib)
     return stdlib, libFiles
 
-def createWorkingDocument(libraries):
+def create_working_document(libraries):
     '''Create a working document and import any libraries
     @param libraries: The list of definition libraries to import.
     @return: The new working document
@@ -39,14 +39,14 @@ def createWorkingDocument(libraries):
 
     return doc
 
-def importLibraries(doc, libraries):
+def import_libraries(doc, libraries):
     '''Import libraries into a document.
     @param doc: The document to import into.
     @param libraries: The list of libraries to import.
     '''
     doc.importLibrary(libraries)
 
-def readMaterialXDocument(mtlxdoc, inputFile):
+def read_materialX_document(mtlxdoc, inputFile):
     '''
     Read a MaterialX document from a file.
     @param mtlxdoc: The MaterialX document to read into.
@@ -54,14 +54,14 @@ def readMaterialXDocument(mtlxdoc, inputFile):
     '''
     mx.readFromXmlFile(mtlxdoc, inputFile)
 
-def materialXDocToString(mtlxdoc):
+def materialX_doc_to_string(mtlxdoc):
     '''Convert a MaterialX document to a string.
     @param mtlxdoc: The document to convert.
     @return: The document as a string.
     '''
     return mx.writeToXmlString(mtlxdoc)
 
-def validateDocument(doc):
+def validate_document(doc):
     '''Validate a MaterialX document.
     @param doc: The document to validate.
     @return: The validation result as a tuple of [valid, errorString].
@@ -69,7 +69,7 @@ def validateDocument(doc):
     valid, errorString = doc.validate()
     return valid, errorString
 
-def getFiles(rootPath, extension):
+def get_files(rootPath, extension):
     '''Get all files with a given extension in a directory.
     @param rootPath: The root directory to search.
     @param extension: The file extension to search for.

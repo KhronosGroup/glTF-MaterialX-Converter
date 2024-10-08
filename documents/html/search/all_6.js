@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['importlibraries_0',['importLibraries',['../namespacegltf__materialx__converter_1_1utilities.html#a6f9828d270d3c5107a82918662a0bcd7',1,'gltf_materialx_converter::utilities']]],
-  ['initializegltftexture_1',['initializeGLTFTexture',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#aa3398dc2465c52711c9a3619907ac72e',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]],
+  ['import_5flibraries_0',['import_libraries',['../namespacegltf__materialx__converter_1_1utilities.html#ab65e2143b894d1df4e5ba650cfabddfa',1,'gltf_materialx_converter::utilities']]],
+  ['initialize_5fgltf_5ftexture_1',['initialize_glTF_texture',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#afd5081c1cbe4653e9acc5898b10dc5f4',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]],
   ['interfaces_2',['Command Line Interfaces',['../index.html#autotoc_md4',1,'']]],
   ['interop_3',['MaterialX / glTF Procedurals Interop',['../index.html',1,'']]],
   ['introduction_4',['Introduction',['../index.html#autotoc_md1',1,'']]]

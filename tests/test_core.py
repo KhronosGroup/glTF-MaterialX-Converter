@@ -33,15 +33,15 @@ def haveVersion(major, minor, patch):
     return False
 
 def getMaterialxDocument(testCase, inputFile):
-    stdlib, libFiles = MxGLTFPTUtil.loadStandardLibraries()
+    stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
     testCase.assertIsNotNone(stdlib)
 
     if not os.path.exists(inputFile):
         testCase.fail(f"File not found: {inputFile}")
-    mxdoc = MxGLTFPTUtil.createWorkingDocument([stdlib])      
+    mxdoc = MxGLTFPTUtil.create_working_document([stdlib])      
     testCase.assertIsNotNone(stdlib)        
     mx.readFromXmlFile(mxdoc, inputFile)
-    valid, errors = MxGLTFPTUtil.validateDocument(mxdoc)
+    valid, errors = MxGLTFPTUtil.validate_document(mxdoc)
     if not valid:
         print('> Validation failed for file:', inputFile)
         print('> ' + errors)
@@ -90,7 +90,7 @@ class TestConvertFromMtlx(unittest.TestCase):
             mxdoc = getMaterialxDocument(self, inputFile)
 
             # Convert from MaterialX to GLTF
-            jsonString, status = converter.materialXtoGLTF(mxdoc)
+            jsonString, status = converter.materialX_to_glTF(mxdoc)
             self.assertTrue(len(jsonString) > 0)
 
             # Test jsonstring vs schema
