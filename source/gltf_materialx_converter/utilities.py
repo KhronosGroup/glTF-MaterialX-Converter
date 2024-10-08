@@ -92,7 +92,7 @@ def have_version(major, minor, patch):
     @return: True if the current version is greater or equal to the given version
     ''' 
     imajor, iminor, ipatch = mx.getVersionIntegers()
-    print(f'Checking MaterialX version: {imajor}.{iminor}.{ipatch}')
+    #print(f'Checking MaterialX version: {imajor}.{iminor}.{ipatch}')
 
     if major >= imajor:
         if  major > imajor:
@@ -104,29 +104,4 @@ def have_version(major, minor, patch):
                 return True
     return False    
 
-class MtlxShadingModelTranslator():
-    '''
-    @brief Class to translate shading models within a MaterialX document.    
-    '''
-    def __init__(self):
-        '''
-        @brief Constructor.
-        '''
-        pass
 
-    def translate(self, doc, target='gltf'): 
-        '''
-        Translate the shading model to a target shading model 
-        @param doc: The MaterialX document to translate
-        @param target: The target shading model. Default is gltf
-        @return: The translated document if successful, otherwise None
-        '''
-        translated_doc = doc.copy()
-        translator = mx.ShaderTranslator.create()
-
-        try:
-            translator.translateAllMaterials(translated_doc, target)
-            return translated_doc
-        except Exception as e:
-            print(f'Translation failed to target: {target}')
-            return None

@@ -172,7 +172,7 @@ $(function(){initNavTree('materialx__to__gltf_8py_source.html',''); initResizabl
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">if</span> schema_file <span class="keywordflow">and</span> os.path.exists(schema_file):</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keyword">with</span> open(schema_file, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> f:</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            schema = json.load(f)</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        print(<span class="stringliteral">&#39;Loaded schema file:&#39;</span>, schema_file)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        logger.info(f<span class="stringliteral">&#39;Loaded schema file: {schema_file}&#39;</span>)</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">for</span> input_file <span class="keywordflow">in</span> file_list:</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        logger.info(f<span class="stringliteral">&#39;Processing: {input_file}&#39;</span>)</div>
@@ -191,9 +191,9 @@ $(function(){initNavTree('materialx__to__gltf_8py_source.html',''); initResizabl
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                json_data = json.loads(json_string)  <span class="comment"># Parse json_string to a dictionary  </span></div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                <span class="keywordflow">try</span>:</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                    json_validate(instance=json_data, schema=schema)  <span class="comment"># Validate JSON data against the schema</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                    print(<span class="stringliteral">&#39;- JSON validation successful&#39;</span>)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                    logger.info(<span class="stringliteral">&#39;- JSON validation successful&#39;</span>)</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                <span class="keywordflow">except</span> jsonschema.exceptions.ValidationError <span class="keyword">as</span> e:</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                    print(<span class="stringliteral">&#39;- JSON validation errors, &#39;</span> + e)</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                    logger.info(<span class="stringliteral">&#39;- JSON validation errors, &#39;</span> + e)</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            <span class="comment"># Write string to file replacing .mtlx with .json extension name</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            outputFile = os.path.join(output_folder, os.path.basename(input_file).replace(<span class="stringliteral">&#39;.mtlx&#39;</span>, <span class="stringliteral">&#39;.gltf&#39;</span>))</div>

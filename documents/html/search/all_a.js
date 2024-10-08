@@ -18,6 +18,5 @@ var searchData=
   ['mtlx_5foutput_5fattribute_15',['MTLX_OUTPUT_ATTRIBUTE',['../namespacegltf__materialx__converter_1_1converter.html#afee2556d71dc11ec86a2237280aaeacb',1,'gltf_materialx_converter::converter']]],
   ['mtlx_5fshader_5fprefix_16',['MTLX_SHADER_PREFIX',['../namespacegltf__materialx__converter_1_1converter.html#a4aeaa58fe506d9a2580ae9d634fa74fe',1,'gltf_materialx_converter::converter']]],
   ['mtlx_5funlit_5fcategory_5fstring_17',['MTLX_UNLIT_CATEGORY_STRING',['../namespacegltf__materialx__converter_1_1converter.html#a461f2d4b52e6fecfa808974fb2d71892',1,'gltf_materialx_converter::converter']]],
-  ['mtlxshadingmodeltranslator_18',['MtlxShadingModelTranslator',['../classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator.html',1,'gltf_materialx_converter::utilities']]],
-  ['multi_5foutput_5ftype_5fstring_19',['MULTI_OUTPUT_TYPE_STRING',['../namespacegltf__materialx__converter_1_1converter.html#ab6c67a9b6ab1dafb7e3506635d655ba9',1,'gltf_materialx_converter::converter']]]
+  ['multi_5foutput_5ftype_5fstring_18',['MULTI_OUTPUT_TYPE_STRING',['../namespacegltf__materialx__converter_1_1converter.html#ab6c67a9b6ab1dafb7e3506635d655ba9',1,'gltf_materialx_converter::converter']]]
 ];

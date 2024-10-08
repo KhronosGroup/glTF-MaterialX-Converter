@@ -58,7 +58,7 @@ def main():
     if schema_file and os.path.exists(schema_file):
         with open(schema_file, 'r') as f:
             schema = json.load(f)
-        print('Loaded schema file:', schema_file)
+        logger.info(f'Loaded schema file: {schema_file}')
 
     for input_file in file_list:
         logger.info(f'Processing: {input_file}')
@@ -77,9 +77,9 @@ def main():
                 json_data = json.loads(json_string)  # Parse json_string to a dictionary  
                 try:
                     json_validate(instance=json_data, schema=schema)  # Validate JSON data against the schema
-                    print('- JSON validation successful')
+                    logger.info('- JSON validation successful')
                 except jsonschema.exceptions.ValidationError as e:
-                    print('- JSON validation errors, ' + e)
+                    logger.info('- JSON validation errors, ' + e)
 
             # Write string to file replacing .mtlx with .json extension name
             outputFile = os.path.join(output_folder, os.path.basename(input_file).replace('.mtlx', '.gltf'))

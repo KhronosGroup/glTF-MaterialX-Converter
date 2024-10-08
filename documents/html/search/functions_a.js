@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['translate_0',['translate',['../classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator.html#a03e5703969592e6c2c9db8422ef79471',1,'gltf_materialx_converter::utilities::MtlxShadingModelTranslator']]]
+  ['validate_5fdocument_0',['validate_document',['../namespacegltf__materialx__converter_1_1utilities.html#af3d2eee4a5e44196c0e8129e07fd22fa',1,'gltf_materialx_converter::utilities']]]
 ];

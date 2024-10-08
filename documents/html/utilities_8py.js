@@ -1,6 +1,5 @@
 var utilities_8py =
 [
-    [ "gltf_materialx_converter.utilities.MtlxShadingModelTranslator", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator.html", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator" ],
     [ "create_working_document", "utilities_8py.html#a7d3ff2183520447cdd0e8e91f57f93bf", null ],
     [ "get_files", "utilities_8py.html#a51dd9b8edabf54ec5e99af0a45757aff", null ],
     [ "have_version", "utilities_8py.html#a9ce615bc89d3ddaaebf0f29ebdfe6b52", null ],
