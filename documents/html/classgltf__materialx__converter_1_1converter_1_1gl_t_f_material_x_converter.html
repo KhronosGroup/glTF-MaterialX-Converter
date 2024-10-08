@@ -139,9 +139,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afd5081c1cbe4653e9acc5898b10dc5f4" id="r_afd5081c1cbe4653e9acc5898b10dc5f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd5081c1cbe4653e9acc5898b10dc5f4">initialize_glTF_texture</a> (self, texture, name, uri, images)</td></tr>
 <tr class="memdesc:afd5081c1cbe4653e9acc5898b10dc5f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a new glTF image entry and texture entry which references the image entry.  <br /></td></tr>
 <tr class="separator:afd5081c1cbe4653e9acc5898b10dc5f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a28f13a847e1d3651015d52b010a4e3" id="r_a0a28f13a847e1d3651015d52b010a4e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a28f13a847e1d3651015d52b010a4e3">addFallbackTexture</a> (self, json, fallback)</td></tr>
-<tr class="memdesc:a0a28f13a847e1d3651015d52b010a4e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a fallback texture to the glTF JSON object.  <br /></td></tr>
-<tr class="separator:a0a28f13a847e1d3651015d52b010a4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a833321089a4c0cecdc3bda689b1c7236" id="r_a833321089a4c0cecdc3bda689b1c7236"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a833321089a4c0cecdc3bda689b1c7236">add_fallback_texture</a> (self, json, fallback)</td></tr>
+<tr class="memdesc:a833321089a4c0cecdc3bda689b1c7236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a fallback texture to the glTF JSON object.  <br /></td></tr>
+<tr class="separator:a833321089a4c0cecdc3bda689b1c7236"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e99ebd28d23ba14b653dcb1c7e051e5" id="r_a6e99ebd28d23ba14b653dcb1c7e051e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e99ebd28d23ba14b653dcb1c7e051e5">materialX_graph_to_glTF</a> (self, graph, json)</td></tr>
 <tr class="memdesc:a6e99ebd28d23ba14b653dcb1c7e051e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export a MaterialX nodegraph to a glTF procedural graph.  <br /></td></tr>
 <tr class="separator:a6e99ebd28d23ba14b653dcb1c7e051e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -240,14 +240,14 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0a28f13a847e1d3651015d52b010a4e3" name="a0a28f13a847e1d3651015d52b010a4e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a28f13a847e1d3651015d52b010a4e3">&#9670;&#160;</a></span>addFallbackTexture()</h2>
+<a id="a833321089a4c0cecdc3bda689b1c7236" name="a833321089a4c0cecdc3bda689b1c7236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a833321089a4c0cecdc3bda689b1c7236">&#9670;&#160;</a></span>add_fallback_texture()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">gltf_materialx_converter.converter.glTFMaterialXConverter.addFallbackTexture </td>
+          <td class="memname">gltf_materialx_converter.converter.glTFMaterialXConverter.add_fallback_texture </td>
           <td>(</td>
           <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
         </tr>
@@ -275,7 +275,7 @@ Public Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The index of the fallback texture if successful, otherwise -1. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l00264">264</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  264</span>    <span class="keyword">def </span>addFallbackTexture(self, json, fallback):</div>
+<div class="fragment"><div class="line"><span class="lineno">  264</span>    <span class="keyword">def </span>add_fallback_texture(self, json, fallback):</div>
 <div class="line"><span class="lineno">  265</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
 <div class="line"><span class="lineno">  266</span><span class="stringliteral">        Add a fallback texture to the glTF JSON object.</span></div>
 <div class="line"><span class="lineno">  267</span><span class="stringliteral">        @param json: The JSON object to add the fallback texture to.</span></div>
@@ -792,7 +792,7 @@ Public Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  608</span>                <span class="keywordflow">if</span> (is_pbr) <span class="keywordflow">and</span> pbr_nodes.get(path) <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
 <div class="line"><span class="lineno">  609</span>                    <span class="comment"># Add fallback if not already added</span></div>
 <div class="line"><span class="lineno">  610</span>                    <span class="keywordflow">if</span> fallback_texture_index == -1:</div>
-<div class="line"><span class="lineno">  611</span>                        fallback_texture_index = self.addFallbackTexture(json_data, fallback_image_data)</div>
+<div class="line"><span class="lineno">  611</span>                        fallback_texture_index = self.add_fallback_texture(json_data, fallback_image_data)</div>
 <div class="line"><span class="lineno">  612</span> </div>
 <div class="line"><span class="lineno">  613</span>                    self.logger.info(f<span class="stringliteral">&#39;&gt; Convert shader to glTF: {shader_node.getNamePath()}. Category: {category}&#39;</span>)</div>
 <div class="line"><span class="lineno">  614</span>                    pbr_nodes[path] = shader_node</div>
@@ -917,14 +917,17 @@ Public Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  733</span>            json_data[KHR_ASSET_BLOCK] = json_asset</div>
 <div class="line"><span class="lineno">  734</span>            json_data[KHR_EXTENTIONSUSED_BLOCK] = extensions_used</div>
 <div class="line"><span class="lineno">  735</span> </div>
-<div class="line"><span class="lineno">  736</span>        <span class="comment"># Get the JSON string back</span></div>
-<div class="line"><span class="lineno">  737</span>        json_string = json.dumps(json_data, indent=2) <span class="keywordflow">if</span> json_data <span class="keywordflow">else</span> <span class="stringliteral">&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  738</span>        <span class="keywordflow">if</span> json_string == <span class="stringliteral">&#39;{}&#39;</span>:</div>
-<div class="line"><span class="lineno">  739</span>            json_string = <span class="stringliteral">&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  740</span> </div>
-<div class="line"><span class="lineno">  741</span>        <span class="keywordflow">return</span> json_string, status</div>
-<div class="line"><span class="lineno">  742</span> </div>
+<div class="line"><span class="lineno">  736</span>            <span class="comment"># Get the JSON string back</span></div>
+<div class="line"><span class="lineno">  737</span>            json_string = json.dumps(json_data, indent=2) <span class="keywordflow">if</span> json_data <span class="keywordflow">else</span> <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  738</span>            <span class="keywordflow">if</span> json_string == <span class="stringliteral">&#39;{}&#39;</span>:</div>
+<div class="line"><span class="lineno">  739</span>                json_string = <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  740</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  741</span>            json_string = <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  742</span>            status = <span class="stringliteral">&#39;No procedural graphs converted&#39;</span></div>
 <div class="line"><span class="lineno">  743</span> </div>
+<div class="line"><span class="lineno">  744</span>        <span class="keywordflow">return</span> json_string, status</div>
+<div class="line"><span class="lineno">  745</span> </div>
+<div class="line"><span class="lineno">  746</span> </div>
 </div><!-- fragment -->
 </div>
 </div>

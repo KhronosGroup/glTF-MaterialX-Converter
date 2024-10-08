@@ -87,8 +87,10 @@ graph LR
 
 #### Sample Data
 
-The following is a small set of example files used for unit testing. For each MaterialX file the resulting glTF file is given, along with a diagram of how the graph looks and reference image rendered
-using the `MaterialXView` sample application which is available as part of the core MaterialX distribution.
+The following is a set of example files used for unit testing. The term "Compound nodes" refers to nodes
+which are implemented as node graphs themselves ("functional graphs" in MaterialX terminology)
+
+For each MaterialX file the resulting glTF file is given, along with a diagram of how the graph looks and reference image rendered using the `MaterialXView` sample application which is available as part of the core MaterialX distribution.
 
 <details open><summary>Examples</summary>
 
@@ -99,7 +101,15 @@ using the `MaterialXView` sample application which is available as part of the c
 <th>Reference Image
 
 <tr>
-<td>The following is graph that adds 2 inputs and outputs the results to a glTF PBR shading node.
+<td> 
+The following is a simple graph which adds two colors together.
+
+- Graph count: single
+- Graph inputs: multiple
+- Graph outputs: single
+- Stream inputs: no
+- Compound nodes: none
+- Downstream shader: glTF PBR
 
 <pre><code class="language-mermaid"><div class="mermaid">
 
@@ -133,8 +143,17 @@ graph TB
 </tr>
 
 <tr>
-<td>The following is a pattern graph that produces a checkerboard pattern. 
+<td>
+
+The following is a pattern graph that produces a checkerboard pattern. 
 The two input colors, and a texture coordinate tiling option are exposed on the node graph. The output is a color which is routed to a downstream glTF PBR shading node (glTF material).
+
+- Graph count: single
+- Graph inputs: multiple
+- Graph outputs: single
+- Stream inputs: yes
+- Compound nodes: none
+- Downstream shader: glTF PBR
 
 <pre><code class="language-mermaid"><div class="mermaid">
 
@@ -185,6 +204,14 @@ graph TB
 <tr>
 <td>Pattern graph using a file texture
 
+- Graph count: single
+- Graph inputs: none
+- Graph outputs: single
+- Stream inputs: yes
+- File inputs: single. Non-default filtering.
+- Compound nodes: yes. UV placement.
+- Downstream shader: gltf PBR
+
 <pre><code class="language-mermaid"><div class="mermaid">
 
 graph TB
@@ -207,9 +234,105 @@ graph TB
 
 
 </td>
-<td><a href="$TOP/tests/data/streams_images/gltf_simple_filetexture.mtlx">MTLX</a>
-<a href="$TOP/tests/data/streams_images/gltf_simple_filetexture.gltf">GLTF</a>
-<td><img src="$TOP/tests/data/streams_images/gltf_simple_filetexture.png">
+<td><a href="$TOP/tests/data/bindings/gltf_simple_filetexture.mtlx">MTLX</a>
+<a href="$TOP/tests/data/bindings/gltf_simple_filetexture.gltf">GLTF</a>
+<td><img src="$TOP/tests/data/bindings/gltf_simple_filetexture.png">
+</tr>
+
+<tr>
+<td>Pattern graph using using multiple file textures with different texture placements and a shared input stream.
+
+- Graph count: single
+- Graph inputs: none
+- Graph outputs: single
+- Stream inputs: yes 
+- File inputs: multiple 
+- Compound nodes: yes.
+- Downstream shader: gltf PBR
+
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
+    gltf_pbr_surfaceshader[gltf_pbr:surfaceshader]
+    surfacematerial([surfacematerial:material])
+    style surfacematerial   fill:#090, color:#FFF
+    subgraph nodegraph1
+    nodegraph1_output_color3([output:color3])
+    style nodegraph1_output_color3  fill:#09D, color:#FFF
+    nodegraph1_texcoord_vector2[texcoord:vector2:0]
+    nodegraph1_place2d_vector3[place2d:vector2]
+    nodegraph1_multiply_color4[multiply:color3]
+    nodegraph1_image_color4[image:color3]
+    nodegraph1_image_color3[image:color3]
+    nodegraph1_place2d_vector2[place2d:vector2]
+    end
+    nodegraph1_output_color3 --"base_color"--> gltf_pbr_surfaceshader
+    gltf_pbr_surfaceshader --"surfaceshader"--> surfacematerial
+    nodegraph1_multiply_color4 --> nodegraph1_output_color3
+    nodegraph1_texcoord_vector2 --"texcoord"--> nodegraph1_place2d_vector3
+    nodegraph1_image_color3 --"in1"--> nodegraph1_multiply_color4
+    nodegraph1_image_color4 --"in2"--> nodegraph1_multiply_color4
+    nodegraph1_place2d_vector3 --"texcoord"--> nodegraph1_image_color4
+    nodegraph1_place2d_vector2 --"texcoord"--> nodegraph1_image_color3
+    nodegraph1_texcoord_vector2 --"texcoord"--> nodegraph1_place2d_vector2
+</div></code></pre>
+
+
+</td>
+<td><a href="$TOP/tests/data/bindings/gltf_shared_filetexture.mtlx">MTLX</a>
+<a href="$TOP/tests/data/bindings/gltf_shared_filetexture.gltf">GLTF</a>
+<td><img src="$TOP/tests/data/bindings/gltf_shared_filetexture.png">
+</tr>
+
+<tr>
+<td>Pattern graph using using multiple file textures routed to different outputs. Each output
+is connected to a different downstream shader.
+
+- Graph count: single
+- Graph inputs: none
+- Graph outputs: single
+- Stream inputs: yes 
+- File inputs: yes. 
+- Compound nodes: yes.
+- Downstream shader: gltf PBR
+
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
+    gltf_pbr_surfaceshader[gltf_pbr:surfaceshader]
+    surfacematerial([surfacematerial:material])
+    style surfacematerial   fill:#090, color:#FFF
+    surfacematerial1([surfacematerial:material])
+    style surfacematerial1   fill:#090, color:#FFF
+    gltf_pbr_surfaceshader1[gltf_pbr:surfaceshader]
+    subgraph nodegraph1
+    nodegraph1_output_color4([output:color3])
+    style nodegraph1_output_color4  fill:#09D, color:#FFF
+    nodegraph1_output_color3([output:color3])
+    style nodegraph1_output_color3  fill:#09D, color:#FFF
+    nodegraph1_texcoord_vector2[texcoord:vector2:0]
+    nodegraph1_place2d_vector3[place2d:vector2]
+    nodegraph1_place2d_vector2[place2d:vector2]
+    nodegraph1_image_color4[image:color3]
+    nodegraph1_image_color3[image:color3]
+    end
+    nodegraph1_output_color3 --"base_color"--> gltf_pbr_surfaceshader
+    gltf_pbr_surfaceshader --"surfaceshader"--> surfacematerial
+    gltf_pbr_surfaceshader1 --"surfaceshader"--> surfacematerial1
+    nodegraph1_output_color4 --"base_color"--> gltf_pbr_surfaceshader1
+    nodegraph1_texcoord_vector2 --"texcoord"--> nodegraph1_place2d_vector3
+    nodegraph1_texcoord_vector2 --"texcoord"--> nodegraph1_place2d_vector2
+    nodegraph1_place2d_vector3 --"texcoord"--> nodegraph1_image_color4
+    nodegraph1_image_color4 --> nodegraph1_output_color4
+    nodegraph1_image_color3 --> nodegraph1_output_color3
+    nodegraph1_place2d_vector2 --"texcoord"--> nodegraph1_image_color3
+</div></code></pre>
+
+
+</td>
+<td><a href="$TOP/tests/data/bindings/gltf_shared_filetexture_2.mtlx">MTLX</a>
+<a href="$TOP/tests/data/bindings/gltf_shared_filetexture_2.gltf">GLTF</a>
+<td><img src="$TOP/tests/data/bindings/gltf_shared_filetexture_2.png">
 </tr>
 
 </table>

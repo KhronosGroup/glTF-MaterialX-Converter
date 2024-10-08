@@ -1,7 +1,7 @@
 var classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter =
 [
     [ "__init__", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a876ab5a3ed460c0d503f743ac230d256", null ],
-    [ "addFallbackTexture", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a0a28f13a847e1d3651015d52b010a4e3", null ],
+    [ "add_fallback_texture", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a833321089a4c0cecdc3bda689b1c7236", null ],
     [ "get_metadata", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#abef23991acda9c9101d7391e1e3dbc6e", null ],
     [ "initialize_glTF_texture", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#afd5081c1cbe4653e9acc5898b10dc5f4", null ],
     [ "materialX_graph_to_glTF", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a6e99ebd28d23ba14b653dcb1c7e051e5", null ],

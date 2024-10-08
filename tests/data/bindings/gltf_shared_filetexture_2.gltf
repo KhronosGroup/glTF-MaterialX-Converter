@@ -1,0 +1,395 @@
+{
+  "images": [
+    {
+      "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4z/AfAAQAAf/zKSWvAAAAAElFTkSuQmCC",
+      "name": "KHR_texture_procedural_fallback"
+    },
+    {
+      "name": "nodegraph1/image_color4/file",
+      "uri": "grid.png"
+    },
+    {
+      "name": "nodegraph1/image_color3/file",
+      "uri": "grid.png"
+    }
+  ],
+  "textures": [
+    {
+      "source": 0
+    },
+    {
+      "name": "nodegraph1/image_color4/file",
+      "source": 1
+    },
+    {
+      "name": "nodegraph1/image_color3/file",
+      "source": 2
+    }
+  ],
+  "extensions": {
+    "KHR_texture_procedurals": {
+      "procedurals": [
+        {
+          "name": "nodegraph1",
+          "nodetype": "nodegraph",
+          "type": "multioutput",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "output_color4",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 3
+            },
+            {
+              "name": "output_color3",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 4
+            }
+          ],
+          "nodes": [
+            {
+              "name": "texcoord_vector2",
+              "nodetype": "texcoord",
+              "type": "vector2",
+              "inputs": [
+                {
+                  "name": "index",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 0
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector2"
+                }
+              ]
+            },
+            {
+              "name": "place2d_vector3",
+              "nodetype": "place2d",
+              "type": "vector2",
+              "inputs": [
+                {
+                  "name": "texcoord",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 0
+                },
+                {
+                  "name": "pivot",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "scale",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    1.0,
+                    1.0
+                  ]
+                },
+                {
+                  "name": "rotate",
+                  "nodetype": "input",
+                  "unit": "degree",
+                  "unittype": "angle",
+                  "type": "float",
+                  "value": 0.0
+                },
+                {
+                  "name": "offset",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "operationorder",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 1
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector2"
+                }
+              ]
+            },
+            {
+              "name": "place2d_vector2",
+              "nodetype": "place2d",
+              "type": "vector2",
+              "inputs": [
+                {
+                  "name": "texcoord",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 0
+                },
+                {
+                  "name": "pivot",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.5,
+                    0.5
+                  ]
+                },
+                {
+                  "name": "scale",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    1.0,
+                    1.0
+                  ]
+                },
+                {
+                  "name": "rotate",
+                  "nodetype": "input",
+                  "unit": "degree",
+                  "unittype": "angle",
+                  "type": "float",
+                  "value": 45.0
+                },
+                {
+                  "name": "offset",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "operationorder",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 1
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector2"
+                }
+              ]
+            },
+            {
+              "name": "image_color4",
+              "nodetype": "image",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "file",
+                  "nodetype": "input",
+                  "colorspace": "none",
+                  "type": "filename",
+                  "texture": 1
+                },
+                {
+                  "name": "layer",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "0"
+                },
+                {
+                  "name": "default",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "value": [
+                    0.9511,
+                    0.0255797,
+                    0.0255797
+                  ]
+                },
+                {
+                  "name": "texcoord",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 1
+                },
+                {
+                  "name": "uaddressmode",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "periodic"
+                },
+                {
+                  "name": "vaddressmode",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "periodic"
+                },
+                {
+                  "name": "filtertype",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "linear"
+                },
+                {
+                  "name": "framerange",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "100"
+                },
+                {
+                  "name": "frameoffset",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 1
+                },
+                {
+                  "name": "frameendaction",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "constant"
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "image_color3",
+              "nodetype": "image",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "file",
+                  "nodetype": "input",
+                  "colorspace": "srgb_texture",
+                  "type": "filename",
+                  "texture": 2
+                },
+                {
+                  "name": "layer",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "0"
+                },
+                {
+                  "name": "default",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "value": [
+                    0.9511,
+                    0.0255797,
+                    0.0255797
+                  ]
+                },
+                {
+                  "name": "texcoord",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 2
+                },
+                {
+                  "name": "uaddressmode",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "periodic"
+                },
+                {
+                  "name": "vaddressmode",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "periodic"
+                },
+                {
+                  "name": "filtertype",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "linear"
+                },
+                {
+                  "name": "framerange",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "100"
+                },
+                {
+                  "name": "frameoffset",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 1
+                },
+                {
+                  "name": "frameendaction",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "constant"
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "materials": [
+    {
+      "name": "gltf_pbr_surfaceshader",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0,
+          "extensions": {
+            "KHR_texture_procedurals": {
+              "index": 0,
+              "output": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "gltf_pbr_surfaceshader1",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0,
+          "extensions": {
+            "KHR_texture_procedurals": {
+              "index": 0,
+              "output": 0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "asset": {
+    "version": "2.0",
+    "generator": "MaterialX 1.39 / glTF 2.0 Texture Procedural Converter"
+  },
+  "extensionsUsed": [
+    "KHR_texture_procedurals",
+    "EXT_texture_procedurals_mx_1_39"
+  ]
+}

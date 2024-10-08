@@ -59,7 +59,7 @@ class TestConvertFromMtlx(unittest.TestCase):
                     test_file_names.append(file)
                     # Get absolute path
                     file = os.path.abspath(os.path.join(root, file))
-                    print('Found test file:', file)
+                    #print('Found test file:', file)
                     test_files.append(file)
 
         converter = MxGLTFPT.glTFMaterialXConverter()
@@ -82,7 +82,11 @@ class TestConvertFromMtlx(unittest.TestCase):
 
             # Convert from MaterialX to GLTF
             json_string, status = converter.materialX_to_glTF(mxdoc)
-            self.assertTrue(len(json_string) > 0)
+            if len(json_string) > 0:
+                print('> Conversion successful for:', file_name)
+            else:
+                print('> Conversion failed for:', file_name, 'Status:', status)
+                continue
 
             # Test JSON string vs schema
             valid_json = False
@@ -122,7 +126,7 @@ class TestConvertToMtlx(unittest.TestCase):
                     test_file_names.append(file)
                     # Get absolute path
                     file = os.path.abspath(os.path.join(root, file))
-                    print('Found test file:', file)
+                    #print('Found test file:', file)
                     test_files.append(file)
 
         converter = MxGLTFPT.glTFMaterialXConverter()

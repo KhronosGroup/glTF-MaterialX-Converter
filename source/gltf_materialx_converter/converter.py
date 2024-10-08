@@ -261,7 +261,7 @@ class glTFMaterialXConverter():
         texture[KHR_TEXTURE_PROCEDURALS_NAME] = name
         texture[KHR_IMAGE_SOURCE] = len(images) - 1
 
-    def addFallbackTexture(self, json, fallback):
+    def add_fallback_texture(self, json, fallback):
         '''
         Add a fallback texture to the glTF JSON object.
         @param json: The JSON object to add the fallback texture to.
@@ -608,7 +608,7 @@ class glTFMaterialXConverter():
                 if (is_pbr) and pbr_nodes.get(path) is None:
                     # Add fallback if not already added
                     if fallback_texture_index == -1:
-                        fallback_texture_index = self.addFallbackTexture(json_data, fallback_image_data)
+                        fallback_texture_index = self.add_fallback_texture(json_data, fallback_image_data)
 
                     self.logger.info(f'> Convert shader to glTF: {shader_node.getNamePath()}. Category: {category}')
                     pbr_nodes[path] = shader_node
@@ -733,10 +733,13 @@ class glTFMaterialXConverter():
             json_data[KHR_ASSET_BLOCK] = json_asset
             json_data[KHR_EXTENTIONSUSED_BLOCK] = extensions_used
 
-        # Get the JSON string back
-        json_string = json.dumps(json_data, indent=2) if json_data else ''
-        if json_string == '{}':
+            # Get the JSON string back
+            json_string = json.dumps(json_data, indent=2) if json_data else ''
+            if json_string == '{}':
+                json_string = ''
+        else:
             json_string = ''
+            status = 'No procedural graphs converted'
 
         return json_string, status
 
