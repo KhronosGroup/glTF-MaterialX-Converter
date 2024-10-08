@@ -14,11 +14,11 @@ def load_json_file(filename):
     @param filename: The file to load.
     @return: The JSON string
     '''
-    jsonString = ''
+    json_string = ''
     with open(filename, 'r') as file:
         file = json.load(file)
-        jsonString = json.dumps(file, indent=2)
-    return jsonString    
+        json_string = json.dumps(file, indent=2)
+    return json_string    
 
 def load_standard_libraries():
     '''Load standard MaierialX libraries.
@@ -46,28 +46,28 @@ def import_libraries(doc, libraries):
     '''
     doc.importLibrary(libraries)
 
-def read_materialX_document(mtlxdoc, inputFile):
+def read_materialX_document(materialx_doc, input_file):
     '''
     Read a MaterialX document from a file.
-    @param mtlxdoc: The MaterialX document to read into.
-    @param inputFile: The file to read from.
+    @param materialx_doc: The MaterialX document to read into.
+    @param input_file: The file to read from.
     '''
-    mx.readFromXmlFile(mtlxdoc, inputFile)
+    mx.readFromXmlFile(materialx_doc, input_file)
 
-def materialX_doc_to_string(mtlxdoc):
+def materialX_doc_to_string(materialx_doc):
     '''Convert a MaterialX document to a string.
-    @param mtlxdoc: The document to convert.
+    @param materialx_doc: The document to convert.
     @return: The document as a string.
     '''
-    return mx.writeToXmlString(mtlxdoc)
+    return mx.writeToXmlString(materialx_doc)
 
 def validate_document(doc):
     '''Validate a MaterialX document.
     @param doc: The document to validate.
-    @return: The validation result as a tuple of [valid, errorString].
+    @return: The validation result as a tuple of [valid, error string].
     '''
-    valid, errorString = doc.validate()
-    return valid, errorString
+    valid, error_string = doc.validate()
+    return valid, error_string
 
 def get_files(rootPath, extension):
     '''Get all files with a given extension in a directory.
@@ -100,12 +100,12 @@ class MtlxShadingModelTranslator():
         @param target: The target shading model. Default is gltf
         @return: The translated document if successful, otherwise None
         '''
-        translatedDoc = doc.copy()
+        translated_doc = doc.copy()
         translator = mx.ShaderTranslator.create()
 
         try:
-            translator.translateAllMaterials(translatedDoc, target)
-            return translatedDoc
+            translator.translateAllMaterials(translated_doc, target)
+            return translated_doc
         except Exception as e:
             print(f'Translation failed to target: {target}')
             return None

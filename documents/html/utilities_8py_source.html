@@ -128,11 +128,11 @@ $(function(){initNavTree('utilities_8py_source.html',''); initResizable(true); }
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="stringliteral">    @param filename: The file to load.</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="stringliteral">    @return: The JSON string</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    jsonString = <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    json_string = <span class="stringliteral">&#39;&#39;</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">with</span> open(filename, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> file:</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        file = json.load(file)</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        jsonString = json.dumps(file, indent=2)</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">return</span> jsonString    </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        json_string = json.dumps(file, indent=2)</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">return</span> json_string    </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 </div>
 <div class="foldopen" id="foldopen00023" data-start="" data-end="">
@@ -168,32 +168,32 @@ $(function(){initNavTree('utilities_8py_source.html',''); initResizable(true); }
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
 </div>
 <div class="foldopen" id="foldopen00049" data-start="" data-end="">
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="namespacegltf__materialx__converter_1_1utilities.html#a13276aa3eec1a3944544268d86209e4e">   49</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacegltf__materialx__converter_1_1utilities.html#a13276aa3eec1a3944544268d86209e4e">read_materialX_document</a>(mtlxdoc, inputFile):</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="namespacegltf__materialx__converter_1_1utilities.html#afd53d89163491cd2b49952449b98617a">   49</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacegltf__materialx__converter_1_1utilities.html#afd53d89163491cd2b49952449b98617a">read_materialX_document</a>(materialx_doc, input_file):</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="stringliteral">    Read a MaterialX document from a file.</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="stringliteral">    @param mtlxdoc: The MaterialX document to read into.</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="stringliteral">    @param inputFile: The file to read from.</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="stringliteral">    @param materialx_doc: The MaterialX document to read into.</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="stringliteral">    @param input_file: The file to read from.</span></div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    mx.readFromXmlFile(mtlxdoc, inputFile)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    mx.readFromXmlFile(materialx_doc, input_file)</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 </div>
 <div class="foldopen" id="foldopen00057" data-start="" data-end="">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespacegltf__materialx__converter_1_1utilities.html#aa184dcbd515dd5bccb1fe1e8fda4fe60">   57</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacegltf__materialx__converter_1_1utilities.html#aa184dcbd515dd5bccb1fe1e8fda4fe60">materialX_doc_to_string</a>(mtlxdoc):</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespacegltf__materialx__converter_1_1utilities.html#a3efdd41d9970f17e1f4febfc449bf7df">   57</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacegltf__materialx__converter_1_1utilities.html#a3efdd41d9970f17e1f4febfc449bf7df">materialX_doc_to_string</a>(materialx_doc):</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="stringliteral">&#39;&#39;&#39;Convert a MaterialX document to a string.</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="stringliteral">    @param mtlxdoc: The document to convert.</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="stringliteral">    @param materialx_doc: The document to convert.</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="stringliteral">    @return: The document as a string.</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">return</span> mx.writeToXmlString(mtlxdoc)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">return</span> mx.writeToXmlString(materialx_doc)</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 </div>
 <div class="foldopen" id="foldopen00064" data-start="" data-end="">
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="namespacegltf__materialx__converter_1_1utilities.html#af3d2eee4a5e44196c0e8129e07fd22fa">   64</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacegltf__materialx__converter_1_1utilities.html#af3d2eee4a5e44196c0e8129e07fd22fa">validate_document</a>(doc):</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="stringliteral">&#39;&#39;&#39;Validate a MaterialX document.</span></div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="stringliteral">    @param doc: The document to validate.</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="stringliteral">    @return: The validation result as a tuple of [valid, errorString].</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="stringliteral">    @return: The validation result as a tuple of [valid, error string].</span></div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    valid, errorString = doc.validate()</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">return</span> valid, errorString</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    valid, error_string = doc.validate()</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">return</span> valid, error_string</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
 </div>
 <div class="foldopen" id="foldopen00072" data-start="" data-end="">
@@ -233,12 +233,12 @@ $(function(){initNavTree('utilities_8py_source.html',''); initResizable(true); }
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="stringliteral">        @param target: The target shading model. Default is gltf</span></div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="stringliteral">        @return: The translated document if successful, otherwise None</span></div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        translatedDoc = doc.copy()</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        translated_doc = doc.copy()</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        translator = mx.ShaderTranslator.create()</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">try</span>:</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            translator.translateAllMaterials(translatedDoc, target)</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <span class="keywordflow">return</span> translatedDoc</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            translator.translateAllMaterials(translated_doc, target)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <span class="keywordflow">return</span> translated_doc</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            print(f<span class="stringliteral">&#39;Translation failed to target: {target}&#39;</span>)</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
@@ -247,14 +247,14 @@ $(function(){initNavTree('utilities_8py_source.html',''); initResizable(true); }
 <div class="ttc" id="aclassgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator_html"><div class="ttname"><a href="classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator.html">gltf_materialx_converter.utilities.MtlxShadingModelTranslator</a></div><div class="ttdoc">Class to translate shading models within a MaterialX document.</div><div class="ttdef"><b>Definition</b> <a href="#l00086">utilities.py:86</a></div></div>
 <div class="ttc" id="aclassgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator_html_a03e5703969592e6c2c9db8422ef79471"><div class="ttname"><a href="classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator.html#a03e5703969592e6c2c9db8422ef79471">gltf_materialx_converter.utilities.MtlxShadingModelTranslator.translate</a></div><div class="ttdeci">translate(self, doc, target='gltf')</div><div class="ttdoc">Translate the shading model to a target shading model.</div><div class="ttdef"><b>Definition</b> <a href="#l00096">utilities.py:96</a></div></div>
 <div class="ttc" id="aclassgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator_html_ab392375e2847cb40923156dc6ec12046"><div class="ttname"><a href="classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator.html#ab392375e2847cb40923156dc6ec12046">gltf_materialx_converter.utilities.MtlxShadingModelTranslator.__init__</a></div><div class="ttdeci">__init__(self)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> <a href="#l00090">utilities.py:90</a></div></div>
-<div class="ttc" id="anamespacegltf__materialx__converter_1_1utilities_html_a13276aa3eec1a3944544268d86209e4e"><div class="ttname"><a href="namespacegltf__materialx__converter_1_1utilities.html#a13276aa3eec1a3944544268d86209e4e">gltf_materialx_converter.utilities.read_materialX_document</a></div><div class="ttdeci">read_materialX_document(mtlxdoc, inputFile)</div><div class="ttdoc">Read a MaterialX document from a file.</div><div class="ttdef"><b>Definition</b> <a href="#l00049">utilities.py:49</a></div></div>
+<div class="ttc" id="anamespacegltf__materialx__converter_1_1utilities_html_a3efdd41d9970f17e1f4febfc449bf7df"><div class="ttname"><a href="namespacegltf__materialx__converter_1_1utilities.html#a3efdd41d9970f17e1f4febfc449bf7df">gltf_materialx_converter.utilities.materialX_doc_to_string</a></div><div class="ttdeci">materialX_doc_to_string(materialx_doc)</div><div class="ttdoc">Convert a MaterialX document to a string.</div><div class="ttdef"><b>Definition</b> <a href="#l00057">utilities.py:57</a></div></div>
 <div class="ttc" id="anamespacegltf__materialx__converter_1_1utilities_html_a51dd9b8edabf54ec5e99af0a45757aff"><div class="ttname"><a href="namespacegltf__materialx__converter_1_1utilities.html#a51dd9b8edabf54ec5e99af0a45757aff">gltf_materialx_converter.utilities.get_files</a></div><div class="ttdeci">get_files(rootPath, extension)</div><div class="ttdoc">Get all files with a given extension in a directory.</div><div class="ttdef"><b>Definition</b> <a href="#l00072">utilities.py:72</a></div></div>
 <div class="ttc" id="anamespacegltf__materialx__converter_1_1utilities_html_a7d3ff2183520447cdd0e8e91f57f93bf"><div class="ttname"><a href="namespacegltf__materialx__converter_1_1utilities.html#a7d3ff2183520447cdd0e8e91f57f93bf">gltf_materialx_converter.utilities.create_working_document</a></div><div class="ttdeci">create_working_document(libraries)</div><div class="ttdoc">Create a working document and import any libraries.</div><div class="ttdef"><b>Definition</b> <a href="#l00031">utilities.py:31</a></div></div>
 <div class="ttc" id="anamespacegltf__materialx__converter_1_1utilities_html_a8cf5924ef1449dfa635baf1b77a24e24"><div class="ttname"><a href="namespacegltf__materialx__converter_1_1utilities.html#a8cf5924ef1449dfa635baf1b77a24e24">gltf_materialx_converter.utilities.load_json_file</a></div><div class="ttdeci">load_json_file(filename)</div><div class="ttdoc">Load a JSON file.</div><div class="ttdef"><b>Definition</b> <a href="#l00012">utilities.py:12</a></div></div>
-<div class="ttc" id="anamespacegltf__materialx__converter_1_1utilities_html_aa184dcbd515dd5bccb1fe1e8fda4fe60"><div class="ttname"><a href="namespacegltf__materialx__converter_1_1utilities.html#aa184dcbd515dd5bccb1fe1e8fda4fe60">gltf_materialx_converter.utilities.materialX_doc_to_string</a></div><div class="ttdeci">materialX_doc_to_string(mtlxdoc)</div><div class="ttdoc">Convert a MaterialX document to a string.</div><div class="ttdef"><b>Definition</b> <a href="#l00057">utilities.py:57</a></div></div>
 <div class="ttc" id="anamespacegltf__materialx__converter_1_1utilities_html_aa47eb4026dd517cdc1720d7ec5503237"><div class="ttname"><a href="namespacegltf__materialx__converter_1_1utilities.html#aa47eb4026dd517cdc1720d7ec5503237">gltf_materialx_converter.utilities.load_standard_libraries</a></div><div class="ttdeci">load_standard_libraries()</div><div class="ttdoc">Load standard MaierialX libraries.</div><div class="ttdef"><b>Definition</b> <a href="#l00023">utilities.py:23</a></div></div>
 <div class="ttc" id="anamespacegltf__materialx__converter_1_1utilities_html_ab65e2143b894d1df4e5ba650cfabddfa"><div class="ttname"><a href="namespacegltf__materialx__converter_1_1utilities.html#ab65e2143b894d1df4e5ba650cfabddfa">gltf_materialx_converter.utilities.import_libraries</a></div><div class="ttdeci">import_libraries(doc, libraries)</div><div class="ttdoc">Import libraries into a document.</div><div class="ttdef"><b>Definition</b> <a href="#l00042">utilities.py:42</a></div></div>
 <div class="ttc" id="anamespacegltf__materialx__converter_1_1utilities_html_af3d2eee4a5e44196c0e8129e07fd22fa"><div class="ttname"><a href="namespacegltf__materialx__converter_1_1utilities.html#af3d2eee4a5e44196c0e8129e07fd22fa">gltf_materialx_converter.utilities.validate_document</a></div><div class="ttdeci">validate_document(doc)</div><div class="ttdoc">Validate a MaterialX document.</div><div class="ttdef"><b>Definition</b> <a href="#l00064">utilities.py:64</a></div></div>
+<div class="ttc" id="anamespacegltf__materialx__converter_1_1utilities_html_afd53d89163491cd2b49952449b98617a"><div class="ttname"><a href="namespacegltf__materialx__converter_1_1utilities.html#afd53d89163491cd2b49952449b98617a">gltf_materialx_converter.utilities.read_materialX_document</a></div><div class="ttdeci">read_materialX_document(materialx_doc, input_file)</div><div class="ttdoc">Read a MaterialX document from a file.</div><div class="ttdef"><b>Definition</b> <a href="#l00049">utilities.py:49</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.1-->

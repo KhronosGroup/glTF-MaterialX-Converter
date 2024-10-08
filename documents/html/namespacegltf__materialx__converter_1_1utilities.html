@@ -135,12 +135,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ab65e2143b894d1df4e5ba650cfabddfa" id="r_ab65e2143b894d1df4e5ba650cfabddfa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab65e2143b894d1df4e5ba650cfabddfa">import_libraries</a> (doc, libraries)</td></tr>
 <tr class="memdesc:ab65e2143b894d1df4e5ba650cfabddfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Import libraries into a document.  <br /></td></tr>
 <tr class="separator:ab65e2143b894d1df4e5ba650cfabddfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13276aa3eec1a3944544268d86209e4e" id="r_a13276aa3eec1a3944544268d86209e4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13276aa3eec1a3944544268d86209e4e">read_materialX_document</a> (mtlxdoc, inputFile)</td></tr>
-<tr class="memdesc:a13276aa3eec1a3944544268d86209e4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a MaterialX document from a file.  <br /></td></tr>
-<tr class="separator:a13276aa3eec1a3944544268d86209e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa184dcbd515dd5bccb1fe1e8fda4fe60" id="r_aa184dcbd515dd5bccb1fe1e8fda4fe60"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa184dcbd515dd5bccb1fe1e8fda4fe60">materialX_doc_to_string</a> (mtlxdoc)</td></tr>
-<tr class="memdesc:aa184dcbd515dd5bccb1fe1e8fda4fe60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a MaterialX document to a string.  <br /></td></tr>
-<tr class="separator:aa184dcbd515dd5bccb1fe1e8fda4fe60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd53d89163491cd2b49952449b98617a" id="r_afd53d89163491cd2b49952449b98617a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd53d89163491cd2b49952449b98617a">read_materialX_document</a> (materialx_doc, input_file)</td></tr>
+<tr class="memdesc:afd53d89163491cd2b49952449b98617a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a MaterialX document from a file.  <br /></td></tr>
+<tr class="separator:afd53d89163491cd2b49952449b98617a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3efdd41d9970f17e1f4febfc449bf7df" id="r_a3efdd41d9970f17e1f4febfc449bf7df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3efdd41d9970f17e1f4febfc449bf7df">materialX_doc_to_string</a> (materialx_doc)</td></tr>
+<tr class="memdesc:a3efdd41d9970f17e1f4febfc449bf7df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a MaterialX document to a string.  <br /></td></tr>
+<tr class="separator:a3efdd41d9970f17e1f4febfc449bf7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3d2eee4a5e44196c0e8129e07fd22fa" id="r_af3d2eee4a5e44196c0e8129e07fd22fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3d2eee4a5e44196c0e8129e07fd22fa">validate_document</a> (doc)</td></tr>
 <tr class="memdesc:af3d2eee4a5e44196c0e8129e07fd22fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate a MaterialX document.  <br /></td></tr>
 <tr class="separator:af3d2eee4a5e44196c0e8129e07fd22fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -304,11 +304,11 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   14</span><span class="stringliteral">    @param filename: The file to load.</span></div>
 <div class="line"><span class="lineno">   15</span><span class="stringliteral">    @return: The JSON string</span></div>
 <div class="line"><span class="lineno">   16</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">   17</span>    jsonString = <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><span class="lineno">   17</span>    json_string = <span class="stringliteral">&#39;&#39;</span></div>
 <div class="line"><span class="lineno">   18</span>    <span class="keyword">with</span> open(filename, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> file:</div>
 <div class="line"><span class="lineno">   19</span>        file = json.load(file)</div>
-<div class="line"><span class="lineno">   20</span>        jsonString = json.dumps(file, indent=2)</div>
-<div class="line"><span class="lineno">   21</span>    <span class="keywordflow">return</span> jsonString    </div>
+<div class="line"><span class="lineno">   20</span>        json_string = json.dumps(file, indent=2)</div>
+<div class="line"><span class="lineno">   21</span>    <span class="keywordflow">return</span> json_string    </div>
 <div class="line"><span class="lineno">   22</span> </div>
 </div><!-- fragment -->
 </div>
@@ -343,8 +343,8 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="aa184dcbd515dd5bccb1fe1e8fda4fe60" name="aa184dcbd515dd5bccb1fe1e8fda4fe60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa184dcbd515dd5bccb1fe1e8fda4fe60">&#9670;&#160;</a></span>materialX_doc_to_string()</h2>
+<a id="a3efdd41d9970f17e1f4febfc449bf7df" name="a3efdd41d9970f17e1f4febfc449bf7df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3efdd41d9970f17e1f4febfc449bf7df">&#9670;&#160;</a></span>materialX_doc_to_string()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,7 +352,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">gltf_materialx_converter.utilities.materialX_doc_to_string </td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>mtlxdoc</em></span></td><td>)</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>materialx_doc</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -361,25 +361,25 @@ Functions</h2></td></tr>
 <p>Convert a MaterialX document to a string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mtlxdoc</td><td>The document to convert. </td></tr>
+    <tr><td class="paramname">materialx_doc</td><td>The document to convert. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>: The document as a string. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00057">57</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   57</span><span class="keyword">def </span>materialX_doc_to_string(mtlxdoc):</div>
+<div class="fragment"><div class="line"><span class="lineno">   57</span><span class="keyword">def </span>materialX_doc_to_string(materialx_doc):</div>
 <div class="line"><span class="lineno">   58</span>    <span class="stringliteral">&#39;&#39;&#39;Convert a MaterialX document to a string.</span></div>
-<div class="line"><span class="lineno">   59</span><span class="stringliteral">    @param mtlxdoc: The document to convert.</span></div>
+<div class="line"><span class="lineno">   59</span><span class="stringliteral">    @param materialx_doc: The document to convert.</span></div>
 <div class="line"><span class="lineno">   60</span><span class="stringliteral">    @return: The document as a string.</span></div>
 <div class="line"><span class="lineno">   61</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">return</span> mx.writeToXmlString(mtlxdoc)</div>
+<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">return</span> mx.writeToXmlString(materialx_doc)</div>
 <div class="line"><span class="lineno">   63</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a13276aa3eec1a3944544268d86209e4e" name="a13276aa3eec1a3944544268d86209e4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13276aa3eec1a3944544268d86209e4e">&#9670;&#160;</a></span>read_materialX_document()</h2>
+<a id="afd53d89163491cd2b49952449b98617a" name="afd53d89163491cd2b49952449b98617a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd53d89163491cd2b49952449b98617a">&#9670;&#160;</a></span>read_materialX_document()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -387,12 +387,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">gltf_materialx_converter.utilities.read_materialX_document </td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>mtlxdoc</em></span>, </td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>materialx_doc</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>inputFile</em></span>&#160;)</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>input_file</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -400,20 +400,20 @@ Functions</h2></td></tr>
 <p>Read a MaterialX document from a file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mtlxdoc</td><td>The MaterialX document to read into. </td></tr>
-    <tr><td class="paramname">inputFile</td><td>The file to read from. </td></tr>
+    <tr><td class="paramname">materialx_doc</td><td>The MaterialX document to read into. </td></tr>
+    <tr><td class="paramname">input_file</td><td>The file to read from. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00049">49</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   49</span><span class="keyword">def </span>read_materialX_document(mtlxdoc, inputFile):</div>
+<div class="fragment"><div class="line"><span class="lineno">   49</span><span class="keyword">def </span>read_materialX_document(materialx_doc, input_file):</div>
 <div class="line"><span class="lineno">   50</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
 <div class="line"><span class="lineno">   51</span><span class="stringliteral">    Read a MaterialX document from a file.</span></div>
-<div class="line"><span class="lineno">   52</span><span class="stringliteral">    @param mtlxdoc: The MaterialX document to read into.</span></div>
-<div class="line"><span class="lineno">   53</span><span class="stringliteral">    @param inputFile: The file to read from.</span></div>
+<div class="line"><span class="lineno">   52</span><span class="stringliteral">    @param materialx_doc: The MaterialX document to read into.</span></div>
+<div class="line"><span class="lineno">   53</span><span class="stringliteral">    @param input_file: The file to read from.</span></div>
 <div class="line"><span class="lineno">   54</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">   55</span>    mx.readFromXmlFile(mtlxdoc, inputFile)</div>
+<div class="line"><span class="lineno">   55</span>    mx.readFromXmlFile(materialx_doc, input_file)</div>
 <div class="line"><span class="lineno">   56</span> </div>
 </div><!-- fragment -->
 </div>
@@ -440,16 +440,16 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>: The validation result as a tuple of [valid, errorString]. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>: The validation result as a tuple of [valid, error string]. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00064">64</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   64</span><span class="keyword">def </span>validate_document(doc):</div>
 <div class="line"><span class="lineno">   65</span>    <span class="stringliteral">&#39;&#39;&#39;Validate a MaterialX document.</span></div>
 <div class="line"><span class="lineno">   66</span><span class="stringliteral">    @param doc: The document to validate.</span></div>
-<div class="line"><span class="lineno">   67</span><span class="stringliteral">    @return: The validation result as a tuple of [valid, errorString].</span></div>
+<div class="line"><span class="lineno">   67</span><span class="stringliteral">    @return: The validation result as a tuple of [valid, error string].</span></div>
 <div class="line"><span class="lineno">   68</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">   69</span>    valid, errorString = doc.validate()</div>
-<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">return</span> valid, errorString</div>
+<div class="line"><span class="lineno">   69</span>    valid, error_string = doc.validate()</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">return</span> valid, error_string</div>
 <div class="line"><span class="lineno">   71</span> </div>
 </div><!-- fragment -->
 </div>
