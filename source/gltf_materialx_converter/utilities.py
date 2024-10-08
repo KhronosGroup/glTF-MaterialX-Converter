@@ -83,6 +83,27 @@ def get_files(rootPath, extension):
                 filelist.append(os.path.join(subdir, file)) 
     return filelist
 
+def have_version(major, minor, patch):
+    '''
+    Check if the current vesion matches a given version
+    @parm major: The major version number
+    @parm minor: The minor version number
+    @parm patch: The patch version number
+    @return: True if the current version is greater or equal to the given version
+    ''' 
+    imajor, iminor, ipatch = mx.getVersionIntegers()
+    print(f'Checking MaterialX version: {imajor}.{iminor}.{ipatch}')
+
+    if major >= imajor:
+        if  major > imajor:
+            return True        
+        if iminor >= minor:
+            if iminor > minor:
+                return True 
+            if  ipatch >= patch:
+                return True
+    return False    
+
 class MtlxShadingModelTranslator():
     '''
     @brief Class to translate shading models within a MaterialX document.    

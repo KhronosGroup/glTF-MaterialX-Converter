@@ -1,5 +1,6 @@
 import os
 import argparse
+import sys
 import logging as lg 
 
 import json
@@ -20,6 +21,10 @@ def main():
     
     logger = lg.getLogger('gltfCmd')
     lg.basicConfig(level=lg.INFO)  
+
+    if not MxGLTFPTUtil.have_version(1, 39, 1):
+        logger.error("MaterialX version 1.39.1 or higher is required.")
+        sys.exit(-1)
 
     file_list = []
     extension = '.mtlx'

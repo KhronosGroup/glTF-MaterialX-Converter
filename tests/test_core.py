@@ -17,27 +17,6 @@ from gltf_materialx_converter import utilities as MxGLTFPTUtil
 
 import importlib.util
 
-def have_version(major, minor, patch):
-    '''
-    Check if the current vesion matches a given version
-    @parm major: The major version number
-    @parm minor: The minor version number
-    @parm patch: The patch version number
-    @return: True if the current version is greater or equal to the given version
-    ''' 
-    imajor, iminor, ipatch = mx.getVersionIntegers()
-    print(f'Checking MaterialX version: {imajor}.{iminor}.{ipatch}')
-
-    if major >= imajor:
-        if  major > imajor:
-            return True        
-        if iminor >= minor:
-            if iminor > minor:
-                return True 
-            if  ipatch >= patch:
-                return True
-    return False
-
 def get_materialX_document(test_case, input_file):
     '''
     Read in a MaterialX document from a file
@@ -65,8 +44,8 @@ class TestConvertFromMtlx(unittest.TestCase):
     # Test conversion from MaterialX to GLTF Procedural Texture
     def test_convert_from_mtlx(self):
 
-        if not have_version(1, 39, 0):
-            print("MaterialX version 1.39.0 or higher is required for this test.")
+        if not MxGLTFPTUtil.have_version(1, 39, 1):
+            print("MaterialX version 1.39.1 or higher is required for this test.")
             return
 
         current_folder = os.path.dirname(__file__)
@@ -128,8 +107,8 @@ class TestConvertToMtlx(unittest.TestCase):
     # Test conversion from GLTF Procedural Texture to MaterialX
     def test_convert_to_mtlx(self):
 
-        if not have_version(1, 39, 0):
-            print("MaterialX version 1.39.0 or higher is required for this test.")
+        if not MxGLTFPTUtil.have_version(1, 39, 1):
+            print("MaterialX version 1.39.1 or higher is required for this test.")
             return
 
         current_folder = os.path.dirname(__file__)

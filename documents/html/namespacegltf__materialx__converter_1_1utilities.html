@@ -147,6 +147,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a51dd9b8edabf54ec5e99af0a45757aff" id="r_a51dd9b8edabf54ec5e99af0a45757aff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51dd9b8edabf54ec5e99af0a45757aff">get_files</a> (rootPath, extension)</td></tr>
 <tr class="memdesc:a51dd9b8edabf54ec5e99af0a45757aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all files with a given extension in a directory.  <br /></td></tr>
 <tr class="separator:a51dd9b8edabf54ec5e99af0a45757aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ce615bc89d3ddaaebf0f29ebdfe6b52" id="r_a9ce615bc89d3ddaaebf0f29ebdfe6b52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ce615bc89d3ddaaebf0f29ebdfe6b52">have_version</a> (major, minor, patch)</td></tr>
+<tr class="memdesc:a9ce615bc89d3ddaaebf0f29ebdfe6b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the current vesion matches a given version @parm major: The major version number @parm minor: The minor version number @parm patch: The patch version number.  <br /></td></tr>
+<tr class="separator:a9ce615bc89d3ddaaebf0f29ebdfe6b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a7d3ff2183520447cdd0e8e91f57f93bf" name="a7d3ff2183520447cdd0e8e91f57f93bf"></a>
@@ -232,6 +235,58 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   83</span>                filelist.append(os.path.join(subdir, file)) </div>
 <div class="line"><span class="lineno">   84</span>    <span class="keywordflow">return</span> filelist</div>
 <div class="line"><span class="lineno">   85</span> </div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a9ce615bc89d3ddaaebf0f29ebdfe6b52" name="a9ce615bc89d3ddaaebf0f29ebdfe6b52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ce615bc89d3ddaaebf0f29ebdfe6b52">&#9670;&#160;</a></span>have_version()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gltf_materialx_converter.utilities.have_version </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>major</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>minor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>patch</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if the current vesion matches a given version @parm major: The major version number @parm minor: The minor version number @parm patch: The patch version number. </p>
+<dl class="section return"><dt>Returns</dt><dd>: True if the current version is greater or equal to the given version </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00086">86</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   86</span><span class="keyword">def </span>have_version(major, minor, patch):</div>
+<div class="line"><span class="lineno">   87</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">   88</span><span class="stringliteral">    Check if the current vesion matches a given version</span></div>
+<div class="line"><span class="lineno">   89</span><span class="stringliteral">    @parm major: The major version number</span></div>
+<div class="line"><span class="lineno">   90</span><span class="stringliteral">    @parm minor: The minor version number</span></div>
+<div class="line"><span class="lineno">   91</span><span class="stringliteral">    @parm patch: The patch version number</span></div>
+<div class="line"><span class="lineno">   92</span><span class="stringliteral">    @return: True if the current version is greater or equal to the given version</span></div>
+<div class="line"><span class="lineno">   93</span><span class="stringliteral">    &#39;&#39;&#39;</span> </div>
+<div class="line"><span class="lineno">   94</span>    imajor, iminor, ipatch = mx.getVersionIntegers()</div>
+<div class="line"><span class="lineno">   95</span>    print(f<span class="stringliteral">&#39;Checking MaterialX version: {imajor}.{iminor}.{ipatch}&#39;</span>)</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">if</span> major &gt;= imajor:</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">if</span>  major &gt; imajor:</div>
+<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">return</span> <span class="keyword">True</span>        </div>
+<div class="line"><span class="lineno">  100</span>        <span class="keywordflow">if</span> iminor &gt;= minor:</div>
+<div class="line"><span class="lineno">  101</span>            <span class="keywordflow">if</span> iminor &gt; minor:</div>
+<div class="line"><span class="lineno">  102</span>                <span class="keywordflow">return</span> <span class="keyword">True</span> </div>
+<div class="line"><span class="lineno">  103</span>            <span class="keywordflow">if</span>  ipatch &gt;= patch:</div>
+<div class="line"><span class="lineno">  104</span>                <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">return</span> <span class="keyword">False</span>    </div>
+<div class="line"><span class="lineno">  106</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
