@@ -140,24 +140,24 @@ The two input colors, and a texture coordinate tiling option are exposed on the 
 
 graph TB
     subgraph NG_main
-    NG_main_uvtiling([uvtiling:8,8])
+    NG_main_uvtiling([input:vector2:8,8])
     style NG_main_uvtiling  fill:#09D, color:#FFF
-    NG_main_color1([color1:1,0.094118,0.031373])
+    NG_main_color1([input:color3:1,0.094118,0.031373])
     style NG_main_color1  fill:#09D, color:#FFF
-    NG_main_color2([color2:0.035294,0.090196,0.878431])
+    NG_main_color2([input:color3:0.035294,0.090196,0.878431])
     style NG_main_color2  fill:#09D, color:#FFF
-    NG_main_output_N_mtlxmix_out([output_N_mtlxmix_out])
+    NG_main_output_N_mtlxmix_out([output:color3])
     style NG_main_output_N_mtlxmix_out  fill:#09D, color:#FFF
-    NG_main_N_mtlxmix[N_mtlxmix]
-    NG_main_N_mtlxdotproduct[N_mtlxdotproduct]
-    NG_main_N_mtlxmult[N_mtlxmult]
-    NG_main_N_mtlxsubtract[N_mtlxsubtract]
-    NG_main_N_mtlxfloor[N_mtlxfloor]
-    NG_main_N_modulo[N_modulo]
-    NG_main_Texcoord[Texcoord:0]
+    NG_main_N_mtlxmix[mix:color3]
+    NG_main_N_mtlxdotproduct[dotproduct:float]
+    NG_main_N_mtlxmult[multiply:vector2]
+    NG_main_N_mtlxsubtract[subtract:vector2]
+    NG_main_N_mtlxfloor[floor:vector2]
+    NG_main_N_modulo[modulo:float]
+    NG_main_Texcoord[texcoord:vector2:0]
     end
-    Gltf_pbr[Gltf_pbr]
-    MAT_Gltf_pbr([MAT_Gltf_pbr])
+    Gltf_pbr[gltf_pbr:surfaceshader]
+    MAT_Gltf_pbr([surfacematerial:material])
     style MAT_Gltf_pbr   fill:#090, color:#FFF
     NG_main_N_mtlxmix --> NG_main_output_N_mtlxmix_out
     NG_main_color1 --"fg"--> NG_main_N_mtlxmix
@@ -180,6 +180,36 @@ graph TB
 </td>
 <td><img src="$TOP/tests/data/checkerboard_graph.png">
 </td>
+</tr>
+
+<tr>
+<td>Pattern graph using a file texture
+
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
+    subgraph nodegraph1
+    nodegraph1_output_color3([output_color3:color3])
+    style nodegraph1_output_color3  fill:#09D, color:#FFF
+    nodegraph1_image_color3[image_color3:color3]
+    nodegraph1_place2d_vector2[place2d_vector2:vector2]
+    nodegraph1_texcoord_vector2[texcoord_vector2:vector2:1]
+    end
+    gltf_pbr_surfaceshader[gltf_pbr_surfaceshader:surfaceshader]
+    surfacematerial([surfacematerial:material])
+    style surfacematerial   fill:#090, color:#FFF
+    nodegraph1_image_color3 --> nodegraph1_output_color3
+    nodegraph1_place2d_vector2 --"texcoord"--> nodegraph1_image_color3
+    nodegraph1_texcoord_vector2 --"texcoord"--> nodegraph1_place2d_vector2
+    nodegraph1_output_color3 --"base_color"--> gltf_pbr_surfaceshader
+    gltf_pbr_surfaceshader --"surfaceshader"--> surfacematerial
+</div></code></pre>
+
+
+</td>
+<td><a href="$TOP/tests/data/streams_images/gltf_simple_filetexture.mtlx">MTLX</a>
+<a href="$TOP/tests/data/streams_images/gltf_simple_filetexture.gltf">GLTF</a>
+<td><img src="$TOP/tests/data/streams_images/gltf_simple_filetexture.png">
 </tr>
 
 </table>

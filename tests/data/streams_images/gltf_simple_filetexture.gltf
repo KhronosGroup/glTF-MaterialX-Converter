@@ -1,0 +1,221 @@
+{
+  "images": [
+    {
+      "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4z/AfAAQAAf/zKSWvAAAAAElFTkSuQmCC",
+      "name": "KHR_texture_procedural_fallback"
+    },
+    {
+      "name": "nodegraph1/image_color3/file",
+      "uri": "grid.png"
+    }
+  ],
+  "textures": [
+    {
+      "source": 0
+    },
+    {
+      "name": "nodegraph1/image_color3/file",
+      "source": 1
+    }
+  ],
+  "extensions": {
+    "KHR_texture_procedurals": {
+      "procedurals": [
+        {
+          "name": "nodegraph1",
+          "nodetype": "nodegraph",
+          "type": "color3",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "output_color3",
+              "nodetype": "output",
+              "type": "color3",
+              "xpos": "7.021739",
+              "ypos": "-4.482759",
+              "node": 0
+            }
+          ],
+          "nodes": [
+            {
+              "name": "image_color3",
+              "nodetype": "image",
+              "type": "color3",
+              "xpos": "4.724638",
+              "ypos": "-6.482759",
+              "inputs": [
+                {
+                  "name": "file",
+                  "nodetype": "input",
+                  "colorspace": "srgb_texture",
+                  "type": "filename",
+                  "texture": 1
+                },
+                {
+                  "name": "uaddressmode",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "clamp"
+                },
+                {
+                  "name": "vaddressmode",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "clamp"
+                },
+                {
+                  "name": "default",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "value": [
+                    0.9511,
+                    0.0255797,
+                    0.0255797
+                  ]
+                },
+                {
+                  "name": "framerange",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "100"
+                },
+                {
+                  "name": "frameoffset",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 1
+                },
+                {
+                  "name": "layer",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "0"
+                },
+                {
+                  "name": "texcoord",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 1
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "place2d_vector2",
+              "nodetype": "place2d",
+              "type": "vector2",
+              "xpos": "2.521739",
+              "ypos": "-6.051724",
+              "inputs": [
+                {
+                  "name": "texcoord",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 2
+                },
+                {
+                  "name": "pivot",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.1,
+                    0.5
+                  ]
+                },
+                {
+                  "name": "scale",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.3,
+                    0.4
+                  ]
+                },
+                {
+                  "name": "rotate",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 45.0
+                },
+                {
+                  "name": "offset",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.01,
+                    0.01
+                  ]
+                },
+                {
+                  "name": "operationorder",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 1
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector2"
+                }
+              ]
+            },
+            {
+              "name": "texcoord_vector2",
+              "nodetype": "texcoord",
+              "type": "vector2",
+              "xpos": "0.086957",
+              "ypos": "-6.327586",
+              "inputs": [
+                {
+                  "name": "index",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 1
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "materials": [
+    {
+      "name": "gltf_pbr_surfaceshader",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0,
+          "extensions": {
+            "KHR_texture_procedurals": {
+              "index": 0,
+              "output": 0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "asset": {
+    "version": "2.0",
+    "generator": "MaterialX 1.39 / glTF 2.0 Texture Procedural Converter"
+  },
+  "extensionsUsed": [
+    "KHR_texture_procedurals",
+    "EXT_texture_procedurals_mx_1_39"
+  ]
+}

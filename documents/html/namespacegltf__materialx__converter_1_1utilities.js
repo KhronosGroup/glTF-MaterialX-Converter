@@ -1,7 +1,6 @@
 var namespacegltf__materialx__converter_1_1utilities =
 [
-    [ "MtlxDocumentCompare", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_document_compare.html", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_document_compare" ],
-    [ "MTlxShadingModelTranslator", "classgltf__materialx__converter_1_1utilities_1_1_m_tlx_shading_model_translator.html", "classgltf__materialx__converter_1_1utilities_1_1_m_tlx_shading_model_translator" ],
+    [ "MtlxShadingModelTranslator", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator.html", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator" ],
     [ "createWorkingDocument", "namespacegltf__materialx__converter_1_1utilities.html#a3faedc6e22f2e33f9d916805d4df8776", null ],
     [ "getFiles", "namespacegltf__materialx__converter_1_1utilities.html#a887008af52786ab012d1d526979f1bad", null ],
     [ "importLibraries", "namespacegltf__materialx__converter_1_1utilities.html#a6f9828d270d3c5107a82918662a0bcd7", null ],
