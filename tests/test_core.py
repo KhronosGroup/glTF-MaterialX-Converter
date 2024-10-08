@@ -2,7 +2,9 @@
 # Run from root:
 #   python -m unittest tests.test_core
 
-import unittest, os, sys
+import unittest
+import os
+import sys
 import MaterialX as mx
 
 import json
@@ -104,17 +106,17 @@ class TestConvertFromMtlx(unittest.TestCase):
             self.assertTrue(len(json_string) > 0)
 
             # Test JSON string vs schema
-            validJSON = False
+            valid_json = False
             if schema:
                 json_data = json.loads(json_string)  # Parse json_string to a dictionary  
                 try:
                     json_validate(instance=json_data, schema=schema)  # Validate JSON data against the schema
                     print('> JSON validation successful for:', file_name.replace('.mtlx', '.gltf'))
-                    validJSON = True
+                    valid_json = True
                 except jsonschema.exceptions.ValidationError as e:
                     print('> JSON validation error for:', file_name.replace('.mtlx', '.gltf'))
                     print(e)                
-            self.assertTrue(validJSON)
+            self.assertTrue(valid_json)
 
             # Write to disk
             gltf_name = input_file.replace('.mtlx', '.gltf')
