@@ -1,4 +1,6 @@
-import os, argparse
+import os
+import argparse
+import sys
 import logging as lg 
 
 import json
@@ -20,31 +22,35 @@ def main():
     logger = lg.getLogger('gltfCmd')
     lg.basicConfig(level=lg.INFO)  
 
-    fileList = []
+    if not MxGLTFPTUtil.have_version(1, 39, 1):
+        logger.error("MaterialX version 1.39.1 or higher is required.")
+        sys.exit(-1)
+
+    file_list = []
     extension = '.mtlx'
     if os.path.isdir(opts.input): 
-        fileList = MxGLTFPT.getFiles(opts.input, extension)
+        file_list = MxGLTFPT.get_files(opts.input, extension)
     else:
         extension = os.path.splitext(opts.input)[1]
         if extension not in ['.mtlx']:
             logger.error(f'Invalid file extension: {extension}. Must be .mtlx.')
             return
-        fileList.append(opts.input)
+        file_list.append(opts.input)
 
-    if not fileList:
+    if not file_list:
         logger.info(f'No MaterialX files found in: {opts.input}')
         return
     
-    stdlib, libFiles = MxGLTFPTUtil.loadStandardLibraries()
+    stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
 
     converter = MxGLTFPT.glTFMaterialXConverter()
 
     # Check for output folder option
-    outputFolder = '.'
+    output_folder = '.'
     if opts.output:
-        outputFolder = opts.output
-    if not os.path.exists(outputFolder):
-        os.makedirs(outputFolder)
+        output_folder = opts.output
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
 
     # Check for shema file option
     schema = None
@@ -52,34 +58,34 @@ def main():
     if schema_file and os.path.exists(schema_file):
         with open(schema_file, 'r') as f:
             schema = json.load(f)
-        print('Loaded schema file:', schema_file)
+        logger.info(f'Loaded schema file: {schema_file}')
 
-    for inputFile in fileList:
-        logger.info(f'Processing: {inputFile}')
-        mxdoc = MxGLTFPTUtil.createWorkingDocument([stdlib])    
-        MxGLTFPTUtil.readMaterialXDocument(mxdoc, inputFile)
-        valid, errors = MxGLTFPTUtil.validateDocument(mxdoc)
+    for input_file in file_list:
+        logger.info(f'Processing: {input_file}')
+        mxdoc = MxGLTFPTUtil.create_working_document([stdlib])    
+        MxGLTFPTUtil.read_materialX_document(mxdoc, input_file)
+        valid, errors = MxGLTFPTUtil.validate_document(mxdoc)
 
         if not valid:
-            logger.error(f'MaterialX document: {inputFile} is invalid. Erors: {errors}')
+            logger.error(f'MaterialX document: {input_file} is invalid. Erors: {errors}')
             continue
 
         # Convert to glTF JSON
-        jsonString, status = converter.materialXtoGLTF(mxdoc)
-        if jsonString:
+        json_string, status = converter.materialX_to_glTF(mxdoc)
+        if json_string:
             if schema:
-                jsonData = json.loads(jsonString)  # Parse jsonString to a dictionary  
+                json_data = json.loads(json_string)  # Parse json_string to a dictionary  
                 try:
-                    json_validate(instance=jsonData, schema=schema)  # Validate JSON data against the schema
-                    print('- JSON validation successful')
+                    json_validate(instance=json_data, schema=schema)  # Validate JSON data against the schema
+                    logger.info('- JSON validation successful')
                 except jsonschema.exceptions.ValidationError as e:
-                    print('- JSON validation errors, ' + e)
+                    logger.info('- JSON validation errors, ' + e)
 
             # Write string to file replacing .mtlx with .json extension name
-            outputFile = os.path.join(outputFolder, os.path.basename(inputFile).replace('.mtlx', '.gltf'))
+            outputFile = os.path.join(output_folder, os.path.basename(input_file).replace('.mtlx', '.gltf'))
             with open(outputFile, 'w') as f:
                 logger.info(f'Writing glTF: {outputFile}')
-                f.write(jsonString)
+                f.write(json_string)
 
         else:
             logger.error(f'Error: {status}')

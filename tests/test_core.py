@@ -2,7 +2,9 @@
 # Run from root:
 #   python -m unittest tests.test_core
 
-import unittest, os, sys
+import unittest
+import os
+import sys
 import MaterialX as mx
 
 import json
@@ -15,37 +17,26 @@ from gltf_materialx_converter import utilities as MxGLTFPTUtil
 
 import importlib.util
 
-def haveVersion(major, minor, patch):
+def get_materialX_document(test_case, input_file):
     '''
-    Check if the current vesion matches a given version
-    ''' 
-    imajor, iminor, ipatch = mx.getVersionIntegers()
-    print(f'Checking MaterialX version: {imajor}.{iminor}.{ipatch}')
+    Read in a MaterialX document from a file
+    @param test_case: The test case
+    @param input_file: The input file
+    @return: The MaterialX document
+    '''
+    stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
+    test_case.assertIsNotNone(stdlib)
 
-    if major >= imajor:
-        if  major > imajor:
-            return True        
-        if iminor >= minor:
-            if iminor > minor:
-                return True 
-            if  ipatch >= patch:
-                return True
-    return False
-
-def getMaterialxDocument(testCase, inputFile):
-    stdlib, libFiles = MxGLTFPTUtil.loadStandardLibraries()
-    testCase.assertIsNotNone(stdlib)
-
-    if not os.path.exists(inputFile):
-        testCase.fail(f"File not found: {inputFile}")
-    mxdoc = MxGLTFPTUtil.createWorkingDocument([stdlib])      
-    testCase.assertIsNotNone(stdlib)        
-    mx.readFromXmlFile(mxdoc, inputFile)
-    valid, errors = MxGLTFPTUtil.validateDocument(mxdoc)
+    if not os.path.exists(input_file):
+        test_case.fail(f"File not found: {input_file}")
+    mxdoc = MxGLTFPTUtil.create_working_document([stdlib])      
+    test_case.assertIsNotNone(stdlib)        
+    mx.readFromXmlFile(mxdoc, input_file)
+    valid, errors = MxGLTFPTUtil.validate_document(mxdoc)
     if not valid:
-        print('> Validation failed for file:', inputFile)
+        print('> Validation failed for file:', input_file)
         print('> ' + errors)
-    testCase.assertTrue(valid)
+    test_case.assertTrue(valid)
     return mxdoc
 
 
@@ -53,8 +44,8 @@ class TestConvertFromMtlx(unittest.TestCase):
     # Test conversion from MaterialX to GLTF Procedural Texture
     def test_convert_from_mtlx(self):
 
-        if not haveVersion(1, 39, 0):
-            print("MaterialX version 1.39.0 or higher is required for this test.")
+        if not MxGLTFPTUtil.have_version(1, 39, 1):
+            print("MaterialX version 1.39.1 or higher is required for this test.")
             return
 
         current_folder = os.path.dirname(__file__)
@@ -68,7 +59,7 @@ class TestConvertFromMtlx(unittest.TestCase):
                     test_file_names.append(file)
                     # Get absolute path
                     file = os.path.abspath(os.path.join(root, file))
-                    print('Found test file:', file)
+                    #print('Found test file:', file)
                     test_files.append(file)
 
         converter = MxGLTFPT.glTFMaterialXConverter()
@@ -84,40 +75,44 @@ class TestConvertFromMtlx(unittest.TestCase):
         # Test each file
         for file, file_name in zip(test_files, test_file_names):
             
-            inputFile = file
+            input_file = file
             print('\n> Input test file:', file_name)
 
-            mxdoc = getMaterialxDocument(self, inputFile)
+            mxdoc = get_materialX_document(self, input_file)
 
             # Convert from MaterialX to GLTF
-            jsonString, status = converter.materialXtoGLTF(mxdoc)
-            self.assertTrue(len(jsonString) > 0)
+            json_string, status = converter.materialX_to_glTF(mxdoc)
+            if len(json_string) > 0:
+                print('> Conversion successful for:', file_name)
+            else:
+                print('> Conversion failed for:', file_name, 'Status:', status)
+                continue
 
-            # Test jsonstring vs schema
-            validJSON = False
+            # Test JSON string vs schema
+            valid_json = False
             if schema:
-                jsonData = json.loads(jsonString)  # Parse jsonString to a dictionary  
+                json_data = json.loads(json_string)  # Parse json_string to a dictionary  
                 try:
-                    json_validate(instance=jsonData, schema=schema)  # Validate JSON data against the schema
+                    json_validate(instance=json_data, schema=schema)  # Validate JSON data against the schema
                     print('> JSON validation successful for:', file_name.replace('.mtlx', '.gltf'))
-                    validJSON = True
+                    valid_json = True
                 except jsonschema.exceptions.ValidationError as e:
                     print('> JSON validation error for:', file_name.replace('.mtlx', '.gltf'))
                     print(e)                
-            self.assertTrue(validJSON)
+            self.assertTrue(valid_json)
 
             # Write to disk
-            gltf_name = inputFile.replace('.mtlx', '.gltf')
+            gltf_name = input_file.replace('.mtlx', '.gltf')
             with open(gltf_name, 'w') as f:
                 print('> Writing converted glTF file:', gltf_name)
-                f.write(jsonString)
+                f.write(json_string)
 
 class TestConvertToMtlx(unittest.TestCase):
     # Test conversion from GLTF Procedural Texture to MaterialX
     def test_convert_to_mtlx(self):
 
-        if not haveVersion(1, 39, 0):
-            print("MaterialX version 1.39.0 or higher is required for this test.")
+        if not MxGLTFPTUtil.have_version(1, 39, 1):
+            print("MaterialX version 1.39.1 or higher is required for this test.")
             return
 
         current_folder = os.path.dirname(__file__)
@@ -131,7 +126,7 @@ class TestConvertToMtlx(unittest.TestCase):
                     test_file_names.append(file)
                     # Get absolute path
                     file = os.path.abspath(os.path.join(root, file))
-                    print('Found test file:', file)
+                    #print('Found test file:', file)
                     test_files.append(file)
 
         converter = MxGLTFPT.glTFMaterialXConverter()

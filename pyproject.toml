@@ -17,7 +17,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "materialx>=1.39",
+    "materialx>=1.39.1",
     "jsonschema"
 ]
 
