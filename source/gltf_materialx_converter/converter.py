@@ -192,7 +192,7 @@ class glTFMaterialXConverter():
         self.supported_array_types = ['matrix33', 'matrix44', 'vector2', 'vector3', 'vector4', 'color3', 'color4']
         self.supported_metadata = ['colorspace', 'unit', 'unittype', 'uiname', 'uimin', 'uimax', 'uifolder', 'doc', 'xpos', 'ypos']
 
-    def setDebug(self, debug):
+    def set_debug(self, debug):
         '''
         Set the debug flag for the converter.
         @param debug: The debug flag.
@@ -202,21 +202,21 @@ class glTFMaterialXConverter():
         else:
             self.logger.setLevel(lg.INFO)
 
-    def setMetaData(self, metadata):
+    def set_metadata(self, metadata):
         '''
         Set the supported metadata for the converter.
         @param metadata: The metadata to set.
         '''
         self.supported_metadata = metadata
 
-    def getMetaData(self):
+    def get_metadata(self):
         '''
         Get the supported metadata for the converter.
         @return The metadata.
         '''
         return self.supported_metadata
 
-    def stringToScalar(self, value, type):
+    def string_to_scalar(self, value, type):
         '''
         Convert a supported MaterialX value string to a JSON scalar value.
         @param value: The string value to convert.
@@ -239,7 +239,7 @@ class glTFMaterialXConverter():
     
         return return_value
 
-    def initializeGLTFTexture(self, texture, name, uri, images):
+    def initialize_glTF_texture(self, texture, name, uri, images):
         '''
         Initialize a new glTF image entry and texture entry which references the image entry.
         
@@ -261,7 +261,7 @@ class glTFMaterialXConverter():
         texture[KHR_TEXTURE_PROCEDURALS_NAME] = name
         texture[KHR_IMAGE_SOURCE] = len(images) - 1
 
-    def addFallbackTexture(self, json, fallback):
+    def add_fallback_texture(self, json, fallback):
         '''
         Add a fallback texture to the glTF JSON object.
         @param json: The JSON object to add the fallback texture to.
@@ -303,7 +303,7 @@ class glTFMaterialXConverter():
     
         return fallback_texture_index
 
-    def materialXGraphToGLTF(self, graph, json):
+    def materialX_graph_to_glTF(self, graph, json):
         '''
         Export a MaterialX nodegraph to a glTF procedural graph.
         @param graph: The MaterialX nodegraph to export.
@@ -359,7 +359,7 @@ class glTFMaterialXConverter():
         nodegraph[KHR_TEXTURE_PROCEDURALS_NODES_BLOCK] = []
         procs.append(nodegraph)
 
-        metadata = self.getMetaData()
+        metadata = self.get_metadata()
 
         # Add nodes to to dictonary. Use path as this is globally unique
         #
@@ -388,12 +388,12 @@ class glTFMaterialXConverter():
                     texture = {}
                     filename = input.getResolvedValueString()
                     # Initialize file texture
-                    self.initializeGLTFTexture(texture, input.getNamePath(), filename, images_block)
+                    self.initialize_glTF_texture(texture, input.getNamePath(), filename, images_block)
                     texture_array.append(texture)
                     json_node[KHR_TEXTURE_PROCEDURALS_TEXTURE] = len(texture_array) - 1
                 else:
                     value = input.getValueString()
-                    value = self.stringToScalar(value, input_type)
+                    value = self.string_to_scalar(value, input_type)
                     json_node[KHR_TEXTURE_PROCEDURALS_VALUE] = value
                 nodegraph[KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK].append(json_node)
 
@@ -512,12 +512,12 @@ class glTFMaterialXConverter():
                     if input_type == mx.FILENAME_TYPE_STRING:
                         texture = {}
                         filename = input.getResolvedValueString()
-                        self.initializeGLTFTexture(texture, input.getNamePath(), filename, images_block)
+                        self.initialize_glTF_texture(texture, input.getNamePath(), filename, images_block)
                         texture_array.append(texture)
                         input_item[KHR_TEXTURE_PROCEDURALS_TEXTURE] = len(texture_array) - 1
                     else:
                         value = input.getValueString()
-                        value = self.stringToScalar(value, input_type)
+                        value = self.string_to_scalar(value, input_type)
                         input_item[KHR_TEXTURE_PROCEDURALS_VALUE] = value
 
                 inputs.append(input_item)
@@ -555,7 +555,7 @@ class glTFMaterialXConverter():
 
         return [procs, nodegraph_outputs, nodegraph_nodes]
 
-    def materialXtoGLTF(self, mtlx_doc):
+    def materialX_to_glTF(self, mtlx_doc):
         '''
         @brief Convert a MaterialX document to glTF.
         @param mtlx_doc: The MaterialX document to convert.
@@ -608,7 +608,7 @@ class glTFMaterialXConverter():
                 if (is_pbr) and pbr_nodes.get(path) is None:
                     # Add fallback if not already added
                     if fallback_texture_index == -1:
-                        fallback_texture_index = self.addFallbackTexture(json_data, fallback_image_data)
+                        fallback_texture_index = self.add_fallback_texture(json_data, fallback_image_data)
 
                     self.logger.info(f'> Convert shader to glTF: {shader_node.getNamePath()}. Category: {category}')
                     pbr_nodes[path] = shader_node
@@ -679,7 +679,7 @@ class glTFMaterialXConverter():
                             graph = mtlx_doc.getNodeGraph(nodegraph_name)
                             export_graph_names.append(nodegraph_name)
 
-                            gltf_info = self.materialXGraphToGLTF(graph, json_data)
+                            gltf_info = self.materialX_graph_to_glTF(graph, json_data)
                             procs = gltf_info[0]
                             output_nodes = gltf_info[1]
 
@@ -703,7 +703,7 @@ class glTFMaterialXConverter():
                             else:
                                 lookup[KHR_TEXTURE_PROCEDURALS_OUTPUT] = 0
 
-                    if 'name' in material:
+                    if KHR_TEXTURE_PROCEDURALS_NAME in material:
                         materials.append(material)
 
         # Scan for unconnected graphs
@@ -714,7 +714,7 @@ class glTFMaterialXConverter():
                 continue
             if ng_name not in export_graph_names:
                 unconnected_graphs.append(ng_name)
-                gltf_info = self.materialXGraphToGLTF(ng, json_data, materials)
+                gltf_info = self.materialX_graph_to_glTF(ng, json_data)
                 procs = gltf_info[0]
                 output_nodes = gltf_info[1]
 
@@ -733,10 +733,13 @@ class glTFMaterialXConverter():
             json_data[KHR_ASSET_BLOCK] = json_asset
             json_data[KHR_EXTENTIONSUSED_BLOCK] = extensions_used
 
-        # Get the JSON string back
-        json_string = json.dumps(json_data, indent=2) if json_data else ''
-        if json_string == '{}':
+            # Get the JSON string back
+            json_string = json.dumps(json_data, indent=2) if json_data else ''
+            if json_string == '{}':
+                json_string = ''
+        else:
             json_string = ''
+            status = 'No procedural graphs converted'
 
         return json_string, status
 

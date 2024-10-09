@@ -1,12 +1,12 @@
 var utilities_8py =
 [
-    [ "gltf_materialx_converter.utilities.MtlxShadingModelTranslator", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator.html", "classgltf__materialx__converter_1_1utilities_1_1_mtlx_shading_model_translator" ],
-    [ "createWorkingDocument", "utilities_8py.html#a3faedc6e22f2e33f9d916805d4df8776", null ],
-    [ "getFiles", "utilities_8py.html#a887008af52786ab012d1d526979f1bad", null ],
-    [ "importLibraries", "utilities_8py.html#a6f9828d270d3c5107a82918662a0bcd7", null ],
-    [ "loadJsonFile", "utilities_8py.html#ac5ff190c310901acc9f56df448125645", null ],
-    [ "loadStandardLibraries", "utilities_8py.html#a02d949a1d609bc7f8de8dd77c18cee9c", null ],
-    [ "materialXDocToString", "utilities_8py.html#a4b2b093a17ecdad45fea1d24dab643d8", null ],
-    [ "readMaterialXDocument", "utilities_8py.html#a5938dbc1374c8676ddfca8a005d071e1", null ],
-    [ "validateDocument", "utilities_8py.html#a09f18ade9fe7b214b9965aecdf837f57", null ]
+    [ "create_working_document", "utilities_8py.html#a7d3ff2183520447cdd0e8e91f57f93bf", null ],
+    [ "get_files", "utilities_8py.html#a51dd9b8edabf54ec5e99af0a45757aff", null ],
+    [ "have_version", "utilities_8py.html#a9ce615bc89d3ddaaebf0f29ebdfe6b52", null ],
+    [ "import_libraries", "utilities_8py.html#ab65e2143b894d1df4e5ba650cfabddfa", null ],
+    [ "load_json_file", "utilities_8py.html#a8cf5924ef1449dfa635baf1b77a24e24", null ],
+    [ "load_standard_libraries", "utilities_8py.html#aa47eb4026dd517cdc1720d7ec5503237", null ],
+    [ "materialX_doc_to_string", "utilities_8py.html#a3efdd41d9970f17e1f4febfc449bf7df", null ],
+    [ "read_materialX_document", "utilities_8py.html#afd53d89163491cd2b49952449b98617a", null ],
+    [ "validate_document", "utilities_8py.html#af3d2eee4a5e44196c0e8129e07fd22fa", null ]
 ];

@@ -9,18 +9,18 @@ import json
 import MaterialX as mx
 import logging as lg 
 
-def loadJsonFile(filename):
+def load_json_file(filename):
     '''Load a JSON file.
     @param filename: The file to load.
     @return: The JSON string
     '''
-    jsonString = ''
+    json_string = ''
     with open(filename, 'r') as file:
         file = json.load(file)
-        jsonString = json.dumps(file, indent=2)
-    return jsonString    
+        json_string = json.dumps(file, indent=2)
+    return json_string    
 
-def loadStandardLibraries():
+def load_standard_libraries():
     '''Load standard MaierialX libraries.
     @return: The standard library and the list of library files.
     '''
@@ -28,7 +28,7 @@ def loadStandardLibraries():
     libFiles = mx.loadLibraries(mx.getDefaultDataLibraryFolders(), mx.getDefaultDataSearchPath(), stdlib)
     return stdlib, libFiles
 
-def createWorkingDocument(libraries):
+def create_working_document(libraries):
     '''Create a working document and import any libraries
     @param libraries: The list of definition libraries to import.
     @return: The new working document
@@ -39,37 +39,37 @@ def createWorkingDocument(libraries):
 
     return doc
 
-def importLibraries(doc, libraries):
+def import_libraries(doc, libraries):
     '''Import libraries into a document.
     @param doc: The document to import into.
     @param libraries: The list of libraries to import.
     '''
     doc.importLibrary(libraries)
 
-def readMaterialXDocument(mtlxdoc, inputFile):
+def read_materialX_document(materialx_doc, input_file):
     '''
     Read a MaterialX document from a file.
-    @param mtlxdoc: The MaterialX document to read into.
-    @param inputFile: The file to read from.
+    @param materialx_doc: The MaterialX document to read into.
+    @param input_file: The file to read from.
     '''
-    mx.readFromXmlFile(mtlxdoc, inputFile)
+    mx.readFromXmlFile(materialx_doc, input_file)
 
-def materialXDocToString(mtlxdoc):
+def materialX_doc_to_string(materialx_doc):
     '''Convert a MaterialX document to a string.
-    @param mtlxdoc: The document to convert.
+    @param materialx_doc: The document to convert.
     @return: The document as a string.
     '''
-    return mx.writeToXmlString(mtlxdoc)
+    return mx.writeToXmlString(materialx_doc)
 
-def validateDocument(doc):
+def validate_document(doc):
     '''Validate a MaterialX document.
     @param doc: The document to validate.
-    @return: The validation result as a tuple of [valid, errorString].
+    @return: The validation result as a tuple of [valid, error string].
     '''
-    valid, errorString = doc.validate()
-    return valid, errorString
+    valid, error_string = doc.validate()
+    return valid, error_string
 
-def getFiles(rootPath, extension):
+def get_files(rootPath, extension):
     '''Get all files with a given extension in a directory.
     @param rootPath: The root directory to search.
     @param extension: The file extension to search for.
@@ -83,29 +83,25 @@ def getFiles(rootPath, extension):
                 filelist.append(os.path.join(subdir, file)) 
     return filelist
 
-class MtlxShadingModelTranslator():
+def have_version(major, minor, patch):
     '''
-    @brief Class to translate shading models within a MaterialX document.    
-    '''
-    def __init__(self):
-        '''
-        @brief Constructor.
-        '''
-        pass
+    Check if the current vesion matches a given version
+    @parm major: The major version number
+    @parm minor: The minor version number
+    @parm patch: The patch version number
+    @return: True if the current version is greater or equal to the given version
+    ''' 
+    imajor, iminor, ipatch = mx.getVersionIntegers()
+    #print(f'Checking MaterialX version: {imajor}.{iminor}.{ipatch}')
 
-    def translate(self, doc, target='gltf'): 
-        '''
-        Translate the shading model to a target shading model 
-        @param doc: The MaterialX document to translate
-        @param target: The target shading model. Default is gltf
-        @return: The translated document if successful, otherwise None
-        '''
-        translatedDoc = doc.copy()
-        translator = mx.ShaderTranslator.create()
+    if major >= imajor:
+        if  major > imajor:
+            return True        
+        if iminor >= minor:
+            if iminor > minor:
+                return True 
+            if  ipatch >= patch:
+                return True
+    return False    
 
-        try:
-            translator.translateAllMaterials(translatedDoc, target)
-            return translatedDoc
-        except Exception as e:
-            print(f'Translation failed to target: {target}')
-            return None
+
