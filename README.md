@@ -81,7 +81,7 @@ graph LR
 ```
 
 <a href=".//tests/data/minimal_graph.mtlx">Minimal MTLX Configuration File</a>
-
+<img src="./tests/data/minimal_graph.png" width=20%>
 
 #### Sample Data
 
@@ -324,5 +324,38 @@ graph TB
 </tr>
 
 </table>
+
+</details>
+
+### Development Information
+
+<details><summary><h4>Reference Rendering</h4></summary>
+
+All reference images are rendered using the `MaterialXView` sample application which is available as part of  
+<a href="https://github.com/AcademySoftwareFoundation/MaterialX/releases">MaterialX releases</a>. The release
+version used matches the version requirement for this package.
+
+A sample utility called `test_render` is provided which will scan all files MaterialX XML files in a given folder hierarchy and use the path to `MaterialXView` to
+render into the same folder.
+
+Example:
+
+```
+python utilities/test_render.py tests/data -r 512 -c <path to MaterialXView>
+```
+where `<path to MaterialXView>` is the path to the MaterialXView executable with
+a the resolution set to 512 by 512.
+
+</details>
+
+<details><summary><h4>Build Scripts</h4></summary>
+
+Sample build scripts are provided in the `utilities` folder as follows:
+
+1. `build.sh` : Will pull from head of the repo, install dependencies, and build the package.
+2. `build_docs.sh` : Will build only the documentation. Called from `build.sh`. Doxygen is assumed to be installed. The README files are generated from the template Markdown file: `utilitites/README_template.md.` This will install the top level as well as the API documentation versions of this file with appropriate formatting to support the `Mermaid` graphs used to node graph diagrams.
+3. `build_tests.sh` : Will run unit tests as well as command line tests.
+
+`build.sh` is called within the check-in workflow defined in `.github/workflows/main.yml`
 
 </details>

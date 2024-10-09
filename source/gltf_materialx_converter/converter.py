@@ -703,7 +703,7 @@ class glTFMaterialXConverter():
                             else:
                                 lookup[KHR_TEXTURE_PROCEDURALS_OUTPUT] = 0
 
-                    if 'name' in material:
+                    if KHR_TEXTURE_PROCEDURALS_NAME in material:
                         materials.append(material)
 
         # Scan for unconnected graphs
@@ -714,7 +714,7 @@ class glTFMaterialXConverter():
                 continue
             if ng_name not in export_graph_names:
                 unconnected_graphs.append(ng_name)
-                gltf_info = self.materialX_graph_to_glTF(ng, json_data, materials)
+                gltf_info = self.materialX_graph_to_glTF(ng, json_data)
                 procs = gltf_info[0]
                 output_nodes = gltf_info[1]
 

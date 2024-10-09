@@ -887,7 +887,7 @@ Public Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  703</span>                            <span class="keywordflow">else</span>:</div>
 <div class="line"><span class="lineno">  704</span>                                lookup[KHR_TEXTURE_PROCEDURALS_OUTPUT] = 0</div>
 <div class="line"><span class="lineno">  705</span> </div>
-<div class="line"><span class="lineno">  706</span>                    <span class="keywordflow">if</span> <span class="stringliteral">&#39;name&#39;</span> <span class="keywordflow">in</span> material:</div>
+<div class="line"><span class="lineno">  706</span>                    <span class="keywordflow">if</span> KHR_TEXTURE_PROCEDURALS_NAME <span class="keywordflow">in</span> material:</div>
 <div class="line"><span class="lineno">  707</span>                        materials.append(material)</div>
 <div class="line"><span class="lineno">  708</span> </div>
 <div class="line"><span class="lineno">  709</span>        <span class="comment"># Scan for unconnected graphs</span></div>
@@ -898,7 +898,7 @@ Public Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  714</span>                <span class="keywordflow">continue</span></div>
 <div class="line"><span class="lineno">  715</span>            <span class="keywordflow">if</span> ng_name <span class="keywordflow">not</span> <span class="keywordflow">in</span> export_graph_names:</div>
 <div class="line"><span class="lineno">  716</span>                unconnected_graphs.append(ng_name)</div>
-<div class="line"><span class="lineno">  717</span>                gltf_info = self.materialX_graph_to_glTF(ng, json_data, materials)</div>
+<div class="line"><span class="lineno">  717</span>                gltf_info = self.materialX_graph_to_glTF(ng, json_data)</div>
 <div class="line"><span class="lineno">  718</span>                procs = gltf_info[0]</div>
 <div class="line"><span class="lineno">  719</span>                output_nodes = gltf_info[1]</div>
 <div class="line"><span class="lineno">  720</span> </div>

@@ -797,7 +797,7 @@ $(function(){initNavTree('converter_8py_source.html',''); initResizable(true); }
 <div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>                            <span class="keywordflow">else</span>:</div>
 <div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>                                lookup[KHR_TEXTURE_PROCEDURALS_OUTPUT] = 0</div>
 <div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span> </div>
-<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>                    <span class="keywordflow">if</span> <span class="stringliteral">&#39;name&#39;</span> <span class="keywordflow">in</span> material:</div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>                    <span class="keywordflow">if</span> KHR_TEXTURE_PROCEDURALS_NAME <span class="keywordflow">in</span> material:</div>
 <div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>                        materials.append(material)</div>
 <div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span> </div>
 <div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>        <span class="comment"># Scan for unconnected graphs</span></div>
@@ -808,7 +808,7 @@ $(function(){initNavTree('converter_8py_source.html',''); initResizable(true); }
 <div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>                <span class="keywordflow">continue</span></div>
 <div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>            <span class="keywordflow">if</span> ng_name <span class="keywordflow">not</span> <span class="keywordflow">in</span> export_graph_names:</div>
 <div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>                unconnected_graphs.append(ng_name)</div>
-<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>                gltf_info = self.<a class="code hl_function" href="classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a6e99ebd28d23ba14b653dcb1c7e051e5">materialX_graph_to_glTF</a>(ng, json_data, materials)</div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>                gltf_info = self.<a class="code hl_function" href="classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a6e99ebd28d23ba14b653dcb1c7e051e5">materialX_graph_to_glTF</a>(ng, json_data)</div>
 <div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>                procs = gltf_info[0]</div>
 <div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>                output_nodes = gltf_info[1]</div>
 <div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span> </div>

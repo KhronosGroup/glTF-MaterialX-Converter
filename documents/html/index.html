@@ -173,7 +173,7 @@ graph LR
     gltf_Shader --"surfaceshader"--&gt; gltf_Material
     gltf_procedural_constant_color4 --&gt; gltf_procedural_output_color4
     gltf_procedural_output_color4 --"base_color"--&gt; gltf_Shader
-</div></code></pre><p><a href="../..//tests/data/minimal_graph.mtlx">Minimal MTLX Configuration File</a></p>
+</div></code></pre><p><a href="../..//tests/data/minimal_graph.mtlx">Minimal MTLX Configuration File</a> <img src="../../tests/data/minimal_graph.png" alt="" width="20%" class="inline"/></p>
 <h3><a class="anchor" id="autotoc_md9"></a>
 Sample Data</h3>
 <p>The following is a set of example files used for unit testing. The term "Compound nodes" refers to nodes which are implemented as node graphs themselves ("functional graphs" in MaterialX terminology)</p>
@@ -390,6 +390,34 @@ graph TB
 <p class="endtd"></p>
 </td></tr>
 </table>
+<p></p>
+</details>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Development Information</h2>
+<details >
+<summary >
+Reference Rendering</summary>
+<p></p>
+<p>All reference images are rendered using the <code>MaterialXView</code> sample application which is available as part of <br  />
+ <a href="https://github.com/AcademySoftwareFoundation/MaterialX/releases">MaterialX releases</a>. The release version used matches the version requirement for this package.</p>
+<p>A sample utility called <code>test_render</code> is provided which will scan all files MaterialX XML files in a given folder hierarchy and use the path to <code>MaterialXView</code> to render into the same folder.</p>
+<p>Example:</p>
+<p></p>
+<p>python utilities/test_render.py tests/data -r 512 -c &lt;path to MaterialXView&gt; </p>
+<p>where <code>&lt;path to MaterialXView&gt;</code> is the path to the MaterialXView executable with a the resolution set to 512 by 512.</p>
+<p></p>
+</details>
+<details >
+<summary >
+Build Scripts</summary>
+<p></p>
+<p>Sample build scripts are provided in the <code>utilities</code> folder as follows:</p>
+<ol type="1">
+<li><code>build.sh</code> : Will pull from head of the repo, install dependencies, and build the package.</li>
+<li><code>build_docs.sh</code> : Will build only the documentation. Called from <code>build.sh</code>. Doxygen is assumed to be installed. The README files are generated from the template Markdown file: <code>utilitites/README_template.md.</code> This will install the top level as well as the API documentation versions of this file with appropriate formatting to support the <code>Mermaid</code> graphs used to node graph diagrams.</li>
+<li><code>build_tests.sh</code> : Will run unit tests as well as command line tests.</li>
+</ol>
+<p><code>build.sh</code> is called within the check-in workflow defined in <code>.github/workflows/main.yml</code></p>
 <p></p>
 </details>
 </div></div><!-- PageDoc -->
