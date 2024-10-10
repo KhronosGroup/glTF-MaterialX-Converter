@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709">
+  <surfacematerial name="gltf_Material" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="gltf_Shader" />
+  </surfacematerial>
+  <gltf_pbr name="gltf_Shader" type="surfaceshader">
+  </gltf_pbr>
+</materialx>

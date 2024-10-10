@@ -4,7 +4,7 @@
 
 import unittest
 import os
-import sys
+import logging as lg 
 import MaterialX as mx
 
 import json
@@ -48,6 +48,12 @@ class TestConvertFromMtlx(unittest.TestCase):
             print("MaterialX version 1.39.1 or higher is required for this test.")
             return
 
+        logger = lg.getLogger('test')
+        lg.basicConfig(level=lg.INFO)  
+
+        have_version_1392 = MxGLTFPTUtil.have_version(1, 39,2) 
+        logger.info(f'Checking MaterialX version: 1.39.2 or higher: {have_version_1392}')
+
         current_folder = os.path.dirname(__file__)
 
         # Get all files in the data folder
@@ -59,7 +65,7 @@ class TestConvertFromMtlx(unittest.TestCase):
                     test_file_names.append(file)
                     # Get absolute path
                     file = os.path.abspath(os.path.join(root, file))
-                    #print('Found test file:', file)
+                    #logger.info(f'Found test file: {file}')
                     test_files.append(file)
 
         converter = MxGLTFPT.glTFMaterialXConverter()
@@ -70,22 +76,31 @@ class TestConvertFromMtlx(unittest.TestCase):
         if os.path.exists(schema_file):
             with open(schema_file, 'r') as f:
                 schema = json.load(f)
-        print('Schema file:', schema_file,)
+        logger.info(f'Schema file: {schema_file}')
 
         # Test each file
         for file, file_name in zip(test_files, test_file_names):
             
             input_file = file
-            print('\n> Input test file:', file_name)
+            logger.info('')
+            logger.info(f'-------- Input MTLX file: {file_name} -------- ')  
 
             mxdoc = get_materialX_document(self, input_file)
 
             # Convert from MaterialX to GLTF
             json_string, status = converter.materialX_to_glTF(mxdoc)
+
+            orig_doc = mx.createDocument()
+            mx.readFromXmlFile(orig_doc, input_file)
+
             if len(json_string) > 0:
-                print('> Conversion successful for:', file_name)
+                logger.info(f'> Conversion successful for: {file_name}')
             else:
-                print('> Conversion failed for:', file_name, 'Status:', status)
+                graphs = orig_doc.getNodeGraphs()
+                if len(graphs) == 0:
+                    logger.info(f'> No graphs converted successfully for: {file_name}')
+                else:
+                    logger.info(f'> Conversion failed for: {file_name}. Status: {status}')
                 continue
 
             # Test JSON string vs schema
@@ -94,17 +109,17 @@ class TestConvertFromMtlx(unittest.TestCase):
                 json_data = json.loads(json_string)  # Parse json_string to a dictionary  
                 try:
                     json_validate(instance=json_data, schema=schema)  # Validate JSON data against the schema
-                    print('> JSON validation successful for:', file_name.replace('.mtlx', '.gltf'))
+                    logger.info('> JSON validation successful for: ' + file_name.replace('.mtlx', '.gltf'))
                     valid_json = True
                 except jsonschema.exceptions.ValidationError as e:
-                    print('> JSON validation error for:', file_name.replace('.mtlx', '.gltf'))
-                    print(e)                
+                    logger.info('> JSON validation error for: ' + file_name.replace('.mtlx', '.gltf'))
+                    logger.info(e)                
             self.assertTrue(valid_json)
 
             # Write to disk
             gltf_name = input_file.replace('.mtlx', '.gltf')
             with open(gltf_name, 'w') as f:
-                print('> Writing converted glTF file:', gltf_name)
+                logger.info(f'> Writing converted glTF file: {gltf_name}')
                 f.write(json_string)
 
 class TestConvertToMtlx(unittest.TestCase):
@@ -112,8 +127,11 @@ class TestConvertToMtlx(unittest.TestCase):
     def test_convert_to_mtlx(self):
 
         if not MxGLTFPTUtil.have_version(1, 39, 1):
-            print("MaterialX version 1.39.1 or higher is required for this test.")
+            logger.error("MaterialX version 1.39.1 or higher is required for this test.")
             return
+
+        logger = lg.getLogger('test')
+        lg.basicConfig(level=lg.INFO)
 
         current_folder = os.path.dirname(__file__)
 
@@ -126,14 +144,15 @@ class TestConvertToMtlx(unittest.TestCase):
                     test_file_names.append(file)
                     # Get absolute path
                     file = os.path.abspath(os.path.join(root, file))
-                    #print('Found test file:', file)
+                    #logger.info(f'Found test file: {file}')
                     test_files.append(file)
 
         converter = MxGLTFPT.glTFMaterialXConverter()
 
         for file, file_name in zip(test_files, test_file_names):
             # To be updated when the conversion from GLTF to MaterialX is implemented
-            print('\n> Input test file:', file_name)  
+            logger.info('')
+            logger.info(f'-------- Input GLTF file: {file_name} -------- ') 
 
         self.assertTrue(True)
 
