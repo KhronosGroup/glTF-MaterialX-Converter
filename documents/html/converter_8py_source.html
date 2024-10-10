@@ -407,7 +407,7 @@ $(function(){initNavTree('converter_8py_source.html',''); initResizable(true); }
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        graph_outputs = graph.getOutputs()</div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        <span class="keywordflow">if</span> len(graph_outputs) == 0:</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>            self.<a class="code hl_variable" href="classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a76d4a55f730d618932d8f4b1156010ab">logger</a>.info(<span class="stringliteral">&#39;&gt; No graph outputs found on graph:&#39;</span>, graph.getNamePath())</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>            self.<a class="code hl_variable" href="classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a76d4a55f730d618932d8f4b1156010ab">logger</a>.info(f<span class="stringliteral">&#39;&gt; No graph outputs found on graph: {graph.getNamePath()}&#39;</span>)</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>            <span class="keywordflow">return</span> no_result</div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        debug = <span class="keyword">False</span></div>
@@ -823,7 +823,7 @@ $(function(){initNavTree('converter_8py_source.html',''); initResizable(true); }
 <div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>                status = <span class="stringliteral">&#39;No appropriate glTF shader graphs found&#39;</span></div>
 <div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span> </div>
 <div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>        <span class="comment"># Add asset and extensions use blocks</span></div>
-<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>        <span class="keywordflow">if</span> len(procs) &gt; 0:</div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>        <span class="keywordflow">if</span> procs <span class="keywordflow">and</span> len(procs) &gt; 0:</div>
 <div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>            json_data[KHR_ASSET_BLOCK] = json_asset</div>
 <div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>            json_data[KHR_EXTENTIONSUSED_BLOCK] = extensions_used</div>
 <div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span> </div>

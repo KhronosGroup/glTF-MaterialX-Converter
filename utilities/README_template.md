@@ -62,11 +62,19 @@ Only specific configurations of MaterialX can be mapped to glTF Texture Procedur
 3. A single `nodegraph` with a `color3` output node which is connected to the base color on the surface shader. The constant node can be replaced with the desired set of
 nodes, and one or more inputs may be specified to route data into the `nodegraph`. 
 
-Below is a diagram the minimal graph and it's corresponding MaterialX XML document 
-from the test data area. There are no inputs specified on the `nodegraph`.
+<table>
+<tr>
+<th>Description
+<th>Documents
+<th>Reference Image
+
+<tr>
+<td> 
+A sample minimal graph routing a constant color to the downstream shader.
+There are no inputs specified on the `nodegraph`.
 
 ```mermaid
-graph LR
+graph TB
     gltf_Material([surfacematerial:material])
     style gltf_Material   fill:#090, color:#FFF
     gltf_Shader[gltf_pbr:surfaceshader]
@@ -80,9 +88,15 @@ graph LR
     gltf_procedural_constant_color4 --> gltf_procedural_output_color4
     gltf_procedural_output_color4 --"base_color"--> gltf_Shader
 ```
-
-<a href="$TOP//tests/data/minimal_graph.mtlx">Minimal MTLX Configuration File</a>
-<img src="$TOP/tests/data/minimal_graph.png" width=20%>
+</td>
+<td>
+<a href="$TOP//tests/data/minimal_graph.mtlx">MTLX</a>
+<a href="$TOP//tests/data/minimal_graph.gltf">GLTF</a>
+</td>
+<td><img src="$TOP//tests/data/minimal_graph.png">
+</td>
+</tr>
+</table>
 
 #### Sample Data
 
