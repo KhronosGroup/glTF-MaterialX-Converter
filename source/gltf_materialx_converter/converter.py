@@ -315,7 +315,7 @@ class glTFMaterialXConverter():
 
         graph_outputs = graph.getOutputs()
         if len(graph_outputs) == 0:
-            self.logger.info('> No graph outputs found on graph:', graph.getNamePath())
+            self.logger.info(f'> No graph outputs found on graph: {graph.getNamePath()}')
             return no_result
 
         debug = False
@@ -729,7 +729,7 @@ class glTFMaterialXConverter():
                 status = 'No appropriate glTF shader graphs found'
 
         # Add asset and extensions use blocks
-        if len(procs) > 0:
+        if procs and len(procs) > 0:
             json_data[KHR_ASSET_BLOCK] = json_asset
             json_data[KHR_EXTENTIONSUSED_BLOCK] = extensions_used
 

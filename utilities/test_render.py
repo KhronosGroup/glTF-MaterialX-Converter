@@ -43,6 +43,7 @@ def main():
     parser = argparse.ArgumentParser(description='Render MaterialX files in a folder')
     parser.add_argument('-c', '--renderCmd', type=str, help='MaterialXView command to render files')
     parser.add_argument('-r', '--resolution', type=int, help='Resolution of the render. Default is 256', default=256)
+    parser.add_argument('-m', '--mesh', type=str, help='Mesh file to render', default='')
     parser.add_argument('input_path', type=str, help='Input path MaterialX file or folder containing MaterialX files')
     args = parser.parse_args()
 
@@ -59,6 +60,11 @@ def main():
 
     resolution = args.resolution
     render_cmd += f' --screenWidth {resolution} --screenHeight {resolution} '
+
+    # Check for mesh file option
+    mesh = args.mesh
+    if mesh:
+        render_cmd += f' --mesh {mesh} '
 
     input_paths = get_files(args.input_path)
     if not input_paths:
