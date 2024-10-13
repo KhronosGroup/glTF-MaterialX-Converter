@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709">
+  <nodegraph name="shared_procedural">
+    <input name="in2" type="color3" value="0.0941, 0.2157, 0.3059" />
+    <input name="in1" type="color3" value="0.7373, 0.4471, 0.3216" />
+    <add name="add" type="color3">
+      <input name="in1" type="color3" interfacename="in1" />
+      <input name="in2" type="color3" interfacename="in2" />
+    </add>
+    <add name="add2" type="color3">
+      <input name="in1" type="color3" interfacename="in1" />
+      <input name="in2" type="color3" interfacename="in2" />
+    </add>
+    <output name="out1" type="color3" nodename="add" />
+    <output name="out2" type="color3" nodename="add2" />
+  </nodegraph>
+  <nodegraph name="shared_procedural_2">
+    <input name="in2" type="color3" value="0.0941, 0.2157, 0.3059" />
+    <input name="in1" type="color3" value="0.7373, 0.4471, 0.3216" />
+    <add name="add" type="color3">
+      <input name="in1" type="color3" interfacename="in1" />
+      <input name="in2" type="color3" interfacename="in2" />
+    </add>
+    <add name="add2" type="color3">
+      <input name="in1" type="color3" interfacename="in1" />
+      <input name="in2" type="color3" interfacename="in2" />
+    </add>
+    <output name="out1" type="color3" nodename="add" />
+    <output name="out2" type="color3" nodename="add2" />
+  </nodegraph>
+  <gltf_pbr name="gltf_shader_1" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="shared_procedural" output="out1" />
+  </gltf_pbr>
+  <surfacematerial name="material_1" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="gltf_shader_1" />
+  </surfacematerial>
+  <gltf_pbr name="gltf_shader_2" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="shared_procedural_2" output="out2" />
+  </gltf_pbr>
+  <surfacematerial name="material_2" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="gltf_shader_2" />
+  </surfacematerial>
+</materialx>

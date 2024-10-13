@@ -157,6 +157,7 @@ Supported MaterialX Configurations</h2>
 <li>There must be a <code>glTF PBR</code> node connected to the surface shader input of the material.</li>
 <li>A single <code>nodegraph</code> with a <code>color3</code> output node which is connected to the base color on the surface shader. The constant node can be replaced with the desired set of nodes, and one or more inputs may be specified to route data into the <code>nodegraph</code>.</li>
 </ol>
+<p>Any document level qualifiers must be pre-resolved when converting rom MaterialX. This includes any <code>fileprefix</code> qualifiers for image file names.</p>
 <table class="doxtable">
 <tr>
 <th>Description </th><th>Documents </th><th><p class="starttd">Reference Image</p>
@@ -180,12 +181,12 @@ graph TB
     gltf_procedural_constant_color4 --&gt; gltf_procedural_output_color4
     gltf_procedural_output_color4 --"base_color"--&gt; gltf_Shader
 </div></code></pre><p class="endtd"></p>
-</td><td><a href="../..//tests/data/minimal_graph.mtlx">MTLX</a> <a href="../..//tests/data/minimal_graph.gltf">GLTF</a>  </td><td><img src="../..//tests/data/minimal_graph.png" alt="" class="inline"/>   </td></tr>
+</td><td><a href="../..//tests/data/minimal_graph.mtlx">MTLX</a> <a href="../..//tests/data/minimal_graph.gltf">GLTF</a> <a href="../..//tests/data/minimal_graph.usda">USD</a>  </td><td><img src="../..//tests/data/minimal_graph.png" alt="" class="inline"/>   </td></tr>
 </table>
 <h3><a class="anchor" id="autotoc_md9"></a>
-Sample Data</h3>
+Test Data</h3>
 <p>The following is a set of example files used for unit testing. The term "Compound nodes" refers to nodes which are implemented as node graphs themselves ("functional graphs" in MaterialX terminology)</p>
-<p>For each MaterialX file the resulting glTF file is given, along with a diagram of how the graph looks and reference image rendered using the <code>MaterialXView</code> sample application which is available as part of the core MaterialX distribution.</p>
+<p>For each <code>MaterialX</code> file the resulting <code>glTF</code> file is given, along with a diagram of how the graph looks and reference image. A sample conversion from MaterialX to <code>USDShade</code> network is provided where applicable.</p>
 <details  open="true">
 <summary >
 Examples</summary>
@@ -226,7 +227,7 @@ graph TB
     gltf_mat --"surfaceshader"--&gt; Default
     graph1_output_color4 --"base_color"--&gt; gltf_mat
 </div></code></pre><p class="endtd"></p>
-</td><td><a href="../..//tests/data/add_graph.mtlx">MTLX</a> <a href="../..//tests/data/add_graph.gltf">GLTF</a>  </td><td><p class="starttd"><img src="../..//tests/data/add_graph.png" alt="" class="inline"/>  </p>
+</td><td><a href="../..//tests/data/add_graph.mtlx">MTLX</a> <a href="../..//tests/data/add_graph.gltf">GLTF</a> <a href="../..//tests/data/add_graph.usda">USD</a>  </td><td><p class="starttd"><img src="../..//tests/data/add_graph.png" alt="" class="inline"/>  </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -276,7 +277,83 @@ graph TB
     NG_main_output_N_mtlxmix_out --"base_color"--&gt; Gltf_pbr
     Gltf_pbr --"surfaceshader"--&gt; MAT_Gltf_pbr
 </div></code></pre><p class="endtd"></p>
-</td><td><a href="../../tests/data/checkerboard_graph.mtlx">MTLX</a> <a href="../../tests/data/checkerboard_graph.gltf">GLTF</a>  </td><td><p class="starttd"><img src="../../tests/data/checkerboard_graph.png" alt="" class="inline"/>  </p>
+</td><td><a href="../../tests/data/checkerboard_graph.mtlx">MTLX</a> <a href="../../tests/data/checkerboard_graph.gltf">GLTF</a> <a href="../../tests/data/checkerboard_graph.usda">USD</a>  </td><td><p class="starttd"><img src="../../tests/data/checkerboard_graph.png" alt="" class="inline"/>  </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><p class="starttd">Pattern graph only without any materials.</p>
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: multiple</li>
+<li>Graph outputs: single</li>
+<li>Stream inputs: no</li>
+<li>Compound nodes: yes</li>
+<li>Downstream shader: none</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
+    subgraph splittb_graph
+    splittb_graph_output_color4([output_color4])
+    style splittb_graph_output_color4  fill:#09D, color:#FFF
+    splittb_graph_splittb_color4[splittb_color4]
+    splittb_graph_texcoord_vector[texcoord_vector:0]
+    end
+    subgraph checker_graph
+    checker_graph_output_color5([output_color5])
+    style checker_graph_output_color5  fill:#09D, color:#FFF
+    checker_graph_checkerboard_color4[checkerboard_color4]
+    checker_graph_texcoord_vector3[texcoord_vector3:0]
+    end
+    splittb_graph_texcoord_vector --"texcoord"--&gt; splittb_graph_splittb_color4
+    splittb_graph_splittb_color4 --&gt; splittb_graph_output_color4
+    checker_graph_texcoord_vector3 --"texcoord"--&gt; checker_graph_checkerboard_color4
+    checker_graph_checkerboard_color4 --&gt; checker_graph_output_color5
+</div></code></pre><p class="endtd"></p>
+</td><td><a href="../../tests/data/no_material.mtlx">MTLX</a> <a href="../../tests/data/no_material.gltf">GLTF</a> </td><td><p class="starttd"><img src="../../tests/data/no_material.png" alt="" class="inline"/> </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><p class="starttd">Pattern connected to an unsupported (non-glTF) PBR downstream shader.</p>
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: multiple</li>
+<li>Graph outputs: single</li>
+<li>Stream inputs: no</li>
+<li>Compound nodes: yes</li>
+<li>Downstream shader: "standard surface"</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
+    subgraph splittb_graph
+    splittb_graph_output_color4([output_color4])
+    style splittb_graph_output_color4  fill:#09D, color:#FFF
+    splittb_graph_splittb_color4[splittb_color4]
+    splittb_graph_texcoord_vector3[texcoord_vector3:0]
+    end
+    subgraph checker_graph
+    checker_graph_output_color5([output_color5])
+    style checker_graph_output_color5  fill:#09D, color:#FFF
+    checker_graph_checkerboard_color4[checkerboard_color4]
+    checker_graph_texcoord_vector3[texcoord_vector3:0]
+    end
+    standard_surface_surfaceshader1[standard_surface_surfaceshader1]
+    surfacematerial_material1([surfacematerial_material1])
+    style surfacematerial_material1   fill:#090, color:#FFF
+    surfacematerial_material2([surfacematerial_material2])
+    style surfacematerial_material2   fill:#090, color:#FFF
+    standard_surface_surfaceshader2[standard_surface_surfaceshader2]
+    splittb_graph_splittb_color4 --&gt; splittb_graph_output_color4
+    splittb_graph_texcoord_vector3 --"texcoord"--&gt; splittb_graph_splittb_color4
+    checker_graph_checkerboard_color4 --&gt; checker_graph_output_color5
+    checker_graph_texcoord_vector3 --"texcoord"--&gt; checker_graph_checkerboard_color4
+    splittb_graph_output_color4 --"base_color"--&gt; standard_surface_surfaceshader1
+    standard_surface_surfaceshader1 --"surfaceshader"--&gt; surfacematerial_material1
+    standard_surface_surfaceshader2 --"surfaceshader"--&gt; surfacematerial_material2
+    checker_graph_output_color5 --"base_color"--&gt; standard_surface_surfaceshader2
+</div></code></pre><p class="endtd"></p>
+</td><td><a href="../../tests/data/unsupported_stdsurf.mtlx">MTLX</a> <a href="../../tests/data/unsupported_stdsurf.gltf">GLTF</a> <a href="../../tests/data/unsupported_stdsurf.usda">USD</a>  </td><td><p class="starttd"><img src="../../tests/data/unsupported_stdsurf.png" alt="" class="inline"/> (original) <img src="../../tests/data/no_material.png" alt="" class="inline"/> (skipping material ) </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -309,7 +386,7 @@ graph TB
     nodegraph1_output_color3 --"base_color"--&gt; gltf_pbr_surfaceshader
     gltf_pbr_surfaceshader --"surfaceshader"--&gt; surfacematerial
 </div></code></pre><p class="endtd"></p>
-</td><td><a href="../../tests/data/bindings/gltf_simple_filetexture.mtlx">MTLX</a> <a href="../../tests/data/bindings/gltf_simple_filetexture.gltf">GLTF</a> </td><td><p class="starttd"><img src="../../tests/data/bindings/gltf_simple_filetexture.png" alt="" class="inline"/> </p>
+</td><td><a href="../../tests/data/bindings/gltf_simple_filetexture.mtlx">MTLX</a> <a href="../../tests/data/bindings/gltf_simple_filetexture.gltf">GLTF</a> <a href="../../tests/data/bindings/gltf_simple_filetexture.usda">USD</a> </td><td><p class="starttd"><img src="../../tests/data/bindings/gltf_simple_filetexture.png" alt="" class="inline"/> </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -349,7 +426,7 @@ graph TB
     nodegraph1_place2d_vector2 --"texcoord"--&gt; nodegraph1_image_color3
     nodegraph1_texcoord_vector2 --"texcoord"--&gt; nodegraph1_place2d_vector2
 </div></code></pre><p class="endtd"></p>
-</td><td><a href="../../tests/data/bindings/gltf_shared_filetexture.mtlx">MTLX</a> <a href="../../tests/data/bindings/gltf_shared_filetexture.gltf">GLTF</a> </td><td><p class="starttd"><img src="../../tests/data/bindings/gltf_shared_filetexture.png" alt="" class="inline"/> </p>
+</td><td><a href="../../tests/data/bindings/gltf_shared_filetexture.mtlx">MTLX</a> <a href="../../tests/data/bindings/gltf_shared_filetexture.gltf">GLTF</a> <a href="../../tests/data/bindings/gltf_shared_filetexture.usda">USD</a> </td><td><p class="starttd"><img src="../../tests/data/bindings/gltf_shared_filetexture.png" alt="" class="inline"/> </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -394,7 +471,38 @@ graph TB
     nodegraph1_image_color3 --&gt; nodegraph1_output_color3
     nodegraph1_place2d_vector2 --"texcoord"--&gt; nodegraph1_image_color3
 </div></code></pre><p class="endtd"></p>
-</td><td><a href="../../tests/data/bindings/gltf_shared_filetexture_2.mtlx">MTLX</a> <a href="../../tests/data/bindings/gltf_shared_filetexture_2.gltf">GLTF</a> </td><td><p class="starttd"><img src="../../tests/data/bindings/gltf_shared_filetexture_2.png" alt="" class="inline"/> </p>
+</td><td><a href="../../tests/data/bindings/gltf_shared_filetexture_2.mtlx">MTLX</a> <a href="../../tests/data/bindings/gltf_shared_filetexture_2.gltf">GLTF</a> <a href="../../tests/data/bindings/gltf_shared_filetexture_2.usda">USD</a> </td><td><p class="starttd"><img src="../../tests/data/bindings/gltf_shared_filetexture_2.png" alt="" class="inline"/> </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><p class="starttd">Example MaterialX version of "boombox" example (from Khronos sample assets) that shows file name resolving.</p>
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: one</li>
+<li>File inputs: yes.</li>
+<li>File prefix: resolved during conversion (as is done for "UsdMtlx" resolve)</li>
+<li>Compound nodes: no</li>
+<li>Downstream shader: glTF PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph LR
+    subgraph boombox_graph
+    boombox_graph_out_Image([out_Image])
+    style boombox_graph_out_Image  fill:#09D, color:#FFF
+    boombox_graph_texcoord1[texcoord1:0]
+    boombox_graph_Image[Image]
+    end
+    SR_boombox[SR_boombox]
+    Material_boombox([Material_boombox])
+    style Material_boombox   fill:#090, color:#FFF
+    boombox_graph_texcoord1 --"texcoord"--&gt; boombox_graph_Image
+    boombox_graph_Image --&gt; boombox_graph_out_Image
+    boombox_graph_out_Image --"base_color"--&gt; SR_boombox
+    SR_boombox --"surfaceshader"--&gt; Material_boombox
+</div></code></pre><p class="endtd"></p>
+</td><td><a href="../../tests/data/gltf_examples/gltf_pbr_boombox.mtlx">MTLX</a> <a href="../../tests/data/gltf_examples/gltf_pbr_boombox.gltf">GLTF</a> <a href="../../tests/data/gltf_examples/gltf_pbr_boombox.usda">USD</a>  </td><td><p class="starttd"><img src="../../tests/data/gltf_examples/gltf_pbr_boombox.png" alt="" class="inline"/>  </p>
 <p class="endtd"></p>
 </td></tr>
 </table>

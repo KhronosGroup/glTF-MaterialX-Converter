@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709">
+  <nodegraph name="splittb_graph">
+    <output name="output_color4" type="color3" nodename="splittb_color4" />
+    <splittb name="splittb_color4" type="color3">
+      <input name="valuet" type="color3" value="1,0,0" />
+      <input name="valueb" type="color3" value="0,0.8353,1" />
+      <input name="center" type="float" value="0.5" />
+      <input name="texcoord" type="vector2" nodename="texcoord_vector3" />
+    </splittb>
+    <texcoord name="texcoord_vector3" type="vector2">
+      <input name="index" type="integer" value="0" />
+    </texcoord>
+  </nodegraph>
+  <nodegraph name="checker_graph">
+    <output name="output_color5" type="color3" nodename="checkerboard_color4" />
+    <checkerboard name="checkerboard_color4" type="color3">
+      <input name="color1" type="color3" value="1,1,1" />
+      <input name="color2" type="color3" value="0,0,0" />
+      <input name="uvtiling" type="vector2" value="8,8" />
+      <input name="uvoffset" type="vector2" value="0,0" />
+      <input name="texcoord" type="vector2" nodename="texcoord_vector3" />
+    </checkerboard>
+    <texcoord name="texcoord_vector3" type="vector2">
+      <input name="index" type="integer" value="0" />
+    </texcoord>
+  </nodegraph>
+  <standard_surface name="standard_surface_surfaceshader1" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="splittb_graph" />
+  </standard_surface>
+  <surfacematerial name="surfacematerial_material1" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="standard_surface_surfaceshader1" />
+  </surfacematerial>
+  <surfacematerial name="surfacematerial_material2" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="standard_surface_surfaceshader2" />
+  </surfacematerial>
+  <standard_surface name="standard_surface_surfaceshader2" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="checker_graph" />
+  </standard_surface>
+</materialx>

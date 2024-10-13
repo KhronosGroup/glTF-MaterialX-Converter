@@ -62,6 +62,8 @@ Only specific configurations of MaterialX can be mapped to glTF Texture Procedur
 3. A single `nodegraph` with a `color3` output node which is connected to the base color on the surface shader. The constant node can be replaced with the desired set of
 nodes, and one or more inputs may be specified to route data into the `nodegraph`. 
 
+Any document level qualifiers must be pre-resolved when converting rom MaterialX. This includes any `fileprefix` qualifiers for image file names.
+
 <table>
 <tr>
 <th>Description
@@ -94,18 +96,20 @@ graph TB
 <td>
 <a href="$TOP//tests/data/minimal_graph.mtlx">MTLX</a>
 <a href="$TOP//tests/data/minimal_graph.gltf">GLTF</a>
+<a href="$TOP//tests/data/minimal_graph.usda">USD</a>
 </td>
 <td><img src="$TOP//tests/data/minimal_graph.png">
 </td>
 </tr>
 </table>
 
-#### Sample Data
+#### Test Data
 
 The following is a set of example files used for unit testing. The term "Compound nodes" refers to nodes
 which are implemented as node graphs themselves ("functional graphs" in MaterialX terminology)
 
-For each MaterialX file the resulting glTF file is given, along with a diagram of how the graph looks and reference image rendered using the `MaterialXView` sample application which is available as part of the core MaterialX distribution.
+For each `MaterialX` file the resulting `glTF` file is given, along with a diagram of how the graph looks and reference image.
+A sample conversion from MaterialX to `USDShade` network is provided where applicable.
 
 <details open><summary>Examples</summary>
 
@@ -152,6 +156,7 @@ graph TB
 <td>
 <a href="$TOP//tests/data/add_graph.mtlx">MTLX</a>
 <a href="$TOP//tests/data/add_graph.gltf">GLTF</a>
+<a href="$TOP//tests/data/add_graph.usda">USD</a>
 </td>
 <td><img src="$TOP//tests/data/add_graph.png">
 </td>
@@ -211,10 +216,101 @@ graph TB
 <td>
 <a href="$TOP/tests/data/checkerboard_graph.mtlx">MTLX</a>
 <a href="$TOP/tests/data/checkerboard_graph.gltf">GLTF</a>
+<a href="$TOP/tests/data/checkerboard_graph.usda">USD</a>
 </td>
 <td><img src="$TOP/tests/data/checkerboard_graph.png">
 </td>
 </tr>
+
+<tr>
+<td>Pattern graph only without any materials.
+
+- Graph count: single
+- Graph inputs: multiple
+- Graph outputs: single
+- Stream inputs: no
+- Compound nodes: yes
+- Downstream shader: none
+
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
+    subgraph splittb_graph
+    splittb_graph_output_color4([output_color4])
+    style splittb_graph_output_color4  fill:#09D, color:#FFF
+    splittb_graph_splittb_color4[splittb_color4]
+    splittb_graph_texcoord_vector[texcoord_vector:0]
+    end
+    subgraph checker_graph
+    checker_graph_output_color5([output_color5])
+    style checker_graph_output_color5  fill:#09D, color:#FFF
+    checker_graph_checkerboard_color4[checkerboard_color4]
+    checker_graph_texcoord_vector3[texcoord_vector3:0]
+    end
+    splittb_graph_texcoord_vector --"texcoord"--> splittb_graph_splittb_color4
+    splittb_graph_splittb_color4 --> splittb_graph_output_color4
+    checker_graph_texcoord_vector3 --"texcoord"--> checker_graph_checkerboard_color4
+    checker_graph_checkerboard_color4 --> checker_graph_output_color5
+</div></code></pre>
+
+
+</td>
+<td><a href="$TOP/tests/data/no_material.mtlx">MTLX</a>
+<a href="$TOP/tests/data/no_material.gltf">GLTF</a>
+<td><img src="$TOP/tests/data/no_material.png">
+</tr>
+
+<tr>
+<td>
+Pattern connected to an unsupported (non-glTF) PBR downstream shader.
+
+- Graph count: single
+- Graph inputs: multiple
+- Graph outputs: single
+- Stream inputs: no
+- Compound nodes: yes
+- Downstream shader: "standard surface"
+
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
+    subgraph splittb_graph
+    splittb_graph_output_color4([output_color4])
+    style splittb_graph_output_color4  fill:#09D, color:#FFF
+    splittb_graph_splittb_color4[splittb_color4]
+    splittb_graph_texcoord_vector3[texcoord_vector3:0]
+    end
+    subgraph checker_graph
+    checker_graph_output_color5([output_color5])
+    style checker_graph_output_color5  fill:#09D, color:#FFF
+    checker_graph_checkerboard_color4[checkerboard_color4]
+    checker_graph_texcoord_vector3[texcoord_vector3:0]
+    end
+    standard_surface_surfaceshader1[standard_surface_surfaceshader1]
+    surfacematerial_material1([surfacematerial_material1])
+    style surfacematerial_material1   fill:#090, color:#FFF
+    surfacematerial_material2([surfacematerial_material2])
+    style surfacematerial_material2   fill:#090, color:#FFF
+    standard_surface_surfaceshader2[standard_surface_surfaceshader2]
+    splittb_graph_splittb_color4 --> splittb_graph_output_color4
+    splittb_graph_texcoord_vector3 --"texcoord"--> splittb_graph_splittb_color4
+    checker_graph_checkerboard_color4 --> checker_graph_output_color5
+    checker_graph_texcoord_vector3 --"texcoord"--> checker_graph_checkerboard_color4
+    splittb_graph_output_color4 --"base_color"--> standard_surface_surfaceshader1
+    standard_surface_surfaceshader1 --"surfaceshader"--> surfacematerial_material1
+    standard_surface_surfaceshader2 --"surfaceshader"--> surfacematerial_material2
+    checker_graph_output_color5 --"base_color"--> standard_surface_surfaceshader2
+</div></code></pre>
+
+
+</td>
+<td><a href="$TOP/tests/data/unsupported_stdsurf.mtlx">MTLX</a>
+<a href="$TOP/tests/data/unsupported_stdsurf.gltf">GLTF</a>
+<a href="$TOP/tests/data/unsupported_stdsurf.usda">USD</a>
+</td>
+<td><img src="$TOP/tests/data/unsupported_stdsurf.png"> (original)
+<img src="$TOP/tests/data/no_material.png"> (skipping material )
+</td>
 
 <tr>
 <td>Pattern graph using a file texture
@@ -251,6 +347,7 @@ graph TB
 </td>
 <td><a href="$TOP/tests/data/bindings/gltf_simple_filetexture.mtlx">MTLX</a>
 <a href="$TOP/tests/data/bindings/gltf_simple_filetexture.gltf">GLTF</a>
+<a href="$TOP/tests/data/bindings/gltf_simple_filetexture.usda">USD</a>
 <td><img src="$TOP/tests/data/bindings/gltf_simple_filetexture.png">
 </tr>
 
@@ -296,6 +393,7 @@ graph TB
 </td>
 <td><a href="$TOP/tests/data/bindings/gltf_shared_filetexture.mtlx">MTLX</a>
 <a href="$TOP/tests/data/bindings/gltf_shared_filetexture.gltf">GLTF</a>
+<a href="$TOP/tests/data/bindings/gltf_shared_filetexture.usda">USD</a>
 <td><img src="$TOP/tests/data/bindings/gltf_shared_filetexture.png">
 </tr>
 
@@ -347,8 +445,49 @@ graph TB
 </td>
 <td><a href="$TOP/tests/data/bindings/gltf_shared_filetexture_2.mtlx">MTLX</a>
 <a href="$TOP/tests/data/bindings/gltf_shared_filetexture_2.gltf">GLTF</a>
+<a href="$TOP/tests/data/bindings/gltf_shared_filetexture_2.usda">USD</a>
 <td><img src="$TOP/tests/data/bindings/gltf_shared_filetexture_2.png">
 </tr>
+
+<tr>
+<td>Example MaterialX version of "boombox" example (from Khronos sample assets) that shows file name resolving.
+
+- Graph count: single
+- Graph inputs: none
+- Graph outputs: one
+- File inputs: yes. 
+- File prefix: resolved during conversion (as is done for "UsdMtlx" resolve)
+- Compound nodes: no
+- Downstream shader: glTF PBR
+
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph LR
+    subgraph boombox_graph
+    boombox_graph_out_Image([out_Image])
+    style boombox_graph_out_Image  fill:#09D, color:#FFF
+    boombox_graph_texcoord1[texcoord1:0]
+    boombox_graph_Image[Image]
+    end
+    SR_boombox[SR_boombox]
+    Material_boombox([Material_boombox])
+    style Material_boombox   fill:#090, color:#FFF
+    boombox_graph_texcoord1 --"texcoord"--> boombox_graph_Image
+    boombox_graph_Image --> boombox_graph_out_Image
+    boombox_graph_out_Image --"base_color"--> SR_boombox
+    SR_boombox --"surfaceshader"--> Material_boombox
+</div></code></pre>
+
+
+</td>
+<td><a href="$TOP/tests/data/gltf_examples/gltf_pbr_boombox.mtlx">MTLX</a>
+<a href="$TOP/tests/data/gltf_examples/gltf_pbr_boombox.gltf">GLTF</a>
+<a href="$TOP/tests/data/gltf_examples/gltf_pbr_boombox.usda">USD</a>
+</td>
+<td><img src="$TOP/tests/data/gltf_examples/gltf_pbr_boombox.png">
+</td>
+</tr>
+
 
 </table>
 
@@ -388,3 +527,4 @@ Sample build scripts are provided in the `utilities` folder as follows:
 `build.sh` is called within the check-in workflow defined in `.github/workflows/main.yml`
 
 </details>
+

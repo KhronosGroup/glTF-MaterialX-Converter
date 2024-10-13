@@ -1,0 +1,247 @@
+{
+  "images": [
+    {
+      "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4z/AfAAQAAf/zKSWvAAAAAElFTkSuQmCC",
+      "name": "KHR_texture_procedural_fallback"
+    }
+  ],
+  "textures": [
+    {
+      "source": 0
+    }
+  ],
+  "extensions": {
+    "KHR_texture_procedurals": {
+      "procedurals": [
+        {
+          "name": "shared_procedural",
+          "nodetype": "nodegraph",
+          "type": "multioutput",
+          "inputs": [
+            {
+              "name": "in2",
+              "nodetype": "input",
+              "type": "color3",
+              "value": [
+                0.0941,
+                0.2157,
+                0.3059
+              ]
+            },
+            {
+              "name": "in1",
+              "nodetype": "input",
+              "type": "color3",
+              "value": [
+                0.7373,
+                0.4471,
+                0.3216
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "name": "out1",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 0
+            },
+            {
+              "name": "out2",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 1
+            }
+          ],
+          "nodes": [
+            {
+              "name": "add",
+              "nodetype": "add",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in1",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "input": 1
+                },
+                {
+                  "name": "in2",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "input": 0
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "add2",
+              "nodetype": "add",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in1",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "input": 1
+                },
+                {
+                  "name": "in2",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "input": 0
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "shared_procedural_2",
+          "nodetype": "nodegraph",
+          "type": "multioutput",
+          "inputs": [
+            {
+              "name": "in2",
+              "nodetype": "input",
+              "type": "color3",
+              "value": [
+                0.0941,
+                0.2157,
+                0.3059
+              ]
+            },
+            {
+              "name": "in1",
+              "nodetype": "input",
+              "type": "color3",
+              "value": [
+                0.7373,
+                0.4471,
+                0.3216
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "name": "out1",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 0
+            },
+            {
+              "name": "out2",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 1
+            }
+          ],
+          "nodes": [
+            {
+              "name": "add",
+              "nodetype": "add",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in1",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "input": 1
+                },
+                {
+                  "name": "in2",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "input": 0
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "add2",
+              "nodetype": "add",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in1",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "input": 1
+                },
+                {
+                  "name": "in2",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "input": 0
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "materials": [
+    {
+      "name": "gltf_shader_1",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0,
+          "extensions": {
+            "KHR_texture_procedurals": {
+              "index": 0,
+              "output": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "gltf_shader_2",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0,
+          "extensions": {
+            "KHR_texture_procedurals": {
+              "index": 1,
+              "output": 1
+            }
+          }
+        }
+      }
+    }
+  ],
+  "asset": {
+    "version": "2.0",
+    "generator": "MaterialX 1.39 / glTF 2.0 Texture Procedural Converter"
+  },
+  "extensionsUsed": [
+    "KHR_texture_procedurals",
+    "EXT_texture_procedurals_mx_1_39"
+  ]
+}

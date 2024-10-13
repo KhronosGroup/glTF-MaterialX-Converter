@@ -1,0 +1,114 @@
+{
+  "images": [
+    {
+      "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4z/AfAAQAAf/zKSWvAAAAAElFTkSuQmCC",
+      "name": "KHR_texture_procedural_fallback"
+    },
+    {
+      "name": "boombox_graph/Image/file",
+      "uri": "boombox/BoomBox_baseColor.png"
+    }
+  ],
+  "textures": [
+    {
+      "source": 0
+    },
+    {
+      "name": "boombox_graph/Image/file",
+      "source": 1
+    }
+  ],
+  "extensions": {
+    "KHR_texture_procedurals": {
+      "procedurals": [
+        {
+          "name": "boombox_graph",
+          "nodetype": "nodegraph",
+          "type": "color3",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "out_Image",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 1
+            }
+          ],
+          "nodes": [
+            {
+              "name": "texcoord1",
+              "nodetype": "texcoord",
+              "type": "vector2",
+              "inputs": [
+                {
+                  "name": "index",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 0
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector2"
+                }
+              ]
+            },
+            {
+              "name": "Image",
+              "nodetype": "image",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "file",
+                  "nodetype": "input",
+                  "colorspace": "srgb_texture",
+                  "type": "filename",
+                  "texture": 1
+                },
+                {
+                  "name": "texcoord",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 0
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "materials": [
+    {
+      "name": "SR_boombox",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0,
+          "extensions": {
+            "KHR_texture_procedurals": {
+              "index": 0,
+              "output": 0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "asset": {
+    "version": "2.0",
+    "generator": "MaterialX 1.39 / glTF 2.0 Texture Procedural Converter"
+  },
+  "extensionsUsed": [
+    "KHR_texture_procedurals",
+    "EXT_texture_procedurals_mx_1_39"
+  ]
+}
