@@ -467,7 +467,7 @@ Public Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  315</span> </div>
 <div class="line"><span class="lineno">  316</span>        graph_outputs = graph.getOutputs()</div>
 <div class="line"><span class="lineno">  317</span>        <span class="keywordflow">if</span> len(graph_outputs) == 0:</div>
-<div class="line"><span class="lineno">  318</span>            self.logger.info(<span class="stringliteral">&#39;&gt; No graph outputs found on graph:&#39;</span>, graph.getNamePath())</div>
+<div class="line"><span class="lineno">  318</span>            self.logger.info(f<span class="stringliteral">&#39;&gt; No graph outputs found on graph: {graph.getNamePath()}&#39;</span>)</div>
 <div class="line"><span class="lineno">  319</span>            <span class="keywordflow">return</span> no_result</div>
 <div class="line"><span class="lineno">  320</span> </div>
 <div class="line"><span class="lineno">  321</span>        debug = <span class="keyword">False</span></div>
@@ -913,7 +913,7 @@ Public Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  729</span>                status = <span class="stringliteral">&#39;No appropriate glTF shader graphs found&#39;</span></div>
 <div class="line"><span class="lineno">  730</span> </div>
 <div class="line"><span class="lineno">  731</span>        <span class="comment"># Add asset and extensions use blocks</span></div>
-<div class="line"><span class="lineno">  732</span>        <span class="keywordflow">if</span> len(procs) &gt; 0:</div>
+<div class="line"><span class="lineno">  732</span>        <span class="keywordflow">if</span> procs <span class="keywordflow">and</span> len(procs) &gt; 0:</div>
 <div class="line"><span class="lineno">  733</span>            json_data[KHR_ASSET_BLOCK] = json_asset</div>
 <div class="line"><span class="lineno">  734</span>            json_data[KHR_EXTENTIONSUSED_BLOCK] = extensions_used</div>
 <div class="line"><span class="lineno">  735</span> </div>
