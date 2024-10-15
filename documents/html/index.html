@@ -505,6 +505,89 @@ graph LR
 </td><td><a href="../../tests/data/gltf_examples/gltf_pbr_boombox.mtlx">MTLX</a> <a href="../../tests/data/gltf_examples/gltf_pbr_boombox.gltf">GLTF</a> <a href="../../tests/data/gltf_examples/gltf_pbr_boombox.usda">USD</a>  </td><td><p class="starttd"><img src="../../tests/data/gltf_examples/gltf_pbr_boombox.png" alt="" class="inline"/>  </p>
 <p class="endtd"></p>
 </td></tr>
+<tr>
+<td><p class="starttd">Example with various port data types: integer, vec2, vec3, vec4, color3, color4, integer, matrix33, matrix44</p>
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: 1 per type</li>
+<li>File inputs: no</li>
+<li>Compound nodes: no</li>
+<li>Downstream shader: glTF PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph LR
+    glTF_Material([surfacematerial:material])
+    style glTF_Material   fill:#090, color:#FFF
+    glTF_Shader[gltf_pbr:surfaceshader]
+    subgraph mygraph
+    mygraph_out([output:color3])
+    style mygraph_out  fill:#09D, color:#FFF
+    mygraph_out1([output:color3])
+    style mygraph_out1  fill:#09D, color:#FFF
+    mygraph_out2([output:color3])
+    style mygraph_out2  fill:#09D, color:#FFF
+    mygraph_out3([output:color3])
+    style mygraph_out3  fill:#09D, color:#FFF
+    mygraph_out4([output:color3])
+    style mygraph_out4  fill:#09D, color:#FFF
+    mygraph_out6([output:color3])
+    style mygraph_out6  fill:#09D, color:#FFF
+    mygraph_out7([output:color3])
+    style mygraph_out7  fill:#09D, color:#FFF
+    mygraph_out5([output:color3])
+    style mygraph_out5  fill:#09D, color:#FFF
+    mygraph_out8([output:color3])
+    style mygraph_out8  fill:#09D, color:#FFF
+    mygraph_convert_color4[convert:color3]
+    mygraph_convert_color5[convert:color3]
+    mygraph_convert_color6[convert:color3]
+    mygraph_convert_color7[convert:color3]
+    mygraph_determinant_float1[determinant:float]
+    mygraph_convert_color8[convert:color3]
+    mygraph_convert_color9[convert:color3]
+    mygraph_determinant_float2[determinant:float]
+    mygraph_convert_color10[convert:color3]
+    mygraph_mix_color3[mix:color3]
+    mygraph_mix_float1[mix:float]
+    mygraph_mix_color5[mix:color4]
+    mygraph_mix_vector2[mix:vector2]
+    mygraph_multiply_matrix34[multiply:matrix33]
+    mygraph_multiply_matrix45[multiply:matrix44]
+    mygraph_constant_integer1([constant:integer:1])
+    style mygraph_constant_integer1  fill:#888, color:#000
+    mygraph_mix_vector3[mix:vector3]
+    mygraph_convert_color11[convert:color3]
+    mygraph_mix_vector5[mix:vector4]
+    end
+    glTF_Shader --"surfaceshader"--&gt; glTF_Material
+    mygraph_out --"base_color"--&gt; glTF_Shader
+    mygraph_mix_color3 --&gt; mygraph_out
+    mygraph_mix_float1 --"in"--&gt; mygraph_convert_color4
+    mygraph_convert_color4 --&gt; mygraph_out1
+    mygraph_mix_color5 --"in"--&gt; mygraph_convert_color5
+    mygraph_convert_color5 --&gt; mygraph_out2
+    mygraph_mix_vector3 --"in"--&gt; mygraph_convert_color6
+    mygraph_convert_color6 --&gt; mygraph_out3
+    mygraph_mix_vector2 --"in"--&gt; mygraph_convert_color7
+    mygraph_multiply_matrix34 --"in"--&gt; mygraph_determinant_float1
+    mygraph_convert_color7 --&gt; mygraph_out4
+    mygraph_determinant_float1 --"in"--&gt; mygraph_convert_color8
+    mygraph_determinant_float2 --"in"--&gt; mygraph_convert_color9
+    mygraph_multiply_matrix45 --"in"--&gt; mygraph_determinant_float2
+    mygraph_convert_color9 --&gt; mygraph_out6
+    mygraph_convert_color10 --&gt; mygraph_out7
+    mygraph_constant_integer1 --"in"--&gt; mygraph_convert_color10
+    mygraph_convert_color8 --&gt; mygraph_out5
+    mygraph_convert_color11 --&gt; mygraph_out8
+    mygraph_mix_vector5 --"in"--&gt; mygraph_convert_color11
+</div></code></pre><p class="endtd"></p>
+</td><td><p class="starttd"><a href="../../tests/data/supported_types.mtlx">MTLX</a> <a href="../../tests/data/supported_types.gltf">GLTF</a></p>
+<p class="endtd"></p>
+</td><td><p class="starttd"><img src="../../tests/data/supported_types.png" alt="" class="inline"/>  </p>
+<p class="endtd"></p>
+</td></tr>
 </table>
 <p></p>
 </details>

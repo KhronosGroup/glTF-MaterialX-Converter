@@ -470,6 +470,92 @@ graph LR
 </td>
 </tr>
 
+<tr>
+<td>Example with various port data types: integer, vec2, vec3, vec4, color3, color4, integer, matrix33, matrix44
+
+- Graph count: single
+- Graph inputs: none
+- Graph outputs: 1 per type
+- File inputs: no
+- Compound nodes: no
+- Downstream shader: glTF PBR
+
+```mermaid
+graph LR
+    glTF_Material([surfacematerial:material])
+    style glTF_Material   fill:#090, color:#FFF
+    glTF_Shader[gltf_pbr:surfaceshader]
+    subgraph mygraph
+    mygraph_out([output:color3])
+    style mygraph_out  fill:#09D, color:#FFF
+    mygraph_out1([output:color3])
+    style mygraph_out1  fill:#09D, color:#FFF
+    mygraph_out2([output:color3])
+    style mygraph_out2  fill:#09D, color:#FFF
+    mygraph_out3([output:color3])
+    style mygraph_out3  fill:#09D, color:#FFF
+    mygraph_out4([output:color3])
+    style mygraph_out4  fill:#09D, color:#FFF
+    mygraph_out6([output:color3])
+    style mygraph_out6  fill:#09D, color:#FFF
+    mygraph_out7([output:color3])
+    style mygraph_out7  fill:#09D, color:#FFF
+    mygraph_out5([output:color3])
+    style mygraph_out5  fill:#09D, color:#FFF
+    mygraph_out8([output:color3])
+    style mygraph_out8  fill:#09D, color:#FFF
+    mygraph_convert_color4[convert:color3]
+    mygraph_convert_color5[convert:color3]
+    mygraph_convert_color6[convert:color3]
+    mygraph_convert_color7[convert:color3]
+    mygraph_determinant_float1[determinant:float]
+    mygraph_convert_color8[convert:color3]
+    mygraph_convert_color9[convert:color3]
+    mygraph_determinant_float2[determinant:float]
+    mygraph_convert_color10[convert:color3]
+    mygraph_mix_color3[mix:color3]
+    mygraph_mix_float1[mix:float]
+    mygraph_mix_color5[mix:color4]
+    mygraph_mix_vector2[mix:vector2]
+    mygraph_multiply_matrix34[multiply:matrix33]
+    mygraph_multiply_matrix45[multiply:matrix44]
+    mygraph_constant_integer1([constant:integer:1])
+    style mygraph_constant_integer1  fill:#888, color:#000
+    mygraph_mix_vector3[mix:vector3]
+    mygraph_convert_color11[convert:color3]
+    mygraph_mix_vector5[mix:vector4]
+    end
+    glTF_Shader --"surfaceshader"--> glTF_Material
+    mygraph_out --"base_color"--> glTF_Shader
+    mygraph_mix_color3 --> mygraph_out
+    mygraph_mix_float1 --"in"--> mygraph_convert_color4
+    mygraph_convert_color4 --> mygraph_out1
+    mygraph_mix_color5 --"in"--> mygraph_convert_color5
+    mygraph_convert_color5 --> mygraph_out2
+    mygraph_mix_vector3 --"in"--> mygraph_convert_color6
+    mygraph_convert_color6 --> mygraph_out3
+    mygraph_mix_vector2 --"in"--> mygraph_convert_color7
+    mygraph_multiply_matrix34 --"in"--> mygraph_determinant_float1
+    mygraph_convert_color7 --> mygraph_out4
+    mygraph_determinant_float1 --"in"--> mygraph_convert_color8
+    mygraph_determinant_float2 --"in"--> mygraph_convert_color9
+    mygraph_multiply_matrix45 --"in"--> mygraph_determinant_float2
+    mygraph_convert_color9 --> mygraph_out6
+    mygraph_convert_color10 --> mygraph_out7
+    mygraph_constant_integer1 --"in"--> mygraph_convert_color10
+    mygraph_convert_color8 --> mygraph_out5
+    mygraph_convert_color11 --> mygraph_out8
+    mygraph_mix_vector5 --"in"--> mygraph_convert_color11
+```
+
+</td>
+<td><a href="$TOP/tests/data/supported_types.mtlx">MTLX</a>
+<a href="$TOP/tests/data/supported_types.gltf">GLTF</a>
+<!-- <a href="$TOP/tests/data/supported_types.usda">USD</a> -->
+</td>
+<td><img src="$TOP/tests/data/supported_types.png">
+</td>
+</tr>
 
 </table>
 
