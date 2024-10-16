@@ -37,6 +37,37 @@ The results are saved to a file called `checkerboard_graph.gltf`.
 python source/gltf_materialx_converter/materialx_to_gltf.py "tests/data/checkerboard_graph.mtlx"
 </code>
 
+#### API Example
+
+The following is a simple example of using the API to convert from MaterialX to glTF
+
+<pre>
+# Import support modules
+import MaterialX as mx
+import json
+
+# Import conversion module utilities
+from gltf_materialx_converter import converter as MxGLTFPT
+from gltf_materialx_converter import utilities as MxGLTFPTUtil
+
+input_file = "my_file.mtlx" # Replace with desired file name
+
+# Set up definitions and read in a sample file
+stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
+mxdoc = MxGLTFPTUtil.create_working_document([stdlib])
+mx.readFromXmlFile(mxdoc, input_file)
+
+# Convert
+converter = MxGLTFPT.glTFMaterialXConverter()
+json_string, status = converter.materialX_to_glTF(mxdoc)
+
+# Write result to disk
+gltf_file = input_file.replace('.mtlx', '.gltf')
+with open(gltf_file, 'w') as f:
+    f.write(json_string)
+</pre>
+
+
 ### Documentation
 
 #### API

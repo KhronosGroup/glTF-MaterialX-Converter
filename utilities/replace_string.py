@@ -16,6 +16,7 @@ def replace_string_in_file(input_file_path, target_string, replacement_string, r
 
     if replace_mermaid:
         modified_content = modified_content.replace('```mermaid', '<pre><code class="language-mermaid"><div class="mermaid">\n')
+        modified_content = modified_content.replace('```python', '</div></code class="python"></pre>\n')
         modified_content = modified_content.replace('```', '</div></code></pre>\n')
 
     # Determine the output file path
