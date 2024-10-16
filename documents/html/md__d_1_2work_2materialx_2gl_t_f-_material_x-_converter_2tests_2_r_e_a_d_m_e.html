@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MaterialX / glTF Texture Procedurals: Related Pages</title>
+<title>MaterialX / glTF Texture Procedurals: Unit Tests</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('pages.html',''); initResizable(true); });
+$(function(){initNavTree('md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter_2tests_2_r_e_a_d_m_e.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -108,18 +108,41 @@ $(function(){initNavTree('pages.html',''); initResizable(true); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Related Pages</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Unit Tests</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all related documentation pages:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter_2source_2gltf__materialx__converter_2_r_e_a_d_m_e.html" target="_self">Library Content</a></td><td class="desc"></td></tr>
-<tr id="row_1_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter_2utilities_2_r_e_a_d_m_e.html" target="_self">Build Utilities</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter_2tests_2_r_e_a_d_m_e.html" target="_self">Unit Tests</a></td><td class="desc"></td></tr>
-</table>
-</div><!-- directory -->
-</div><!-- contents -->
+<div class="textblock"><p><a class="anchor" id="unit-tests"></a></p>
+<p>This folder contains conversion tests scripts as well as test data and a schema file to test validity of glTF Texture Procedural <code>JSON</code> content.</p>
+<h2><a class="anchor" id="content"></a>
+Content</h2>
+<ul>
+<li><b>test_core.py</b> : Script for running core conversion tests. This file can be run from the root folder using: <div class="fragment"><div class="line">python -m unittest tests.test_core</div>
+</div><!-- fragment --></li>
+<li><b>data</b>:<ul>
+<li>Each folder contains the following content:<ul>
+<li>input <code>MaterialX</code> XML files.</li>
+<li>Reference renderings of <code>MaterialX</code> files produced using the <code>utilities\test_render.py</code> script. Names of image files are the names of the <code>MaterialX</code> file with <code>.mtlx</code> replaced with <code>.png</code>.</li>
+<li><code>glTF</code> JSON produced from conversion of <code>MaterialX</code> files. Names of JSON files are the names of the <code>MaterialX</code> file with <code>.mtlx</code> replaced with <code>.gltf</code>.</li>
+<li><code>OpenUSD</code> files converted from <code>MaterialX</code> files if applicable. Names of image files are the names of the <code>MaterialX</code> file with <code>.mtlx</code> replaced with <code>.png</code>.</li>
+</ul>
+</li>
+<li>Folder breakdown:<ul>
+<li>The main folder contains test data for basic graph variations, and variations on connectivity to materials</li>
+<li><b>data/bindings</b> : Test data dealing with resource bindings such as file textures.</li>
+<li><b>data/gltf_examples</b> : Test data with variations on glTF Sample files.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>schema</b>:<ul>
+<li>JSON schema test data.</li>
+<li>Note that the <code>schema.json</code> file in <code>tests/schema</code> is a copy of the official schema being worked on as part of the <a href="https://github.com/KhronosGroup/glTF/tree/KHR_texture_procedurals/extensions/2.0/Khronos/KHR_texture_procedurals">KHR_texture_procedurals</a> specification. </li>
+</ul>
+</li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.1-->
 <!-- start footer part -->
