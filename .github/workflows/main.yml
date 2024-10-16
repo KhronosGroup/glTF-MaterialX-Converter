@@ -1,58 +1,71 @@
 name: main
 
 on:
+  # Trigger on any branch push
   push:
-    branches: [main]
+    branches:
+      - '**'  # Run on push to any branch
   pull_request:
-    branches: [main]
+    branches:
+      - main  # Run on pull request targeting 'main'
+  
+  # Allows manual dispatch from the Actions tab, if needed
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Sync repository
-      uses: actions/checkout@v4
+      - name: Sync repository
+        uses: actions/checkout@v4
 
-    - name: Install Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: Build Package 
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Build Package 
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    - name: Install Doxygen
-      run: |
-        sudo apt-get update
-        sudo apt-get install doxygen
+      #- name: Install Doxygen
+      #  run: |
+      #    sudo apt-get update
+      #    sudo apt-get install doxygen          
 
-    - name: Generate Documentation
-      run: |
-        source utilities/build_docs.sh
-        
-    - name: Run Unit Tests
-      run: |
-        source utilities/build_test.sh
-          
-    - name: Create Distribution 
-      run: |
-        mkdir distribution
-        cp README.md distribution
-        cp -R documents/html distribution
-        rm -rf source/gltf_materialx_converter/__pycache__
-        cp -R source/gltf_materialx_converter distribution
-        rm -rf tests/__pycache__    
-        cp -R tests distribution
+      #- name: Generate Documentation
+      #  run: |
+      #    source utilities/build_docs.sh
 
-    - name: Upload Artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        name: distribution
-        path: distribution
+      - name: Run Unit Tests
+        run: |
+          source utilities/build_test.sh
 
+      # The next step will only run if the build is happening on 'main'
+      - name: Create materialxgltfpt
+        if: github.ref == 'refs/heads/main'  # Only run on 'main' branch
+        run: |
+          source utilities/build_install.sh
 
+      - name: Upload Artifact
+        if: github.ref == 'refs/heads/main'  # Only upload on 'main' branch
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: materialxgltfpt
+          path: materialxgltfpt
+          retention-days: 1
 
-
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'  # Only deploy on 'main' branch
+        id: deployment        
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: materialxgltfpt

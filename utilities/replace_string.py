@@ -34,10 +34,12 @@ if __name__ == "__main__":
     parser.add_argument('input_file_path', type=str, help='Path to the input file')
     parser.add_argument('-s', '--search', type=str, help='String to search for')
     parser.add_argument('-r', '--replace', type=str, help='String to replace the target string with')
-    parser.add_argument('-rm', '--replace_mermaid', type=bool, default=None, help='Skip replacing Mermaid delimiters with HTML tags')
+    parser.add_argument('-rm', '--replace_mermaid', type=bool, default=False, help='Skip replacing Mermaid delimiters with HTML tags')
     parser.add_argument('-o', '--output', type=str, help='Path to the output file (optional)')
     
     args = parser.parse_args()
+
+    print(f' Remove mermaid specified. {args.replace_mermaid}')
     
     # Replace the target string in the file
     print(f'Replace string "{args.search}" with "{args.replace}" in file "{args.input_file_path}"')

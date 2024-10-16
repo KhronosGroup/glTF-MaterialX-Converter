@@ -61,7 +61,7 @@ PROJECT_BRIEF          = "Utilities for interoperability between MaterialX and g
 # pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
 # the logo to the output directory.
 
-PROJECT_LOGO           =
+PROJECT_LOGO           = glTF_100px_June16.png
 
 # With the PROJECT_ICON tag one can specify an icon that is included in the tabs
 # when the HTML document is shown. Doxygen will copy the logo to the output
@@ -378,7 +378,7 @@ TOC_INCLUDE_HEADINGS   = 5
 # The default value is: DOXYGEN.
 # This tag requires that the tag MARKDOWN_SUPPORT is set to YES.
 
-MARKDOWN_ID_STYLE      = DOXYGEN
+MARKDOWN_ID_STYLE      = GITHUB
 
 # When enabled Doxygen tries to link words that correspond to documented
 # classes, or namespaces to their corresponding documentation. Such a link can

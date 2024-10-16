@@ -11,11 +11,16 @@ This package supports the bi-directional translation between MaterialX material 
   - <a href="https://github.com/KhronosGroup/glTF/tree/KHR_texture_procedurals/extensions/2.0/Vendor/EXT_texture_procedurals_mx_1_39">EXT_texture_procedurals_mx_1_39</a>
 - The MaterialX specification documents can be found <a href="https://github.com/AcademySoftwareFoundation/MaterialX/tree/main/documents/Specification">here</a>
 
+
+### Github
+
+The repository for this package is: <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter">glTF-MaterialX-Converter</a> 
+
 ### Dependencies
 
-- The 1.39 release (or patch releases) of MaterialX available on 
-<a href="https://pypi.org/project/MaterialX/">PyPi</a> is required.
-- The <code>jsonschema</code> package if Schema validation is desired
+- By specification definition, the 1.39 release (or patch releases) of MaterialX is required. The latest can be found in the
+<a href="https://pypi.org/project/MaterialX/">PyPi</a> package manager.
+- The <code>jsonschema</code> package is required if schema validation is desired
 
 ### Setup
 
@@ -67,6 +72,7 @@ with open(gltf_file, 'w') as f:
     f.write(json_string)
 </pre>
 
+A sample `Jupyter` notebook is available <a href="./documents/notebook.ipynb">here</a>
 
 ### Documentation
 
