@@ -53,7 +53,7 @@ jobs:
       - name: Create materialxgltfpt
         if: github.ref == 'refs/heads/main'  # Only run on 'main' branch
         run: |
-          source utilitis/build_install.sh
+          source utilities/build_install.sh
 
       - name: Upload Artifact
         if: github.ref == 'refs/heads/main'  # Only upload on 'main' branch
