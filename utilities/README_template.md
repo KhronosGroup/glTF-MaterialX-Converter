@@ -67,6 +67,7 @@ with open(gltf_file, 'w') as f:
     f.write(json_string)
 </pre>
 
+A sample `Jupyter` notebook is available <a href="$TOP/documents/notebook.ipynb">here</a>
 
 ### Documentation
 
