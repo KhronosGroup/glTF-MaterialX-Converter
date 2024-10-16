@@ -6,7 +6,7 @@ var indexSectionsWithContent =
   3: "_cmru",
   4: "_acghilmrsv",
   5: "eklms",
-  6: "gimp"
+  6: "gilmp"
 };
 
 var indexSectionNames =

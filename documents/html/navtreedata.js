@@ -26,6 +26,10 @@ var NAVTREE =
 [
   [ "MaterialX / glTF Texture Procedurals", "index.html", [
     [ "MaterialX / glTF Procedurals Interop", "index.html", null ],
+    [ "Python Library", "md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter-_fork_2source_2gltf__materialx__converter_2_r_e_a_d_m_e.html", [
+      [ "Contents:", "md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter-_fork_2source_2gltf__materialx__converter_2_r_e_a_d_m_e.html#autotoc_md1", null ],
+      [ "API Documentation", "md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter-_fork_2source_2gltf__materialx__converter_2_r_e_a_d_m_e.html#autotoc_md2", null ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
