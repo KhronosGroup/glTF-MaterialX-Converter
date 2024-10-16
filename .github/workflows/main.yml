@@ -39,7 +39,7 @@ jobs:
       - name: Install Doxygen
         run: |
           sudo apt-get update
-          sudo apt-get install doxygen
+          sudo apt-get install doxygen=1.12.0          
 
       - name: Generate Documentation
         run: |
