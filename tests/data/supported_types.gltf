@@ -1,0 +1,667 @@
+{
+  "images": [
+    {
+      "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4z/AfAAQAAf/zKSWvAAAAAElFTkSuQmCC",
+      "name": "KHR_texture_procedural_fallback"
+    }
+  ],
+  "textures": [
+    {
+      "source": 0
+    }
+  ],
+  "extensions": {
+    "KHR_texture_procedurals": {
+      "procedurals": [
+        {
+          "name": "mygraph",
+          "nodetype": "nodegraph",
+          "type": "multioutput",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "out",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 9
+            },
+            {
+              "name": "out1",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 0
+            },
+            {
+              "name": "out2",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 1
+            },
+            {
+              "name": "out3",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 2
+            },
+            {
+              "name": "out4",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 3
+            },
+            {
+              "name": "out6",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 6
+            },
+            {
+              "name": "out7",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 8
+            },
+            {
+              "name": "out5",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 5
+            },
+            {
+              "name": "out8",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 17
+            }
+          ],
+          "nodes": [
+            {
+              "name": "convert_color4",
+              "nodetype": "convert",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in",
+                  "nodetype": "input",
+                  "type": "float",
+                  "node": 10
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "convert_color5",
+              "nodetype": "convert",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in",
+                  "nodetype": "input",
+                  "type": "color4",
+                  "node": 11
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "convert_color6",
+              "nodetype": "convert",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in",
+                  "nodetype": "input",
+                  "type": "vector3",
+                  "node": 16
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "convert_color7",
+              "nodetype": "convert",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 12
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "determinant_float1",
+              "nodetype": "determinant",
+              "type": "float",
+              "inputs": [
+                {
+                  "name": "in",
+                  "nodetype": "input",
+                  "type": "matrix33",
+                  "node": 13
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "float"
+                }
+              ]
+            },
+            {
+              "name": "convert_color8",
+              "nodetype": "convert",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in",
+                  "nodetype": "input",
+                  "type": "float",
+                  "node": 4
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "convert_color9",
+              "nodetype": "convert",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in",
+                  "nodetype": "input",
+                  "type": "float",
+                  "node": 7
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "determinant_float2",
+              "nodetype": "determinant",
+              "type": "float",
+              "inputs": [
+                {
+                  "name": "in",
+                  "nodetype": "input",
+                  "type": "matrix44",
+                  "node": 14
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "float"
+                }
+              ]
+            },
+            {
+              "name": "convert_color10",
+              "nodetype": "convert",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "node": 15
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "mix_color3",
+              "nodetype": "mix",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "fg",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "value": [
+                    0.0,
+                    0.4824,
+                    1.0
+                  ]
+                },
+                {
+                  "name": "bg",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "value": [
+                    0.7765,
+                    0.0824,
+                    0.0824
+                  ]
+                },
+                {
+                  "name": "mix",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 0.5
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "mix_float1",
+              "nodetype": "mix",
+              "type": "float",
+              "inputs": [
+                {
+                  "name": "fg",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 9.9
+                },
+                {
+                  "name": "bg",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 0.0
+                },
+                {
+                  "name": "mix",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 0.5
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "float"
+                }
+              ]
+            },
+            {
+              "name": "mix_color5",
+              "nodetype": "mix",
+              "type": "color4",
+              "inputs": [
+                {
+                  "name": "fg",
+                  "nodetype": "input",
+                  "type": "color4",
+                  "value": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "bg",
+                  "nodetype": "input",
+                  "type": "color4",
+                  "value": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                },
+                {
+                  "name": "mix",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 0.5
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color4"
+                }
+              ]
+            },
+            {
+              "name": "mix_vector2",
+              "nodetype": "mix",
+              "type": "vector2",
+              "inputs": [
+                {
+                  "name": "fg",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "bg",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    1.0,
+                    1.0
+                  ]
+                },
+                {
+                  "name": "mix",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 0.5
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector2"
+                }
+              ]
+            },
+            {
+              "name": "multiply_matrix34",
+              "nodetype": "multiply",
+              "type": "matrix33",
+              "inputs": [
+                {
+                  "name": "in1",
+                  "nodetype": "input",
+                  "type": "matrix33",
+                  "value": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "name": "in2",
+                  "nodetype": "input",
+                  "type": "matrix33",
+                  "value": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "matrix33"
+                }
+              ]
+            },
+            {
+              "name": "multiply_matrix45",
+              "nodetype": "multiply",
+              "type": "matrix44",
+              "inputs": [
+                {
+                  "name": "in1",
+                  "nodetype": "input",
+                  "type": "matrix44",
+                  "value": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "name": "in2",
+                  "nodetype": "input",
+                  "type": "matrix44",
+                  "value": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "matrix44"
+                }
+              ]
+            },
+            {
+              "name": "constant_integer1",
+              "nodetype": "constant",
+              "type": "integer",
+              "inputs": [
+                {
+                  "name": "value",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 1
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "name": "mix_vector3",
+              "nodetype": "mix",
+              "type": "vector3",
+              "inputs": [
+                {
+                  "name": "fg",
+                  "nodetype": "input",
+                  "type": "vector3",
+                  "value": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "bg",
+                  "nodetype": "input",
+                  "type": "vector3",
+                  "value": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                },
+                {
+                  "name": "mix",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 0.5
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector3"
+                }
+              ]
+            },
+            {
+              "name": "convert_color11",
+              "nodetype": "convert",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "in",
+                  "nodetype": "input",
+                  "type": "vector4",
+                  "node": 18
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "mix_vector5",
+              "nodetype": "mix",
+              "type": "vector4",
+              "inputs": [
+                {
+                  "name": "fg",
+                  "nodetype": "input",
+                  "type": "vector4",
+                  "value": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "bg",
+                  "nodetype": "input",
+                  "type": "vector4",
+                  "value": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                },
+                {
+                  "name": "mix",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 0.5
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector4"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "materials": [
+    {
+      "name": "glTF_Shader",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0,
+          "extensions": {
+            "KHR_texture_procedurals": {
+              "index": 0,
+              "output": 0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "asset": {
+    "version": "2.0",
+    "generator": "MaterialX 1.39 / glTF 2.0 Texture Procedural Converter"
+  },
+  "extensionsUsed": [
+    "KHR_texture_procedurals",
+    "EXT_texture_procedurals_mx_1_39"
+  ]
+}

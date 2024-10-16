@@ -41,7 +41,9 @@ def get_materialX_document(test_case, input_file):
 
 
 class TestConvertFromMtlx(unittest.TestCase):
-    # Test conversion from MaterialX to GLTF Procedural Texture
+    '''
+    Test conversion from MaterialX to GLTF Procedural Texture
+    '''
     def test_convert_from_mtlx(self):
 
         if not MxGLTFPTUtil.have_version(1, 39, 1):
@@ -123,7 +125,9 @@ class TestConvertFromMtlx(unittest.TestCase):
                 f.write(json_string)
 
 class TestConvertToMtlx(unittest.TestCase):
-    # Test conversion from GLTF Procedural Texture to MaterialX
+    '''
+    Test conversion from GLTF Procedural Texture to MaterialX
+    '''
     def test_convert_to_mtlx(self):
 
         if not MxGLTFPTUtil.have_version(1, 39, 1):
