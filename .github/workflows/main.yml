@@ -36,14 +36,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Install Doxygen
-        run: |
-          sudo apt-get update
-          sudo apt-get install doxygen=1.12.0          
+      #- name: Install Doxygen
+      #  run: |
+      #    sudo apt-get update
+      #    sudo apt-get install doxygen          
 
-      - name: Generate Documentation
-        run: |
-          source utilities/build_docs.sh
+      #- name: Generate Documentation
+      #  run: |
+      #    source utilities/build_docs.sh
 
       - name: Run Unit Tests
         run: |
