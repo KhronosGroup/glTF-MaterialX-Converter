@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709" fileprefix="boombox/">
+  <nodegraph name="boombox_graph">
+    <texcoord name="texcoord1" type="vector2">
+      <input name="index" type="integer" value="0" />
+    </texcoord>
+    <image name="Image" type="color3">
+      <input name="file" type="filename" value="BoomBox_baseColor.png" colorspace="srgb_texture" />
+      <input name="texcoord" type="vector2" nodename="texcoord1" />
+    </image>
+    <output name="out_Image" type="color3" nodename="Image" />
+  </nodegraph>
+  <gltf_pbr name="SR_boombox" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="boombox_graph" />
+  </gltf_pbr>
+  <surfacematerial name="Material_boombox" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="SR_boombox" />
+  </surfacematerial>
+</materialx>

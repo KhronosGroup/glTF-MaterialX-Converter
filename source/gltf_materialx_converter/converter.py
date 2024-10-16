@@ -283,7 +283,7 @@ class glTFMaterialXConverter():
         if fallback_image_index == -1:
             image = {
                 KHR_IMAGE_URI: fallback,
-                'name': 'KHR_texture_procedural_fallback'
+                KHR_TEXTURE_PROCEDURALS_NAME: 'KHR_texture_procedural_fallback'
             }
             images_block.append(image)
             fallback_image_index = len(images_block) - 1
@@ -727,6 +727,15 @@ class glTFMaterialXConverter():
                 status = 'Exported unconnected graphs: ' + ', '.join(unconnected_graphs)
             else:
                 status = 'No appropriate glTF shader graphs found'
+
+        # if images is empty remove it
+        images_block = json_data.get(KHR_IMAGES_BLOCK, [])
+        if len(images_block) == 0:
+            json_data.pop(KHR_IMAGES_BLOCK, None)
+        # if textures is empty remove it
+        textures_block = json_data.get(KHR_TEXTURES_BLOCK, [])
+        if len(textures_block) == 0:
+            json_data.pop(KHR_TEXTURES_BLOCK, None)
 
         # Add asset and extensions use blocks
         if procs and len(procs) > 0:

@@ -1,0 +1,110 @@
+#usda 1.0
+(
+    doc = """Generated from Composed Stage of root layer"""
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "gltf_Material"
+        {
+            float inputs:alpha = 1
+            float inputs:alpha_cutoff = 0.5
+            int inputs:alpha_mode = 0
+            color3f inputs:attenuation_color = (1, 1, 1)
+            float inputs:attenuation_distance = 0
+            color3f inputs:base_color = (1, 1, 1)
+            float inputs:clearcoat = 0
+            float3 inputs:clearcoat_normal
+            float inputs:clearcoat_roughness = 0
+            color3f inputs:emissive = (0, 0, 0)
+            float inputs:emissive_strength = 1
+            float inputs:ior = 1.5
+            float inputs:iridescence = 0
+            float inputs:iridescence_ior = 1.3
+            float inputs:iridescence_thickness = 100
+            float inputs:metallic = 1
+            float3 inputs:normal
+            float inputs:occlusion = 1
+            float inputs:roughness = 1
+            color3f inputs:sheen_color = (0, 0, 0)
+            float inputs:sheen_roughness = 0
+            float inputs:specular = 1
+            color3f inputs:specular_color = (1, 1, 1)
+            float3 inputs:tangent
+            float inputs:thickness = 0
+            float inputs:transmission = 0
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/gltf_Material/ND_gltf_pbr_surfaceshader.outputs:surface>
+
+            def Shader "ND_gltf_pbr_surfaceshader"
+            {
+                uniform token info:id = "ND_gltf_pbr_surfaceshader"
+                float inputs:alpha.connect = </MaterialX/Materials/gltf_Material.inputs:alpha>
+                float inputs:alpha_cutoff.connect = </MaterialX/Materials/gltf_Material.inputs:alpha_cutoff>
+                int inputs:alpha_mode.connect = </MaterialX/Materials/gltf_Material.inputs:alpha_mode>
+                color3f inputs:attenuation_color.connect = </MaterialX/Materials/gltf_Material.inputs:attenuation_color>
+                float inputs:attenuation_distance.connect = </MaterialX/Materials/gltf_Material.inputs:attenuation_distance>
+                color3f inputs:base_color.connect = </MaterialX/Materials/gltf_Material/gltf_procedural.outputs:output_color4>
+                float inputs:clearcoat.connect = </MaterialX/Materials/gltf_Material.inputs:clearcoat>
+                float3 inputs:clearcoat_normal.connect = </MaterialX/Materials/gltf_Material.inputs:clearcoat_normal>
+                float inputs:clearcoat_roughness.connect = </MaterialX/Materials/gltf_Material.inputs:clearcoat_roughness>
+                color3f inputs:emissive.connect = </MaterialX/Materials/gltf_Material.inputs:emissive>
+                float inputs:emissive_strength.connect = </MaterialX/Materials/gltf_Material.inputs:emissive_strength>
+                float inputs:ior.connect = </MaterialX/Materials/gltf_Material.inputs:ior>
+                float inputs:iridescence.connect = </MaterialX/Materials/gltf_Material.inputs:iridescence>
+                float inputs:iridescence_ior.connect = </MaterialX/Materials/gltf_Material.inputs:iridescence_ior>
+                float inputs:iridescence_thickness.connect = </MaterialX/Materials/gltf_Material.inputs:iridescence_thickness>
+                float inputs:metallic.connect = </MaterialX/Materials/gltf_Material.inputs:metallic>
+                float3 inputs:normal.connect = </MaterialX/Materials/gltf_Material.inputs:normal>
+                float inputs:occlusion.connect = </MaterialX/Materials/gltf_Material.inputs:occlusion>
+                float inputs:roughness.connect = </MaterialX/Materials/gltf_Material.inputs:roughness>
+                color3f inputs:sheen_color.connect = </MaterialX/Materials/gltf_Material.inputs:sheen_color>
+                float inputs:sheen_roughness.connect = </MaterialX/Materials/gltf_Material.inputs:sheen_roughness>
+                float inputs:specular.connect = </MaterialX/Materials/gltf_Material.inputs:specular>
+                color3f inputs:specular_color.connect = </MaterialX/Materials/gltf_Material.inputs:specular_color>
+                float3 inputs:tangent.connect = </MaterialX/Materials/gltf_Material.inputs:tangent>
+                float inputs:thickness.connect = </MaterialX/Materials/gltf_Material.inputs:thickness>
+                float inputs:transmission.connect = </MaterialX/Materials/gltf_Material.inputs:transmission>
+                token outputs:surface
+            }
+
+            def NodeGraph "gltf_procedural"
+            {
+                color3f outputs:output_color4.connect = </MaterialX/Materials/gltf_Material/gltf_procedural/constant_color4.outputs:out>
+
+                def Shader "constant_color4"
+                {
+                    uniform token info:id = "ND_constant_color3"
+                    color3f inputs:value = (1, 1, 1)
+                    color3f outputs:out
+                }
+            }
+        }
+    }
+
+    def "Shaders"
+    {
+        def Shader "ND_gltf_pbr_surfaceshader"
+        {
+            uniform token info:id = "ND_gltf_pbr_surfaceshader"
+            token outputs:surface
+        }
+    }
+
+    def "NodeGraphs"
+    {
+        def NodeGraph "gltf_procedural"
+        {
+            color3f outputs:output_color4.connect = </MaterialX/NodeGraphs/gltf_procedural/constant_color4.outputs:out>
+
+            def Shader "constant_color4"
+            {
+                uniform token info:id = "ND_constant_color3"
+                color3f inputs:value = (1, 1, 1)
+                color3f outputs:out
+            }
+        }
+    }
+}
+

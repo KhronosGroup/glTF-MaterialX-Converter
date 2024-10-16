@@ -1,0 +1,255 @@
+#usda 1.0
+(
+    doc = """Generated from Composed Stage of root layer 
+"""
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "surfacematerial"
+        {
+            float inputs:alpha = 1
+            float inputs:alpha_cutoff = 0.5
+            int inputs:alpha_mode = 0
+            color3f inputs:attenuation_color = (1, 1, 1)
+            float inputs:attenuation_distance = 0
+            color3f inputs:base_color = (1, 1, 1)
+            float inputs:clearcoat = 0
+            float3 inputs:clearcoat_normal
+            float inputs:clearcoat_roughness = 0
+            color3f inputs:emissive = (0, 0, 0)
+            float inputs:emissive_strength = 1
+            float inputs:ior = 1.5
+            float inputs:iridescence = 0
+            float inputs:iridescence_ior = 1.3
+            float inputs:iridescence_thickness = 100
+            float inputs:metallic = 1
+            float3 inputs:normal
+            float inputs:occlusion = 1
+            float inputs:roughness = 1
+            color3f inputs:sheen_color = (0, 0, 0)
+            float inputs:sheen_roughness = 0
+            float inputs:specular = 1
+            color3f inputs:specular_color = (1, 1, 1)
+            float3 inputs:tangent
+            float inputs:thickness = 0
+            float inputs:transmission = 0
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/surfacematerial/ND_gltf_pbr_surfaceshader.outputs:surface>
+
+            def Shader "ND_gltf_pbr_surfaceshader"
+            {
+                uniform token info:id = "ND_gltf_pbr_surfaceshader"
+                float inputs:alpha.connect = </MaterialX/Materials/surfacematerial.inputs:alpha>
+                float inputs:alpha_cutoff.connect = </MaterialX/Materials/surfacematerial.inputs:alpha_cutoff>
+                int inputs:alpha_mode.connect = </MaterialX/Materials/surfacematerial.inputs:alpha_mode>
+                color3f inputs:attenuation_color.connect = </MaterialX/Materials/surfacematerial.inputs:attenuation_color>
+                float inputs:attenuation_distance.connect = </MaterialX/Materials/surfacematerial.inputs:attenuation_distance>
+                color3f inputs:base_color.connect = </MaterialX/Materials/surfacematerial/nodegraph1.outputs:output_color3>
+                float inputs:clearcoat.connect = </MaterialX/Materials/surfacematerial.inputs:clearcoat>
+                float3 inputs:clearcoat_normal.connect = </MaterialX/Materials/surfacematerial.inputs:clearcoat_normal>
+                float inputs:clearcoat_roughness.connect = </MaterialX/Materials/surfacematerial.inputs:clearcoat_roughness>
+                color3f inputs:emissive.connect = </MaterialX/Materials/surfacematerial.inputs:emissive>
+                float inputs:emissive_strength.connect = </MaterialX/Materials/surfacematerial.inputs:emissive_strength>
+                float inputs:ior.connect = </MaterialX/Materials/surfacematerial.inputs:ior>
+                float inputs:iridescence.connect = </MaterialX/Materials/surfacematerial.inputs:iridescence>
+                float inputs:iridescence_ior.connect = </MaterialX/Materials/surfacematerial.inputs:iridescence_ior>
+                float inputs:iridescence_thickness.connect = </MaterialX/Materials/surfacematerial.inputs:iridescence_thickness>
+                float inputs:metallic.connect = </MaterialX/Materials/surfacematerial.inputs:metallic>
+                float3 inputs:normal.connect = </MaterialX/Materials/surfacematerial.inputs:normal>
+                float inputs:occlusion.connect = </MaterialX/Materials/surfacematerial.inputs:occlusion>
+                float inputs:roughness.connect = </MaterialX/Materials/surfacematerial.inputs:roughness>
+                color3f inputs:sheen_color.connect = </MaterialX/Materials/surfacematerial.inputs:sheen_color>
+                float inputs:sheen_roughness.connect = </MaterialX/Materials/surfacematerial.inputs:sheen_roughness>
+                float inputs:specular.connect = </MaterialX/Materials/surfacematerial.inputs:specular>
+                color3f inputs:specular_color.connect = </MaterialX/Materials/surfacematerial.inputs:specular_color>
+                float3 inputs:tangent.connect = </MaterialX/Materials/surfacematerial.inputs:tangent>
+                float inputs:thickness.connect = </MaterialX/Materials/surfacematerial.inputs:thickness>
+                float inputs:transmission.connect = </MaterialX/Materials/surfacematerial.inputs:transmission>
+                token outputs:surface
+            }
+
+            def NodeGraph "nodegraph1"
+            {
+                color3f outputs:output_color3.connect = </MaterialX/Materials/surfacematerial/nodegraph1/multiply_color4.outputs:out>
+
+                def Shader "texcoord_vector2"
+                {
+                    uniform token info:id = "ND_texcoord_vector2"
+                    int inputs:index = 0
+                    float2 outputs:out
+                }
+
+                def Shader "place2d_vector3"
+                {
+                    uniform token info:id = "ND_place2d_vector2"
+                    float2 inputs:offset = (0, 0)
+                    int inputs:operationorder = 1
+                    float2 inputs:pivot = (0, 0)
+                    float inputs:rotate = 0
+                    float2 inputs:scale = (1, 1)
+                    float2 inputs:texcoord = (0, 0)
+                    float2 inputs:texcoord.connect = </MaterialX/Materials/surfacematerial/nodegraph1/texcoord_vector2.outputs:out>
+                    float2 outputs:out
+                }
+
+                def Shader "multiply_color4"
+                {
+                    uniform token info:id = "ND_multiply_color3"
+                    color3f inputs:in1 = (0, 0, 0)
+                    color3f inputs:in1.connect = </MaterialX/Materials/surfacematerial/nodegraph1/image_color3.outputs:out>
+                    color3f inputs:in2 = (1, 1, 1)
+                    color3f inputs:in2.connect = </MaterialX/Materials/surfacematerial/nodegraph1/image_color4.outputs:out>
+                    color3f outputs:out
+                }
+
+                def Shader "image_color4"
+                {
+                    uniform token info:id = "ND_image_color3"
+                    color3f inputs:default = (0.9511, 0.0255797, 0.0255797)
+                    asset inputs:file = @grid.png@ (
+                        colorSpace = "srgb_texture"
+                    )
+                    string inputs:filtertype = "linear"
+                    string inputs:frameendaction = "constant"
+                    int inputs:frameoffset = 1
+                    string inputs:framerange = "100"
+                    string inputs:layer = "0"
+                    float2 inputs:texcoord.connect = </MaterialX/Materials/surfacematerial/nodegraph1/place2d_vector3.outputs:out>
+                    string inputs:uaddressmode = "periodic"
+                    string inputs:vaddressmode = "periodic"
+                    color3f outputs:out
+                }
+
+                def Shader "image_color3"
+                {
+                    uniform token info:id = "ND_image_color3"
+                    color3f inputs:default = (0.9511, 0.0255797, 0.0255797)
+                    asset inputs:file = @grid.png@ (
+                        colorSpace = "srgb_texture"
+                    )
+                    string inputs:filtertype = "linear"
+                    string inputs:frameendaction = "constant"
+                    int inputs:frameoffset = 1
+                    string inputs:framerange = "100"
+                    string inputs:layer = "0"
+                    float2 inputs:texcoord.connect = </MaterialX/Materials/surfacematerial/nodegraph1/place2d_vector2.outputs:out>
+                    string inputs:uaddressmode = "periodic"
+                    string inputs:vaddressmode = "periodic"
+                    color3f outputs:out
+                }
+
+                def Shader "place2d_vector2"
+                {
+                    uniform token info:id = "ND_place2d_vector2"
+                    float2 inputs:offset = (0, 0)
+                    int inputs:operationorder = 1
+                    float2 inputs:pivot = (0.5, 0.5)
+                    float inputs:rotate = 45
+                    float2 inputs:scale = (1, 1)
+                    float2 inputs:texcoord = (0, 0)
+                    float2 inputs:texcoord.connect = </MaterialX/Materials/surfacematerial/nodegraph1/texcoord_vector2.outputs:out>
+                    float2 outputs:out
+                }
+            }
+        }
+    }
+
+    def "Shaders"
+    {
+        def Shader "ND_gltf_pbr_surfaceshader"
+        {
+            uniform token info:id = "ND_gltf_pbr_surfaceshader"
+            token outputs:surface
+        }
+    }
+
+    def "NodeGraphs"
+    {
+        def NodeGraph "nodegraph1"
+        {
+            color3f outputs:output_color3.connect = </MaterialX/NodeGraphs/nodegraph1/multiply_color4.outputs:out>
+
+            def Shader "texcoord_vector2"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "place2d_vector3"
+            {
+                uniform token info:id = "ND_place2d_vector2"
+                float2 inputs:offset = (0, 0)
+                int inputs:operationorder = 1
+                float2 inputs:pivot = (0, 0)
+                float inputs:rotate = 0
+                float2 inputs:scale = (1, 1)
+                float2 inputs:texcoord = (0, 0)
+                float2 inputs:texcoord.connect = </MaterialX/NodeGraphs/nodegraph1/texcoord_vector2.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "multiply_color4"
+            {
+                uniform token info:id = "ND_multiply_color3"
+                color3f inputs:in1 = (0, 0, 0)
+                color3f inputs:in1.connect = </MaterialX/NodeGraphs/nodegraph1/image_color3.outputs:out>
+                color3f inputs:in2 = (1, 1, 1)
+                color3f inputs:in2.connect = </MaterialX/NodeGraphs/nodegraph1/image_color4.outputs:out>
+                color3f outputs:out
+            }
+
+            def Shader "image_color4"
+            {
+                uniform token info:id = "ND_image_color3"
+                color3f inputs:default = (0.9511, 0.0255797, 0.0255797)
+                asset inputs:file = @grid.png@ (
+                    colorSpace = "srgb_texture"
+                )
+                string inputs:filtertype = "linear"
+                string inputs:frameendaction = "constant"
+                int inputs:frameoffset = 1
+                string inputs:framerange = "100"
+                string inputs:layer = "0"
+                float2 inputs:texcoord.connect = </MaterialX/NodeGraphs/nodegraph1/place2d_vector3.outputs:out>
+                string inputs:uaddressmode = "periodic"
+                string inputs:vaddressmode = "periodic"
+                color3f outputs:out
+            }
+
+            def Shader "image_color3"
+            {
+                uniform token info:id = "ND_image_color3"
+                color3f inputs:default = (0.9511, 0.0255797, 0.0255797)
+                asset inputs:file = @grid.png@ (
+                    colorSpace = "srgb_texture"
+                )
+                string inputs:filtertype = "linear"
+                string inputs:frameendaction = "constant"
+                int inputs:frameoffset = 1
+                string inputs:framerange = "100"
+                string inputs:layer = "0"
+                float2 inputs:texcoord.connect = </MaterialX/NodeGraphs/nodegraph1/place2d_vector2.outputs:out>
+                string inputs:uaddressmode = "periodic"
+                string inputs:vaddressmode = "periodic"
+                color3f outputs:out
+            }
+
+            def Shader "place2d_vector2"
+            {
+                uniform token info:id = "ND_place2d_vector2"
+                float2 inputs:offset = (0, 0)
+                int inputs:operationorder = 1
+                float2 inputs:pivot = (0.5, 0.5)
+                float inputs:rotate = 45
+                float2 inputs:scale = (1, 1)
+                float2 inputs:texcoord = (0, 0)
+                float2 inputs:texcoord.connect = </MaterialX/NodeGraphs/nodegraph1/texcoord_vector2.outputs:out>
+                float2 outputs:out
+            }
+        }
+    }
+}
+

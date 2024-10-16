@@ -373,7 +373,7 @@ $(function(){initNavTree('converter_8py_source.html',''); initResizable(true); }
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <span class="keywordflow">if</span> fallback_image_index == -1:</div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>            image = {</div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>                KHR_IMAGE_URI: fallback,</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>                <span class="stringliteral">&#39;name&#39;</span>: <span class="stringliteral">&#39;KHR_texture_procedural_fallback&#39;</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>                KHR_TEXTURE_PROCEDURALS_NAME: <span class="stringliteral">&#39;KHR_texture_procedural_fallback&#39;</span></div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>            }</div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>            images_block.append(image)</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>            fallback_image_index = len(images_block) - 1</div>
@@ -822,22 +822,31 @@ $(function(){initNavTree('converter_8py_source.html',''); initResizable(true); }
 <div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>            <span class="keywordflow">else</span>:</div>
 <div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>                status = <span class="stringliteral">&#39;No appropriate glTF shader graphs found&#39;</span></div>
 <div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span> </div>
-<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>        <span class="comment"># Add asset and extensions use blocks</span></div>
-<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>        <span class="keywordflow">if</span> procs <span class="keywordflow">and</span> len(procs) &gt; 0:</div>
-<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>            json_data[KHR_ASSET_BLOCK] = json_asset</div>
-<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>            json_data[KHR_EXTENTIONSUSED_BLOCK] = extensions_used</div>
-<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span> </div>
-<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>            <span class="comment"># Get the JSON string back</span></div>
-<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>            json_string = json.dumps(json_data, indent=2) <span class="keywordflow">if</span> json_data <span class="keywordflow">else</span> <span class="stringliteral">&#39;&#39;</span></div>
-<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>            <span class="keywordflow">if</span> json_string == <span class="stringliteral">&#39;{}&#39;</span>:</div>
-<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span>                json_string = <span class="stringliteral">&#39;&#39;</span></div>
-<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>        <span class="keywordflow">else</span>:</div>
-<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>            json_string = <span class="stringliteral">&#39;&#39;</span></div>
-<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>            status = <span class="stringliteral">&#39;No procedural graphs converted&#39;</span></div>
-<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span> </div>
-<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>        <span class="keywordflow">return</span> json_string, status</div>
-<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span> </div>
-<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span> </div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>        <span class="comment"># if images is empty remove it</span></div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>        images_block = json_data.get(KHR_IMAGES_BLOCK, [])</div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>        <span class="keywordflow">if</span> len(images_block) == 0:</div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>            json_data.pop(KHR_IMAGES_BLOCK, <span class="keywordtype">None</span>)</div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>        <span class="comment"># if textures is empty remove it</span></div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>        textures_block = json_data.get(KHR_TEXTURES_BLOCK, [])</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>        <span class="keywordflow">if</span> len(textures_block) == 0:</div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>            json_data.pop(KHR_TEXTURES_BLOCK, <span class="keywordtype">None</span>)</div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span> </div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>        <span class="comment"># Add asset and extensions use blocks</span></div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>        <span class="keywordflow">if</span> procs <span class="keywordflow">and</span> len(procs) &gt; 0:</div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>            json_data[KHR_ASSET_BLOCK] = json_asset</div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>            json_data[KHR_EXTENTIONSUSED_BLOCK] = extensions_used</div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span> </div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span>            <span class="comment"># Get the JSON string back</span></div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>            json_string = json.dumps(json_data, indent=2) <span class="keywordflow">if</span> json_data <span class="keywordflow">else</span> <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>            <span class="keywordflow">if</span> json_string == <span class="stringliteral">&#39;{}&#39;</span>:</div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>                json_string = <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>            json_string = <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>            status = <span class="stringliteral">&#39;No procedural graphs converted&#39;</span></div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span> </div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>        <span class="keywordflow">return</span> json_string, status</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span> </div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span> </div>
 </div>
 </div>
 <div class="ttc" id="aclassgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter_html"><div class="ttname"><a href="classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html">gltf_materialx_converter.converter.glTFMaterialXConverter</a></div><div class="ttdoc">Class for converting to convert between glTF Texture Procedurals content and MaterialX.</div><div class="ttdef"><b>Definition</b> <a href="#l00161">converter.py:161</a></div></div>

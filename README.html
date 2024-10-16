@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="materialx--gltf-procedurals-interop">MaterialX / glTF Procedurals Interop</h2>
+<p><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/actions?query=branch%3Amain"><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/workflows/main/badge.svg" alt="Build Status"></a></p>
+<h3 id="introduction">Introduction</h3>
+<p>This package supports the bi-directional translation between MaterialX material graphs and the glTF Procedural Textures extension.</p>
+<ul>
+<li>The Khronos extensions can be found here:
+<ul>
+<li><a href="https://github.com/KhronosGroup/glTF/tree/KHR_texture_procedurals/extensions/2.0/Khronos/KHR_texture_procedurals">KHR_texture_procedurals</a></li>
+<li><a href="https://github.com/KhronosGroup/glTF/tree/KHR_texture_procedurals/extensions/2.0/Vendor/EXT_texture_procedurals_mx_1_39">EXT_texture_procedurals_mx_1_39</a></li>
+</ul>
+</li>
+<li>The MaterialX specification documents can be found <a href="https://github.com/AcademySoftwareFoundation/MaterialX/tree/main/documents/Specification">here</a></li>
+</ul>
+<h3 id="dependencies">Dependencies</h3>
+<ul>
+<li>The 1.39 release (or patch releases) of MaterialX available on<br>
+<a href="https://pypi.org/project/MaterialX/">PyPi</a> is required.</li>
+<li>The <code>jsonschema</code> package if Schema validation is desired</li>
+</ul>
+<h3 id="setup">Setup</h3>
+<p>The Github repository can be forked / cloned locally and the package built using <code>pip</code> as follows from the root folder:</p>
+<p><code>pip install .</code></p>
+<p>All dependencies listed will be installed if required.</p>
+<h4 id="command-line-interfaces">Command Line Interfaces</h4>
+<p>To convert from a MaterialX document to produce a glTF JSON document the<br>
+<code>materialx_to_gltf.py</code> utility script may be used.</p>
+<p>The following is an example converting a sample file found in the test folder.<br>
+The results are saved to a file called <code>checkerboard_graph.gltf</code>.</p>
+<code>
+python source/gltf_materialx_converter/materialx_to_gltf.py "tests/data/checkerboard_graph.mtlx"
+</code>
+<h4 id="api-example">API Example</h4>
+<p>The following is a simple example of using the API to convert from MaterialX to glTF</p>
+<pre>
+# Import support modules
+import MaterialX as mx
+import json
+
+# Import conversion module utilities
+from gltf_materialx_converter import converter as MxGLTFPT
+from gltf_materialx_converter import utilities as MxGLTFPTUtil
+
+input_file = "my_file.mtlx" # Replace with desired file name
+
+# Set up definitions and read in a sample file
+stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
+mxdoc = MxGLTFPTUtil.create_working_document([stdlib])
+mx.readFromXmlFile(mxdoc, input_file)
+
+# Convert
+converter = MxGLTFPT.glTFMaterialXConverter()
+json_string, status = converter.materialX_to_glTF(mxdoc)
+
+# Write result to disk
+gltf_file = input_file.replace('.mtlx', '.gltf')
+with open(gltf_file, 'w') as f:
+    f.write(json_string)
+</pre>
+<h3 id="documentation">Documentation</h3>
+<h4 id="api">API</h4>
+<p>API documentation can be found <a href="./documents/html/index.html">here</a></p>
+<p>Documentation can be generated by running <code>doxygen</code> from the &quot;documents&quot; folder.<br>
+It is assumed that <code>Doxygen</code> has been installed locally.</p>
+<h3 id="tests">Tests</h3>
+<p>The following command can be used to run tests from the root folder:</p>
+<code>
+python -m unittest discover -s tests -p "test_*.py"
+</code>
+<h3 id="supported-materialx-configurations">Supported MaterialX Configurations</h3>
+<p>Only specific configurations of MaterialX can be mapped to glTF Texture Procedurals.</p>
+<ol>
+<li>There must be a <code>surfacematerial</code> material node</li>
+<li>There must be a <code>glTF PBR</code> node connected to the surface shader input of the material.</li>
+<li>A single <code>nodegraph</code> with a <code>color3</code> output node which is connected to the base color on the surface shader. The constant node can be replaced with the desired set of<br>
+nodes, and one or more inputs may be specified to route data into the <code>nodegraph</code>.</li>
+</ol>
+<p>Any document level qualifiers must be pre-resolved when converting rom MaterialX. This includes any <code>fileprefix</code> qualifiers for image file names.</p>
+<table>
+<tr>
+<th>Description
+<th>Documents
+<th>Reference Image
+<tr>
+<td> 
+A sample minimal graph routing a constant color to the downstream shader.
+There are no inputs specified on the `nodegraph`.
+<pre><code class="language-mermaid"><div class="mermaid">graph TB
+    gltf_Material([surfacematerial:material])
+    style gltf_Material   fill:#090, color:#FFF
+    gltf_Shader[gltf_pbr:surfaceshader]
+    subgraph gltf_procedural
+    gltf_procedural_output_color4([output:color3])
+    style gltf_procedural_output_color4  fill:#09D, color:#FFF
+    gltf_procedural_constant_color4([constant:color3:1,1,1])
+    style gltf_procedural_constant_color4  fill:#888, color:#000
+    end
+    gltf_Shader --"surfaceshader"--> gltf_Material
+    gltf_procedural_constant_color4 --> gltf_procedural_output_color4
+    gltf_procedural_output_color4 --"base_color"--> gltf_Shader
+</div></code></pre>
+</td>
+<td>
+<a href=".//tests/data/minimal_graph.mtlx">MTLX</a>
+<a href=".//tests/data/minimal_graph.gltf">GLTF</a>
+<a href=".//tests/data/minimal_graph.usda">USD</a>
+</td>
+<td><img src=".//tests/data/minimal_graph.png">
+</td>
+</tr>
+</table>
+<h4 id="test-data">Test Data</h4>
+<p>The following is a set of example files used for unit testing. The term &quot;Compound nodes&quot; refers to nodes<br>
+which are implemented as node graphs themselves (&quot;functional graphs&quot; in MaterialX terminology)</p>
+<p>For each <code>MaterialX</code> file the resulting <code>glTF</code> file is given, along with a diagram of how the graph looks and reference image.<br>
+A sample conversion from MaterialX to <code>USDShade</code> network is provided where applicable.</p>
+<details open><summary>Examples</summary>
+<table>
+<tr>
+<th>Description
+<th>Documents
+<th>Reference Image
+<tr>
+<td> 
+The following is a simple graph which adds two colors together.
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: multiple</li>
+<li>Graph outputs: single</li>
+<li>Stream inputs: no</li>
+<li>Compound nodes: none</li>
+<li>Downstream shader: glTF PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph TB
+    subgraph graph1
+    graph1_myin1([input:1,0,0])
+    style graph1_myin1  fill:#09D, color:#FFF
+    graph1_myin2([input:0.94902, 0.768627, 0.109804])
+    style graph1_myin2  fill:#09D, color:#FFF
+    graph1_output_color4([output])
+    style graph1_output_color4  fill:#09D, color:#FFF
+    graph1_add_color4[add]
+    end
+    Default([surfacematerial])
+    style Default   fill:#090, color:#FFF
+    gltf_mat[gltf_pbr]
+    graph1_myin2 --"in1"--> graph1_add_color4
+    graph1_myin1 --"in2"--> graph1_add_color4
+    graph1_add_color4 --> graph1_output_color4
+    gltf_mat --"surfaceshader"--> Default
+    graph1_output_color4 --"base_color"--> gltf_mat
+</div></code></pre>
+</td>
+<td>
+<a href=".//tests/data/add_graph.mtlx">MTLX</a>
+<a href=".//tests/data/add_graph.gltf">GLTF</a>
+<a href=".//tests/data/add_graph.usda">USD</a>
+</td>
+<td><img src=".//tests/data/add_graph.png">
+</td>
+</tr>
+<tr>
+<td>
+<p>The following is a pattern graph that produces a checkerboard pattern.<br>
+The two input colors, and a texture coordinate tiling option are exposed on the node graph. The output is a color which is routed to a downstream glTF PBR shading node (glTF material).</p>
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: multiple</li>
+<li>Graph outputs: single</li>
+<li>Stream inputs: yes</li>
+<li>Compound nodes: none</li>
+<li>Downstream shader: glTF PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph TB
+    subgraph NG_main
+    NG_main_uvtiling([input:vector2:8,8])
+    style NG_main_uvtiling  fill:#09D, color:#FFF
+    NG_main_color1([input:color3:1,0.094118,0.031373])
+    style NG_main_color1  fill:#09D, color:#FFF
+    NG_main_color2([input:color3:0.035294,0.090196,0.878431])
+    style NG_main_color2  fill:#09D, color:#FFF
+    NG_main_output_N_mtlxmix_out([output:color3])
+    style NG_main_output_N_mtlxmix_out  fill:#09D, color:#FFF
+    NG_main_N_mtlxmix[mix:color3]
+    NG_main_N_mtlxdotproduct[dotproduct:float]
+    NG_main_N_mtlxmult[multiply:vector2]
+    NG_main_N_mtlxsubtract[subtract:vector2]
+    NG_main_N_mtlxfloor[floor:vector2]
+    NG_main_N_modulo[modulo:float]
+    NG_main_Texcoord[texcoord:vector2:0]
+    end
+    Gltf_pbr[gltf_pbr:surfaceshader]
+    MAT_Gltf_pbr([surfacematerial:material])
+    style MAT_Gltf_pbr   fill:#090, color:#FFF
+    NG_main_N_mtlxmix --> NG_main_output_N_mtlxmix_out
+    NG_main_color1 --"fg"--> NG_main_N_mtlxmix
+    NG_main_color2 --"bg"--> NG_main_N_mtlxmix
+    NG_main_N_modulo --"mix"--> NG_main_N_mtlxmix
+    NG_main_N_mtlxfloor --"in1"--> NG_main_N_mtlxdotproduct
+    NG_main_Texcoord --"in1"--> NG_main_N_mtlxmult
+    NG_main_uvtiling --"in2"--> NG_main_N_mtlxmult
+    NG_main_N_mtlxmult --"in1"--> NG_main_N_mtlxsubtract
+    NG_main_N_mtlxsubtract --"in"--> NG_main_N_mtlxfloor
+    NG_main_N_mtlxdotproduct --"in1"--> NG_main_N_modulo
+    NG_main_output_N_mtlxmix_out --"base_color"--> Gltf_pbr
+    Gltf_pbr --"surfaceshader"--> MAT_Gltf_pbr
+</div></code></pre>
+</td>
+<td>
+<a href="./tests/data/checkerboard_graph.mtlx">MTLX</a>
+<a href="./tests/data/checkerboard_graph.gltf">GLTF</a>
+<a href="./tests/data/checkerboard_graph.usda">USD</a>
+</td>
+<td><img src="./tests/data/checkerboard_graph.png">
+</td>
+</tr>
+<tr>
+<td>Pattern graph only without any materials.
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: multiple</li>
+<li>Graph outputs: single</li>
+<li>Stream inputs: no</li>
+<li>Compound nodes: yes</li>
+<li>Downstream shader: none</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph TB
+    subgraph splittb_graph
+    splittb_graph_output_color4([output_color4])
+    style splittb_graph_output_color4  fill:#09D, color:#FFF
+    splittb_graph_splittb_color4[splittb_color4]
+    splittb_graph_texcoord_vector[texcoord_vector:0]
+    end
+    subgraph checker_graph
+    checker_graph_output_color5([output_color5])
+    style checker_graph_output_color5  fill:#09D, color:#FFF
+    checker_graph_checkerboard_color4[checkerboard_color4]
+    checker_graph_texcoord_vector3[texcoord_vector3:0]
+    end
+    splittb_graph_texcoord_vector --"texcoord"--> splittb_graph_splittb_color4
+    splittb_graph_splittb_color4 --> splittb_graph_output_color4
+    checker_graph_texcoord_vector3 --"texcoord"--> checker_graph_checkerboard_color4
+    checker_graph_checkerboard_color4 --> checker_graph_output_color5
+</div></code></pre>
+</td>
+<td><a href="./tests/data/no_material.mtlx">MTLX</a>
+<a href="./tests/data/no_material.gltf">GLTF</a>
+<td><img src="./tests/data/no_material.png">
+</tr>
+<tr>
+<td>
+Pattern connected to an unsupported (non-glTF) PBR downstream shader.
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: multiple</li>
+<li>Graph outputs: single</li>
+<li>Stream inputs: no</li>
+<li>Compound nodes: yes</li>
+<li>Downstream shader: &quot;standard surface&quot;</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph TB
+    subgraph splittb_graph
+    splittb_graph_output_color4([output_color4])
+    style splittb_graph_output_color4  fill:#09D, color:#FFF
+    splittb_graph_splittb_color4[splittb_color4]
+    splittb_graph_texcoord_vector3[texcoord_vector3:0]
+    end
+    subgraph checker_graph
+    checker_graph_output_color5([output_color5])
+    style checker_graph_output_color5  fill:#09D, color:#FFF
+    checker_graph_checkerboard_color4[checkerboard_color4]
+    checker_graph_texcoord_vector3[texcoord_vector3:0]
+    end
+    standard_surface_surfaceshader1[standard_surface_surfaceshader1]
+    surfacematerial_material1([surfacematerial_material1])
+    style surfacematerial_material1   fill:#090, color:#FFF
+    surfacematerial_material2([surfacematerial_material2])
+    style surfacematerial_material2   fill:#090, color:#FFF
+    standard_surface_surfaceshader2[standard_surface_surfaceshader2]
+    splittb_graph_splittb_color4 --> splittb_graph_output_color4
+    splittb_graph_texcoord_vector3 --"texcoord"--> splittb_graph_splittb_color4
+    checker_graph_checkerboard_color4 --> checker_graph_output_color5
+    checker_graph_texcoord_vector3 --"texcoord"--> checker_graph_checkerboard_color4
+    splittb_graph_output_color4 --"base_color"--> standard_surface_surfaceshader1
+    standard_surface_surfaceshader1 --"surfaceshader"--> surfacematerial_material1
+    standard_surface_surfaceshader2 --"surfaceshader"--> surfacematerial_material2
+    checker_graph_output_color5 --"base_color"--> standard_surface_surfaceshader2
+</div></code></pre>
+</td>
+<td><a href="./tests/data/unsupported_stdsurf.mtlx">MTLX</a>
+<a href="./tests/data/unsupported_stdsurf.gltf">GLTF</a>
+<a href="./tests/data/unsupported_stdsurf.usda">USD</a>
+</td>
+<td><img src="./tests/data/unsupported_stdsurf.png"> (original)
+<img src="./tests/data/no_material.png"> (skipping material )
+</td>
+<tr>
+<td>Pattern graph using a file texture
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: single</li>
+<li>Stream inputs: yes</li>
+<li>File inputs: single. Non-default filtering.</li>
+<li>Compound nodes: yes. UV placement.</li>
+<li>Downstream shader: gltf PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph TB
+    subgraph nodegraph1
+    nodegraph1_output_color3([output_color3:color3])
+    style nodegraph1_output_color3  fill:#09D, color:#FFF
+    nodegraph1_image_color3[image_color3:color3]
+    nodegraph1_place2d_vector2[place2d_vector2:vector2]
+    nodegraph1_texcoord_vector2[texcoord_vector2:vector2:1]
+    end
+    gltf_pbr_surfaceshader[gltf_pbr_surfaceshader:surfaceshader]
+    surfacematerial([surfacematerial:material])
+    style surfacematerial   fill:#090, color:#FFF
+    nodegraph1_image_color3 --> nodegraph1_output_color3
+    nodegraph1_place2d_vector2 --"texcoord"--> nodegraph1_image_color3
+    nodegraph1_texcoord_vector2 --"texcoord"--> nodegraph1_place2d_vector2
+    nodegraph1_output_color3 --"base_color"--> gltf_pbr_surfaceshader
+    gltf_pbr_surfaceshader --"surfaceshader"--> surfacematerial
+</div></code></pre>
+</td>
+<td><a href="./tests/data/bindings/gltf_simple_filetexture.mtlx">MTLX</a>
+<a href="./tests/data/bindings/gltf_simple_filetexture.gltf">GLTF</a>
+<a href="./tests/data/bindings/gltf_simple_filetexture.usda">USD</a>
+<td><img src="./tests/data/bindings/gltf_simple_filetexture.png">
+</tr>
+<tr>
+<td>Pattern graph using using multiple file textures with different texture placements and a shared input stream.
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: single</li>
+<li>Stream inputs: yes</li>
+<li>File inputs: multiple</li>
+<li>Compound nodes: yes.</li>
+<li>Downstream shader: gltf PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph TB
+    gltf_pbr_surfaceshader[gltf_pbr:surfaceshader]
+    surfacematerial([surfacematerial:material])
+    style surfacematerial   fill:#090, color:#FFF
+    subgraph nodegraph1
+    nodegraph1_output_color3([output:color3])
+    style nodegraph1_output_color3  fill:#09D, color:#FFF
+    nodegraph1_texcoord_vector2[texcoord:vector2:0]
+    nodegraph1_place2d_vector3[place2d:vector2]
+    nodegraph1_multiply_color4[multiply:color3]
+    nodegraph1_image_color4[image:color3]
+    nodegraph1_image_color3[image:color3]
+    nodegraph1_place2d_vector2[place2d:vector2]
+    end
+    nodegraph1_output_color3 --"base_color"--> gltf_pbr_surfaceshader
+    gltf_pbr_surfaceshader --"surfaceshader"--> surfacematerial
+    nodegraph1_multiply_color4 --> nodegraph1_output_color3
+    nodegraph1_texcoord_vector2 --"texcoord"--> nodegraph1_place2d_vector3
+    nodegraph1_image_color3 --"in1"--> nodegraph1_multiply_color4
+    nodegraph1_image_color4 --"in2"--> nodegraph1_multiply_color4
+    nodegraph1_place2d_vector3 --"texcoord"--> nodegraph1_image_color4
+    nodegraph1_place2d_vector2 --"texcoord"--> nodegraph1_image_color3
+    nodegraph1_texcoord_vector2 --"texcoord"--> nodegraph1_place2d_vector2
+</div></code></pre>
+</td>
+<td><a href="./tests/data/bindings/gltf_shared_filetexture.mtlx">MTLX</a>
+<a href="./tests/data/bindings/gltf_shared_filetexture.gltf">GLTF</a>
+<a href="./tests/data/bindings/gltf_shared_filetexture.usda">USD</a>
+<td><img src="./tests/data/bindings/gltf_shared_filetexture.png">
+</tr>
+<tr>
+<td>Pattern graph using using multiple file textures routed to different outputs. Each output
+is connected to a different downstream shader.
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: single</li>
+<li>Stream inputs: yes</li>
+<li>File inputs: yes.</li>
+<li>Compound nodes: yes.</li>
+<li>Downstream shader: gltf PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph TB
+    gltf_pbr_surfaceshader[gltf_pbr:surfaceshader]
+    surfacematerial([surfacematerial:material])
+    style surfacematerial   fill:#090, color:#FFF
+    surfacematerial1([surfacematerial:material])
+    style surfacematerial1   fill:#090, color:#FFF
+    gltf_pbr_surfaceshader1[gltf_pbr:surfaceshader]
+    subgraph nodegraph1
+    nodegraph1_output_color4([output:color3])
+    style nodegraph1_output_color4  fill:#09D, color:#FFF
+    nodegraph1_output_color3([output:color3])
+    style nodegraph1_output_color3  fill:#09D, color:#FFF
+    nodegraph1_texcoord_vector2[texcoord:vector2:0]
+    nodegraph1_place2d_vector3[place2d:vector2]
+    nodegraph1_place2d_vector2[place2d:vector2]
+    nodegraph1_image_color4[image:color3]
+    nodegraph1_image_color3[image:color3]
+    end
+    nodegraph1_output_color3 --"base_color"--> gltf_pbr_surfaceshader
+    gltf_pbr_surfaceshader --"surfaceshader"--> surfacematerial
+    gltf_pbr_surfaceshader1 --"surfaceshader"--> surfacematerial1
+    nodegraph1_output_color4 --"base_color"--> gltf_pbr_surfaceshader1
+    nodegraph1_texcoord_vector2 --"texcoord"--> nodegraph1_place2d_vector3
+    nodegraph1_texcoord_vector2 --"texcoord"--> nodegraph1_place2d_vector2
+    nodegraph1_place2d_vector3 --"texcoord"--> nodegraph1_image_color4
+    nodegraph1_image_color4 --> nodegraph1_output_color4
+    nodegraph1_image_color3 --> nodegraph1_output_color3
+    nodegraph1_place2d_vector2 --"texcoord"--> nodegraph1_image_color3
+</div></code></pre>
+</td>
+<td><a href="./tests/data/bindings/gltf_shared_filetexture_2.mtlx">MTLX</a>
+<a href="./tests/data/bindings/gltf_shared_filetexture_2.gltf">GLTF</a>
+<a href="./tests/data/bindings/gltf_shared_filetexture_2.usda">USD</a>
+<td><img src="./tests/data/bindings/gltf_shared_filetexture_2.png">
+</tr>
+<tr>
+<td>Example MaterialX version of "boombox" example (from Khronos sample assets) that shows file name resolving.
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: one</li>
+<li>File inputs: yes.</li>
+<li>File prefix: resolved during conversion (as is done for &quot;UsdMtlx&quot; resolve)</li>
+<li>Compound nodes: no</li>
+<li>Downstream shader: glTF PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph LR
+    subgraph boombox_graph
+    boombox_graph_out_Image([out_Image])
+    style boombox_graph_out_Image  fill:#09D, color:#FFF
+    boombox_graph_texcoord1[texcoord1:0]
+    boombox_graph_Image[Image]
+    end
+    SR_boombox[SR_boombox]
+    Material_boombox([Material_boombox])
+    style Material_boombox   fill:#090, color:#FFF
+    boombox_graph_texcoord1 --"texcoord"--> boombox_graph_Image
+    boombox_graph_Image --> boombox_graph_out_Image
+    boombox_graph_out_Image --"base_color"--> SR_boombox
+    SR_boombox --"surfaceshader"--> Material_boombox
+</div></code></pre>
+</td>
+<td><a href="./tests/data/gltf_examples/gltf_pbr_boombox.mtlx">MTLX</a>
+<a href="./tests/data/gltf_examples/gltf_pbr_boombox.gltf">GLTF</a>
+<a href="./tests/data/gltf_examples/gltf_pbr_boombox.usda">USD</a>
+</td>
+<td><img src="./tests/data/gltf_examples/gltf_pbr_boombox.png">
+</td>
+</tr>
+<tr>
+<td>Example with various port data types: integer, vec2, vec3, vec4, color3, color4, integer, matrix33, matrix44
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: 1 per type</li>
+<li>File inputs: no</li>
+<li>Compound nodes: no</li>
+<li>Downstream shader: glTF PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph LR
+    glTF_Material([surfacematerial:material])
+    style glTF_Material   fill:#090, color:#FFF
+    glTF_Shader[gltf_pbr:surfaceshader]
+    subgraph mygraph
+    mygraph_out([output:color3])
+    style mygraph_out  fill:#09D, color:#FFF
+    mygraph_out1([output:color3])
+    style mygraph_out1  fill:#09D, color:#FFF
+    mygraph_out2([output:color3])
+    style mygraph_out2  fill:#09D, color:#FFF
+    mygraph_out3([output:color3])
+    style mygraph_out3  fill:#09D, color:#FFF
+    mygraph_out4([output:color3])
+    style mygraph_out4  fill:#09D, color:#FFF
+    mygraph_out6([output:color3])
+    style mygraph_out6  fill:#09D, color:#FFF
+    mygraph_out7([output:color3])
+    style mygraph_out7  fill:#09D, color:#FFF
+    mygraph_out5([output:color3])
+    style mygraph_out5  fill:#09D, color:#FFF
+    mygraph_out8([output:color3])
+    style mygraph_out8  fill:#09D, color:#FFF
+    mygraph_convert_color4[convert:color3]
+    mygraph_convert_color5[convert:color3]
+    mygraph_convert_color6[convert:color3]
+    mygraph_convert_color7[convert:color3]
+    mygraph_determinant_float1[determinant:float]
+    mygraph_convert_color8[convert:color3]
+    mygraph_convert_color9[convert:color3]
+    mygraph_determinant_float2[determinant:float]
+    mygraph_convert_color10[convert:color3]
+    mygraph_mix_color3[mix:color3]
+    mygraph_mix_float1[mix:float]
+    mygraph_mix_color5[mix:color4]
+    mygraph_mix_vector2[mix:vector2]
+    mygraph_multiply_matrix34[multiply:matrix33]
+    mygraph_multiply_matrix45[multiply:matrix44]
+    mygraph_constant_integer1([constant:integer:1])
+    style mygraph_constant_integer1  fill:#888, color:#000
+    mygraph_mix_vector3[mix:vector3]
+    mygraph_convert_color11[convert:color3]
+    mygraph_mix_vector5[mix:vector4]
+    end
+    glTF_Shader --"surfaceshader"--> glTF_Material
+    mygraph_out --"base_color"--> glTF_Shader
+    mygraph_mix_color3 --> mygraph_out
+    mygraph_mix_float1 --"in"--> mygraph_convert_color4
+    mygraph_convert_color4 --> mygraph_out1
+    mygraph_mix_color5 --"in"--> mygraph_convert_color5
+    mygraph_convert_color5 --> mygraph_out2
+    mygraph_mix_vector3 --"in"--> mygraph_convert_color6
+    mygraph_convert_color6 --> mygraph_out3
+    mygraph_mix_vector2 --"in"--> mygraph_convert_color7
+    mygraph_multiply_matrix34 --"in"--> mygraph_determinant_float1
+    mygraph_convert_color7 --> mygraph_out4
+    mygraph_determinant_float1 --"in"--> mygraph_convert_color8
+    mygraph_determinant_float2 --"in"--> mygraph_convert_color9
+    mygraph_multiply_matrix45 --"in"--> mygraph_determinant_float2
+    mygraph_convert_color9 --> mygraph_out6
+    mygraph_convert_color10 --> mygraph_out7
+    mygraph_constant_integer1 --"in"--> mygraph_convert_color10
+    mygraph_convert_color8 --> mygraph_out5
+    mygraph_convert_color11 --> mygraph_out8
+    mygraph_mix_vector5 --"in"--> mygraph_convert_color11
+</div></code></pre>
+</td>
+<td><a href="./tests/data/supported_types.mtlx">MTLX</a>
+<a href="./tests/data/supported_types.gltf">GLTF</a>
+<!-- <a href="./tests/data/supported_types.usda">USD</a> -->
+</td>
+<td><img src="./tests/data/supported_types.png">
+</td>
+</tr>
+</table>
+</details>
+<h3 id="development-information">Development Information</h3>
+<details><summary><h4>Reference Rendering</h4></summary>
+<p>All reference images are rendered using the <code>MaterialXView</code> sample application which is available as part of<br>
+<a href="https://github.com/AcademySoftwareFoundation/MaterialX/releases">MaterialX releases</a>. The release<br>
+version used matches the version requirement for this package.</p>
+<p>A sample utility called <code>test_render</code> is provided which will scan all files MaterialX XML files in a given folder hierarchy and use the path to <code>MaterialXView</code> to<br>
+render into the same folder.</p>
+<p>Example:</p>
+<pre class="hljs"><code><div>python utilities/test_render.py tests/data -r 512 -c &lt;path to MaterialXView&gt;
+</div></code></pre>
+<p>where <code>&lt;path to MaterialXView&gt;</code> is the path to the MaterialXView executable with<br>
+a the resolution set to 512 by 512.</p>
+</details>
+<details><summary><h4>Build Scripts</h4></summary>
+<p>Sample build scripts are provided in the <code>utilities</code> folder as follows:</p>
+<ol>
+<li><code>build.sh</code> : Will pull from head of the repo, install dependencies, and build the package.</li>
+<li><code>build_docs.sh</code> : Will build only the documentation. Called from <code>build.sh</code>. Doxygen is assumed to be installed. The README files are generated from the template Markdown file: <code>utilitites/README_template.md.</code> This will install the top level as well as the API documentation versions of this file with appropriate formatting to support the <code>Mermaid</code> graphs used to node graph diagrams.</li>
+<li><code>build_tests.sh</code> : Will run unit tests as well as command line tests.</li>
+</ol>
+<p><code>build.sh</code> is called within the check-in workflow defined in <code>.github/workflows/main.yml</code></p>
+</details>
+
+</body>
+</html>

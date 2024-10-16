@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['result_0',['result',['../classgltf__materialx__converter_1_1utilities_1_1_mtlx_document_compare.html#acfc16b55869c245b8903e6fe978782a6',1,'gltf_materialx_converter::utilities::MtlxDocumentCompare']]]
+  ['logger_0',['logger',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a76d4a55f730d618932d8f4b1156010ab',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]]
 ];
