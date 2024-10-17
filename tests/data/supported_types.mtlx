@@ -8,25 +8,28 @@
   </gltf_pbr>
   <nodegraph name="mygraph">
     <output name="out" type="color3" nodename="mix_color3" />
+    <output name="out1" type="color3" nodename="convert_color4" />
+    <output name="out2" type="color3" nodename="convert_color5" />
+    <output name="out3" type="color3" nodename="convert_color6" />
+    <output name="out4" type="color3" nodename="convert_color7" />
+    <output name="out6" type="color3" nodename="convert_color9" />
+    <output name="out7" type="color3" nodename="convert_color10" />
+    <output name="out5" type="color3" nodename="convert_color8" />
     <convert name="convert_color4" type="color3">
       <input name="in" type="float" nodename="mix_float1" />
     </convert>
-    <output name="out1" type="color3" nodename="convert_color4" />
     <convert name="convert_color5" type="color3">
       <input name="in" type="color4" nodename="mix_color5" />
     </convert>
-    <output name="out2" type="color3" nodename="convert_color5" />
     <convert name="convert_color6" type="color3">
       <input name="in" type="vector3" nodename="mix_vector3" />
     </convert>
-    <output name="out3" type="color3" nodename="convert_color6" />
     <convert name="convert_color7" type="color3">
       <input name="in" type="vector2" nodename="mix_vector2" />
     </convert>
     <determinant name="determinant_float1" type="float">
       <input name="in" type="matrix33" nodename="multiply_matrix34" />
     </determinant>
-    <output name="out4" type="color3" nodename="convert_color7" />
     <convert name="convert_color8" type="color3">
       <input name="in" type="float" nodename="determinant_float1" />
     </convert>
@@ -36,14 +39,12 @@
     <determinant name="determinant_float2" type="float">
       <input name="in" type="matrix44" nodename="multiply_matrix45" />
     </determinant>
-    <output name="out6" type="color3" nodename="convert_color9" />
-    <output name="out7" type="color3" nodename="convert_color10" />
     <convert name="convert_color10" type="color3">
       <input name="in" type="integer" nodename="constant_integer1" />
     </convert>
     <mix name="mix_color3" type="color3">
-      <input name="fg" type="color3" value="0,0.4824,1" />
-      <input name="bg" type="color3" value="0.7765,0.0824,0.0824" />
+      <input name="fg" type="color3" value="0, 0.4824, 1" />
+      <input name="bg" type="color3" value="0.7765, 0.0824, 0.0824" />
       <input name="mix" type="float" value="0.5" />
     </mix>
     <mix name="mix_float1" type="float">
@@ -52,40 +53,75 @@
       <input name="mix" type="float" value="0.5" />
     </mix>
     <mix name="mix_color5" type="color4">
-      <input name="fg" type="color4" value="0,0,0,0" />
-      <input name="bg" type="color4" value="1,1,1,1" />
+      <input name="fg" type="color4" value="0, 0, 0, 0" />
+      <input name="bg" type="color4" value="1, 1, 1, 1" />
       <input name="mix" type="float" value="0.5" />
     </mix>
     <mix name="mix_vector2" type="vector2">
-      <input name="fg" type="vector2" value="0,0" />
-      <input name="bg" type="vector2" value="1,1" />
+      <input name="fg" type="vector2" value="0, 0" />
+      <input name="bg" type="vector2" value="1, 1" />
       <input name="mix" type="float" value="0.5" />
     </mix>
     <multiply name="multiply_matrix34" type="matrix33">
-      <input name="in1" type="matrix33" value="1,0,0,0,1,0,0,0,1" />
-      <input name="in2" type="matrix33" value="1,0,0,0,1,0,0,0,1" />
+      <input name="in1" type="matrix33" value="1, 0, 0, 0, 1, 0, 0, 0, 1" />
+      <input name="in2" type="matrix33" value="1, 0, 0, 0, 1, 0, 0, 0, 1" />
     </multiply>
     <multiply name="multiply_matrix45" type="matrix44">
-      <input name="in1" type="matrix44" value="1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1" />
-      <input name="in2" type="matrix44" value="1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1" />
+      <input name="in1" type="matrix44" value="1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1" />
+      <input name="in2" type="matrix44" value="1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1" />
     </multiply>
     <constant name="constant_integer1" type="integer">
       <input name="value" type="integer" value="1" />
     </constant>
     <mix name="mix_vector3" type="vector3">
-      <input name="fg" type="vector3" value="0,0,0" />
-      <input name="bg" type="vector3" value="1,1,1" />
+      <input name="fg" type="vector3" value="0, 0, 0" />
+      <input name="bg" type="vector3" value="1, 1, 1" />
       <input name="mix" type="float" value="0.5" />
     </mix>
-    <output name="out5" type="color3" nodename="convert_color8" />
-    <output name="out8" type="color3" nodename="convert_color11" />
     <convert name="convert_color11" type="color3">
       <input name="in" type="vector4" nodename="mix_vector5" />
     </convert>
     <mix name="mix_vector5" type="vector4">
-      <input name="fg" type="vector4" value="0,0,0,0" />
-      <input name="bg" type="vector4" value="1,1,1,1" />
+      <input name="fg" type="vector4" value="0, 0, 0, 0" />
+      <input name="bg" type="vector4" value="1, 1, 1, 1" />
       <input name="mix" type="float" value="0.5" />
     </mix>
+    <output name="out8" type="color3" nodename="convert_color11" />
+    <constant name="myboolean" type="boolean">
+      <input name="value" type="boolean" value="false" />
+    </constant>
+    <output name="output_float1" type="float" nodename="unifiednoise2d_float1" />
+    <unifiednoise2d name="unifiednoise2d_float1" type="float">
+      <input name="texcoord" type="vector2" value="0, 0" />
+      <input name="freq" type="vector2" value="1, 1" />
+      <input name="offset" type="vector2" value="0, 0" />
+      <input name="jitter" type="float" value="1" />
+      <input name="outmin" type="float" value="0" />
+      <input name="outmax" type="float" value="1" />
+      <input name="clampoutput" type="boolean" nodename="myboolean" />
+      <input name="octaves" type="integer" value="3" />
+      <input name="lacunarity" type="float" value="2" />
+      <input name="diminish" type="float" value="0.5" />
+      <input name="type" type="integer" value="0" />
+    </unifiednoise2d>
+    <output name="output_color4" type="color3" nodename="image_color4" />
+    <image name="image_color4" type="color3">
+      <input name="file" type="filename" nodename="myfilename" colorspace="none" />
+      <input name="layer" type="string" value="" />
+      <input name="default" type="color3" value="0, 0, 0" />
+      <input name="texcoord" type="vector2" value="0, 0" />
+      <input name="uaddressmode" type="string" nodename="periodic_string" />
+      <input name="vaddressmode" type="string" value="periodic" />
+      <input name="filtertype" type="string" value="linear" />
+      <input name="framerange" type="string" value="" />
+      <input name="frameoffset" type="integer" value="0" />
+      <input name="frameendaction" type="string" value="constant" />
+    </image>
+    <constant name="myfilename" type="filename">
+      <input name="value" type="filename" value="myfile.png" />
+    </constant>
+    <constant name="periodic_string" type="string">
+      <input name="value" type="string" value="periodic" />
+    </constant>
   </nodegraph>
 </materialx>

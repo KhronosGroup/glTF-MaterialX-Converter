@@ -3,11 +3,19 @@
     {
       "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4z/AfAAQAAf/zKSWvAAAAAElFTkSuQmCC",
       "name": "KHR_texture_procedural_fallback"
+    },
+    {
+      "name": "mygraph/myfilename/value",
+      "uri": "myfile.png"
     }
   ],
   "textures": [
     {
       "source": 0
+    },
+    {
+      "name": "mygraph/myfilename/value",
+      "source": 1
     }
   ],
   "extensions": {
@@ -72,6 +80,18 @@
               "nodetype": "output",
               "type": "color3",
               "node": 17
+            },
+            {
+              "name": "output_float1",
+              "nodetype": "output",
+              "type": "float",
+              "node": 20
+            },
+            {
+              "name": "output_color4",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 21
             }
           ],
           "nodes": [
@@ -632,6 +652,237 @@
                   "nodetype": "output",
                   "name": "out",
                   "type": "vector4"
+                }
+              ]
+            },
+            {
+              "name": "myboolean",
+              "nodetype": "constant",
+              "type": "boolean",
+              "inputs": [
+                {
+                  "name": "value",
+                  "nodetype": "input",
+                  "type": "boolean",
+                  "value": "false"
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "name": "unifiednoise2d_float1",
+              "nodetype": "unifiednoise2d",
+              "type": "float",
+              "inputs": [
+                {
+                  "name": "texcoord",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "freq",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    1.0,
+                    1.0
+                  ]
+                },
+                {
+                  "name": "offset",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "jitter",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 1.0
+                },
+                {
+                  "name": "outmin",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 0.0
+                },
+                {
+                  "name": "outmax",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 1.0
+                },
+                {
+                  "name": "clampoutput",
+                  "nodetype": "input",
+                  "type": "boolean",
+                  "node": 19
+                },
+                {
+                  "name": "octaves",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 3
+                },
+                {
+                  "name": "lacunarity",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 2.0
+                },
+                {
+                  "name": "diminish",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 0.5
+                },
+                {
+                  "name": "type",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 0
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "float"
+                }
+              ]
+            },
+            {
+              "name": "image_color4",
+              "nodetype": "image",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "file",
+                  "nodetype": "input",
+                  "colorspace": "none",
+                  "type": "filename",
+                  "node": 22
+                },
+                {
+                  "name": "layer",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": ""
+                },
+                {
+                  "name": "default",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "value": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "texcoord",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "uaddressmode",
+                  "nodetype": "input",
+                  "type": "string",
+                  "node": 23
+                },
+                {
+                  "name": "vaddressmode",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "periodic"
+                },
+                {
+                  "name": "filtertype",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "linear"
+                },
+                {
+                  "name": "framerange",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": ""
+                },
+                {
+                  "name": "frameoffset",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 0
+                },
+                {
+                  "name": "frameendaction",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "constant"
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "name": "myfilename",
+              "nodetype": "constant",
+              "type": "filename",
+              "inputs": [
+                {
+                  "name": "value",
+                  "nodetype": "input",
+                  "type": "filename",
+                  "texture": 1
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "filename"
+                }
+              ]
+            },
+            {
+              "name": "periodic_string",
+              "nodetype": "constant",
+              "type": "string",
+              "inputs": [
+                {
+                  "name": "value",
+                  "nodetype": "input",
+                  "type": "string",
+                  "value": "periodic"
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "string"
                 }
               ]
             }
