@@ -19,7 +19,7 @@ This package supports the bi-directional translation between MaterialX material 
 
 ### Setup
 
-The Github repository can be forked / cloned locally and the package built using `pip` as follows from the root folder:
+The <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/">Github repository</a> can be forked / cloned locally and the package built using `pip` as follows from the root folder:
 
 `pip install .`
 
@@ -134,8 +134,6 @@ graph TB
 </td>
 </tr>
 </table>
-
-https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph.png?raw=true
 
 #### Test Data
 
