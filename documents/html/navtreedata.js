@@ -26,11 +26,11 @@ var NAVTREE =
 [
   [ "MaterialX / glTF Texture Procedurals", "index.html", [
     [ "MaterialX / glTF Procedurals Interop", "index.html", null ],
-    [ "Library Content", "md__d_1_2_work_2materialx_2gl_t_f-_material_x-_converter-_fork_2source_2gltf__materialx__converter_2_r_e_a_d_m_e.html", [
-      [ "Contents:", "md__d_1_2_work_2materialx_2gl_t_f-_material_x-_converter-_fork_2source_2gltf__materialx__converter_2_r_e_a_d_m_e.html#contents", null ]
+    [ "Library Content", "md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter_2source_2gltf__materialx__converter_2_r_e_a_d_m_e.html", [
+      [ "Contents:", "md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter_2source_2gltf__materialx__converter_2_r_e_a_d_m_e.html#contents", null ]
     ] ],
-    [ "Build Utilities", "md__d_1_2_work_2materialx_2gl_t_f-_material_x-_converter-_fork_2utilities_2_r_e_a_d_m_e.html", null ],
-    [ "Unit Tests", "md__d_1_2_work_2materialx_2gl_t_f-_material_x-_converter-_fork_2tests_2_r_e_a_d_m_e.html", null ],
+    [ "Build Utilities", "md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter_2utilities_2_r_e_a_d_m_e.html", null ],
+    [ "Unit Tests", "md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter_2tests_2_r_e_a_d_m_e.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
