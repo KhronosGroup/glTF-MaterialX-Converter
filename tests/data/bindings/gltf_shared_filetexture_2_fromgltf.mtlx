@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709">
+  <nodegraph name="nodegraph1">
+    <texcoord name="texcoord_vector2" type="vector2">
+      <input name="index" type="integer" value="0" />
+    </texcoord>
+    <place2d name="place2d_vector3" type="vector2">
+      <input name="texcoord" type="vector2" nodename="texcoord_vector2" />
+      <input name="pivot" type="vector2" value="0, 0" />
+      <input name="scale" type="vector2" value="1, 1" />
+      <input name="rotate" type="float" value="0" unit="degree" unittype="angle" />
+      <input name="offset" type="vector2" value="0, 0" />
+      <input name="operationorder" type="integer" value="1" />
+    </place2d>
+    <place2d name="place2d_vector2" type="vector2">
+      <input name="texcoord" type="vector2" nodename="texcoord_vector2" />
+      <input name="pivot" type="vector2" value="0.5, 0.5" />
+      <input name="scale" type="vector2" value="1, 1" />
+      <input name="rotate" type="float" value="45" unit="degree" unittype="angle" />
+      <input name="offset" type="vector2" value="0, 0" />
+      <input name="operationorder" type="integer" value="1" />
+    </place2d>
+    <image name="image_color4" type="color3">
+      <input name="file" type="filename" value="grid.png" colorspace="none" />
+      <input name="layer" type="string" value="0" />
+      <input name="default" type="color3" value="0.9511, 0.0255797, 0.0255797" />
+      <input name="texcoord" type="vector2" nodename="place2d_vector3" />
+      <input name="uaddressmode" type="string" value="periodic" />
+      <input name="vaddressmode" type="string" value="periodic" />
+      <input name="filtertype" type="string" value="linear" />
+      <input name="framerange" type="string" value="100" />
+      <input name="frameoffset" type="integer" value="1" />
+      <input name="frameendaction" type="string" value="constant" />
+    </image>
+    <image name="image_color3" type="color3">
+      <input name="file" type="filename" value="grid.png" colorspace="srgb_texture" />
+      <input name="layer" type="string" value="0" />
+      <input name="default" type="color3" value="0.9511, 0.0255797, 0.0255797" />
+      <input name="texcoord" type="vector2" nodename="place2d_vector2" />
+      <input name="uaddressmode" type="string" value="periodic" />
+      <input name="vaddressmode" type="string" value="periodic" />
+      <input name="filtertype" type="string" value="linear" />
+      <input name="framerange" type="string" value="100" />
+      <input name="frameoffset" type="integer" value="1" />
+      <input name="frameendaction" type="string" value="constant" />
+    </image>
+    <output name="output_color4" type="color3" nodename="image_color4" />
+    <output name="output_color3" type="color3" nodename="image_color3" />
+  </nodegraph>
+  <gltf_pbr name="gltf_pbr_surfaceshader" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="nodegraph1" output="output_color3" />
+  </gltf_pbr>
+  <surfacematerial name="MAT_gltf_pbr_surfaceshader" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="gltf_pbr_surfaceshader" />
+  </surfacematerial>
+  <gltf_pbr name="gltf_pbr_surfaceshader1" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="nodegraph1" output="output_color4" />
+  </gltf_pbr>
+  <surfacematerial name="MAT_gltf_pbr_surfaceshader1" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="gltf_pbr_surfaceshader1" />
+  </surfacematerial>
+</materialx>

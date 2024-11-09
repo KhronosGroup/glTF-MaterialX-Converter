@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ext_5ftexture_5fprocedurals_5fmx_5f1_5f39_0',['EXT_TEXTURE_PROCEDURALS_MX_1_39',['../namespacegltf__materialx__converter_1_1converter.html#a5da61c62801b47864293c1b1bf234325',1,'gltf_materialx_converter::converter']]]
+  ['add_5fcomments_0',['add_comments',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a14b134b3c18f198e7365fbddf6a455bb',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]],
+  ['add_5fnodedef_5fstrings_1',['add_nodedef_strings',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a8e5f8a8fc1ee8661514d4077b8d31924',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]]
 ];

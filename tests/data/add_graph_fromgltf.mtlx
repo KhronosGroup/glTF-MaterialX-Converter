@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709">
+  <nodegraph name="graph1">
+    <input name="myin1" type="color3" value="1, 0, 0" />
+    <input name="myin2" type="color3" value="0.94902, 0.768627, 0.109804" />
+    <add name="add_color4" type="color3">
+      <input name="in1" type="color3" interfacename="myin2" />
+      <input name="in2" type="color3" interfacename="myin1" />
+    </add>
+    <output name="output_color4" type="color3" nodename="add_color4" />
+  </nodegraph>
+  <gltf_pbr name="gltf_mat" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="graph1" />
+  </gltf_pbr>
+  <surfacematerial name="MAT_gltf_mat" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="gltf_mat" />
+  </surfacematerial>
+</materialx>
