@@ -176,9 +176,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a80149202cc9c20117d201b24b1e35dad" id="r_a80149202cc9c20117d201b24b1e35dad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80149202cc9c20117d201b24b1e35dad">glTF_to_materialX</a> (self, glTFDoc, stdlib)</td></tr>
 <tr class="memdesc:a80149202cc9c20117d201b24b1e35dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a glTF document to a MaterialX document.  <br /></td></tr>
 <tr class="separator:a80149202cc9c20117d201b24b1e35dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3ba09709754ffbd498b8da653412950" id="r_ac3ba09709754ffbd498b8da653412950"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3ba09709754ffbd498b8da653412950">glTF_graph_clear_names</a> (self, gltf_doc)</td></tr>
-<tr class="memdesc:ac3ba09709754ffbd498b8da653412950"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all the names for all procedural graphs and materials.  <br /></td></tr>
-<tr class="separator:ac3ba09709754ffbd498b8da653412950"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab529be585fce671aa7634ef9f9022a4" id="r_aab529be585fce671aa7634ef9f9022a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab529be585fce671aa7634ef9f9022a4">glTF_graph_to_materialX</a> (self, doc, gltf_doc)</td></tr>
 <tr class="memdesc:aab529be585fce671aa7634ef9f9022a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Import the procedural graphs from a glTF document into a MaterialX document.  <br /></td></tr>
 <tr class="separator:aab529be585fce671aa7634ef9f9022a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -580,69 +577,6 @@ Public Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="ac3ba09709754ffbd498b8da653412950" name="ac3ba09709754ffbd498b8da653412950"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3ba09709754ffbd498b8da653412950">&#9670;&#160;</a></span>glTF_graph_clear_names()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">gltf_materialx_converter.converter.glTFMaterialXConverter.glTF_graph_clear_names </td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>gltf_doc</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Clear all the names for all procedural graphs and materials. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">gltf_doc</td><td>The glTF document to clear the names in. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l01038">1038</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno"> 1038</span>    <span class="keyword">def </span>glTF_graph_clear_names(self, gltf_doc):</div>
-<div class="line"><span class="lineno"> 1039</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1040</span><span class="stringliteral">        Clear all the names for all procedural graphs and materials</span></div>
-<div class="line"><span class="lineno"> 1041</span><span class="stringliteral">        @param gltf_doc: The glTF document to clear the names in.</span></div>
-<div class="line"><span class="lineno"> 1042</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1043</span>        extensions = gltf_doc.get(<span class="stringliteral">&#39;extensions&#39;</span>, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1044</span>        procedurals = <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1045</span>        <span class="keywordflow">if</span> extensions:</div>
-<div class="line"><span class="lineno"> 1046</span>            procedurals = extensions.get(KHR_TEXTURE_PROCEDURALS, {}).get(KHR_TEXTURE_PROCEDURALS_PROCEDURALS_BLOCK, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1047</span> </div>
-<div class="line"><span class="lineno"> 1048</span>        EMPTY_STRING = <span class="stringliteral">&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1049</span> </div>
-<div class="line"><span class="lineno"> 1050</span>        <span class="keywordflow">if</span> procedurals:</div>
-<div class="line"><span class="lineno"> 1051</span>            <span class="keywordflow">for</span> proc <span class="keywordflow">in</span> procedurals:</div>
-<div class="line"><span class="lineno"> 1052</span>                proc[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING</div>
-<div class="line"><span class="lineno"> 1053</span> </div>
-<div class="line"><span class="lineno"> 1054</span>                inputs = proc.get(KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, [])</div>
-<div class="line"><span class="lineno"> 1055</span>                outputs = proc.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])</div>
-<div class="line"><span class="lineno"> 1056</span>                nodes = proc.get(KHR_TEXTURE_PROCEDURALS_NODES_BLOCK, [])</div>
-<div class="line"><span class="lineno"> 1057</span> </div>
-<div class="line"><span class="lineno"> 1058</span>                <span class="keywordflow">for</span> input_item <span class="keywordflow">in</span> inputs:</div>
-<div class="line"><span class="lineno"> 1059</span>                    input_item[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING</div>
-<div class="line"><span class="lineno"> 1060</span>                <span class="keywordflow">for</span> output_item <span class="keywordflow">in</span> outputs:</div>
-<div class="line"><span class="lineno"> 1061</span>                    output_item[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING</div>
-<div class="line"><span class="lineno"> 1062</span>                <span class="keywordflow">for</span> node <span class="keywordflow">in</span> nodes:</div>
-<div class="line"><span class="lineno"> 1063</span>                    node[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING</div>
-<div class="line"><span class="lineno"> 1064</span> </div>
-<div class="line"><span class="lineno"> 1065</span>        materials = gltf_doc.get(KHR_MATERIALS_BLOCK, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1066</span>        <span class="keywordflow">if</span> materials:</div>
-<div class="line"><span class="lineno"> 1067</span>            <span class="keywordflow">for</span> material <span class="keywordflow">in</span> materials:</div>
-<div class="line"><span class="lineno"> 1068</span>                material[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING</div>
-<div class="line"><span class="lineno"> 1069</span>    </div>
-</div><!-- fragment -->
-</div>
-</div>
 <a id="aab529be585fce671aa7634ef9f9022a4" name="aab529be585fce671aa7634ef9f9022a4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aab529be585fce671aa7634ef9f9022a4">&#9670;&#160;</a></span>glTF_graph_to_materialX()</h2>
 
@@ -677,287 +611,287 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The root MaterialX nodegraph if successful, otherwise None. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l01070">1070</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno"> 1070</span>    <span class="keyword">def </span>glTF_graph_to_materialX(self, doc, gltf_doc):</div>
-<div class="line"><span class="lineno"> 1071</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1072</span><span class="stringliteral">        Import the procedural graphs from a glTF document into a MaterialX document.</span></div>
-<div class="line"><span class="lineno"> 1073</span><span class="stringliteral">        @param doc: The MaterialX document to import the graphs into.</span></div>
-<div class="line"><span class="lineno"> 1074</span><span class="stringliteral">        @param gltf_doc: The glTF document to import the graphs from.</span></div>
-<div class="line"><span class="lineno"> 1075</span><span class="stringliteral">        @return The root MaterialX nodegraph if successful, otherwise None.</span></div>
-<div class="line"><span class="lineno"> 1076</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1077</span>        root_mtlx = <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1078</span> </div>
-<div class="line"><span class="lineno"> 1079</span>        <span class="comment"># Look for the extension</span></div>
-<div class="line"><span class="lineno"> 1080</span>        extensions = gltf_doc.get(<span class="stringliteral">&#39;extensions&#39;</span>, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1081</span>        procedurals = <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1082</span>        <span class="keywordflow">if</span> extensions:</div>
-<div class="line"><span class="lineno"> 1083</span>            procedurals = extensions.get(KHR_TEXTURE_PROCEDURALS, {}).get(KHR_TEXTURE_PROCEDURALS_PROCEDURALS_BLOCK, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1084</span> </div>
-<div class="line"><span class="lineno"> 1085</span>        <span class="keywordflow">if</span> procedurals <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno"> 1086</span>            self.logger.error(<span class="stringliteral">&#39;&gt; No procedurals array found&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1087</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1088</span> </div>
-<div class="line"><span class="lineno"> 1089</span>        metadata = self.get_metadata()</div>
-<div class="line"><span class="lineno"> 1090</span> </div>
-<div class="line"><span class="lineno"> 1091</span>        <span class="comment"># Pre and postfix for automatic graph name generation</span></div>
-<div class="line"><span class="lineno"> 1092</span>        GRAPH_PREFIX = <span class="stringliteral">&#39;nodegraph_&#39;</span></div>
-<div class="line"><span class="lineno"> 1093</span>        graph_index = 0</div>
-<div class="line"><span class="lineno"> 1094</span> </div>
-<div class="line"><span class="lineno"> 1095</span>        self.logger.info(f<span class="stringliteral">&#39;&gt; Importing {len(procedurals)} procedural graphs&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1096</span>        <span class="keywordflow">for</span> proc <span class="keywordflow">in</span> procedurals:</div>
-<div class="line"><span class="lineno"> 1097</span>            self.logger.debug(f<span class="stringliteral">&#39;&gt; Scan procedural {graph_index} of {len(procedurals)} :&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1098</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> proc.get(<span class="stringliteral">&#39;nodetype&#39;</span>):</div>
-<div class="line"><span class="lineno"> 1099</span>                self.logger.warning(<span class="stringliteral">&#39;&gt;  No nodetype found in procedural. Skipping node&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1100</span>                <span class="keywordflow">continue</span></div>
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l01038">1038</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1038</span>    <span class="keyword">def </span>glTF_graph_to_materialX(self, doc, gltf_doc):</div>
+<div class="line"><span class="lineno"> 1039</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1040</span><span class="stringliteral">        Import the procedural graphs from a glTF document into a MaterialX document.</span></div>
+<div class="line"><span class="lineno"> 1041</span><span class="stringliteral">        @param doc: The MaterialX document to import the graphs into.</span></div>
+<div class="line"><span class="lineno"> 1042</span><span class="stringliteral">        @param gltf_doc: The glTF document to import the graphs from.</span></div>
+<div class="line"><span class="lineno"> 1043</span><span class="stringliteral">        @return The root MaterialX nodegraph if successful, otherwise None.</span></div>
+<div class="line"><span class="lineno"> 1044</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1045</span>        root_mtlx = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1046</span> </div>
+<div class="line"><span class="lineno"> 1047</span>        <span class="comment"># Look for the extension</span></div>
+<div class="line"><span class="lineno"> 1048</span>        extensions = gltf_doc.get(<span class="stringliteral">&#39;extensions&#39;</span>, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1049</span>        procedurals = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1050</span>        <span class="keywordflow">if</span> extensions:</div>
+<div class="line"><span class="lineno"> 1051</span>            procedurals = extensions.get(KHR_TEXTURE_PROCEDURALS, {}).get(KHR_TEXTURE_PROCEDURALS_PROCEDURALS_BLOCK, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1052</span> </div>
+<div class="line"><span class="lineno"> 1053</span>        <span class="keywordflow">if</span> procedurals <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno"> 1054</span>            self.logger.error(<span class="stringliteral">&#39;&gt; No procedurals array found&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1055</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1056</span> </div>
+<div class="line"><span class="lineno"> 1057</span>        metadata = self.get_metadata()</div>
+<div class="line"><span class="lineno"> 1058</span> </div>
+<div class="line"><span class="lineno"> 1059</span>        <span class="comment"># Pre and postfix for automatic graph name generation</span></div>
+<div class="line"><span class="lineno"> 1060</span>        GRAPH_PREFIX = <span class="stringliteral">&#39;nodegraph_&#39;</span></div>
+<div class="line"><span class="lineno"> 1061</span>        graph_index = 0</div>
+<div class="line"><span class="lineno"> 1062</span> </div>
+<div class="line"><span class="lineno"> 1063</span>        self.logger.info(f<span class="stringliteral">&#39;&gt; Importing {len(procedurals)} procedural graphs&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1064</span>        <span class="keywordflow">for</span> proc <span class="keywordflow">in</span> procedurals:</div>
+<div class="line"><span class="lineno"> 1065</span>            self.logger.debug(f<span class="stringliteral">&#39;&gt; Scan procedural {graph_index} of {len(procedurals)} :&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1066</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> proc.get(<span class="stringliteral">&#39;nodetype&#39;</span>):</div>
+<div class="line"><span class="lineno"> 1067</span>                self.logger.warning(<span class="stringliteral">&#39;&gt;  No nodetype found in procedural. Skipping node&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1068</span>                <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno"> 1069</span> </div>
+<div class="line"><span class="lineno"> 1070</span>            <span class="keywordflow">if</span> proc[KHR_TEXTURE_PROCEDURALS_NODETYPE] != <span class="stringliteral">&#39;nodegraph&#39;</span>:</div>
+<div class="line"><span class="lineno"> 1071</span>                self.logger.warning(f<span class="stringliteral">&#39;&gt; Unsupported procedural nodetype found: {proc[&quot;nodetype&quot;]}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1072</span>                <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno"> 1073</span> </div>
+<div class="line"><span class="lineno"> 1074</span>            graph_name = proc.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;graph_&#39;</span> + str(graph_index))</div>
+<div class="line"><span class="lineno"> 1075</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;name&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> proc:</div>
+<div class="line"><span class="lineno"> 1076</span>                proc[<span class="stringliteral">&#39;name&#39;</span>] = graph_name</div>
+<div class="line"><span class="lineno"> 1077</span>                graph_index += 1</div>
+<div class="line"><span class="lineno"> 1078</span>            </div>
+<div class="line"><span class="lineno"> 1079</span>            <span class="comment"># Create new nodegraph</span></div>
+<div class="line"><span class="lineno"> 1080</span>            self.logger.info(f<span class="stringliteral">&#39;&gt; Create new nodegraph: {graph_name}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1081</span>            mtlx_graph = doc.addNodeGraph(graph_name)</div>
+<div class="line"><span class="lineno"> 1082</span>            root_mtlx = mtlx_graph</div>
+<div class="line"><span class="lineno"> 1083</span> </div>
+<div class="line"><span class="lineno"> 1084</span>            <span class="comment"># Counters for automatic input, output and node name generation</span></div>
+<div class="line"><span class="lineno"> 1085</span>            INPUT_PREFIX = <span class="stringliteral">&#39;input_&#39;</span></div>
+<div class="line"><span class="lineno"> 1086</span>            input_index = 0</div>
+<div class="line"><span class="lineno"> 1087</span>            output_index = 0</div>
+<div class="line"><span class="lineno"> 1088</span>            node_index = 0</div>
+<div class="line"><span class="lineno"> 1089</span> </div>
+<div class="line"><span class="lineno"> 1090</span>            inputs = proc.get(KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, [])</div>
+<div class="line"><span class="lineno"> 1091</span>            outputs = proc.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])</div>
+<div class="line"><span class="lineno"> 1092</span>            nodes = proc.get(KHR_TEXTURE_PROCEDURALS_NODES_BLOCK, [])</div>
+<div class="line"><span class="lineno"> 1093</span> </div>
+<div class="line"><span class="lineno"> 1094</span>            <span class="comment"># Scan for input interfaces in the node graph</span></div>
+<div class="line"><span class="lineno"> 1095</span>            <span class="comment"># Prelable inputs</span></div>
+<div class="line"><span class="lineno"> 1096</span>            <span class="keywordflow">for</span> input_item <span class="keywordflow">in</span> inputs:</div>
+<div class="line"><span class="lineno"> 1097</span>                inputname = input_item.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;input_&#39;</span> + str(input_index))</div>
+<div class="line"><span class="lineno"> 1098</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;name&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> input_item:</div>
+<div class="line"><span class="lineno"> 1099</span>                    input_item[<span class="stringliteral">&#39;name&#39;</span>] = inputname</div>
+<div class="line"><span class="lineno"> 1100</span>                    input_index += 1</div>
 <div class="line"><span class="lineno"> 1101</span> </div>
-<div class="line"><span class="lineno"> 1102</span>            <span class="keywordflow">if</span> proc[KHR_TEXTURE_PROCEDURALS_NODETYPE] != <span class="stringliteral">&#39;nodegraph&#39;</span>:</div>
-<div class="line"><span class="lineno"> 1103</span>                self.logger.warning(f<span class="stringliteral">&#39;&gt; Unsupported procedural nodetype found: {proc[&quot;nodetype&quot;]}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1104</span>                <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno"> 1102</span>            self.logger.debug(f<span class="stringliteral">&#39;&gt; Scan {len(inputs)} inputs&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1103</span>            <span class="keywordflow">for</span> input_item <span class="keywordflow">in</span> inputs:</div>
+<div class="line"><span class="lineno"> 1104</span>                inputname = input_item.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;input_&#39;</span> + str(input_index))</div>
 <div class="line"><span class="lineno"> 1105</span> </div>
-<div class="line"><span class="lineno"> 1106</span>            graph_name = proc.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;graph_&#39;</span> + str(graph_index))</div>
-<div class="line"><span class="lineno"> 1107</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;name&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> proc:</div>
-<div class="line"><span class="lineno"> 1108</span>                proc[<span class="stringliteral">&#39;name&#39;</span>] = graph_name</div>
-<div class="line"><span class="lineno"> 1109</span>                graph_index += 1</div>
-<div class="line"><span class="lineno"> 1110</span>            </div>
-<div class="line"><span class="lineno"> 1111</span>            <span class="comment"># Create new nodegraph</span></div>
-<div class="line"><span class="lineno"> 1112</span>            self.logger.info(f<span class="stringliteral">&#39;&gt; Create new nodegraph: {graph_name}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1113</span>            mtlx_graph = doc.addNodeGraph(graph_name)</div>
-<div class="line"><span class="lineno"> 1114</span>            root_mtlx = mtlx_graph</div>
-<div class="line"><span class="lineno"> 1115</span> </div>
-<div class="line"><span class="lineno"> 1116</span>            <span class="comment"># Counters for automatic input, output and node name generation</span></div>
-<div class="line"><span class="lineno"> 1117</span>            INPUT_PREFIX = <span class="stringliteral">&#39;input_&#39;</span></div>
-<div class="line"><span class="lineno"> 1118</span>            input_index = 0</div>
-<div class="line"><span class="lineno"> 1119</span>            output_index = 0</div>
-<div class="line"><span class="lineno"> 1120</span>            node_index = 0</div>
-<div class="line"><span class="lineno"> 1121</span> </div>
-<div class="line"><span class="lineno"> 1122</span>            inputs = proc.get(KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, [])</div>
-<div class="line"><span class="lineno"> 1123</span>            outputs = proc.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])</div>
-<div class="line"><span class="lineno"> 1124</span>            nodes = proc.get(KHR_TEXTURE_PROCEDURALS_NODES_BLOCK, [])</div>
-<div class="line"><span class="lineno"> 1125</span> </div>
-<div class="line"><span class="lineno"> 1126</span>            <span class="comment"># Scan for input interfaces in the node graph</span></div>
-<div class="line"><span class="lineno"> 1127</span>            <span class="comment"># Prelable inputs</span></div>
-<div class="line"><span class="lineno"> 1128</span>            <span class="keywordflow">for</span> input_item <span class="keywordflow">in</span> inputs:</div>
-<div class="line"><span class="lineno"> 1129</span>                inputname = input_item.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;input_&#39;</span> + str(input_index))</div>
-<div class="line"><span class="lineno"> 1130</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;name&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> input_item:</div>
-<div class="line"><span class="lineno"> 1131</span>                    input_item[<span class="stringliteral">&#39;name&#39;</span>] = inputname</div>
-<div class="line"><span class="lineno"> 1132</span>                    input_index += 1</div>
-<div class="line"><span class="lineno"> 1133</span> </div>
-<div class="line"><span class="lineno"> 1134</span>            self.logger.debug(f<span class="stringliteral">&#39;&gt; Scan {len(inputs)} inputs&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1135</span>            <span class="keywordflow">for</span> input_item <span class="keywordflow">in</span> inputs:</div>
-<div class="line"><span class="lineno"> 1136</span>                inputname = input_item.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;input_&#39;</span> + str(input_index))</div>
-<div class="line"><span class="lineno"> 1137</span> </div>
-<div class="line"><span class="lineno"> 1138</span>                <span class="comment"># A type is required</span></div>
-<div class="line"><span class="lineno"> 1139</span>                input_type = input_item.get(KHR_TEXTURE_PROCEDURALS_TYPE, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1140</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> input_type:</div>
-<div class="line"><span class="lineno"> 1141</span>                    self.logger.error(f<span class="stringliteral">&#39;&gt; Input type not found for graph input: {inputname}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1142</span>                    <span class="keywordflow">continue</span></div>
-<div class="line"><span class="lineno"> 1143</span> </div>
-<div class="line"><span class="lineno"> 1144</span>                <span class="comment"># Add new interface input</span></div>
-<div class="line"><span class="lineno"> 1145</span>                mtlx_input = mtlx_graph.addInput(inputname, input_type)</div>
-<div class="line"><span class="lineno"> 1146</span>                <span class="comment"># Set metadata. TODO: Add more than colorspace</span></div>
-<div class="line"><span class="lineno"> 1147</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;colorspace&#39;</span> <span class="keywordflow">in</span> input_item:</div>
-<div class="line"><span class="lineno"> 1148</span>                    mtlx_input.setAttribute(<span class="stringliteral">&#39;colorspace&#39;</span>, input_item[<span class="stringliteral">&#39;colorspace&#39;</span>])</div>
+<div class="line"><span class="lineno"> 1106</span>                <span class="comment"># A type is required</span></div>
+<div class="line"><span class="lineno"> 1107</span>                input_type = input_item.get(KHR_TEXTURE_PROCEDURALS_TYPE, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1108</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> input_type:</div>
+<div class="line"><span class="lineno"> 1109</span>                    self.logger.error(f<span class="stringliteral">&#39;&gt; Input type not found for graph input: {inputname}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1110</span>                    <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno"> 1111</span> </div>
+<div class="line"><span class="lineno"> 1112</span>                <span class="comment"># Add new interface input</span></div>
+<div class="line"><span class="lineno"> 1113</span>                mtlx_input = mtlx_graph.addInput(inputname, input_type)</div>
+<div class="line"><span class="lineno"> 1114</span>                <span class="comment"># Set metadata. TODO: Add more than colorspace</span></div>
+<div class="line"><span class="lineno"> 1115</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;colorspace&#39;</span> <span class="keywordflow">in</span> input_item:</div>
+<div class="line"><span class="lineno"> 1116</span>                    mtlx_input.setAttribute(<span class="stringliteral">&#39;colorspace&#39;</span>, input_item[<span class="stringliteral">&#39;colorspace&#39;</span>])</div>
+<div class="line"><span class="lineno"> 1117</span> </div>
+<div class="line"><span class="lineno"> 1118</span>                <span class="comment"># If input is a file reference, examines textures and images to retrieve the URI</span></div>
+<div class="line"><span class="lineno"> 1119</span>                <span class="keywordflow">if</span> input_type == <span class="stringliteral">&#39;filename&#39;</span>:</div>
+<div class="line"><span class="lineno"> 1120</span>                    texture_index = input_item.get(<span class="stringliteral">&#39;texture&#39;</span>, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1121</span>                    <span class="keywordflow">if</span> texture_index <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno"> 1122</span>                        gltf_textures = gltf_doc.get(<span class="stringliteral">&#39;textures&#39;</span>, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1123</span>                        gltf_images = gltf_doc.get(<span class="stringliteral">&#39;images&#39;</span>, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1124</span>                        <span class="keywordflow">if</span> gltf_textures <span class="keywordflow">and</span> gltf_images:</div>
+<div class="line"><span class="lineno"> 1125</span>                            gltf_texture = gltf_textures[texture_index] <span class="keywordflow">if</span> texture_index &lt; len(gltf_textures) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1126</span>                            <span class="keywordflow">if</span> gltf_texture:</div>
+<div class="line"><span class="lineno"> 1127</span>                                uri = self.get_glTF_texture_uri(gltf_texture, gltf_images)</div>
+<div class="line"><span class="lineno"> 1128</span>                                mtlx_input.setValueString(uri, input_type)</div>
+<div class="line"><span class="lineno"> 1129</span> </div>
+<div class="line"><span class="lineno"> 1130</span>                <span class="comment"># If input has a value, set the value</span></div>
+<div class="line"><span class="lineno"> 1131</span>                input_value = input_item.get(<span class="stringliteral">&#39;value&#39;</span>, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1132</span>                <span class="keywordflow">if</span> input_value <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno"> 1133</span>                    mtlx_value = self.scalar_to_string(input_value, input_type)</div>
+<div class="line"><span class="lineno"> 1134</span>                    <span class="keywordflow">if</span> mtlx_value <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno"> 1135</span>                        mtlx_input.setValueString(mtlx_value)</div>
+<div class="line"><span class="lineno"> 1136</span>                        mtlx_input.setType(input_type)</div>
+<div class="line"><span class="lineno"> 1137</span>                    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno"> 1138</span>                        mtlx_input.setValueString(str(input_value))</div>
+<div class="line"><span class="lineno"> 1139</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno"> 1140</span>                    self.logger.error(f<span class="stringliteral">&#39;&gt; Interface input has no value specified: {inputname}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1141</span> </div>
+<div class="line"><span class="lineno"> 1142</span>            <span class="comment"># Scan for nodes in the nodegraph</span></div>
+<div class="line"><span class="lineno"> 1143</span>            <span class="comment"># - Prelabel nodes</span></div>
+<div class="line"><span class="lineno"> 1144</span>            <span class="keywordflow">for</span> node <span class="keywordflow">in</span> nodes:</div>
+<div class="line"><span class="lineno"> 1145</span>                nodename = node.get(KHR_TEXTURE_PROCEDURALS_NAME, <span class="stringliteral">&#39;node_&#39;</span> + str(node_index))</div>
+<div class="line"><span class="lineno"> 1146</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;name&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> node:</div>
+<div class="line"><span class="lineno"> 1147</span>                    node[<span class="stringliteral">&#39;name&#39;</span>] = nodename</div>
+<div class="line"><span class="lineno"> 1148</span>                    node_index += 1</div>
 <div class="line"><span class="lineno"> 1149</span> </div>
-<div class="line"><span class="lineno"> 1150</span>                <span class="comment"># If input is a file reference, examines textures and images to retrieve the URI</span></div>
-<div class="line"><span class="lineno"> 1151</span>                <span class="keywordflow">if</span> input_type == <span class="stringliteral">&#39;filename&#39;</span>:</div>
-<div class="line"><span class="lineno"> 1152</span>                    texture_index = input_item.get(<span class="stringliteral">&#39;texture&#39;</span>, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1153</span>                    <span class="keywordflow">if</span> texture_index <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno"> 1154</span>                        gltf_textures = gltf_doc.get(<span class="stringliteral">&#39;textures&#39;</span>, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1155</span>                        gltf_images = gltf_doc.get(<span class="stringliteral">&#39;images&#39;</span>, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1156</span>                        <span class="keywordflow">if</span> gltf_textures <span class="keywordflow">and</span> gltf_images:</div>
-<div class="line"><span class="lineno"> 1157</span>                            gltf_texture = gltf_textures[texture_index] <span class="keywordflow">if</span> texture_index &lt; len(gltf_textures) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1158</span>                            <span class="keywordflow">if</span> gltf_texture:</div>
-<div class="line"><span class="lineno"> 1159</span>                                uri = self.get_glTF_texture_uri(gltf_texture, gltf_images)</div>
-<div class="line"><span class="lineno"> 1160</span>                                mtlx_input.setValueString(uri, input_type)</div>
-<div class="line"><span class="lineno"> 1161</span> </div>
-<div class="line"><span class="lineno"> 1162</span>                <span class="comment"># If input has a value, set the value</span></div>
-<div class="line"><span class="lineno"> 1163</span>                input_value = input_item.get(<span class="stringliteral">&#39;value&#39;</span>, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1164</span>                <span class="keywordflow">if</span> input_value <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno"> 1165</span>                    mtlx_value = self.scalar_to_string(input_value, input_type)</div>
-<div class="line"><span class="lineno"> 1166</span>                    <span class="keywordflow">if</span> mtlx_value <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno"> 1167</span>                        mtlx_input.setValueString(mtlx_value)</div>
-<div class="line"><span class="lineno"> 1168</span>                        mtlx_input.setType(input_type)</div>
-<div class="line"><span class="lineno"> 1169</span>                    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno"> 1170</span>                        mtlx_input.setValueString(str(input_value))</div>
-<div class="line"><span class="lineno"> 1171</span>                <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno"> 1172</span>                    self.logger.error(f<span class="stringliteral">&#39;&gt; Interface input has no value specified: {inputname}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1173</span> </div>
-<div class="line"><span class="lineno"> 1174</span>            <span class="comment"># Scan for nodes in the nodegraph</span></div>
-<div class="line"><span class="lineno"> 1175</span>            <span class="comment"># - Prelabel nodes</span></div>
-<div class="line"><span class="lineno"> 1176</span>            <span class="keywordflow">for</span> node <span class="keywordflow">in</span> nodes:</div>
-<div class="line"><span class="lineno"> 1177</span>                nodename = node.get(KHR_TEXTURE_PROCEDURALS_NAME, <span class="stringliteral">&#39;node_&#39;</span> + str(node_index))</div>
-<div class="line"><span class="lineno"> 1178</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;name&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> node:</div>
-<div class="line"><span class="lineno"> 1179</span>                    node[<span class="stringliteral">&#39;name&#39;</span>] = nodename</div>
-<div class="line"><span class="lineno"> 1180</span>                    node_index += 1</div>
-<div class="line"><span class="lineno"> 1181</span> </div>
-<div class="line"><span class="lineno"> 1182</span>            self.logger.debug(f<span class="stringliteral">&#39;&gt; Scan {len(nodes)} nodes&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1183</span>            <span class="keywordflow">for</span> node <span class="keywordflow">in</span> nodes:</div>
-<div class="line"><span class="lineno"> 1184</span>                nodename = node.get(KHR_TEXTURE_PROCEDURALS_NAME, <span class="stringliteral">&#39;node_&#39;</span> + str(node_index))</div>
-<div class="line"><span class="lineno"> 1185</span>                node_type = node.get(<span class="stringliteral">&#39;nodetype&#39;</span>, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1186</span>                output_type = node.get(KHR_TEXTURE_PROCEDURALS_TYPE, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1187</span>                node_outputs = node.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])</div>
-<div class="line"><span class="lineno"> 1188</span> </div>
-<div class="line"><span class="lineno"> 1189</span>                <span class="comment"># Check for multiple outputs on the node to use &#39;multioutput&#39; as the type</span></div>
-<div class="line"><span class="lineno"> 1190</span>                <span class="keywordflow">if</span> len(node_outputs) &gt; 1:</div>
-<div class="line"><span class="lineno"> 1191</span>                    output_type = MULTI_OUTPUT_TYPE_STRING</div>
-<div class="line"><span class="lineno"> 1192</span> </div>
-<div class="line"><span class="lineno"> 1193</span>                <span class="comment"># Create a new node in the graph</span></div>
-<div class="line"><span class="lineno"> 1194</span>                mtlx_node = mtlx_graph.addChildOfCategory(node_type)</div>
-<div class="line"><span class="lineno"> 1195</span>                mtlx_node.setName(nodename)</div>
-<div class="line"><span class="lineno"> 1196</span>                <span class="keywordflow">if</span> output_type:</div>
-<div class="line"><span class="lineno"> 1197</span>                    mtlx_node.setType(output_type)</div>
-<div class="line"><span class="lineno"> 1198</span>                <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno"> 1199</span>                    self.logger.error(f<span class="stringliteral">&#39;&gt; No output type specified for node: {nodename}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1200</span> </div>
-<div class="line"><span class="lineno"> 1201</span>                <span class="comment"># Look for other name, value pair children under node. Such as &quot;xpos&quot;: &quot;0.086957&quot;,</span></div>
-<div class="line"><span class="lineno"> 1202</span>                <span class="comment"># For each add an attribute to the node</span></div>
-<div class="line"><span class="lineno"> 1203</span>                <span class="keywordflow">for</span> key, value <span class="keywordflow">in</span> node.items():</div>
-<div class="line"><span class="lineno"> 1204</span>                    <span class="keywordflow">if</span> key <span class="keywordflow">not</span> <span class="keywordflow">in</span> [KHR_TEXTURE_PROCEDURALS_NAME, <span class="stringliteral">&#39;nodetype&#39;</span>, KHR_TEXTURE_PROCEDURALS_TYPE, KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK]:</div>
-<div class="line"><span class="lineno"> 1205</span>                        self.logger.debug(f<span class="stringliteral">&#39;&gt; Add extra node attribute: {key}, {value}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1206</span>                        mtlx_node.setAttribute(key, value)</div>
-<div class="line"><span class="lineno"> 1207</span> </div>
-<div class="line"><span class="lineno"> 1208</span>                <span class="comment"># Add node inputs</span></div>
-<div class="line"><span class="lineno"> 1209</span>                input_index = 0</div>
-<div class="line"><span class="lineno"> 1210</span>                node_inputs = node.get(KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, [])</div>
-<div class="line"><span class="lineno"> 1211</span>                <span class="keywordflow">for</span> input_item <span class="keywordflow">in</span> node_inputs:</div>
-<div class="line"><span class="lineno"> 1212</span>                    input_name = input_item.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;input_&#39;</span> + str(input_index))</div>
-<div class="line"><span class="lineno"> 1213</span>                    input_type = input_item.get(KHR_TEXTURE_PROCEDURALS_TYPE, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1214</span> </div>
-<div class="line"><span class="lineno"> 1215</span>                    <span class="comment"># Add node input</span></div>
-<div class="line"><span class="lineno"> 1216</span>                    mtlx_input = mtlx_node.addInput(input_name, input_type)</div>
-<div class="line"><span class="lineno"> 1217</span> </div>
-<div class="line"><span class="lineno"> 1218</span>                    <span class="comment"># If input is a file reference, examines textures and images to retrieve the URI</span></div>
-<div class="line"><span class="lineno"> 1219</span>                    <span class="keywordflow">if</span> input_type == <span class="stringliteral">&#39;filename&#39;</span>:</div>
-<div class="line"><span class="lineno"> 1220</span>                        texture_index = input_item.get(<span class="stringliteral">&#39;texture&#39;</span>, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1221</span>                        <span class="keywordflow">if</span> texture_index <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno"> 1222</span>                            gltf_textures = gltf_doc.get(<span class="stringliteral">&#39;textures&#39;</span>, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1223</span>                            gltf_images = gltf_doc.get(<span class="stringliteral">&#39;images&#39;</span>, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1224</span>                            <span class="keywordflow">if</span> gltf_textures <span class="keywordflow">and</span> gltf_images:</div>
-<div class="line"><span class="lineno"> 1225</span>                                gltftexture = gltf_textures[texture_index] <span class="keywordflow">if</span> texture_index &lt; len(gltf_textures) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1226</span>                                <span class="keywordflow">if</span> gltftexture:</div>
-<div class="line"><span class="lineno"> 1227</span>                                    uri = self.get_glTF_texture_uri(gltftexture, gltf_images)</div>
-<div class="line"><span class="lineno"> 1228</span>                                    mtlx_input.setValueString(uri)</div>
-<div class="line"><span class="lineno"> 1229</span> </div>
-<div class="line"><span class="lineno"> 1230</span>                    <span class="comment"># If input has a value, set the value</span></div>
-<div class="line"><span class="lineno"> 1231</span>                    input_value = input_item.get(<span class="stringliteral">&#39;value&#39;</span>, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1232</span>                    <span class="keywordflow">if</span> input_value <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno"> 1233</span>                        mtlx_value = self.scalar_to_string(input_value, input_type)</div>
-<div class="line"><span class="lineno"> 1234</span>                        <span class="keywordflow">if</span> mtlx_value <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno"> 1235</span>                            mtlx_input.setValueString(mtlx_value)</div>
-<div class="line"><span class="lineno"> 1236</span>                            mtlx_input.setType(input_type)</div>
-<div class="line"><span class="lineno"> 1237</span>                        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno"> 1238</span>                            self.logger.error(f<span class="stringliteral">&#39;&gt; Unsupported input type: {input_type}. Performing straight assignment.&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1239</span>                            mtlx_input.setValueString(str(input_value))</div>
-<div class="line"><span class="lineno"> 1240</span> </div>
-<div class="line"><span class="lineno"> 1241</span>                    <span class="comment"># Check for connections</span></div>
-<div class="line"><span class="lineno"> 1242</span>                    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno"> 1243</span>                        connectable = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1150</span>            self.logger.debug(f<span class="stringliteral">&#39;&gt; Scan {len(nodes)} nodes&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1151</span>            <span class="keywordflow">for</span> node <span class="keywordflow">in</span> nodes:</div>
+<div class="line"><span class="lineno"> 1152</span>                nodename = node.get(KHR_TEXTURE_PROCEDURALS_NAME, <span class="stringliteral">&#39;node_&#39;</span> + str(node_index))</div>
+<div class="line"><span class="lineno"> 1153</span>                node_type = node.get(<span class="stringliteral">&#39;nodetype&#39;</span>, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1154</span>                output_type = node.get(KHR_TEXTURE_PROCEDURALS_TYPE, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1155</span>                node_outputs = node.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])</div>
+<div class="line"><span class="lineno"> 1156</span> </div>
+<div class="line"><span class="lineno"> 1157</span>                <span class="comment"># Check for multiple outputs on the node to use &#39;multioutput&#39; as the type</span></div>
+<div class="line"><span class="lineno"> 1158</span>                <span class="keywordflow">if</span> len(node_outputs) &gt; 1:</div>
+<div class="line"><span class="lineno"> 1159</span>                    output_type = MULTI_OUTPUT_TYPE_STRING</div>
+<div class="line"><span class="lineno"> 1160</span> </div>
+<div class="line"><span class="lineno"> 1161</span>                <span class="comment"># Create a new node in the graph</span></div>
+<div class="line"><span class="lineno"> 1162</span>                mtlx_node = mtlx_graph.addChildOfCategory(node_type)</div>
+<div class="line"><span class="lineno"> 1163</span>                mtlx_node.setName(nodename)</div>
+<div class="line"><span class="lineno"> 1164</span>                <span class="keywordflow">if</span> output_type:</div>
+<div class="line"><span class="lineno"> 1165</span>                    mtlx_node.setType(output_type)</div>
+<div class="line"><span class="lineno"> 1166</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno"> 1167</span>                    self.logger.error(f<span class="stringliteral">&#39;&gt; No output type specified for node: {nodename}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1168</span> </div>
+<div class="line"><span class="lineno"> 1169</span>                <span class="comment"># Look for other name, value pair children under node. Such as &quot;xpos&quot;: &quot;0.086957&quot;,</span></div>
+<div class="line"><span class="lineno"> 1170</span>                <span class="comment"># For each add an attribute to the node</span></div>
+<div class="line"><span class="lineno"> 1171</span>                <span class="keywordflow">for</span> key, value <span class="keywordflow">in</span> node.items():</div>
+<div class="line"><span class="lineno"> 1172</span>                    <span class="keywordflow">if</span> key <span class="keywordflow">not</span> <span class="keywordflow">in</span> [KHR_TEXTURE_PROCEDURALS_NAME, <span class="stringliteral">&#39;nodetype&#39;</span>, KHR_TEXTURE_PROCEDURALS_TYPE, KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK]:</div>
+<div class="line"><span class="lineno"> 1173</span>                        self.logger.debug(f<span class="stringliteral">&#39;&gt; Add extra node attribute: {key}, {value}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1174</span>                        mtlx_node.setAttribute(key, value)</div>
+<div class="line"><span class="lineno"> 1175</span> </div>
+<div class="line"><span class="lineno"> 1176</span>                <span class="comment"># Add node inputs</span></div>
+<div class="line"><span class="lineno"> 1177</span>                input_index = 0</div>
+<div class="line"><span class="lineno"> 1178</span>                node_inputs = node.get(KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, [])</div>
+<div class="line"><span class="lineno"> 1179</span>                <span class="keywordflow">for</span> input_item <span class="keywordflow">in</span> node_inputs:</div>
+<div class="line"><span class="lineno"> 1180</span>                    input_name = input_item.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;input_&#39;</span> + str(input_index))</div>
+<div class="line"><span class="lineno"> 1181</span>                    input_type = input_item.get(KHR_TEXTURE_PROCEDURALS_TYPE, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1182</span> </div>
+<div class="line"><span class="lineno"> 1183</span>                    <span class="comment"># Add node input</span></div>
+<div class="line"><span class="lineno"> 1184</span>                    mtlx_input = mtlx_node.addInput(input_name, input_type)</div>
+<div class="line"><span class="lineno"> 1185</span> </div>
+<div class="line"><span class="lineno"> 1186</span>                    <span class="comment"># If input is a file reference, examines textures and images to retrieve the URI</span></div>
+<div class="line"><span class="lineno"> 1187</span>                    <span class="keywordflow">if</span> input_type == <span class="stringliteral">&#39;filename&#39;</span>:</div>
+<div class="line"><span class="lineno"> 1188</span>                        texture_index = input_item.get(<span class="stringliteral">&#39;texture&#39;</span>, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1189</span>                        <span class="keywordflow">if</span> texture_index <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno"> 1190</span>                            gltf_textures = gltf_doc.get(<span class="stringliteral">&#39;textures&#39;</span>, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1191</span>                            gltf_images = gltf_doc.get(<span class="stringliteral">&#39;images&#39;</span>, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1192</span>                            <span class="keywordflow">if</span> gltf_textures <span class="keywordflow">and</span> gltf_images:</div>
+<div class="line"><span class="lineno"> 1193</span>                                gltftexture = gltf_textures[texture_index] <span class="keywordflow">if</span> texture_index &lt; len(gltf_textures) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1194</span>                                <span class="keywordflow">if</span> gltftexture:</div>
+<div class="line"><span class="lineno"> 1195</span>                                    uri = self.get_glTF_texture_uri(gltftexture, gltf_images)</div>
+<div class="line"><span class="lineno"> 1196</span>                                    mtlx_input.setValueString(uri)</div>
+<div class="line"><span class="lineno"> 1197</span> </div>
+<div class="line"><span class="lineno"> 1198</span>                    <span class="comment"># If input has a value, set the value</span></div>
+<div class="line"><span class="lineno"> 1199</span>                    input_value = input_item.get(<span class="stringliteral">&#39;value&#39;</span>, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1200</span>                    <span class="keywordflow">if</span> input_value <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno"> 1201</span>                        mtlx_value = self.scalar_to_string(input_value, input_type)</div>
+<div class="line"><span class="lineno"> 1202</span>                        <span class="keywordflow">if</span> mtlx_value <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno"> 1203</span>                            mtlx_input.setValueString(mtlx_value)</div>
+<div class="line"><span class="lineno"> 1204</span>                            mtlx_input.setType(input_type)</div>
+<div class="line"><span class="lineno"> 1205</span>                        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno"> 1206</span>                            self.logger.error(f<span class="stringliteral">&#39;&gt; Unsupported input type: {input_type}. Performing straight assignment.&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1207</span>                            mtlx_input.setValueString(str(input_value))</div>
+<div class="line"><span class="lineno"> 1208</span> </div>
+<div class="line"><span class="lineno"> 1209</span>                    <span class="comment"># Check for connections</span></div>
+<div class="line"><span class="lineno"> 1210</span>                    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno"> 1211</span>                        connectable = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1212</span> </div>
+<div class="line"><span class="lineno"> 1213</span>                        <span class="comment"># Set any upstream interface input connection</span></div>
+<div class="line"><span class="lineno"> 1214</span>                        <span class="keywordflow">if</span> <span class="stringliteral">&#39;input&#39;</span> <span class="keywordflow">in</span> input_item:</div>
+<div class="line"><span class="lineno"> 1215</span>                            connectable = inputs[input_item[KHR_TEXTURE_PROCEDURALS_INPUT]] <span class="keywordflow">if</span> input_item[KHR_TEXTURE_PROCEDURALS_INPUT] &lt; len(inputs) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1216</span>                            mtlx_input.setAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
+<div class="line"><span class="lineno"> 1217</span>                        </div>
+<div class="line"><span class="lineno"> 1218</span>                        <span class="comment"># Set any upstream node output connection</span></div>
+<div class="line"><span class="lineno"> 1219</span>                        <span class="keywordflow">elif</span> <span class="stringliteral">&#39;output&#39;</span> <span class="keywordflow">in</span> input_item:</div>
+<div class="line"><span class="lineno"> 1220</span>                            <span class="keywordflow">if</span> <span class="stringliteral">&#39;node&#39;</span> <span class="keywordflow">in</span> input_item:</div>
+<div class="line"><span class="lineno"> 1221</span>                                mtlx_input.setAttribute(<span class="stringliteral">&#39;output&#39;</span>, input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT])</div>
+<div class="line"><span class="lineno"> 1222</span>                            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno"> 1223</span>                                connectable = outputs[input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT]] <span class="keywordflow">if</span> input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT] &lt; len(outputs) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1224</span>                                mtlx_input.setAttribute(<span class="stringliteral">&#39;output&#39;</span>, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
+<div class="line"><span class="lineno"> 1225</span> </div>
+<div class="line"><span class="lineno"> 1226</span>                        <span class="comment"># Set and node connection</span></div>
+<div class="line"><span class="lineno"> 1227</span>                        <span class="keywordflow">if</span> <span class="stringliteral">&#39;node&#39;</span> <span class="keywordflow">in</span> input_item:</div>
+<div class="line"><span class="lineno"> 1228</span>                            connectable = nodes[input_item[KHR_TEXTURE_PROCEDURALS_NODE]] <span class="keywordflow">if</span> input_item[KHR_TEXTURE_PROCEDURALS_NODE] &lt; len(nodes) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1229</span>                            mtlx_input.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
+<div class="line"><span class="lineno"> 1230</span> </div>
+<div class="line"><span class="lineno"> 1231</span>                    <span class="comment"># Add extra metadata to the input</span></div>
+<div class="line"><span class="lineno"> 1232</span>                    <span class="keywordflow">for</span> meta <span class="keywordflow">in</span> metadata:</div>
+<div class="line"><span class="lineno"> 1233</span>                        <span class="keywordflow">if</span> meta <span class="keywordflow">in</span> input_item:</div>
+<div class="line"><span class="lineno"> 1234</span>                            self.logger.debug(f<span class="stringliteral">&#39;&gt; Add extra input attribute: {meta}, {input_item[meta]}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1235</span>                            mtlx_input.setAttribute(meta, input_item[meta])</div>
+<div class="line"><span class="lineno"> 1236</span> </div>
+<div class="line"><span class="lineno"> 1237</span>                <span class="comment"># TODO CLEANUP: There is no need to add outputs to the node, only to the graph</span></div>
+<div class="line"><span class="lineno"> 1238</span>                output_index = 0</div>
+<div class="line"><span class="lineno"> 1239</span>                dump_outputs = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno"> 1240</span>                <span class="keywordflow">if</span> dump_outputs:                </div>
+<div class="line"><span class="lineno"> 1241</span>                    <span class="keywordflow">for</span> output <span class="keywordflow">in</span> node_outputs:</div>
+<div class="line"><span class="lineno"> 1242</span>                        output_name = output.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;output_&#39;</span> + str(output_index))</div>
+<div class="line"><span class="lineno"> 1243</span>                        output_type = output.get(KHR_TEXTURE_PROCEDURALS_TYPE, <span class="keywordtype">None</span>)</div>
 <div class="line"><span class="lineno"> 1244</span> </div>
-<div class="line"><span class="lineno"> 1245</span>                        <span class="comment"># Set any upstream interface input connection</span></div>
-<div class="line"><span class="lineno"> 1246</span>                        <span class="keywordflow">if</span> <span class="stringliteral">&#39;input&#39;</span> <span class="keywordflow">in</span> input_item:</div>
-<div class="line"><span class="lineno"> 1247</span>                            connectable = inputs[input_item[KHR_TEXTURE_PROCEDURALS_INPUT]] <span class="keywordflow">if</span> input_item[KHR_TEXTURE_PROCEDURALS_INPUT] &lt; len(inputs) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1248</span>                            mtlx_input.setAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
-<div class="line"><span class="lineno"> 1249</span>                        </div>
-<div class="line"><span class="lineno"> 1250</span>                        <span class="comment"># Set any upstream node output connection</span></div>
-<div class="line"><span class="lineno"> 1251</span>                        <span class="keywordflow">elif</span> <span class="stringliteral">&#39;output&#39;</span> <span class="keywordflow">in</span> input_item:</div>
-<div class="line"><span class="lineno"> 1252</span>                            <span class="keywordflow">if</span> <span class="stringliteral">&#39;node&#39;</span> <span class="keywordflow">in</span> input_item:</div>
-<div class="line"><span class="lineno"> 1253</span>                                mtlx_input.setAttribute(<span class="stringliteral">&#39;output&#39;</span>, input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT])</div>
-<div class="line"><span class="lineno"> 1254</span>                            <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno"> 1255</span>                                connectable = outputs[input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT]] <span class="keywordflow">if</span> input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT] &lt; len(outputs) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1256</span>                                mtlx_input.setAttribute(<span class="stringliteral">&#39;output&#39;</span>, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
-<div class="line"><span class="lineno"> 1257</span> </div>
-<div class="line"><span class="lineno"> 1258</span>                        <span class="comment"># Set and node connection</span></div>
-<div class="line"><span class="lineno"> 1259</span>                        <span class="keywordflow">if</span> <span class="stringliteral">&#39;node&#39;</span> <span class="keywordflow">in</span> input_item:</div>
-<div class="line"><span class="lineno"> 1260</span>                            connectable = nodes[input_item[KHR_TEXTURE_PROCEDURALS_NODE]] <span class="keywordflow">if</span> input_item[KHR_TEXTURE_PROCEDURALS_NODE] &lt; len(nodes) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1261</span>                            mtlx_input.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
+<div class="line"><span class="lineno"> 1245</span>                        connectable = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1246</span>                        mtlxoutput = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1247</span>                        <span class="keywordflow">if</span> <span class="stringliteral">&#39;input&#39;</span> <span class="keywordflow">in</span> output:</div>
+<div class="line"><span class="lineno"> 1248</span>                            mtlxoutput = mtlx_node.addOutput(output_name, output_type)</div>
+<div class="line"><span class="lineno"> 1249</span>                            connectable = inputs[output[KHR_TEXTURE_PROCEDURALS_INPUT]] <span class="keywordflow">if</span> output[KHR_TEXTURE_PROCEDURALS_INPUT] &lt; len(inputs) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1250</span>                            mtlxoutput.setAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
+<div class="line"><span class="lineno"> 1251</span>                        <span class="keywordflow">elif</span> <span class="stringliteral">&#39;output&#39;</span> <span class="keywordflow">in</span> output:</div>
+<div class="line"><span class="lineno"> 1252</span>                            mtlxoutput = mtlx_node.addOutput(output_name, output_type)</div>
+<div class="line"><span class="lineno"> 1253</span>                            connectable = outputs[output[KHR_TEXTURE_PROCEDURALS_OUTPUT]] <span class="keywordflow">if</span> output[KHR_TEXTURE_PROCEDURALS_OUTPUT] &lt; len(outputs) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1254</span>                            mtlxoutput.setAttribute(<span class="stringliteral">&#39;output&#39;</span>, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
+<div class="line"><span class="lineno"> 1255</span>                        <span class="keywordflow">elif</span> <span class="stringliteral">&#39;node&#39;</span> <span class="keywordflow">in</span> output:</div>
+<div class="line"><span class="lineno"> 1256</span>                            mtlxoutput = mtlx_node.addOutput(output_name, output_type)</div>
+<div class="line"><span class="lineno"> 1257</span>                            connectable = nodes[output[KHR_TEXTURE_PROCEDURALS_NODE]] <span class="keywordflow">if</span> output[KHR_TEXTURE_PROCEDURALS_NODE] &lt; len(nodes) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1258</span>                            mtlxoutput.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
+<div class="line"><span class="lineno"> 1259</span>                        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno"> 1260</span>                            <span class="keywordflow">if</span> len(node_outputs) &gt; 1:</div>
+<div class="line"><span class="lineno"> 1261</span>                                mtlxoutput = mtlx_node.addOutput(output_name, output_type)</div>
 <div class="line"><span class="lineno"> 1262</span> </div>
-<div class="line"><span class="lineno"> 1263</span>                    <span class="comment"># Add extra metadata to the input</span></div>
-<div class="line"><span class="lineno"> 1264</span>                    <span class="keywordflow">for</span> meta <span class="keywordflow">in</span> metadata:</div>
-<div class="line"><span class="lineno"> 1265</span>                        <span class="keywordflow">if</span> meta <span class="keywordflow">in</span> input_item:</div>
-<div class="line"><span class="lineno"> 1266</span>                            self.logger.debug(f<span class="stringliteral">&#39;&gt; Add extra input attribute: {meta}, {input_item[meta]}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1267</span>                            mtlx_input.setAttribute(meta, input_item[meta])</div>
-<div class="line"><span class="lineno"> 1268</span> </div>
-<div class="line"><span class="lineno"> 1269</span>                <span class="comment"># TODO CLEANUP: There is no need to add outputs to the node, only to the graph</span></div>
-<div class="line"><span class="lineno"> 1270</span>                output_index = 0</div>
-<div class="line"><span class="lineno"> 1271</span>                dump_outputs = <span class="keyword">False</span></div>
-<div class="line"><span class="lineno"> 1272</span>                <span class="keywordflow">if</span> dump_outputs:                </div>
-<div class="line"><span class="lineno"> 1273</span>                    <span class="keywordflow">for</span> output <span class="keywordflow">in</span> node_outputs:</div>
-<div class="line"><span class="lineno"> 1274</span>                        output_name = output.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;output_&#39;</span> + str(output_index))</div>
-<div class="line"><span class="lineno"> 1275</span>                        output_type = output.get(KHR_TEXTURE_PROCEDURALS_TYPE, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1276</span> </div>
-<div class="line"><span class="lineno"> 1277</span>                        connectable = <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1278</span>                        mtlxoutput = <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1279</span>                        <span class="keywordflow">if</span> <span class="stringliteral">&#39;input&#39;</span> <span class="keywordflow">in</span> output:</div>
-<div class="line"><span class="lineno"> 1280</span>                            mtlxoutput = mtlx_node.addOutput(output_name, output_type)</div>
-<div class="line"><span class="lineno"> 1281</span>                            connectable = inputs[output[KHR_TEXTURE_PROCEDURALS_INPUT]] <span class="keywordflow">if</span> output[KHR_TEXTURE_PROCEDURALS_INPUT] &lt; len(inputs) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1282</span>                            mtlxoutput.setAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
-<div class="line"><span class="lineno"> 1283</span>                        <span class="keywordflow">elif</span> <span class="stringliteral">&#39;output&#39;</span> <span class="keywordflow">in</span> output:</div>
-<div class="line"><span class="lineno"> 1284</span>                            mtlxoutput = mtlx_node.addOutput(output_name, output_type)</div>
-<div class="line"><span class="lineno"> 1285</span>                            connectable = outputs[output[KHR_TEXTURE_PROCEDURALS_OUTPUT]] <span class="keywordflow">if</span> output[KHR_TEXTURE_PROCEDURALS_OUTPUT] &lt; len(outputs) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1286</span>                            mtlxoutput.setAttribute(<span class="stringliteral">&#39;output&#39;</span>, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
-<div class="line"><span class="lineno"> 1287</span>                        <span class="keywordflow">elif</span> <span class="stringliteral">&#39;node&#39;</span> <span class="keywordflow">in</span> output:</div>
-<div class="line"><span class="lineno"> 1288</span>                            mtlxoutput = mtlx_node.addOutput(output_name, output_type)</div>
-<div class="line"><span class="lineno"> 1289</span>                            connectable = nodes[output[KHR_TEXTURE_PROCEDURALS_NODE]] <span class="keywordflow">if</span> output[KHR_TEXTURE_PROCEDURALS_NODE] &lt; len(nodes) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1290</span>                            mtlxoutput.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
-<div class="line"><span class="lineno"> 1291</span>                        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno"> 1292</span>                            <span class="keywordflow">if</span> len(node_outputs) &gt; 1:</div>
-<div class="line"><span class="lineno"> 1293</span>                                mtlxoutput = mtlx_node.addOutput(output_name, output_type)</div>
-<div class="line"><span class="lineno"> 1294</span> </div>
-<div class="line"><span class="lineno"> 1295</span>                        <span class="keywordflow">if</span> mtlxoutput:</div>
-<div class="line"><span class="lineno"> 1296</span>                            <span class="comment"># Add extra metadata to the output</span></div>
-<div class="line"><span class="lineno"> 1297</span>                            <span class="keywordflow">for</span> key, value <span class="keywordflow">in</span> output.items():</div>
-<div class="line"><span class="lineno"> 1298</span>                                <span class="keywordflow">if</span> key <span class="keywordflow">in</span> metadata:</div>
-<div class="line"><span class="lineno"> 1299</span>                                    self.logger.debug(f<span class="stringliteral">&#39;&gt; Add extra output attribute: {meta}, {input_item[meta]}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1300</span>                                    mtlxoutput.setAttribute(key, value)</div>
-<div class="line"><span class="lineno"> 1301</span> </div>
-<div class="line"><span class="lineno"> 1302</span>                <span class="comment"># Set node definition string if specified</span></div>
-<div class="line"><span class="lineno"> 1303</span>                <span class="keywordflow">if</span> self.add_nodedef_strings:</div>
-<div class="line"><span class="lineno"> 1304</span>                    <span class="comment"># Add nodedef string to node if desired. Does not work since stdlib is not loaded in.</span></div>
-<div class="line"><span class="lineno"> 1305</span>                    <span class="comment"># Nix this ???</span></div>
-<div class="line"><span class="lineno"> 1306</span>                    mtlx_node_def = mtlx_node.getNodeDef()</div>
-<div class="line"><span class="lineno"> 1307</span>                    <span class="keywordflow">if</span> mtlx_node_def:</div>
-<div class="line"><span class="lineno"> 1308</span>                        self.logger.debug(f<span class="stringliteral">&#39;&gt; Add nodedef attribute: {mtlx_node_def.getName()}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1309</span>                        mtlx_node_def.setAttribute(mx.InterfaceElement.NODE_DEF_ATTRIBUTE, mtlx_node_def.getName())</div>
-<div class="line"><span class="lineno"> 1310</span> </div>
-<div class="line"><span class="lineno"> 1311</span>            <span class="comment"># Scan for output interfaces in the nodegraph</span></div>
-<div class="line"><span class="lineno"> 1312</span>            self.logger.debug(f<span class="stringliteral">&#39;&gt; Scan {len(outputs)} outputs&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1313</span>            <span class="keywordflow">for</span> output <span class="keywordflow">in</span> outputs:</div>
-<div class="line"><span class="lineno"> 1314</span>                output_name = output.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;output_&#39;</span> + str(output_index))</div>
-<div class="line"><span class="lineno"> 1315</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;name&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> output:</div>
-<div class="line"><span class="lineno"> 1316</span>                    output[<span class="stringliteral">&#39;name&#39;</span>] = output_name</div>
-<div class="line"><span class="lineno"> 1317</span>                    output_index += 1</div>
-<div class="line"><span class="lineno"> 1318</span> </div>
-<div class="line"><span class="lineno"> 1319</span>                output_type = output.get(KHR_TEXTURE_PROCEDURALS_TYPE, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno"> 1320</span>                mtlx_graph_output = mtlx_graph.addOutput(output_name, output_type)</div>
-<div class="line"><span class="lineno"> 1321</span> </div>
-<div class="line"><span class="lineno"> 1322</span>                connectable = <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1323</span> </div>
-<div class="line"><span class="lineno"> 1324</span>                <span class="comment"># Check for connection to upstream input</span></div>
-<div class="line"><span class="lineno"> 1325</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;input&#39;</span> <span class="keywordflow">in</span> output:</div>
-<div class="line"><span class="lineno"> 1326</span>                    connectable = inputs[output[KHR_TEXTURE_PROCEDURALS_INPUT]] <span class="keywordflow">if</span> output[KHR_TEXTURE_PROCEDURALS_INPUT] &lt; len(inputs) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1327</span>                    <span class="keywordflow">if</span> connectable:</div>
-<div class="line"><span class="lineno"> 1328</span>                        mtlx_graph_output.setAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
-<div class="line"><span class="lineno"> 1329</span>                    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno"> 1330</span>                        self.logger.error(f<span class="stringliteral">&#39;Input not found: {output[&quot;input&quot;]}, {inputs}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1331</span> </div>
-<div class="line"><span class="lineno"> 1332</span>                <span class="comment"># Check for connection to upstream node output                          </span></div>
-<div class="line"><span class="lineno"> 1333</span>                <span class="keywordflow">elif</span> <span class="stringliteral">&#39;node&#39;</span> <span class="keywordflow">in</span> output:</div>
-<div class="line"><span class="lineno"> 1334</span>                    connectable = nodes[output[KHR_TEXTURE_PROCEDURALS_NODE]] <span class="keywordflow">if</span> output[KHR_TEXTURE_PROCEDURALS_NODE] &lt; len(nodes) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1335</span>                    <span class="keywordflow">if</span> connectable:</div>
-<div class="line"><span class="lineno"> 1336</span>                        mtlx_graph_output.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
-<div class="line"><span class="lineno"> 1337</span>                        <span class="keywordflow">if</span> <span class="stringliteral">&#39;output&#39;</span> <span class="keywordflow">in</span> output:</div>
-<div class="line"><span class="lineno"> 1338</span>                            mtlx_graph_output.setAttribute(<span class="stringliteral">&#39;output&#39;</span>, output[KHR_TEXTURE_PROCEDURALS_OUTPUT])</div>
-<div class="line"><span class="lineno"> 1339</span>                    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno"> 1340</span>                        self.logger.error(f<span class="stringliteral">&#39;&gt; Output node not found: {output[&quot;node&quot;]}, {nodes}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1341</span> </div>
-<div class="line"><span class="lineno"> 1342</span>                <span class="comment"># Add extra metadata to the output</span></div>
-<div class="line"><span class="lineno"> 1343</span>                <span class="keywordflow">for</span> key, value <span class="keywordflow">in</span> output.items():</div>
-<div class="line"><span class="lineno"> 1344</span>                    <span class="keywordflow">if</span> key <span class="keywordflow">not</span> <span class="keywordflow">in</span> [KHR_TEXTURE_PROCEDURALS_NAME, KHR_TEXTURE_PROCEDURALS_TYPE, <span class="stringliteral">&#39;nodetype&#39;</span>, <span class="stringliteral">&#39;node&#39;</span>, <span class="stringliteral">&#39;output&#39;</span>]:</div>
-<div class="line"><span class="lineno"> 1345</span>                        self.logger.debug(f<span class="stringliteral">&#39;&gt; Add extra graph output attribute: {key}. Value: {value}&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1346</span>                        mtlx_graph_output.setAttribute(key, value)</div>
-<div class="line"><span class="lineno"> 1347</span> </div>
-<div class="line"><span class="lineno"> 1348</span>        <span class="keywordflow">return</span> root_mtlx</div>
-<div class="line"><span class="lineno"> 1349</span> </div>
+<div class="line"><span class="lineno"> 1263</span>                        <span class="keywordflow">if</span> mtlxoutput:</div>
+<div class="line"><span class="lineno"> 1264</span>                            <span class="comment"># Add extra metadata to the output</span></div>
+<div class="line"><span class="lineno"> 1265</span>                            <span class="keywordflow">for</span> key, value <span class="keywordflow">in</span> output.items():</div>
+<div class="line"><span class="lineno"> 1266</span>                                <span class="keywordflow">if</span> key <span class="keywordflow">in</span> metadata:</div>
+<div class="line"><span class="lineno"> 1267</span>                                    self.logger.debug(f<span class="stringliteral">&#39;&gt; Add extra output attribute: {meta}, {input_item[meta]}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1268</span>                                    mtlxoutput.setAttribute(key, value)</div>
+<div class="line"><span class="lineno"> 1269</span> </div>
+<div class="line"><span class="lineno"> 1270</span>                <span class="comment"># Set node definition string if specified</span></div>
+<div class="line"><span class="lineno"> 1271</span>                <span class="keywordflow">if</span> self.add_nodedef_strings:</div>
+<div class="line"><span class="lineno"> 1272</span>                    <span class="comment"># Add nodedef string to node if desired. Does not work since stdlib is not loaded in.</span></div>
+<div class="line"><span class="lineno"> 1273</span>                    <span class="comment"># Nix this ???</span></div>
+<div class="line"><span class="lineno"> 1274</span>                    mtlx_node_def = mtlx_node.getNodeDef()</div>
+<div class="line"><span class="lineno"> 1275</span>                    <span class="keywordflow">if</span> mtlx_node_def:</div>
+<div class="line"><span class="lineno"> 1276</span>                        self.logger.debug(f<span class="stringliteral">&#39;&gt; Add nodedef attribute: {mtlx_node_def.getName()}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1277</span>                        mtlx_node_def.setAttribute(mx.InterfaceElement.NODE_DEF_ATTRIBUTE, mtlx_node_def.getName())</div>
+<div class="line"><span class="lineno"> 1278</span> </div>
+<div class="line"><span class="lineno"> 1279</span>            <span class="comment"># Scan for output interfaces in the nodegraph</span></div>
+<div class="line"><span class="lineno"> 1280</span>            self.logger.debug(f<span class="stringliteral">&#39;&gt; Scan {len(outputs)} outputs&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1281</span>            <span class="keywordflow">for</span> output <span class="keywordflow">in</span> outputs:</div>
+<div class="line"><span class="lineno"> 1282</span>                output_name = output.get(<span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;output_&#39;</span> + str(output_index))</div>
+<div class="line"><span class="lineno"> 1283</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;name&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> output:</div>
+<div class="line"><span class="lineno"> 1284</span>                    output[<span class="stringliteral">&#39;name&#39;</span>] = output_name</div>
+<div class="line"><span class="lineno"> 1285</span>                    output_index += 1</div>
+<div class="line"><span class="lineno"> 1286</span> </div>
+<div class="line"><span class="lineno"> 1287</span>                output_type = output.get(KHR_TEXTURE_PROCEDURALS_TYPE, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno"> 1288</span>                mtlx_graph_output = mtlx_graph.addOutput(output_name, output_type)</div>
+<div class="line"><span class="lineno"> 1289</span> </div>
+<div class="line"><span class="lineno"> 1290</span>                connectable = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1291</span> </div>
+<div class="line"><span class="lineno"> 1292</span>                <span class="comment"># Check for connection to upstream input</span></div>
+<div class="line"><span class="lineno"> 1293</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;input&#39;</span> <span class="keywordflow">in</span> output:</div>
+<div class="line"><span class="lineno"> 1294</span>                    connectable = inputs[output[KHR_TEXTURE_PROCEDURALS_INPUT]] <span class="keywordflow">if</span> output[KHR_TEXTURE_PROCEDURALS_INPUT] &lt; len(inputs) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1295</span>                    <span class="keywordflow">if</span> connectable:</div>
+<div class="line"><span class="lineno"> 1296</span>                        mtlx_graph_output.setAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
+<div class="line"><span class="lineno"> 1297</span>                    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno"> 1298</span>                        self.logger.error(f<span class="stringliteral">&#39;Input not found: {output[&quot;input&quot;]}, {inputs}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1299</span> </div>
+<div class="line"><span class="lineno"> 1300</span>                <span class="comment"># Check for connection to upstream node output                          </span></div>
+<div class="line"><span class="lineno"> 1301</span>                <span class="keywordflow">elif</span> <span class="stringliteral">&#39;node&#39;</span> <span class="keywordflow">in</span> output:</div>
+<div class="line"><span class="lineno"> 1302</span>                    connectable = nodes[output[KHR_TEXTURE_PROCEDURALS_NODE]] <span class="keywordflow">if</span> output[KHR_TEXTURE_PROCEDURALS_NODE] &lt; len(nodes) <span class="keywordflow">else</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1303</span>                    <span class="keywordflow">if</span> connectable:</div>
+<div class="line"><span class="lineno"> 1304</span>                        mtlx_graph_output.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])</div>
+<div class="line"><span class="lineno"> 1305</span>                        <span class="keywordflow">if</span> <span class="stringliteral">&#39;output&#39;</span> <span class="keywordflow">in</span> output:</div>
+<div class="line"><span class="lineno"> 1306</span>                            mtlx_graph_output.setAttribute(<span class="stringliteral">&#39;output&#39;</span>, output[KHR_TEXTURE_PROCEDURALS_OUTPUT])</div>
+<div class="line"><span class="lineno"> 1307</span>                    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno"> 1308</span>                        self.logger.error(f<span class="stringliteral">&#39;&gt; Output node not found: {output[&quot;node&quot;]}, {nodes}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1309</span> </div>
+<div class="line"><span class="lineno"> 1310</span>                <span class="comment"># Add extra metadata to the output</span></div>
+<div class="line"><span class="lineno"> 1311</span>                <span class="keywordflow">for</span> key, value <span class="keywordflow">in</span> output.items():</div>
+<div class="line"><span class="lineno"> 1312</span>                    <span class="keywordflow">if</span> key <span class="keywordflow">not</span> <span class="keywordflow">in</span> [KHR_TEXTURE_PROCEDURALS_NAME, KHR_TEXTURE_PROCEDURALS_TYPE, <span class="stringliteral">&#39;nodetype&#39;</span>, <span class="stringliteral">&#39;node&#39;</span>, <span class="stringliteral">&#39;output&#39;</span>]:</div>
+<div class="line"><span class="lineno"> 1313</span>                        self.logger.debug(f<span class="stringliteral">&#39;&gt; Add extra graph output attribute: {key}. Value: {value}&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1314</span>                        mtlx_graph_output.setAttribute(key, value)</div>
+<div class="line"><span class="lineno"> 1315</span> </div>
+<div class="line"><span class="lineno"> 1316</span>        <span class="keywordflow">return</span> root_mtlx</div>
+<div class="line"><span class="lineno"> 1317</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -995,17 +929,17 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The MaterialX document if successful, otherwise None. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l01350">1350</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno"> 1350</span>    <span class="keyword">def </span>gltf_string_to_materialX(self, gltFDocString, stdlib):</div>
-<div class="line"><span class="lineno"> 1351</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1352</span><span class="stringliteral">        Convert a glTF document to a MaterialX document.</span></div>
-<div class="line"><span class="lineno"> 1353</span><span class="stringliteral">        @param gltFDocString: The glTF document to import.</span></div>
-<div class="line"><span class="lineno"> 1354</span><span class="stringliteral">        @param stdlib: The MateriaLX standard library to use for the conversion.</span></div>
-<div class="line"><span class="lineno"> 1355</span><span class="stringliteral">        @return The MaterialX document if successful, otherwise None.</span></div>
-<div class="line"><span class="lineno"> 1356</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1357</span>        glTFDoc = json.loads(gltFDocString)</div>
-<div class="line"><span class="lineno"> 1358</span>        <span class="keywordflow">return</span> self.glTF_to_materialX(glTFDoc, stdlib)</div>
-<div class="line"><span class="lineno"> 1359</span> </div>
+<p class="definition">Definition at line <a class="el" href="converter_8py_source.html#l01318">1318</a> of file <a class="el" href="converter_8py_source.html">converter.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1318</span>    <span class="keyword">def </span>gltf_string_to_materialX(self, gltFDocString, stdlib):</div>
+<div class="line"><span class="lineno"> 1319</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1320</span><span class="stringliteral">        Convert a glTF document to a MaterialX document.</span></div>
+<div class="line"><span class="lineno"> 1321</span><span class="stringliteral">        @param gltFDocString: The glTF document to import.</span></div>
+<div class="line"><span class="lineno"> 1322</span><span class="stringliteral">        @param stdlib: The MateriaLX standard library to use for the conversion.</span></div>
+<div class="line"><span class="lineno"> 1323</span><span class="stringliteral">        @return The MaterialX document if successful, otherwise None.</span></div>
+<div class="line"><span class="lineno"> 1324</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1325</span>        glTFDoc = json.loads(gltFDocString)</div>
+<div class="line"><span class="lineno"> 1326</span>        <span class="keywordflow">return</span> self.glTF_to_materialX(glTFDoc, stdlib)</div>
+<div class="line"><span class="lineno"> 1327</span> </div>
 </div><!-- fragment -->
 </div>
 </div>

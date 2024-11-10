@@ -195,9 +195,7 @@ class TestConvertToMtlx(unittest.TestCase):
                 # Convert back to GLTF
                 jsonString2, status = converter.materialX_to_glTF(mxdoc)
                 json1 = json.loads(jsonString)
-                converter.glTF_graph_clear_names(json1)
                 json2 = json.loads(jsonString2)                
-                converter.glTF_graph_clear_names(json2)
                 jsonString = json.dumps(json1, sort_keys=True, indent=4)
                 jsonString2 = json.dumps(json2, sort_keys=True, indent=4)
                 logger.info(f'> JSON comparison match: {jsonString == jsonString2}')

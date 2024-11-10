@@ -1035,38 +1035,6 @@ class glTFMaterialXConverter():
 
         return doc      
     
-    def glTF_graph_clear_names(self, gltf_doc):
-        '''
-        Clear all the names for all procedural graphs and materials
-        @param gltf_doc: The glTF document to clear the names in.
-        '''
-        extensions = gltf_doc.get('extensions', None)
-        procedurals = None
-        if extensions:
-            procedurals = extensions.get(KHR_TEXTURE_PROCEDURALS, {}).get(KHR_TEXTURE_PROCEDURALS_PROCEDURALS_BLOCK, None)
-
-        EMPTY_STRING = ''
-
-        if procedurals:
-            for proc in procedurals:
-                proc[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
-
-                inputs = proc.get(KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, [])
-                outputs = proc.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])
-                nodes = proc.get(KHR_TEXTURE_PROCEDURALS_NODES_BLOCK, [])
-
-                for input_item in inputs:
-                    input_item[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
-                for output_item in outputs:
-                    output_item[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
-                for node in nodes:
-                    node[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
-
-        materials = gltf_doc.get(KHR_MATERIALS_BLOCK, None)
-        if materials:
-            for material in materials:
-                material[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
-    
     def glTF_graph_to_materialX(self, doc, gltf_doc):
         '''
         Import the procedural graphs from a glTF document into a MaterialX document.
