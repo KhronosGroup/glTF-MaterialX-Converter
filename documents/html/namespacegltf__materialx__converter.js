@@ -4,6 +4,9 @@ var namespacegltf__materialx__converter =
       [ "main", "namespacegltf__materialx__converter_1_1____main____.html#aa0dc9a2ccf91bf2828efea2e404a61f8", null ]
     ] ],
     [ "converter", "namespacegltf__materialx__converter_1_1converter.html", "namespacegltf__materialx__converter_1_1converter" ],
+    [ "gltf_to_materialx", "namespacegltf__materialx__converter_1_1gltf__to__materialx.html", [
+      [ "main", "namespacegltf__materialx__converter_1_1gltf__to__materialx.html#a87533763ce88791ec70807175e49c877", null ]
+    ] ],
     [ "materialx_to_gltf", "namespacegltf__materialx__converter_1_1materialx__to__gltf.html", [
       [ "main", "namespacegltf__materialx__converter_1_1materialx__to__gltf.html#a97bba4f17000f4f433ef25c3c3f82d5f", null ]
     ] ],

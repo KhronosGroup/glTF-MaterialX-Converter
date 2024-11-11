@@ -10,9 +10,11 @@ var searchData=
   ['gltf_5fmaterialx_5fconverter_7',['gltf_materialx_converter',['../namespacegltf__materialx__converter.html',1,'']]],
   ['gltf_5fmaterialx_5fconverter_3a_3a_5f_5fmain_5f_5f_8',['__main__',['../namespacegltf__materialx__converter_1_1____main____.html',1,'gltf_materialx_converter']]],
   ['gltf_5fmaterialx_5fconverter_3a_3aconverter_9',['converter',['../namespacegltf__materialx__converter_1_1converter.html',1,'gltf_materialx_converter']]],
-  ['gltf_5fmaterialx_5fconverter_3a_3amaterialx_5fto_5fgltf_10',['materialx_to_gltf',['../namespacegltf__materialx__converter_1_1materialx__to__gltf.html',1,'gltf_materialx_converter']]],
-  ['gltf_5fmaterialx_5fconverter_3a_3autilities_11',['utilities',['../namespacegltf__materialx__converter_1_1utilities.html',1,'gltf_materialx_converter']]],
-  ['gltf_5fstring_5fto_5fmaterialx_12',['gltf_string_to_materialX',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a7e6b462e0a5644dbfc6e98bd2a378804',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]],
-  ['gltf_5fto_5fmaterialx_13',['glTF_to_materialX',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a80149202cc9c20117d201b24b1e35dad',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]],
-  ['gltfmaterialxconverter_14',['glTFMaterialXConverter',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html',1,'gltf_materialx_converter::converter']]]
+  ['gltf_5fmaterialx_5fconverter_3a_3agltf_5fto_5fmaterialx_10',['gltf_to_materialx',['../namespacegltf__materialx__converter_1_1gltf__to__materialx.html',1,'gltf_materialx_converter']]],
+  ['gltf_5fmaterialx_5fconverter_3a_3amaterialx_5fto_5fgltf_11',['materialx_to_gltf',['../namespacegltf__materialx__converter_1_1materialx__to__gltf.html',1,'gltf_materialx_converter']]],
+  ['gltf_5fmaterialx_5fconverter_3a_3autilities_12',['utilities',['../namespacegltf__materialx__converter_1_1utilities.html',1,'gltf_materialx_converter']]],
+  ['gltf_5fstring_5fto_5fmaterialx_13',['gltf_string_to_materialX',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a7e6b462e0a5644dbfc6e98bd2a378804',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]],
+  ['gltf_5fto_5fmaterialx_14',['glTF_to_materialX',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a80149202cc9c20117d201b24b1e35dad',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]],
+  ['gltf_5fto_5fmaterialx_2epy_15',['gltf_to_materialx.py',['../gltf__to__materialx_8py.html',1,'']]],
+  ['gltfmaterialxconverter_16',['glTFMaterialXConverter',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html',1,'gltf_materialx_converter::converter']]]
 ];
