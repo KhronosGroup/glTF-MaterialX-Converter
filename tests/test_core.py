@@ -17,6 +17,23 @@ from gltf_materialx_converter import utilities as MxGLTFPTUtil
 
 import importlib.util
 
+def get_module_path():
+
+    package_location = None
+    package_name = 'gltf_materialx_converter'
+    spec = importlib.util.find_spec(package_name)
+    if spec is None:
+        print(f"Package '{package_name}' not found.")
+    else:
+        if spec.origin:
+            package_location = spec.origin
+        elif spec.submodule_search_locations:
+            package_location = spec.submodule_search_locations[0]
+        else:
+            package_location = None
+
+    return package_location
+
 def get_materialX_document(test_case, input_file):
     '''
     Read in a MaterialX document from a file
@@ -39,6 +56,12 @@ def get_materialX_document(test_case, input_file):
     test_case.assertTrue(valid)
     return mxdoc
 
+def getGLTFDocument(testCase, inputFile):
+    if not os.path.exists(inputFile):
+        testCase.fail(f"File not found: {inputFile}")
+    jsonString = MxGLTFPTUtil.load_json_file(inputFile)
+    testCase.assertIsNotNone(jsonString)
+    return jsonString
 
 class TestConvertFromMtlx(unittest.TestCase):
     '''
@@ -57,18 +80,26 @@ class TestConvertFromMtlx(unittest.TestCase):
         logger.info(f'Checking MaterialX version: 1.39.2 or higher: {have_version_1392}')
 
         current_folder = os.path.dirname(__file__)
+        #current_folder = get_module_path()
 
         # Get all files in the data folder
         test_files = []
         test_file_names = []
         for root, dirs, files in os.walk(os.path.join(current_folder, 'data')):
             for file in files:
-                if file.endswith(".mtlx"):
+                if file.endswith(".mtlx") and not file.endswith("_fromgltf.mtlx"):
                     test_file_names.append(file)
                     # Get absolute path
                     file = os.path.abspath(os.path.join(root, file))
                     #logger.info(f'Found test file: {file}')
                     test_files.append(file)
+
+        # The shaders are not translated over for these intentionally
+        # As one shader is not a glTF PBR shader and the other has no shader. 
+        skip_diff = ['unsupported_stdsurf.mtlx', 'no_material.mtlx',
+                      'unsupported_stdsurf_gltf_pbr.mtlx'] #, 'gltf_pbr_boombox.mtlx']
+        # Note gltf_pbr_boombox.mtlx needs to compare against original with flattend file names
+        # since it uses fileprefix
 
         converter = MxGLTFPT.glTFMaterialXConverter()
 
@@ -124,6 +155,53 @@ class TestConvertFromMtlx(unittest.TestCase):
                 logger.info(f'> Writing converted glTF file: {gltf_name}')
                 f.write(json_string)
 
+            if file_name in skip_diff:
+                logger.info(f'> Skipping comparison for: {file_name}')
+            else:
+                errors = ''
+                if have_version_1392:
+
+                    # Convert back to MaterialX
+                    stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
+                    self.assertIsNotNone(stdlib)
+                    compare_doc = converter.gltf_string_to_materialX(json_string, stdlib)
+                    self.assertIsNotNone(compare_doc)
+
+                    # Remove material nodes as they are generated from glTF
+                    for mnode in orig_doc.getMaterialNodes():
+                        orig_doc.removeNode(mnode.getName())
+                    for mnode in compare_doc.getMaterialNodes():
+                        compare_doc.removeNode(mnode.getName())
+
+                    # Flatten filenames for comparison
+                    mx.flattenFilenames(orig_doc)
+
+                    # Remove any comments for comparison
+                    MxGLTFPTUtil.remove_comments(orig_doc)
+                    MxGLTFPTUtil.remove_comments(compare_doc)
+
+                    equivalence_opts = mx.ElementEquivalenceOptions()
+                    # Always skip doc strings
+                    equivalence_opts.skipAttributes = { 'doc', 'nodedef' } 
+
+                    #if opts.skipAttributes:
+                    #    for attr in opts.skipAttributes:
+                    #        equivalence_opts.skipAttributes.add(attr)
+                    #if opts.skipValueComparisons:
+                    #    equivalence_opts.skipValueComparisons = True
+                    #if opts.precision:
+                    #    equivalence_opts.precision = opts.precision
+
+                    equivalent, errors = orig_doc.isEquivalent(compare_doc, equivalence_opts)
+
+                    if (not equivalent):                    
+                        mx.writeToXmlFile(orig_doc, 'orig.mtlx')
+                        mx.writeToXmlFile(compare_doc, 'compare.mtlx')
+                        logger.info(f'> Comparison failed for file: {input_file}. Error: {errors}')
+                        self.assertTrue(equivalent)
+                    else:
+                        logger.info(f'> Comparison passed for file: {input_file}')
+
 class TestConvertToMtlx(unittest.TestCase):
     '''
     Test conversion from GLTF Procedural Texture to MaterialX
@@ -139,6 +217,13 @@ class TestConvertToMtlx(unittest.TestCase):
 
         current_folder = os.path.dirname(__file__)
 
+        # The shaders are not translated over for these intentionally
+        # unsupported_stdsurf.gltf : has a non-glTF shader 
+        # no_material.gltf : has no materials 
+        # materble_sold_std_surf_ui_gltf_pbr : has glTF and standard surface. 
+        skip_diff = ['unsupported_stdsurf.gltf', 'no_material.gltf',
+                     'unsupported_stdsurf_gltf_pbr.gltf']
+
         # Get all files in the data folder
         test_files = []
         test_file_names = []
@@ -152,13 +237,54 @@ class TestConvertToMtlx(unittest.TestCase):
                     test_files.append(file)
 
         converter = MxGLTFPT.glTFMaterialXConverter()
+        converter.set_add_asset_info(True)
 
         for file, file_name in zip(test_files, test_file_names):
-            # To be updated when the conversion from GLTF to MaterialX is implemented
-            logger.info('')
-            logger.info(f'-------- Input GLTF file: {file_name} -------- ') 
 
-        self.assertTrue(True)
+            logger.info('')
+            logger.info(f'-------- Input GLTF file: {file_name} -------- ')  
+
+            inputFile = file
+            jsonString = getGLTFDocument(self, inputFile)
+            self.assertIsNotNone(jsonString)
+
+            stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
+            self.assertIsNotNone(stdlib)
+
+            # Convert from GLTF to MaterialX
+            mxdoc = converter.gltf_string_to_materialX(jsonString, stdlib)
+            #logger.info('-----------------------\n' + mx.prettyPrint(mxdoc))
+            mtlxFileName = inputFile.replace('.gltf', '_fromgltf.mtlx')
+            logger.info("> Writing converted MaterialX file: " + file.replace('.gltf', '_fromgltf.mtlx'))
+            mx.writeToXmlFile(mxdoc, mtlxFileName)
+
+            MxGLTFPTUtil.import_libraries(mxdoc, stdlib)
+            valid, status = MxGLTFPTUtil.validate_document(mxdoc)
+            if not valid:
+                logger.info(f'> Validation failed for file: {inputFile}')
+                logger.info(status)
+            self.assertTrue(valid)
+
+            if file_name in skip_diff:
+                logger.info(f'> Skipping comparison for: {file_name}')
+            else:
+                # Convert back to GLTF
+                jsonString2, status = converter.materialX_to_glTF(mxdoc)
+                json1 = json.loads(jsonString)
+                converter.glTF_graph_clear_names(json1)
+                json2 = json.loads(jsonString2)                
+                converter.glTF_graph_clear_names(json2)
+                jsonString = json.dumps(json1, sort_keys=True, indent=4)
+                jsonString2 = json.dumps(json2, sort_keys=True, indent=4)
+                logger.info(f'> JSON comparison match: {jsonString == jsonString2}')
+                self.assertTrue(len(jsonString2) > 0)
+                if (jsonString != jsonString2):
+                    logger.info(f'> JSON comparison failed for file: {inputFile}')
+                    with open('orig.gltf', 'w') as f:
+                        f.write(jsonString) 
+                    with open('compare.gltf', 'w') as f:
+                        f.write(jsonString2)
+                self.assertTrue(jsonString == jsonString2)
 
 if __name__ == '__main__':
     unittest.main()

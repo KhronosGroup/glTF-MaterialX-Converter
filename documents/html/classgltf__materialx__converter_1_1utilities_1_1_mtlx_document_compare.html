@@ -27,6 +27,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="glTF_100px_June16.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MaterialX / glTF Texture Procedurals
    &#160;<span id="projectnumber">0.0.1</span>
@@ -159,7 +160,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to compare two MaterialX documents. </p>
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00086">86</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00117">117</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae1ea5330ea6d63d8df7c4726b7bf86d2" name="ae1ea5330ea6d63d8df7c4726b7bf86d2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1ea5330ea6d63d8df7c4726b7bf86d2">&#9670;&#160;</a></span>__init__()</h2>
@@ -194,17 +195,17 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00090">90</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   90</span>    <span class="keyword">def </span>__init__(self, doc1, doc2):</div>
-<div class="line"><span class="lineno">   91</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">   92</span><span class="stringliteral">        @brief Constructor.</span></div>
-<div class="line"><span class="lineno">   93</span><span class="stringliteral">        @param doc1: The first document to compare.</span></div>
-<div class="line"><span class="lineno">   94</span><span class="stringliteral">        @param doc2: The second document to compare.</span></div>
-<div class="line"><span class="lineno">   95</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">   96</span>        self.doc1 = doc1</div>
-<div class="line"><span class="lineno">   97</span>        self.doc2 = doc2</div>
-<div class="line"><span class="lineno">   98</span>        self.error = <span class="stringliteral">&#39;&#39;</span></div>
-<div class="line"><span class="lineno">   99</span> </div>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00121">121</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  121</span>    <span class="keyword">def </span>__init__(self, doc1, doc2):</div>
+<div class="line"><span class="lineno">  122</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  123</span><span class="stringliteral">        @brief Constructor.</span></div>
+<div class="line"><span class="lineno">  124</span><span class="stringliteral">        @param doc1: The first document to compare.</span></div>
+<div class="line"><span class="lineno">  125</span><span class="stringliteral">        @param doc2: The second document to compare.</span></div>
+<div class="line"><span class="lineno">  126</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  127</span>        self.doc1 = doc1</div>
+<div class="line"><span class="lineno">  128</span>        self.doc2 = doc2</div>
+<div class="line"><span class="lineno">  129</span>        self.error = <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  130</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -227,15 +228,15 @@ Public Attributes</h2></td></tr>
 <p>Compare two MaterialX documents. </p>
 <dl class="section return"><dt>Returns</dt><dd>: True if the documents are functionally equivalent, otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00245">245</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  245</span>    <span class="keyword">def </span>compare(self):</div>
-<div class="line"><span class="lineno">  246</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  247</span><span class="stringliteral">        @brief Compare two MaterialX documents.</span></div>
-<div class="line"><span class="lineno">  248</span><span class="stringliteral">        @return: True if the documents are functionally equivalent, otherwise False.</span></div>
-<div class="line"><span class="lineno">  249</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  250</span>        self.result = self.functionallyEquivalent(self.doc1, self.doc2)</div>
-<div class="line"><span class="lineno">  251</span>        <span class="keywordflow">return</span> self.result</div>
-<div class="line"><span class="lineno">  252</span> </div>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00276">276</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  276</span>    <span class="keyword">def </span>compare(self):</div>
+<div class="line"><span class="lineno">  277</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  278</span><span class="stringliteral">        @brief Compare two MaterialX documents.</span></div>
+<div class="line"><span class="lineno">  279</span><span class="stringliteral">        @return: True if the documents are functionally equivalent, otherwise False.</span></div>
+<div class="line"><span class="lineno">  280</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  281</span>        self.result = self.functionallyEquivalent(self.doc1, self.doc2)</div>
+<div class="line"><span class="lineno">  282</span>        <span class="keywordflow">return</span> self.result</div>
+<div class="line"><span class="lineno">  283</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -273,73 +274,73 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>: True if the elements are functionally equivalent, otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00179">179</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  179</span>    <span class="keyword">def </span>functionallyEquivalent(self, lhs, rhs):</div>
-<div class="line"><span class="lineno">  180</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  181</span><span class="stringliteral">        @brief Check if two MaterialX elements are functionally equivalent.</span></div>
-<div class="line"><span class="lineno">  182</span><span class="stringliteral">        @param lhs: The first element.</span></div>
-<div class="line"><span class="lineno">  183</span><span class="stringliteral">        @param rhs: The second element.</span></div>
-<div class="line"><span class="lineno">  184</span><span class="stringliteral">        @return: True if the elements are functionally equivalent, otherwise False.&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  185</span> </div>
-<div class="line"><span class="lineno">  186</span>        <span class="keywordflow">if</span> lhs.getCategory() != rhs.getCategory():</div>
-<div class="line"><span class="lineno">  187</span>            self.error = <span class="stringliteral">&quot;Mismatched category: &quot;</span> + lhs.getName() + <span class="stringliteral">&quot; vs &quot;</span> + rhs.getName()</div>
-<div class="line"><span class="lineno">  188</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  189</span> </div>
-<div class="line"><span class="lineno">  190</span>        <span class="keywordflow">if</span> lhs.getName() != rhs.getName():</div>
-<div class="line"><span class="lineno">  191</span>            self.error = <span class="stringliteral">&quot;Mismatched name: &quot;</span> + lhs.getName() + <span class="stringliteral">&quot; vs &quot;</span> + rhs.getName()</div>
-<div class="line"><span class="lineno">  192</span>            <span class="keywordflow">return</span> <span class="keyword">False</span>  </div>
-<div class="line"><span class="lineno">  193</span> </div>
-<div class="line"><span class="lineno">  194</span>        <span class="comment"># Compare attributes.</span></div>
-<div class="line"><span class="lineno">  195</span>        <span class="keywordflow">if</span> (len(lhs.getAttributeNames()) != len(rhs.getAttributeNames())): </div>
-<div class="line"><span class="lineno">  196</span>            self.error = <span class="stringliteral">&quot;Mismatched number of attributes: &quot;</span> , len(lhs.getAttributeNames()) , <span class="stringliteral">&quot; vs &quot;</span> , len(rhs.getAttributeNames())</div>
-<div class="line"><span class="lineno">  197</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  198</span>        </div>
-<div class="line"><span class="lineno">  199</span>        lhsAttrNames = lhs.getAttributeNames()</div>
-<div class="line"><span class="lineno">  200</span>        rhsAttrNames = rhs.getAttributeNames()</div>
-<div class="line"><span class="lineno">  201</span>        lhsAttrNames.sort()</div>
-<div class="line"><span class="lineno">  202</span>        rhsAttrNames.sort()</div>
-<div class="line"><span class="lineno">  203</span>        <span class="keywordflow">if</span> (lhsAttrNames != rhsAttrNames):</div>
-<div class="line"><span class="lineno">  204</span>            self.error = <span class="stringliteral">&quot;Mismatched attribute names&quot;</span></div>
-<div class="line"><span class="lineno">  205</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  206</span>        </div>
-<div class="line"><span class="lineno">  207</span>        <span class="keywordflow">for</span> attr <span class="keywordflow">in</span> lhsAttrNames:</div>
-<div class="line"><span class="lineno">  208</span>            <span class="keywordflow">if</span> lhs.getAttribute(attr) != rhs.getAttribute(attr):</div>
-<div class="line"><span class="lineno">  209</span>                self.error = <span class="stringliteral">&quot;Mismatched attribute: &quot;</span> + lhs.getAttribute(attr) + <span class="stringliteral">&quot; vs &quot;</span> + rhs.getAttribute(attr)</div>
-<div class="line"><span class="lineno">  210</span>                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  211</span> </div>
-<div class="line"><span class="lineno">  212</span>        <span class="comment"># Compare children.</span></div>
-<div class="line"><span class="lineno">  213</span>        c1 = lhs.getChildren()</div>
-<div class="line"><span class="lineno">  214</span>        c2 = rhs.getChildren()</div>
-<div class="line"><span class="lineno">  215</span>        <span class="keywordflow">if</span> len(c1) != len(c2):</div>
-<div class="line"><span class="lineno">  216</span>            self.error = <span class="stringliteral">&quot;Mismatched number of children: &quot;</span> , len(c1) , <span class="stringliteral">&quot; vs &quot;</span> , len(c2)</div>
-<div class="line"><span class="lineno">  217</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  218</span>        </div>
-<div class="line"><span class="lineno">  219</span>        <span class="comment"># Compare children names</span></div>
-<div class="line"><span class="lineno">  220</span>        c1names = []</div>
-<div class="line"><span class="lineno">  221</span>        <span class="keywordflow">for</span> child <span class="keywordflow">in</span> c1:</div>
-<div class="line"><span class="lineno">  222</span>            c1names.append(child.getName())</div>
-<div class="line"><span class="lineno">  223</span>        c2names = []</div>
-<div class="line"><span class="lineno">  224</span>        <span class="keywordflow">for</span> child <span class="keywordflow">in</span> c2:</div>
-<div class="line"><span class="lineno">  225</span>            c2names.append(child.getName())</div>
-<div class="line"><span class="lineno">  226</span>        c1names.sort()</div>
-<div class="line"><span class="lineno">  227</span>        c2names.sort()</div>
-<div class="line"><span class="lineno">  228</span>        <span class="keywordflow">if</span> c1names != c2names:</div>
-<div class="line"><span class="lineno">  229</span>            self.error = <span class="stringliteral">&quot;Mismatched children names&quot;</span></div>
-<div class="line"><span class="lineno">  230</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  231</span> </div>
-<div class="line"><span class="lineno">  232</span>        <span class="keywordflow">for</span> child <span class="keywordflow">in</span> c1:</div>
-<div class="line"><span class="lineno">  233</span> </div>
-<div class="line"><span class="lineno">  234</span>            child2 = rhs.getChild(child.getName())</div>
-<div class="line"><span class="lineno">  235</span> </div>
-<div class="line"><span class="lineno">  236</span>            <span class="comment">#if (child2 is None):</span></div>
-<div class="line"><span class="lineno">  237</span>            <span class="comment">#    print(&quot;Missing child: &quot; + child.getName())</span></div>
-<div class="line"><span class="lineno">  238</span>            <span class="comment">#    return False</span></div>
-<div class="line"><span class="lineno">  239</span>        </div>
-<div class="line"><span class="lineno">  240</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.functionallyEquivalent(child, child2): </div>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00210">210</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  210</span>    <span class="keyword">def </span>functionallyEquivalent(self, lhs, rhs):</div>
+<div class="line"><span class="lineno">  211</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  212</span><span class="stringliteral">        @brief Check if two MaterialX elements are functionally equivalent.</span></div>
+<div class="line"><span class="lineno">  213</span><span class="stringliteral">        @param lhs: The first element.</span></div>
+<div class="line"><span class="lineno">  214</span><span class="stringliteral">        @param rhs: The second element.</span></div>
+<div class="line"><span class="lineno">  215</span><span class="stringliteral">        @return: True if the elements are functionally equivalent, otherwise False.&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  216</span> </div>
+<div class="line"><span class="lineno">  217</span>        <span class="keywordflow">if</span> lhs.getCategory() != rhs.getCategory():</div>
+<div class="line"><span class="lineno">  218</span>            self.error = <span class="stringliteral">&quot;Mismatched category: &quot;</span> + lhs.getName() + <span class="stringliteral">&quot; vs &quot;</span> + rhs.getName()</div>
+<div class="line"><span class="lineno">  219</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  220</span> </div>
+<div class="line"><span class="lineno">  221</span>        <span class="keywordflow">if</span> lhs.getName() != rhs.getName():</div>
+<div class="line"><span class="lineno">  222</span>            self.error = <span class="stringliteral">&quot;Mismatched name: &quot;</span> + lhs.getName() + <span class="stringliteral">&quot; vs &quot;</span> + rhs.getName()</div>
+<div class="line"><span class="lineno">  223</span>            <span class="keywordflow">return</span> <span class="keyword">False</span>  </div>
+<div class="line"><span class="lineno">  224</span> </div>
+<div class="line"><span class="lineno">  225</span>        <span class="comment"># Compare attributes.</span></div>
+<div class="line"><span class="lineno">  226</span>        <span class="keywordflow">if</span> (len(lhs.getAttributeNames()) != len(rhs.getAttributeNames())): </div>
+<div class="line"><span class="lineno">  227</span>            self.error = <span class="stringliteral">&quot;Mismatched number of attributes: &quot;</span> , len(lhs.getAttributeNames()) , <span class="stringliteral">&quot; vs &quot;</span> , len(rhs.getAttributeNames())</div>
+<div class="line"><span class="lineno">  228</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  229</span>        </div>
+<div class="line"><span class="lineno">  230</span>        lhsAttrNames = lhs.getAttributeNames()</div>
+<div class="line"><span class="lineno">  231</span>        rhsAttrNames = rhs.getAttributeNames()</div>
+<div class="line"><span class="lineno">  232</span>        lhsAttrNames.sort()</div>
+<div class="line"><span class="lineno">  233</span>        rhsAttrNames.sort()</div>
+<div class="line"><span class="lineno">  234</span>        <span class="keywordflow">if</span> (lhsAttrNames != rhsAttrNames):</div>
+<div class="line"><span class="lineno">  235</span>            self.error = <span class="stringliteral">&quot;Mismatched attribute names&quot;</span></div>
+<div class="line"><span class="lineno">  236</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  237</span>        </div>
+<div class="line"><span class="lineno">  238</span>        <span class="keywordflow">for</span> attr <span class="keywordflow">in</span> lhsAttrNames:</div>
+<div class="line"><span class="lineno">  239</span>            <span class="keywordflow">if</span> lhs.getAttribute(attr) != rhs.getAttribute(attr):</div>
+<div class="line"><span class="lineno">  240</span>                self.error = <span class="stringliteral">&quot;Mismatched attribute: &quot;</span> + lhs.getAttribute(attr) + <span class="stringliteral">&quot; vs &quot;</span> + rhs.getAttribute(attr)</div>
 <div class="line"><span class="lineno">  241</span>                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  242</span>        </div>
-<div class="line"><span class="lineno">  243</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  244</span> </div>
+<div class="line"><span class="lineno">  242</span> </div>
+<div class="line"><span class="lineno">  243</span>        <span class="comment"># Compare children.</span></div>
+<div class="line"><span class="lineno">  244</span>        c1 = lhs.getChildren()</div>
+<div class="line"><span class="lineno">  245</span>        c2 = rhs.getChildren()</div>
+<div class="line"><span class="lineno">  246</span>        <span class="keywordflow">if</span> len(c1) != len(c2):</div>
+<div class="line"><span class="lineno">  247</span>            self.error = <span class="stringliteral">&quot;Mismatched number of children: &quot;</span> , len(c1) , <span class="stringliteral">&quot; vs &quot;</span> , len(c2)</div>
+<div class="line"><span class="lineno">  248</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  249</span>        </div>
+<div class="line"><span class="lineno">  250</span>        <span class="comment"># Compare children names</span></div>
+<div class="line"><span class="lineno">  251</span>        c1names = []</div>
+<div class="line"><span class="lineno">  252</span>        <span class="keywordflow">for</span> child <span class="keywordflow">in</span> c1:</div>
+<div class="line"><span class="lineno">  253</span>            c1names.append(child.getName())</div>
+<div class="line"><span class="lineno">  254</span>        c2names = []</div>
+<div class="line"><span class="lineno">  255</span>        <span class="keywordflow">for</span> child <span class="keywordflow">in</span> c2:</div>
+<div class="line"><span class="lineno">  256</span>            c2names.append(child.getName())</div>
+<div class="line"><span class="lineno">  257</span>        c1names.sort()</div>
+<div class="line"><span class="lineno">  258</span>        c2names.sort()</div>
+<div class="line"><span class="lineno">  259</span>        <span class="keywordflow">if</span> c1names != c2names:</div>
+<div class="line"><span class="lineno">  260</span>            self.error = <span class="stringliteral">&quot;Mismatched children names&quot;</span></div>
+<div class="line"><span class="lineno">  261</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  262</span> </div>
+<div class="line"><span class="lineno">  263</span>        <span class="keywordflow">for</span> child <span class="keywordflow">in</span> c1:</div>
+<div class="line"><span class="lineno">  264</span> </div>
+<div class="line"><span class="lineno">  265</span>            child2 = rhs.getChild(child.getName())</div>
+<div class="line"><span class="lineno">  266</span> </div>
+<div class="line"><span class="lineno">  267</span>            <span class="comment">#if (child2 is None):</span></div>
+<div class="line"><span class="lineno">  268</span>            <span class="comment">#    print(&quot;Missing child: &quot; + child.getName())</span></div>
+<div class="line"><span class="lineno">  269</span>            <span class="comment">#    return False</span></div>
+<div class="line"><span class="lineno">  270</span>        </div>
+<div class="line"><span class="lineno">  271</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.functionallyEquivalent(child, child2): </div>
+<div class="line"><span class="lineno">  272</span>                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  273</span>        </div>
+<div class="line"><span class="lineno">  274</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  275</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -361,14 +362,14 @@ Public Attributes</h2></td></tr>
 <p>Get the error message. </p>
 <dl class="section return"><dt>Returns</dt><dd>: The error message. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00100">100</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  100</span>    <span class="keyword">def </span>getError(self):</div>
-<div class="line"><span class="lineno">  101</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  102</span><span class="stringliteral">        @brief Get the error message.</span></div>
-<div class="line"><span class="lineno">  103</span><span class="stringliteral">        @return: The error message.</span></div>
-<div class="line"><span class="lineno">  104</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  105</span>        <span class="keywordflow">return</span> self.error</div>
-<div class="line"><span class="lineno">  106</span> </div>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00131">131</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  131</span>    <span class="keyword">def </span>getError(self):</div>
+<div class="line"><span class="lineno">  132</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  133</span><span class="stringliteral">        @brief Get the error message.</span></div>
+<div class="line"><span class="lineno">  134</span><span class="stringliteral">        @return: The error message.</span></div>
+<div class="line"><span class="lineno">  135</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  136</span>        <span class="keywordflow">return</span> self.error</div>
+<div class="line"><span class="lineno">  137</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -389,14 +390,14 @@ Public Attributes</h2></td></tr>
 
 <p>Normalize two MaterialX documents. </p>
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00253">253</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  253</span>    <span class="keyword">def </span>normalize(self):</div>
-<div class="line"><span class="lineno">  254</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  255</span><span class="stringliteral">        @brief Normalize two MaterialX documents.</span></div>
-<div class="line"><span class="lineno">  256</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  257</span>        self.normalizeValueStrings(self.doc1)</div>
-<div class="line"><span class="lineno">  258</span>        self.normalizeValueStrings(self.doc2)</div>
-<div class="line"><span class="lineno">  259</span> </div>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00284">284</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  284</span>    <span class="keyword">def </span>normalize(self):</div>
+<div class="line"><span class="lineno">  285</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  286</span><span class="stringliteral">        @brief Normalize two MaterialX documents.</span></div>
+<div class="line"><span class="lineno">  287</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  288</span>        self.normalizeValueStrings(self.doc1)</div>
+<div class="line"><span class="lineno">  289</span>        self.normalizeValueStrings(self.doc2)</div>
+<div class="line"><span class="lineno">  290</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -434,62 +435,62 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>: The normalized string. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00107">107</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  107</span>    <span class="keyword">def </span>normalizeValueString(self, string, value_type):</div>
-<div class="line"><span class="lineno">  108</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  109</span><span class="stringliteral">        @brief Normalize a value string.</span></div>
-<div class="line"><span class="lineno">  110</span><span class="stringliteral">        @param string: The string to normalize.</span></div>
-<div class="line"><span class="lineno">  111</span><span class="stringliteral">        @param value_type: The type of the value.</span></div>
-<div class="line"><span class="lineno">  112</span><span class="stringliteral">        @return: The normalized string.</span></div>
-<div class="line"><span class="lineno">  113</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  114</span>        supported_types = {<span class="stringliteral">&quot;integer&quot;</span>, <span class="stringliteral">&quot;float&quot;</span>, <span class="stringliteral">&quot;vector2&quot;</span>, <span class="stringliteral">&quot;vector3&quot;</span>, <span class="stringliteral">&quot;vector4&quot;</span>, <span class="stringliteral">&quot;color3&quot;</span>, <span class="stringliteral">&quot;color4&quot;</span>, <span class="stringliteral">&quot;matrix33&quot;</span>, <span class="stringliteral">&quot;matrix44&quot;</span>}</div>
-<div class="line"><span class="lineno">  115</span>        </div>
-<div class="line"><span class="lineno">  116</span>        <span class="keywordflow">if</span> value_type <span class="keywordflow">not</span> <span class="keywordflow">in</span> supported_types:</div>
-<div class="line"><span class="lineno">  117</span>            <span class="keywordflow">return</span> string</div>
-<div class="line"><span class="lineno">  118</span>        </div>
-<div class="line"><span class="lineno">  119</span>        token_separator = <span class="stringliteral">&quot;, &quot;</span></div>
-<div class="line"><span class="lineno">  120</span>        result = <span class="stringliteral">&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  121</span>        </div>
-<div class="line"><span class="lineno">  122</span>        is_integer = (value_type == <span class="stringliteral">&quot;integer&quot;</span>)</div>
-<div class="line"><span class="lineno">  123</span>        </div>
-<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">if</span> is_integer:</div>
-<div class="line"><span class="lineno">  125</span>            <span class="comment"># Remove leading and trailing spaces</span></div>
-<div class="line"><span class="lineno">  126</span>            result = string.strip()</div>
-<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  128</span>            tokens = string.split(<span class="stringliteral">&#39;,&#39;</span>)</div>
-<div class="line"><span class="lineno">  129</span>            <span class="keywordflow">for</span> token <span class="keywordflow">in</span> tokens:</div>
-<div class="line"><span class="lineno">  130</span>                <span class="comment"># Remove leading and trailing spaces</span></div>
-<div class="line"><span class="lineno">  131</span>                token = token.strip()</div>
-<div class="line"><span class="lineno">  132</span>                </div>
-<div class="line"><span class="lineno">  133</span>                <span class="comment"># Skip if the token is empty</span></div>
-<div class="line"><span class="lineno">  134</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> token:</div>
-<div class="line"><span class="lineno">  135</span>                    <span class="keywordflow">continue</span></div>
-<div class="line"><span class="lineno">  136</span>                </div>
-<div class="line"><span class="lineno">  137</span>                <span class="comment"># Remove leading zeros</span></div>
-<div class="line"><span class="lineno">  138</span>                token = token.lstrip(<span class="stringliteral">&#39;0&#39;</span>)</div>
-<div class="line"><span class="lineno">  139</span>                </div>
-<div class="line"><span class="lineno">  140</span>                <span class="comment"># Preserve 0 values</span></div>
-<div class="line"><span class="lineno">  141</span>                <span class="keywordflow">if</span> token == <span class="stringliteral">&quot;&quot;</span> <span class="keywordflow">or</span> token[0] == <span class="stringliteral">&#39;.&#39;</span>:</div>
-<div class="line"><span class="lineno">  142</span>                    token = <span class="stringliteral">&quot;0&quot;</span> + token</div>
-<div class="line"><span class="lineno">  143</span>                </div>
-<div class="line"><span class="lineno">  144</span>                <span class="comment"># Check if token has &#39;e&#39; character for scientific notation</span></div>
-<div class="line"><span class="lineno">  145</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;e&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> token:</div>
-<div class="line"><span class="lineno">  146</span>                    <span class="comment"># If token has a decimal point, remove trailing zeros</span></div>
-<div class="line"><span class="lineno">  147</span>                    <span class="keywordflow">if</span> <span class="stringliteral">&#39;.&#39;</span> <span class="keywordflow">in</span> token:</div>
-<div class="line"><span class="lineno">  148</span>                        token = token.rstrip(<span class="stringliteral">&#39;0&#39;</span>)</div>
-<div class="line"><span class="lineno">  149</span>                        <span class="comment"># If token ends with &#39;.&#39;, remove it</span></div>
-<div class="line"><span class="lineno">  150</span>                        <span class="keywordflow">if</span> token[-1] == <span class="stringliteral">&#39;.&#39;</span>:</div>
-<div class="line"><span class="lineno">  151</span>                            token = token[:-1]</div>
-<div class="line"><span class="lineno">  152</span>                </div>
-<div class="line"><span class="lineno">  153</span>                <span class="comment"># Append the formatted token to result with separator</span></div>
-<div class="line"><span class="lineno">  154</span>                result += token + token_separator</div>
-<div class="line"><span class="lineno">  155</span>            </div>
-<div class="line"><span class="lineno">  156</span>            <span class="comment"># Remove the last separator</span></div>
-<div class="line"><span class="lineno">  157</span>            <span class="keywordflow">if</span> result:</div>
-<div class="line"><span class="lineno">  158</span>                result = result[:-len(token_separator)]</div>
-<div class="line"><span class="lineno">  159</span>        </div>
-<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">return</span> result</div>
-<div class="line"><span class="lineno">  161</span> </div>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00138">138</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  138</span>    <span class="keyword">def </span>normalizeValueString(self, string, value_type):</div>
+<div class="line"><span class="lineno">  139</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  140</span><span class="stringliteral">        @brief Normalize a value string.</span></div>
+<div class="line"><span class="lineno">  141</span><span class="stringliteral">        @param string: The string to normalize.</span></div>
+<div class="line"><span class="lineno">  142</span><span class="stringliteral">        @param value_type: The type of the value.</span></div>
+<div class="line"><span class="lineno">  143</span><span class="stringliteral">        @return: The normalized string.</span></div>
+<div class="line"><span class="lineno">  144</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  145</span>        supported_types = {<span class="stringliteral">&quot;integer&quot;</span>, <span class="stringliteral">&quot;float&quot;</span>, <span class="stringliteral">&quot;vector2&quot;</span>, <span class="stringliteral">&quot;vector3&quot;</span>, <span class="stringliteral">&quot;vector4&quot;</span>, <span class="stringliteral">&quot;color3&quot;</span>, <span class="stringliteral">&quot;color4&quot;</span>, <span class="stringliteral">&quot;matrix33&quot;</span>, <span class="stringliteral">&quot;matrix44&quot;</span>}</div>
+<div class="line"><span class="lineno">  146</span>        </div>
+<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">if</span> value_type <span class="keywordflow">not</span> <span class="keywordflow">in</span> supported_types:</div>
+<div class="line"><span class="lineno">  148</span>            <span class="keywordflow">return</span> string</div>
+<div class="line"><span class="lineno">  149</span>        </div>
+<div class="line"><span class="lineno">  150</span>        token_separator = <span class="stringliteral">&quot;, &quot;</span></div>
+<div class="line"><span class="lineno">  151</span>        result = <span class="stringliteral">&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  152</span>        </div>
+<div class="line"><span class="lineno">  153</span>        is_integer = (value_type == <span class="stringliteral">&quot;integer&quot;</span>)</div>
+<div class="line"><span class="lineno">  154</span>        </div>
+<div class="line"><span class="lineno">  155</span>        <span class="keywordflow">if</span> is_integer:</div>
+<div class="line"><span class="lineno">  156</span>            <span class="comment"># Remove leading and trailing spaces</span></div>
+<div class="line"><span class="lineno">  157</span>            result = string.strip()</div>
+<div class="line"><span class="lineno">  158</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  159</span>            tokens = string.split(<span class="stringliteral">&#39;,&#39;</span>)</div>
+<div class="line"><span class="lineno">  160</span>            <span class="keywordflow">for</span> token <span class="keywordflow">in</span> tokens:</div>
+<div class="line"><span class="lineno">  161</span>                <span class="comment"># Remove leading and trailing spaces</span></div>
+<div class="line"><span class="lineno">  162</span>                token = token.strip()</div>
+<div class="line"><span class="lineno">  163</span>                </div>
+<div class="line"><span class="lineno">  164</span>                <span class="comment"># Skip if the token is empty</span></div>
+<div class="line"><span class="lineno">  165</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> token:</div>
+<div class="line"><span class="lineno">  166</span>                    <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno">  167</span>                </div>
+<div class="line"><span class="lineno">  168</span>                <span class="comment"># Remove leading zeros</span></div>
+<div class="line"><span class="lineno">  169</span>                token = token.lstrip(<span class="stringliteral">&#39;0&#39;</span>)</div>
+<div class="line"><span class="lineno">  170</span>                </div>
+<div class="line"><span class="lineno">  171</span>                <span class="comment"># Preserve 0 values</span></div>
+<div class="line"><span class="lineno">  172</span>                <span class="keywordflow">if</span> token == <span class="stringliteral">&quot;&quot;</span> <span class="keywordflow">or</span> token[0] == <span class="stringliteral">&#39;.&#39;</span>:</div>
+<div class="line"><span class="lineno">  173</span>                    token = <span class="stringliteral">&quot;0&quot;</span> + token</div>
+<div class="line"><span class="lineno">  174</span>                </div>
+<div class="line"><span class="lineno">  175</span>                <span class="comment"># Check if token has &#39;e&#39; character for scientific notation</span></div>
+<div class="line"><span class="lineno">  176</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;e&#39;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> token:</div>
+<div class="line"><span class="lineno">  177</span>                    <span class="comment"># If token has a decimal point, remove trailing zeros</span></div>
+<div class="line"><span class="lineno">  178</span>                    <span class="keywordflow">if</span> <span class="stringliteral">&#39;.&#39;</span> <span class="keywordflow">in</span> token:</div>
+<div class="line"><span class="lineno">  179</span>                        token = token.rstrip(<span class="stringliteral">&#39;0&#39;</span>)</div>
+<div class="line"><span class="lineno">  180</span>                        <span class="comment"># If token ends with &#39;.&#39;, remove it</span></div>
+<div class="line"><span class="lineno">  181</span>                        <span class="keywordflow">if</span> token[-1] == <span class="stringliteral">&#39;.&#39;</span>:</div>
+<div class="line"><span class="lineno">  182</span>                            token = token[:-1]</div>
+<div class="line"><span class="lineno">  183</span>                </div>
+<div class="line"><span class="lineno">  184</span>                <span class="comment"># Append the formatted token to result with separator</span></div>
+<div class="line"><span class="lineno">  185</span>                result += token + token_separator</div>
+<div class="line"><span class="lineno">  186</span>            </div>
+<div class="line"><span class="lineno">  187</span>            <span class="comment"># Remove the last separator</span></div>
+<div class="line"><span class="lineno">  188</span>            <span class="keywordflow">if</span> result:</div>
+<div class="line"><span class="lineno">  189</span>                result = result[:-len(token_separator)]</div>
+<div class="line"><span class="lineno">  190</span>        </div>
+<div class="line"><span class="lineno">  191</span>        <span class="keywordflow">return</span> result</div>
+<div class="line"><span class="lineno">  192</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -520,24 +521,24 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00162">162</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  162</span>    <span class="keyword">def </span>normalizeValueStrings(self, doc):</div>
-<div class="line"><span class="lineno">  163</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  164</span><span class="stringliteral">        @brief Normalize all value strings in a document.</span></div>
-<div class="line"><span class="lineno">  165</span><span class="stringliteral">        @param doc: The document to normalize.</span></div>
-<div class="line"><span class="lineno">  166</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  167</span>        <span class="keywordflow">for</span> elem <span class="keywordflow">in</span> doc.traverseTree():</div>
-<div class="line"><span class="lineno">  168</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> elem.isA(mx.ValueElement):</div>
-<div class="line"><span class="lineno">  169</span>                <span class="keywordflow">continue</span></div>
-<div class="line"><span class="lineno">  170</span> </div>
-<div class="line"><span class="lineno">  171</span>            original_string = elem.getValueString()</div>
-<div class="line"><span class="lineno">  172</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> original_string:</div>
-<div class="line"><span class="lineno">  173</span>                <span class="keywordflow">continue</span></div>
-<div class="line"><span class="lineno">  174</span> </div>
-<div class="line"><span class="lineno">  175</span>            normalized_string = self.normalizeValueString(original_string, elem.getType())</div>
-<div class="line"><span class="lineno">  176</span>            <span class="keywordflow">if</span> normalized_string != original_string:</div>
-<div class="line"><span class="lineno">  177</span>                elem.setValueString(normalized_string)        </div>
-<div class="line"><span class="lineno">  178</span> </div>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00193">193</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  193</span>    <span class="keyword">def </span>normalizeValueStrings(self, doc):</div>
+<div class="line"><span class="lineno">  194</span>        <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  195</span><span class="stringliteral">        @brief Normalize all value strings in a document.</span></div>
+<div class="line"><span class="lineno">  196</span><span class="stringliteral">        @param doc: The document to normalize.</span></div>
+<div class="line"><span class="lineno">  197</span><span class="stringliteral">        &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  198</span>        <span class="keywordflow">for</span> elem <span class="keywordflow">in</span> doc.traverseTree():</div>
+<div class="line"><span class="lineno">  199</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> elem.isA(mx.ValueElement):</div>
+<div class="line"><span class="lineno">  200</span>                <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno">  201</span> </div>
+<div class="line"><span class="lineno">  202</span>            original_string = elem.getValueString()</div>
+<div class="line"><span class="lineno">  203</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> original_string:</div>
+<div class="line"><span class="lineno">  204</span>                <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno">  205</span> </div>
+<div class="line"><span class="lineno">  206</span>            normalized_string = self.normalizeValueString(original_string, elem.getType())</div>
+<div class="line"><span class="lineno">  207</span>            <span class="keywordflow">if</span> normalized_string != original_string:</div>
+<div class="line"><span class="lineno">  208</span>                elem.setValueString(normalized_string)        </div>
+<div class="line"><span class="lineno">  209</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -554,7 +555,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00096">96</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00127">127</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
 
 </div>
 </div>
@@ -570,7 +571,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00097">97</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00128">128</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
 
 </div>
 </div>
@@ -586,7 +587,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00098">98</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00129">129</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
 
 </div>
 </div>
@@ -602,7 +603,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00216">216</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00247">247</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
 
 </div>
 </div>
@@ -618,7 +619,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00250">250</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utilities_8py_source.html#l00281">281</a> of file <a class="el" href="utilities_8py_source.html">utilities.py</a>.</p>
 
 </div>
 </div>

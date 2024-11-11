@@ -31,6 +31,7 @@ var NAVTREE =
     ] ],
     [ "Build Utilities", "md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter-_fork_2utilities_2_r_e_a_d_m_e.html", null ],
     [ "Unit Tests", "md__d_1_2work_2materialx_2gl_t_f-_material_x-_converter-_fork_2tests_2_r_e_a_d_m_e.html", null ],
+    [ "Sample Notebook", "notebook.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [

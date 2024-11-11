@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['main_0',['main',['../namespacegltf__materialx__converter_1_1____main____.html#aa0dc9a2ccf91bf2828efea2e404a61f8',1,'gltf_materialx_converter.__main__.main()'],['../namespacegltf__materialx__converter_1_1materialx__to__gltf.html#a97bba4f17000f4f433ef25c3c3f82d5f',1,'gltf_materialx_converter.materialx_to_gltf.main()']]],
+  ['main_0',['main',['../namespacegltf__materialx__converter_1_1____main____.html#aa0dc9a2ccf91bf2828efea2e404a61f8',1,'gltf_materialx_converter.__main__.main()'],['../namespacegltf__materialx__converter_1_1gltf__to__materialx.html#a87533763ce88791ec70807175e49c877',1,'gltf_materialx_converter.gltf_to_materialx.main()'],['../namespacegltf__materialx__converter_1_1materialx__to__gltf.html#a97bba4f17000f4f433ef25c3c3f82d5f',1,'gltf_materialx_converter.materialx_to_gltf.main()']]],
   ['materialx_20configurations_1',['Supported MaterialX Configurations',['../index.html#supported-materialx-configurations',1,'']]],
   ['materialx_20gltf_20procedurals_20interop_2',['MaterialX / glTF Procedurals Interop',['../index.html',1,'']]],
   ['materialx_5fdoc_5fto_5fstring_3',['materialX_doc_to_string',['../namespacegltf__materialx__converter_1_1utilities.html#a3efdd41d9970f17e1f4febfc449bf7df',1,'gltf_materialx_converter::utilities']]],
