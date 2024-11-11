@@ -17,23 +17,6 @@ from gltf_materialx_converter import utilities as MxGLTFPTUtil
 
 import importlib.util
 
-def get_module_path():
-
-    package_location = None
-    package_name = 'gltf_materialx_converter'
-    spec = importlib.util.find_spec(package_name)
-    if spec is None:
-        print(f"Package '{package_name}' not found.")
-    else:
-        if spec.origin:
-            package_location = spec.origin
-        elif spec.submodule_search_locations:
-            package_location = spec.submodule_search_locations[0]
-        else:
-            package_location = None
-
-    return package_location
-
 def get_materialX_document(test_case, input_file):
     '''
     Read in a MaterialX document from a file
@@ -80,7 +63,6 @@ class TestConvertFromMtlx(unittest.TestCase):
         logger.info(f'Checking MaterialX version: 1.39.2 or higher: {have_version_1392}')
 
         current_folder = os.path.dirname(__file__)
-        #current_folder = get_module_path()
 
         # Get all files in the data folder
         test_files = []
@@ -96,10 +78,7 @@ class TestConvertFromMtlx(unittest.TestCase):
 
         # The shaders are not translated over for these intentionally
         # As one shader is not a glTF PBR shader and the other has no shader. 
-        skip_diff = ['unsupported_stdsurf.mtlx', 'no_material.mtlx',
-                      'unsupported_stdsurf_gltf_pbr.mtlx'] #, 'gltf_pbr_boombox.mtlx']
-        # Note gltf_pbr_boombox.mtlx needs to compare against original with flattend file names
-        # since it uses fileprefix
+        skip_diff = ['unsupported_stdsurf.mtlx', 'no_material.mtlx']
 
         converter = MxGLTFPT.glTFMaterialXConverter()
 
@@ -182,15 +161,7 @@ class TestConvertFromMtlx(unittest.TestCase):
 
                     equivalence_opts = mx.ElementEquivalenceOptions()
                     # Always skip doc strings
-                    equivalence_opts.skipAttributes = { 'doc', 'nodedef' } 
-
-                    #if opts.skipAttributes:
-                    #    for attr in opts.skipAttributes:
-                    #        equivalence_opts.skipAttributes.add(attr)
-                    #if opts.skipValueComparisons:
-                    #    equivalence_opts.skipValueComparisons = True
-                    #if opts.precision:
-                    #    equivalence_opts.precision = opts.precision
+                    equivalence_opts.skipAttributes = { 'doc' } 
 
                     equivalent, errors = orig_doc.isEquivalent(compare_doc, equivalence_opts)
 
@@ -220,9 +191,7 @@ class TestConvertToMtlx(unittest.TestCase):
         # The shaders are not translated over for these intentionally
         # unsupported_stdsurf.gltf : has a non-glTF shader 
         # no_material.gltf : has no materials 
-        # materble_sold_std_surf_ui_gltf_pbr : has glTF and standard surface. 
-        skip_diff = ['unsupported_stdsurf.gltf', 'no_material.gltf',
-                     'unsupported_stdsurf_gltf_pbr.gltf']
+        skip_diff = ['unsupported_stdsurf.gltf', 'no_material.gltf' ]
 
         # Get all files in the data folder
         test_files = []
