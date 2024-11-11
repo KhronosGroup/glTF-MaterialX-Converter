@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709" doc="glTF version: 2.0. glTF generator: MaterialX 1.39 / glTF 2.0 Texture Procedural Converter. ">
+  <nodegraph name="patternGraph">
+    <input name="ramp_right" type="color3" value="0.839, 0.121, 0.121" />
+    <input name="ramp_left" type="color3" value="0.086, 0.443, 0.713" />
+    <input name="hex_size" type="float" value="0.4" />
+    <input name="hex_tiling" type="vector2" value="20, 10" />
+    <texcoord name="texcoord_vector3" type="vector2">
+      <input name="index" type="integer" value="0" />
+    </texcoord>
+    <multiply name="multiply_color4" type="color3">
+      <input name="in1" type="color3" nodename="tiledhexagons_color4" />
+      <input name="in2" type="color3" nodename="ramplr_color4" />
+    </multiply>
+    <tiledhexagons name="tiledhexagons_color4" type="color3">
+      <input name="texcoord" type="vector2" nodename="texcoord_vector3" />
+      <input name="uvtiling" type="vector2" interfacename="hex_tiling" />
+      <input name="uvoffset" type="vector2" value="0, 0" />
+      <input name="size" type="float" interfacename="hex_size" />
+      <input name="staggered" type="boolean" value="false" />
+    </tiledhexagons>
+    <ramplr name="ramplr_color4" type="color3">
+      <input name="valuel" type="color3" interfacename="ramp_left" />
+      <input name="valuer" type="color3" interfacename="ramp_right" />
+      <input name="texcoord" type="vector2" nodename="texcoord_vector3" />
+    </ramplr>
+    <output name="out" type="color3" nodename="multiply_color4" />
+  </nodegraph>
+  <gltf_pbr name="gltf_shader" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="patternGraph" />
+  </gltf_pbr>
+  <surfacematerial name="MAT_gltf_shader" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="gltf_shader" />
+  </surfacematerial>
+</materialx>

@@ -37,9 +37,22 @@ The results are saved to a file called `checkerboard_graph.gltf`.
 python source/gltf_materialx_converter/materialx_to_gltf.py "tests/data/checkerboard_graph.mtlx"
 </code>
 
+<hr>
+
+To convert from a document containing glTF procedural content to produce a MaterialX document the
+`gltf_to_materialx.py` utility script may be used.
+
+The following is an example converting a sample file found in the test folder.
+The results are saved to a file called `checkerboard_graph_fromgltf.mtlx`.
+
+<code>
+python source/gltf_materialx_converter/gltf_to_materialx.py "tests/data/checkerboard_graph.gltf" 
+</code>
+
 #### API Example
 
 The following is a simple example of using the API to convert from MaterialX to glTF
+and then back to MaterialX.
 
 <pre>
 # Import support modules
@@ -57,17 +70,22 @@ stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
 mxdoc = MxGLTFPTUtil.create_working_document([stdlib])
 mx.readFromXmlFile(mxdoc, input_file)
 
-# Convert
+# Instantiate a converter
 converter = MxGLTFPT.glTFMaterialXConverter()
+
+# Convert to glTF (JSON)
 json_string, status = converter.materialX_to_glTF(mxdoc)
 
 # Write result to disk
 gltf_file = input_file.replace('.mtlx', '.gltf')
 with open(gltf_file, 'w') as f:
     f.write(json_string)
+
+# Convert from glTF to MaterialX
+mxdoc2 = converter.gltf_string_to_materialX(json_string, stdlib)
 </pre>
 
-A sample `Jupyter` notebook is available <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/documents/notebook.ipynb">here</a>
+A sample `Jupyter` notebook which can be run interactively is available <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/documents/notebook.ipynb">here</a>
 
 ### Documentation
 

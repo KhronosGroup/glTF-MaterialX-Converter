@@ -104,4 +104,14 @@ def have_version(major, minor, patch):
                 return True
     return False    
 
+def remove_comments(doc):
+    '''
+    Remove all comments from a MaterialX document.
+    @param doc: The document to remove comments from.
+    '''
+    comments = doc.getChildren()
+    for comment in comments:
+        if comment.getCategory() == 'comment':
+            doc.removeChild(comment.getName())
+
 

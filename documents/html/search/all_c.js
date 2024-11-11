@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['procedurals_20interop_0',['MaterialX / glTF Procedurals Interop',['../index.html',1,'']]]
+  ['notebook_0',['Sample Notebook',['../notebook.html',1,'']]],
+  ['notebook_2edox_1',['notebook.dox',['../notebook_8dox.html',1,'']]]
 ];

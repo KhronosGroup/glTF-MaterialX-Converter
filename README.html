@@ -396,8 +396,17 @@ The results are saved to a file called <code>checkerboard_graph.gltf</code>.</p>
 <code>
 python source/gltf_materialx_converter/materialx_to_gltf.py "tests/data/checkerboard_graph.mtlx"
 </code>
+<hr>
+<p>To convert from a document containing glTF procedural content to produce a MaterialX document the<br>
+<code>gltf_to_materialx.py</code> utility script may be used.</p>
+<p>The following is an example converting a sample file found in the test folder.<br>
+The results are saved to a file called <code>checkerboard_graph_fromgltf.mtlx</code>.</p>
+<code>
+python source/gltf_materialx_converter/gltf_to_materialx.py "tests/data/checkerboard_graph.gltf" 
+</code>
 <h4 id="api-example">API Example</h4>
-<p>The following is a simple example of using the API to convert from MaterialX to glTF</p>
+<p>The following is a simple example of using the API to convert from MaterialX to glTF<br>
+and then back to MaterialX.</p>
 <pre>
 # Import support modules
 import MaterialX as mx
@@ -414,16 +423,21 @@ stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
 mxdoc = MxGLTFPTUtil.create_working_document([stdlib])
 mx.readFromXmlFile(mxdoc, input_file)
 
-# Convert
+# Instantiate a converter
 converter = MxGLTFPT.glTFMaterialXConverter()
+
+# Convert to glTF (JSON)
 json_string, status = converter.materialX_to_glTF(mxdoc)
 
 # Write result to disk
 gltf_file = input_file.replace('.mtlx', '.gltf')
 with open(gltf_file, 'w') as f:
     f.write(json_string)
+
+# Convert from glTF to MaterialX
+mxdoc2 = converter.gltf_string_to_materialX(json_string, stdlib)
 </pre>
-<p>A sample <code>Jupyter</code> notebook is available <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/documents/notebook.ipynb">here</a></p>
+<p>A sample <code>Jupyter</code> notebook which can be run interactively is available <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/documents/notebook.ipynb">here</a></p>
 <h3 id="documentation">Documentation</h3>
 <h4 id="api">API</h4>
 <p>API documentation can be found <a href="https://github.khronos.org/glTF-MaterialX-Converter/documents/html/index.html">here</a></p>

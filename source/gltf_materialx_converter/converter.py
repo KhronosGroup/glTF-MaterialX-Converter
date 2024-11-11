@@ -170,7 +170,10 @@ class glTFMaterialXConverter():
         **Attributes**
         - logger : logging.Logger
             - Logger instance for the class, used to log information, warnings, and errors.
-        
+
+        - add_asset_info : bool
+            - Option to add asset information during the conversion to MaterialX.
+                
         - supported_types : list of str
             - List of supported data types. This is fixed to MaterialX 1.39
 
@@ -185,6 +188,9 @@ class glTFMaterialXConverter():
         '''
         self.logger = lg.getLogger('glTFMtlx')
         lg.basicConfig(level=lg.INFO)  
+
+        # Options for conversion to MaterialX
+        self.add_asset_info = False
 
         # Options for conversion from Materialx
         self.supported_types = ['boolean', 'string', 'integer', 'matrix33', 'matrix44', 'vector2', 'vector3', 'vector4', 'float', 'color3', 'color4']
@@ -215,6 +221,20 @@ class glTFMaterialXConverter():
         @return The metadata.
         '''
         return self.supported_metadata
+
+    def get_supported_target_type(self):
+        '''
+        Get the target type that MaterialX can be converted to.
+        @return The target type supported by the converter.
+        '''
+        return 'gltf'
+
+    def get_supported_source_type(self):
+        '''
+        Get the source type thay can be converted to MaterialX.
+        @return The source type supported by the converter.
+        '''
+        return 'gltf'
 
     def string_to_scalar(self, value, type):
         '''
@@ -584,8 +604,14 @@ class glTFMaterialXConverter():
         input_maps[MTLX_GLTF_PBR_CATEGORY] = [
             # Contains:
             #   <MaterialX input name>, <gltf input name>, [<gltf parent block>]
-            ['base_color', 'baseColorTexture', 'pbrMetallicRoughness']
+            ['base_color', 'baseColorTexture', 'pbrMetallicRoughness'],
+            ['metallic', 'metallicRoughnessTexture', 'pbrMetallicRoughness'],
+            ['roughness', 'metallicRoughnessTexture', 'pbrMetallicRoughness'],
+            ['occlusion', 'occlusionTexture', ''],
+            ['normal', 'normalTexture', ''],
+            ['emissive', 'emissiveTexture', '']
         ]
+        input_maps[MTLX_UNLIT_CATEGORY_STRING] = [['emission_color', 'baseColorTexture', 'pbrMetallicRoughness']]
 
         pbr_nodes = {}
         fallback_texture_index = -1
@@ -604,8 +630,9 @@ class glTFMaterialXConverter():
                 category = shader_node.getCategory()
                 path = shader_node.getNamePath()
                 is_pbr = (category == MTLX_GLTF_PBR_CATEGORY)
+                is_unlit = (category == MTLX_UNLIT_CATEGORY_STRING)
 
-                if (is_pbr) and pbr_nodes.get(path) is None:
+                if (is_pbr or is_unlit) and pbr_nodes.get(path) is None:
                     # Add fallback if not already added
                     if fallback_texture_index == -1:
                         fallback_texture_index = self.add_fallback_texture(json_data, fallback_image_data)
@@ -616,6 +643,12 @@ class glTFMaterialXConverter():
                     material = {}
 
                     material[KHR_TEXTURE_PROCEDURALS_NAME] = path
+                    if is_unlit:
+                        material[KHR_EXTENSIONS_BLOCK] = {}
+                        material[KHR_EXTENSIONS_BLOCK][KHR_MATERIALX_UNLIT] = {}
+                        # Append if not found
+                        if KHR_MATERIALX_UNLIT not in extensions_used:
+                            extensions_used.append(KHR_MATERIALX_UNLIT)
 
                     shader_node_input = None
                     shader_node_output = ''
@@ -752,4 +785,563 @@ class glTFMaterialXConverter():
 
         return json_string, status
 
+    ############################
+    # glTF to MaterialX methods
+    ############################
+
+    def set_add_asset_info(self, add_asset_info):
+        '''
+        Set the flag to add asset information from glTF to the generated MaterialX files.
+        @param add_asset_info: The flag to add asset information
+        '''
+        self.add_asset_info = add_asset_info
+        
+    def scalar_to_string(self, value, type):
+        '''
+        Convert a scalar value to a string value that is supported by MaterialX.
+        @param value: The scalar value to convert.
+        @param type: The type of the value.
+        @return The converted string value, or None if the type is unsupported.
+        '''
+        return_value = None
+        if type in self.supported_types:
+            if type in self.supported_array_types:
+                return_value = ', '.join(map(lambda x: ('{0:g}'.format(x) if isinstance(x, float) else str(x)), value))
+            else:
+                return_value = '{0:g}'.format(value) if isinstance(value, float) else str(value)            
+        else:
+            self.logger.warning(f'> Unsupported type:"{type}" not found in supported list: {self.supported_types}')
+
+        return return_value
+
+    def get_glTF_texture_uri(self, texture, images):
+        '''
+        Get the URI of a glTF texture.
+        
+        @param texture: The glTF texture.
+        @param images: The set of glTF images.
+        @return The URI of the texture.
+        '''
+        uri = ''
+        if texture and KHR_IMAGE_SOURCE in texture:
+            source = texture[KHR_IMAGE_SOURCE]
+            if source < len(images):
+                image = images[source]
+                if 'uri' in image:
+                    uri = image['uri']
+        return uri
+
+    def add_inputs_from_nodedef(self, node, node_def):
+        '''
+        Add inputs to a node from a given MaterialX node definition.
+        
+        @param node: The MaterialX node to add inputs to.
+        @param node_def: The MaterialX node definition to add inputs from.
+        @return The updated MaterialX node.
+        '''
+        if node_def:
+            for node_def_input in node_def.getActiveInputs():
+                input_name = node_def_input.getName()
+                node_input = node.getInput(input_name)
+                if not node_input:
+                    node_input = node.addInput(input_name, node_def_input.getType())
+                    if node_def_input.hasValueString():
+                        node_input.setValueString(node_def_input.getValueString())
+                        node_input.setType(node_def_input.getType())
+        return node
+
+    def have_procedural_tex_extensions(self, glTFDoc):
+        '''
+        Does the glTF document have the required procedural texture extensions.
+        
+        @param glTFDoc: The glTF document to check.
+        @return The result of the check in the form [boolean, string], where "boolean" is true if the extensions are present,
+                 and "string" is an error message if the extensions are not present.
+        '''
+        # Check extensionsUsed for KHR_texture_procedurals
+        extensions_used = glTFDoc.get('extensionsUsed', None)
+        if extensions_used is None:
+            return [None, 'No extension used']
+        
+        found = [False, False]
+        for ext in extensions_used:
+            if ext == KHR_TEXTURE_PROCEDURALS:
+                found[0] = True
+            if ext == EXT_TEXTURE_PROCEDURALS_MX_1_39:
+                found[1] = True
+        
+        if not found[0]:
+            return [None, f'Missing {KHR_TEXTURE_PROCEDURALS} extension']
+        if not found[1]:
+            return [None, f'Missing{EXT_TEXTURE_PROCEDURALS_MX_1_39} extension']
+        
+        return [True, '']
+
+    def glTF_to_materialX(self, glTFDoc, stdlib):
+        '''
+        Convert a glTF document to a MaterialX document.
+        @param gltFDoc: The glTF document to import.
+        @param stdlib: The MateriaLX standard library to use for the conversion.
+        @return The MaterialX document if successful, otherwise None.
+        '''
+        if not glTFDoc:
+            self.logger.error('> No glTF document specified')
+            return None
+
+        extension_check = self.have_procedural_tex_extensions(glTFDoc)
+        if extension_check[0] is None:
+            return None
+
+        doc = mx.createDocument()
+        doc.setAttribute('colorspace', 'lin_rec709')
+
+        # Import the graph
+        self.glTF_graph_to_materialX(doc, glTFDoc)
+
+        global_extensions = glTFDoc.get('extensions', None)
+        procedurals = None
+        if global_extensions and KHR_TEXTURE_PROCEDURALS in global_extensions:
+            procedurals = global_extensions[KHR_TEXTURE_PROCEDURALS].get(KHR_TEXTURE_PROCEDURALS_PROCEDURALS_BLOCK, None)
+            #self.logger.debug(f'Imported all procedurals: {procedurals}')
+
+        # Import materials and connect to graphs as needed
+        shaderName = MTLX_DEFAULT_SHADER_NAME
+        materialName = MTLX_DEFAULT_MATERIAL_NAME
+        materialIndex = 1
+        glTFmaterials = glTFDoc.get(KHR_MATERIALS_BLOCK, None)
+        if glTFmaterials:
+
+            input_maps = {}
+            input_maps[MTLX_GLTF_PBR_CATEGORY] = [
+                ['base_color', 'baseColorTexture', 'pbrMetallicRoughness'],
+                ['metallic', 'metallicRoughnessTexture', 'pbrMetallicRoughness'],
+                ['roughness', 'metallicRoughnessTexture', 'pbrMetallicRoughness'],
+                ['occlusion', 'occlusionTexture', ''],
+                ['normal', 'normalTexture', ''],
+                ['emissive', 'emissiveTexture', '']
+            ]
+            input_maps[MTLX_UNLIT_CATEGORY_STRING] = [['emission_color', 'baseColorTexture', 'pbrMetallicRoughness']]
+
+            for glTFmaterial in glTFmaterials:
+
+                mtlxShaderName = glTFmaterial.get(KHR_TEXTURE_PROCEDURALS_NAME, '')
+                mtlxMaterialName = ''
+                if len(mtlxShaderName) == 0:
+                    mtlxShaderName = shaderName + str(materialIndex)
+                    mtlxMaterialName = materialName + str(materialIndex)
+                    materialIndex += 1
+                else:
+                    mtlxMaterialName = 'MAT_' + mtlxShaderName
+                
+                mtlxShaderName = doc.createValidChildName(mtlxShaderName)
+                mtlxMaterialName = doc.createValidChildName(mtlxMaterialName)
+
+                use_unlit = False
+                extensions = glTFmaterial.get('extensions', None)
+                if extensions and KHR_MATERIALX_UNLIT in extensions:
+                    use_unlit = True
+
+                shaderCategory = MTLX_GLTF_PBR_CATEGORY
+                nodedefString = 'ND_gltf_pbr_surfaceshader'
+                if use_unlit:
+                    shaderCategory = MTLX_UNLIT_CATEGORY_STRING
+                    nodedefString = 'ND_surface_unlit'
+                
+                shaderNode = doc.addNode(shaderCategory, mtlxShaderName, mx.SURFACE_SHADER_TYPE_STRING)                
+                
+                # No need to add all inputs from nodedef.
+                # In fact if there is a defaultgeomprop then it will be added automatically
+                # without any value or connection which causes a validation error.
+                #if stdlib:
+                    #odedef = stdlib.getNodeDef(nodedefString)
+                    #if nodedef:
+                    #    self.add_inputs_from_nodedef(shaderNode, nodedef)
+
+                if procedurals:
+                    currentMap = input_maps[shaderCategory]
+                    for map_item in currentMap:
+                        destInput = map_item[0]
+                        sourceTexture = map_item[1]
+                        sourceParent = map_item[2]
+        
+                        if sourceParent:
+                            if sourceParent == 'pbrMetallicRoughness':
+                                if 'pbrMetallicRoughness' in glTFmaterial:
+                                    sourceTexture = glTFmaterial['pbrMetallicRoughness'].get(sourceTexture, None)
+                                else:
+                                    sourceTexture = None
+                        else:
+                            sourceTexture = glTFmaterial.get(sourceTexture, None)
+
+                        baseColorTexture = sourceTexture
+
+                        if baseColorTexture:
+                            extensions = baseColorTexture.get('extensions', None)
+                            if extensions and KHR_TEXTURE_PROCEDURALS in extensions:
+                                KHR_texture_procedurals = extensions[KHR_TEXTURE_PROCEDURALS]
+                                pindex = KHR_texture_procedurals.get('index', None)
+                                output = KHR_texture_procedurals.get('output', None)
+                                
+                                if pindex is not None and pindex < len(procedurals):
+                                    proc = procedurals[pindex]
+                                    if proc:
+                                        nodegraphName = proc.get('name', 'nodegraph')
+                                        graphOutputs = proc.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, None)
+                                        outputCount = len(graphOutputs)
+                                        if graphOutputs:
+                                            proc_output = graphOutputs[0]
+                                            if output is not None:
+                                                proc_output = graphOutputs[output]
+                                            
+                                            if proc_output:
+                                                input_node = shaderNode.getInput(destInput)
+                                                if not input_node:
+                                                    input_node = shaderNode.addInput(destInput, proc_output[KHR_TEXTURE_PROCEDURALS_TYPE])
+                                                
+                                                if input_node:
+                                                    input_node.removeAttribute('value')
+                                                    input_node.setNodeGraphString(nodegraphName)
+                                                    if outputCount > 1:
+                                                        input_node.setAttribute('output', proc_output[KHR_TEXTURE_PROCEDURALS_NAME])
+
+                materialNode = doc.addNode(mx.SURFACE_MATERIAL_NODE_STRING, mtlxMaterialName, mx.MATERIAL_TYPE_STRING)
+                shaderInput = materialNode.addInput(mx.SURFACE_SHADER_TYPE_STRING, mx.SURFACE_SHADER_TYPE_STRING)
+                shaderInput.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, mtlxShaderName)
+
+                self.logger.info(f'> Import material: {materialNode.getName()}. Shader: {shaderNode.getName()}')
+
+        # Import asset information as a doc string
+        if self.add_asset_info:
+            asset = glTFDoc.get('asset', None)
+            docDoc = ''
+            if asset:
+                version = asset.get('version', None)
+                if version:
+                    docDoc += f'glTF version: {version}. '
+
+                generator = asset.get('generator', None)
+                if generator:
+                    docDoc += f'glTF generator: {generator}. '
+
+                copyRight = asset.get('copyright', None)
+                if copyRight:
+                    docDoc += f'Copyright: {copyRight}. '
+
+                if docDoc:
+                    doc.setDocString(docDoc)
+
+        return doc      
+    
+    def glTF_graph_clear_names(self, gltf_doc):
+        '''
+        Clear all the names for all procedural graphs and materials
+        @param gltf_doc: The glTF document to clear the names in.
+        '''
+        extensions = gltf_doc.get('extensions', None)
+        procedurals = None
+        if extensions:
+            procedurals = extensions.get(KHR_TEXTURE_PROCEDURALS, {}).get(KHR_TEXTURE_PROCEDURALS_PROCEDURALS_BLOCK, None)
+
+        EMPTY_STRING = ''
+
+        if procedurals:
+            for proc in procedurals:
+                proc[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
+
+                inputs = proc.get(KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, [])
+                outputs = proc.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])
+                nodes = proc.get(KHR_TEXTURE_PROCEDURALS_NODES_BLOCK, [])
+
+                for input_item in inputs:
+                    input_item[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
+                for output_item in outputs:
+                    output_item[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
+                for node in nodes:
+                    node[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
+
+        materials = gltf_doc.get(KHR_MATERIALS_BLOCK, None)
+        if materials:
+            for material in materials:
+                material[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
+    
+    def glTF_graph_to_materialX(self, doc, gltf_doc):
+        '''
+        Import the procedural graphs from a glTF document into a MaterialX document.
+        @param doc: The MaterialX document to import the graphs into.
+        @param gltf_doc: The glTF document to import the graphs from.
+        @return The root MaterialX nodegraph if successful, otherwise None.
+        '''
+        root_mtlx = None
+
+        # Look for the extension
+        extensions = gltf_doc.get('extensions', None)
+        procedurals = None
+        if extensions:
+            procedurals = extensions.get(KHR_TEXTURE_PROCEDURALS, {}).get(KHR_TEXTURE_PROCEDURALS_PROCEDURALS_BLOCK, None)
+
+        if procedurals is None:
+            self.logger.error('> No procedurals array found')
+            return None
+
+        metadata = self.get_metadata()
+
+        # Pre and postfix for automatic graph name generation
+        GRAPH_PREFIX = 'nodegraph_'
+        graph_index = 0
+
+        self.logger.info(f'> Importing {len(procedurals)} procedural graphs')
+        for proc in procedurals:
+            self.logger.debug(f'> Scan procedural {graph_index} of {len(procedurals)} :')
+            if not proc.get('nodetype'):
+                self.logger.warning('>  No nodetype found in procedural. Skipping node')
+                continue
+
+            if proc[KHR_TEXTURE_PROCEDURALS_NODETYPE] != 'nodegraph':
+                self.logger.warning(f'> Unsupported procedural nodetype found: {proc["nodetype"]}')
+                continue
+
+            graph_name = proc.get('name', 'graph_' + str(graph_index))
+            if 'name' not in proc:
+                proc['name'] = graph_name
+                graph_index += 1
+            
+            # Create new nodegraph
+            self.logger.info(f'> Create new nodegraph: {graph_name}')
+            mtlx_graph = doc.addNodeGraph(graph_name)
+            root_mtlx = mtlx_graph
+
+            # Counters for automatic input, output and node name generation
+            INPUT_PREFIX = 'input_'
+            input_index = 0
+            output_index = 0
+            node_index = 0
+
+            inputs = proc.get(KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, [])
+            outputs = proc.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])
+            nodes = proc.get(KHR_TEXTURE_PROCEDURALS_NODES_BLOCK, [])
+
+            # Scan for input interfaces in the node graph
+            # Prelable inputs
+            for input_item in inputs:
+                inputname = input_item.get('name', 'input_' + str(input_index))
+                if 'name' not in input_item:
+                    input_item['name'] = inputname
+                    input_index += 1
+
+            self.logger.debug(f'> Scan {len(inputs)} inputs')
+            for input_item in inputs:
+                inputname = input_item.get('name', 'input_' + str(input_index))
+
+                # A type is required
+                input_type = input_item.get(KHR_TEXTURE_PROCEDURALS_TYPE, None)
+                if not input_type:
+                    self.logger.error(f'> Input type not found for graph input: {inputname}')
+                    continue
+
+                # Add new interface input
+                mtlx_input = mtlx_graph.addInput(inputname, input_type)
+                # Set metadata. TODO: Add more than colorspace
+                if 'colorspace' in input_item:
+                    mtlx_input.setAttribute('colorspace', input_item['colorspace'])
+
+                # If input is a file reference, examines textures and images to retrieve the URI
+                if input_type == 'filename':
+                    texture_index = input_item.get('texture', None)
+                    if texture_index is not None:
+                        gltf_textures = gltf_doc.get('textures', None)
+                        gltf_images = gltf_doc.get('images', None)
+                        if gltf_textures and gltf_images:
+                            gltf_texture = gltf_textures[texture_index] if texture_index < len(gltf_textures) else None
+                            if gltf_texture:
+                                uri = self.get_glTF_texture_uri(gltf_texture, gltf_images)
+                                mtlx_input.setValueString(uri, input_type)
+
+                # If input has a value, set the value
+                input_value = input_item.get('value', None)
+                if input_value is not None:
+                    mtlx_value = self.scalar_to_string(input_value, input_type)
+                    if mtlx_value is not None:
+                        mtlx_input.setValueString(mtlx_value)
+                        mtlx_input.setType(input_type)
+                    else:
+                        mtlx_input.setValueString(str(input_value))
+                else:
+                    self.logger.error(f'> Interface input has no value specified: {inputname}')
+
+            # Scan for nodes in the nodegraph
+            # - Prelabel nodes
+            for node in nodes:
+                nodename = node.get(KHR_TEXTURE_PROCEDURALS_NAME, 'node_' + str(node_index))
+                if 'name' not in node:
+                    node['name'] = nodename
+                    node_index += 1
+
+            self.logger.debug(f'> Scan {len(nodes)} nodes')
+            for node in nodes:
+                nodename = node.get(KHR_TEXTURE_PROCEDURALS_NAME, 'node_' + str(node_index))
+                node_type = node.get('nodetype', None)
+                output_type = node.get(KHR_TEXTURE_PROCEDURALS_TYPE, None)
+                node_outputs = node.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])
+
+                # Check for multiple outputs on the node to use 'multioutput' as the type
+                if len(node_outputs) > 1:
+                    output_type = MULTI_OUTPUT_TYPE_STRING
+
+                # Create a new node in the graph
+                mtlx_node = mtlx_graph.addChildOfCategory(node_type)
+                mtlx_node.setName(nodename)
+                if output_type:
+                    mtlx_node.setType(output_type)
+                else:
+                    self.logger.error(f'> No output type specified for node: {nodename}')
+
+                # Look for other name, value pair children under node. Such as "xpos": "0.086957",
+                # For each add an attribute to the node
+                for key, value in node.items():
+                    if key not in [KHR_TEXTURE_PROCEDURALS_NAME, 'nodetype', KHR_TEXTURE_PROCEDURALS_TYPE, KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK]:
+                        self.logger.debug(f'> Add extra node attribute: {key}, {value}')
+                        mtlx_node.setAttribute(key, value)
+
+                # Add node inputs
+                input_index = 0
+                node_inputs = node.get(KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, [])
+                for input_item in node_inputs:
+                    input_name = input_item.get('name', 'input_' + str(input_index))
+                    input_type = input_item.get(KHR_TEXTURE_PROCEDURALS_TYPE, None)
+
+                    # Add node input
+                    mtlx_input = mtlx_node.addInput(input_name, input_type)
+
+                    # If input is a file reference, examines textures and images to retrieve the URI
+                    if input_type == 'filename':
+                        texture_index = input_item.get('texture', None)
+                        if texture_index is not None:
+                            gltf_textures = gltf_doc.get('textures', None)
+                            gltf_images = gltf_doc.get('images', None)
+                            if gltf_textures and gltf_images:
+                                gltftexture = gltf_textures[texture_index] if texture_index < len(gltf_textures) else None
+                                if gltftexture:
+                                    uri = self.get_glTF_texture_uri(gltftexture, gltf_images)
+                                    mtlx_input.setValueString(uri)
+
+                    # If input has a value, set the value
+                    input_value = input_item.get('value', None)
+                    if input_value is not None:
+                        mtlx_value = self.scalar_to_string(input_value, input_type)
+                        if mtlx_value is not None:
+                            mtlx_input.setValueString(mtlx_value)
+                            mtlx_input.setType(input_type)
+                        else:
+                            self.logger.error(f'> Unsupported input type: {input_type}. Performing straight assignment.')
+                            mtlx_input.setValueString(str(input_value))
+
+                    # Check for connections
+                    else:
+                        connectable = None
+
+                        # Set any upstream interface input connection
+                        if 'input' in input_item:
+                            connectable = inputs[input_item[KHR_TEXTURE_PROCEDURALS_INPUT]] if input_item[KHR_TEXTURE_PROCEDURALS_INPUT] < len(inputs) else None
+                            mtlx_input.setAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])
+                        
+                        # Set any upstream node output connection
+                        elif 'output' in input_item:
+                            if 'node' in input_item:
+                                mtlx_input.setAttribute('output', input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT])
+                            else:
+                                connectable = outputs[input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT]] if input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT] < len(outputs) else None
+                                mtlx_input.setAttribute('output', connectable[KHR_TEXTURE_PROCEDURALS_NAME])
+
+                        # Set and node connection
+                        if 'node' in input_item:
+                            connectable = nodes[input_item[KHR_TEXTURE_PROCEDURALS_NODE]] if input_item[KHR_TEXTURE_PROCEDURALS_NODE] < len(nodes) else None
+                            mtlx_input.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])
+
+                    # Add extra metadata to the input
+                    for meta in metadata:
+                        if meta in input_item:
+                            self.logger.debug(f'> Add extra input attribute: {meta}, {input_item[meta]}')
+                            mtlx_input.setAttribute(meta, input_item[meta])
+
+                # TODO CLEANUP: There is no need to add outputs to the node, only to the graph
+                output_index = 0
+                dump_outputs = False
+                if dump_outputs:                
+                    for output in node_outputs:
+                        output_name = output.get('name', 'output_' + str(output_index))
+                        output_type = output.get(KHR_TEXTURE_PROCEDURALS_TYPE, None)
+
+                        connectable = None
+                        mtlxoutput = None
+                        if 'input' in output:
+                            mtlxoutput = mtlx_node.addOutput(output_name, output_type)
+                            connectable = inputs[output[KHR_TEXTURE_PROCEDURALS_INPUT]] if output[KHR_TEXTURE_PROCEDURALS_INPUT] < len(inputs) else None
+                            mtlxoutput.setAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])
+                        elif 'output' in output:
+                            mtlxoutput = mtlx_node.addOutput(output_name, output_type)
+                            connectable = outputs[output[KHR_TEXTURE_PROCEDURALS_OUTPUT]] if output[KHR_TEXTURE_PROCEDURALS_OUTPUT] < len(outputs) else None
+                            mtlxoutput.setAttribute('output', connectable[KHR_TEXTURE_PROCEDURALS_NAME])
+                        elif 'node' in output:
+                            mtlxoutput = mtlx_node.addOutput(output_name, output_type)
+                            connectable = nodes[output[KHR_TEXTURE_PROCEDURALS_NODE]] if output[KHR_TEXTURE_PROCEDURALS_NODE] < len(nodes) else None
+                            mtlxoutput.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])
+                        else:
+                            if len(node_outputs) > 1:
+                                mtlxoutput = mtlx_node.addOutput(output_name, output_type)
+
+                        if mtlxoutput:
+                            # Add extra metadata to the output
+                            for key, value in output.items():
+                                if key in metadata:
+                                    self.logger.debug(f'> Add extra output attribute: {meta}, {input_item[meta]}')
+                                    mtlxoutput.setAttribute(key, value)
+
+            # Scan for output interfaces in the nodegraph
+            self.logger.debug(f'> Scan {len(outputs)} outputs')
+            for output in outputs:
+                output_name = output.get('name', 'output_' + str(output_index))
+                if 'name' not in output:
+                    output['name'] = output_name
+                    output_index += 1
+
+                output_type = output.get(KHR_TEXTURE_PROCEDURALS_TYPE, None)
+                mtlx_graph_output = mtlx_graph.addOutput(output_name, output_type)
+
+                connectable = None
+
+                # Check for connection to upstream input
+                if 'input' in output:
+                    connectable = inputs[output[KHR_TEXTURE_PROCEDURALS_INPUT]] if output[KHR_TEXTURE_PROCEDURALS_INPUT] < len(inputs) else None
+                    if connectable:
+                        mtlx_graph_output.setAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])
+                    else:
+                        self.logger.error(f'Input not found: {output["input"]}, {inputs}')
+
+                # Check for connection to upstream node output                          
+                elif 'node' in output:
+                    connectable = nodes[output[KHR_TEXTURE_PROCEDURALS_NODE]] if output[KHR_TEXTURE_PROCEDURALS_NODE] < len(nodes) else None
+                    if connectable:
+                        mtlx_graph_output.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])
+                        if 'output' in output:
+                            mtlx_graph_output.setAttribute('output', output[KHR_TEXTURE_PROCEDURALS_OUTPUT])
+                    else:
+                        self.logger.error(f'> Output node not found: {output["node"]}, {nodes}')
+
+                # Add extra metadata to the output
+                for key, value in output.items():
+                    if key not in [KHR_TEXTURE_PROCEDURALS_NAME, KHR_TEXTURE_PROCEDURALS_TYPE, 'nodetype', 'node', 'output']:
+                        self.logger.debug(f'> Add extra graph output attribute: {key}. Value: {value}')
+                        mtlx_graph_output.setAttribute(key, value)
+
+        return root_mtlx
+
+    def gltf_string_to_materialX(self, gltFDocString, stdlib):
+        '''
+        Convert a glTF document to a MaterialX document.
+        @param gltFDocString: The glTF document to import.
+        @param stdlib: The MateriaLX standard library to use for the conversion.
+        @return The MaterialX document if successful, otherwise None.
+        '''
+        glTFDoc = json.loads(gltFDocString)
+        return self.glTF_to_materialX(glTFDoc, stdlib)
 

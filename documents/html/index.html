@@ -141,9 +141,13 @@ Command Line Interfaces</h3>
 <p>To convert from a MaterialX document to produce a glTF JSON document the <code><a class="el" href="materialx__to__gltf_8py.html">materialx_to_gltf.py</a></code> utility script may be used.</p>
 <p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph.gltf</code>.</p>
 <p><code> python <a class="el" href="materialx__to__gltf_8py.html">source/gltf_materialx_converter/materialx_to_gltf.py</a> "tests/data/checkerboard_graph.mtlx" </code></p>
+<hr  />
+<p>To convert from a document containing glTF procedural content to produce a MaterialX document the <code><a class="el" href="gltf__to__materialx_8py.html">gltf_to_materialx.py</a></code> utility script may be used.</p>
+<p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph_fromgltf.mtlx</code>.</p>
+<p><code> python <a class="el" href="gltf__to__materialx_8py.html">source/gltf_materialx_converter/gltf_to_materialx.py</a> "tests/data/checkerboard_graph.gltf" </code></p>
 <h3><a class="anchor" id="api-example"></a>
 API Example</h3>
-<p>The following is a simple example of using the API to convert from MaterialX to glTF</p>
+<p>The following is a simple example of using the API to convert from MaterialX to glTF and then back to MaterialX.</p>
 <pre>
 # Import support modules
 import MaterialX as mx
@@ -160,15 +164,20 @@ stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
 mxdoc = MxGLTFPTUtil.create_working_document([stdlib])
 mx.readFromXmlFile(mxdoc, input_file)
 
-# Convert
+# Instantiate a converter
 converter = MxGLTFPT.glTFMaterialXConverter()
+
+# Convert to glTF (JSON)
 json_string, status = converter.materialX_to_glTF(mxdoc)
 
 # Write result to disk
 gltf_file = input_file.replace('.mtlx', '.gltf')
 with open(gltf_file, 'w') as f:
     f.write(json_string)
-</pre><p>A sample <code>Jupyter</code> notebook is available <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/documents/notebook.ipynb">here</a></p>
+
+# Convert from glTF to MaterialX
+mxdoc2 = converter.gltf_string_to_materialX(json_string, stdlib)
+</pre><p>A sample <code>Jupyter</code> notebook which can be run interactively is available <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/documents/notebook.ipynb">here</a></p>
 <h2><a class="anchor" id="documentation-1"></a>
 Documentation</h2>
 <h3><a class="anchor" id="api"></a>
