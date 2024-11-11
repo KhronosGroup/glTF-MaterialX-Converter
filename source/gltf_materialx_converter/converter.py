@@ -170,13 +170,10 @@ class glTFMaterialXConverter():
         **Attributes**
         - logger : logging.Logger
             - Logger instance for the class, used to log information, warnings, and errors.
-        
-        - add_comments : bool
-            - Option to add comments during the conversion to MaterialX.
-        
-        - add_nodedef_strings : bool
-            - Option to add node definition strings during the conversion to MaterialX.
-        
+
+        - add_asset_info : bool
+            - Option to add asset information during the conversion to MaterialX.
+                
         - supported_types : list of str
             - List of supported data types. This is fixed to MaterialX 1.39
 
@@ -193,8 +190,7 @@ class glTFMaterialXConverter():
         lg.basicConfig(level=lg.INFO)  
 
         # Options for conversion to MaterialX
-        self.add_comments = False
-        self.add_nodedef_strings = False
+        self.add_asset_info = False
 
         # Options for conversion from Materialx
         self.supported_types = ['boolean', 'string', 'integer', 'matrix33', 'matrix44', 'vector2', 'vector3', 'vector4', 'float', 'color3', 'color4']
@@ -608,8 +604,14 @@ class glTFMaterialXConverter():
         input_maps[MTLX_GLTF_PBR_CATEGORY] = [
             # Contains:
             #   <MaterialX input name>, <gltf input name>, [<gltf parent block>]
-            ['base_color', 'baseColorTexture', 'pbrMetallicRoughness']
+            ['base_color', 'baseColorTexture', 'pbrMetallicRoughness'],
+            ['metallic', 'metallicRoughnessTexture', 'pbrMetallicRoughness'],
+            ['roughness', 'metallicRoughnessTexture', 'pbrMetallicRoughness'],
+            ['occlusion', 'occlusionTexture', ''],
+            ['normal', 'normalTexture', ''],
+            ['emissive', 'emissiveTexture', '']
         ]
+        input_maps[MTLX_UNLIT_CATEGORY_STRING] = [['emission_color', 'baseColorTexture', 'pbrMetallicRoughness']]
 
         pbr_nodes = {}
         fallback_texture_index = -1
@@ -628,8 +630,9 @@ class glTFMaterialXConverter():
                 category = shader_node.getCategory()
                 path = shader_node.getNamePath()
                 is_pbr = (category == MTLX_GLTF_PBR_CATEGORY)
+                is_unlit = (category == MTLX_UNLIT_CATEGORY_STRING)
 
-                if (is_pbr) and pbr_nodes.get(path) is None:
+                if (is_pbr or is_unlit) and pbr_nodes.get(path) is None:
                     # Add fallback if not already added
                     if fallback_texture_index == -1:
                         fallback_texture_index = self.add_fallback_texture(json_data, fallback_image_data)
@@ -640,6 +643,12 @@ class glTFMaterialXConverter():
                     material = {}
 
                     material[KHR_TEXTURE_PROCEDURALS_NAME] = path
+                    if is_unlit:
+                        material[KHR_EXTENSIONS_BLOCK] = {}
+                        material[KHR_EXTENSIONS_BLOCK][KHR_MATERIALX_UNLIT] = {}
+                        # Append if not found
+                        if KHR_MATERIALX_UNLIT not in extensions_used:
+                            extensions_used.append(KHR_MATERIALX_UNLIT)
 
                     shader_node_input = None
                     shader_node_output = ''
@@ -780,19 +789,12 @@ class glTFMaterialXConverter():
     # glTF to MaterialX methods
     ############################
 
-    def set_add_xml_comments(self, add_comments):
+    def set_add_asset_info(self, add_asset_info):
         '''
-        Set the flag to add comments to the generated MaterialX files.
-        @param add_comments: The flag to add comments.
+        Set the flag to add asset information from glTF to the generated MaterialX files.
+        @param add_asset_info: The flag to add asset information
         '''
-        self.add_comments = add_comments
-
-    def set_add_nodedef_strings(self, add_nodedef_strings):
-        '''
-        Set the flag to add nodedef strings to the generated MaterialX files.
-        @param add_nodedef_strings: The flag to add nodedef strings.
-        '''
-        self.add_nodedef_strings = add_nodedef_strings      
+        self.add_asset_info = add_asset_info
         
     def scalar_to_string(self, value, type):
         '''
@@ -911,8 +913,14 @@ class glTFMaterialXConverter():
 
             input_maps = {}
             input_maps[MTLX_GLTF_PBR_CATEGORY] = [
-                ['base_color', 'baseColorTexture', 'pbrMetallicRoughness']
+                ['base_color', 'baseColorTexture', 'pbrMetallicRoughness'],
+                ['metallic', 'metallicRoughnessTexture', 'pbrMetallicRoughness'],
+                ['roughness', 'metallicRoughnessTexture', 'pbrMetallicRoughness'],
+                ['occlusion', 'occlusionTexture', ''],
+                ['normal', 'normalTexture', ''],
+                ['emissive', 'emissiveTexture', '']
             ]
+            input_maps[MTLX_UNLIT_CATEGORY_STRING] = [['emission_color', 'baseColorTexture', 'pbrMetallicRoughness']]
 
             for glTFmaterial in glTFmaterials:
 
@@ -928,20 +936,18 @@ class glTFMaterialXConverter():
                 mtlxShaderName = doc.createValidChildName(mtlxShaderName)
                 mtlxMaterialName = doc.createValidChildName(mtlxMaterialName)
 
+                use_unlit = False
                 extensions = glTFmaterial.get('extensions', None)
+                if extensions and KHR_MATERIALX_UNLIT in extensions:
+                    use_unlit = True
 
                 shaderCategory = MTLX_GLTF_PBR_CATEGORY
                 nodedefString = 'ND_gltf_pbr_surfaceshader'
+                if use_unlit:
+                    shaderCategory = MTLX_UNLIT_CATEGORY_STRING
+                    nodedefString = 'ND_surface_unlit'
                 
-                if self.add_comments:
-                    comment = doc.addChildOfCategory('comment')
-                    comment.setDocString('Generated shader: ' + mtlxShaderName)
-                shaderNode = doc.addNode(shaderCategory, mtlxShaderName, mx.SURFACE_SHADER_TYPE_STRING)
-
-                if self.add_nodedef_strings:
-                    shaderNode.setAttribute(mx.InterfaceElement.NODE_DEF_ATTRIBUTE, nodedefString)
-                else:
-                    shaderNode.removeAttribute(mx.InterfaceElement.NODE_DEF_ATTRIBUTE)
+                shaderNode = doc.addNode(shaderCategory, mtlxShaderName, mx.SURFACE_SHADER_TYPE_STRING)                
                 
                 # No need to add all inputs from nodedef.
                 # In fact if there is a defaultgeomprop then it will be added automatically
@@ -998,42 +1004,65 @@ class glTFMaterialXConverter():
                                                     if outputCount > 1:
                                                         input_node.setAttribute('output', proc_output[KHR_TEXTURE_PROCEDURALS_NAME])
 
-                if self.add_comments:
-                    comment = doc.addChildOfCategory('comment')
-                    comment.setDocString('Generated material: ' + mtlxMaterialName)
                 materialNode = doc.addNode(mx.SURFACE_MATERIAL_NODE_STRING, mtlxMaterialName, mx.MATERIAL_TYPE_STRING)
                 shaderInput = materialNode.addInput(mx.SURFACE_SHADER_TYPE_STRING, mx.SURFACE_SHADER_TYPE_STRING)
                 shaderInput.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, mtlxShaderName)
 
                 self.logger.info(f'> Import material: {materialNode.getName()}. Shader: {shaderNode.getName()}')
 
-        # Import asset information
-        if self.add_comments:
+        # Import asset information as a doc string
+        if self.add_asset_info:
             asset = glTFDoc.get('asset', None)
             docDoc = ''
             if asset:
                 version = asset.get('version', None)
                 if version:
-                    comment = doc.addChildOfCategory('comment')
                     docDoc += f'glTF version: {version}. '
-                    comment.setDocString(f'glTF version: {version}')
 
                 generator = asset.get('generator', None)
                 if generator:
-                    comment = doc.addChildOfCategory('comment')
                     docDoc += f'glTF generator: {generator}. '
-                    comment.setDocString(f'glTF generator: {generator}')
 
                 copyRight = asset.get('copyright', None)
                 if copyRight:
-                    comment = doc.addChildOfCategory('comment')
                     docDoc += f'Copyright: {copyRight}. '
-                    comment.setDocString(f'Copyright: {copyRight}')
 
                 if docDoc:
-                    doc.setAttribute('doc', docDoc)
+                    doc.setDocString(docDoc)
 
         return doc      
+    
+    def glTF_graph_clear_names(self, gltf_doc):
+        '''
+        Clear all the names for all procedural graphs and materials
+        @param gltf_doc: The glTF document to clear the names in.
+        '''
+        extensions = gltf_doc.get('extensions', None)
+        procedurals = None
+        if extensions:
+            procedurals = extensions.get(KHR_TEXTURE_PROCEDURALS, {}).get(KHR_TEXTURE_PROCEDURALS_PROCEDURALS_BLOCK, None)
+
+        EMPTY_STRING = ''
+
+        if procedurals:
+            for proc in procedurals:
+                proc[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
+
+                inputs = proc.get(KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, [])
+                outputs = proc.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])
+                nodes = proc.get(KHR_TEXTURE_PROCEDURALS_NODES_BLOCK, [])
+
+                for input_item in inputs:
+                    input_item[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
+                for output_item in outputs:
+                    output_item[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
+                for node in nodes:
+                    node[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
+
+        materials = gltf_doc.get(KHR_MATERIALS_BLOCK, None)
+        if materials:
+            for material in materials:
+                material[KHR_TEXTURE_PROCEDURALS_NAME] = EMPTY_STRING
     
     def glTF_graph_to_materialX(self, doc, gltf_doc):
         '''
@@ -1266,15 +1295,6 @@ class glTFMaterialXConverter():
                                 if key in metadata:
                                     self.logger.debug(f'> Add extra output attribute: {meta}, {input_item[meta]}')
                                     mtlxoutput.setAttribute(key, value)
-
-                # Set node definition string if specified
-                if self.add_nodedef_strings:
-                    # Add nodedef string to node if desired. Does not work since stdlib is not loaded in.
-                    # Nix this ???
-                    mtlx_node_def = mtlx_node.getNodeDef()
-                    if mtlx_node_def:
-                        self.logger.debug(f'> Add nodedef attribute: {mtlx_node_def.getName()}')
-                        mtlx_node_def.setAttribute(mx.InterfaceElement.NODE_DEF_ATTRIBUTE, mtlx_node_def.getName())
 
             # Scan for output interfaces in the nodegraph
             self.logger.debug(f'> Scan {len(outputs)} outputs')

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<materialx version="1.39" colorspace="lin_rec709">
+<materialx version="1.39" colorspace="lin_rec709" doc="glTF version: 2.0. glTF generator: MaterialX 1.39 / glTF 2.0 Texture Procedural Converter. ">
   <nodegraph name="graph1">
     <input name="myin1" type="color3" value="1, 0, 0" />
     <input name="myin2" type="color3" value="0.94902, 0.768627, 0.109804" />

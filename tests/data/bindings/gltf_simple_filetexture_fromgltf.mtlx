@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<materialx version="1.39" colorspace="lin_rec709">
+<materialx version="1.39" colorspace="lin_rec709" doc="glTF version: 2.0. glTF generator: MaterialX 1.39 / glTF 2.0 Texture Procedural Converter. ">
   <nodegraph name="nodegraph1">
     <image name="image_color3" type="color3" xpos="4.724638" ypos="-6.482759">
       <input name="file" type="filename" value="grid.png" colorspace="srgb_texture" />

@@ -9,8 +9,7 @@ def main():
     parser = argparse.ArgumentParser(description="Converter from glTF Texture Procedurals to MaterialX")
     parser.add_argument(dest="input", help="Input file/folder.")
     parser.add_argument("-o", "--output", help="Output file/folder. Default is current folder.")
-    parser.add_argument("-c", "--addComments", type=bool, default=False, help="Add comments to generated MaterialX files.")
-    parser.add_argument("-nd", "--addNodeDefStrings" , type=bool, default=False, help="Add nodeDef strings to generated MaterialX files.")
+    parser.add_argument("-a", "--addAssetInfo", type=bool, default=False, help="Add glTF asset information to generated MaterialX files.")
     opts = parser.parse_args()
     
     logger = lg.getLogger('gltfCmd')
@@ -42,9 +41,8 @@ def main():
     if not os.path.exists(outputFolder):
         os.makedirs(outputFolder)
 
-    print('add comments:', opts.addComments, "add node def strings:", opts.addNodeDefStrings)
-    converter.set_add_xml_comments(opts.addComments)
-    converter.set_add_nodedef_strings(opts.addNodeDefStrings)
+    print('Add glTF asset information:', opts.addAssetInfo)
+    converter.set_add_asset_info(opts.addAssetInfo)
 
     for inputFile in fileList:
         logger.info(f'Processing: {inputFile}')
