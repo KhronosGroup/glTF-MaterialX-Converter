@@ -15,7 +15,7 @@ var searchData=
   ['gltf_5fmaterialx_5fconverter_3a_3amaterialx_5fto_5fgltf_12',['materialx_to_gltf',['../namespacegltf__materialx__converter_1_1materialx__to__gltf.html',1,'gltf_materialx_converter']]],
   ['gltf_5fmaterialx_5fconverter_3a_3autilities_13',['utilities',['../namespacegltf__materialx__converter_1_1utilities.html',1,'gltf_materialx_converter']]],
   ['gltf_5fstring_5fto_5fmaterialx_14',['gltf_string_to_materialX',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a7e6b462e0a5644dbfc6e98bd2a378804',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]],
-  ['gltf_5fto_5fmaterialx_15',['glTF_to_materialX',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a80149202cc9c20117d201b24b1e35dad',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]],
+  ['gltf_5fto_5fmaterialx_15',['glTF_to_materialX',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a6a6fa05cc78ac3bdf41cf7e13ed9d8a1',1,'gltf_materialx_converter::converter::glTFMaterialXConverter']]],
   ['gltf_5fto_5fmaterialx_2epy_16',['gltf_to_materialx.py',['../gltf__to__materialx_8py.html',1,'']]],
   ['gltfmaterialxconverter_17',['glTFMaterialXConverter',['../classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html',1,'gltf_materialx_converter::converter']]]
 ];
