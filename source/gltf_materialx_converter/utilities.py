@@ -92,7 +92,6 @@ def have_version(major, minor, patch):
     @return: True if the current version is greater or equal to the given version
     ''' 
     imajor, iminor, ipatch = mx.getVersionIntegers()
-    #print(f'Checking MaterialX version: {imajor}.{iminor}.{ipatch}')
 
     if major >= imajor:
         if  major > imajor:
