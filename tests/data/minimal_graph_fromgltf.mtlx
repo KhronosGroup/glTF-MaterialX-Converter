@@ -9,7 +9,7 @@
   <gltf_pbr name="gltf_Shader" type="surfaceshader">
     <input name="base_color" type="color3" nodegraph="gltf_procedural" />
   </gltf_pbr>
-  <surfacematerial name="MAT_gltf_Shader" type="material">
+  <surfacematerial name="MATERIAL_gltf_Shader" type="material">
     <input name="surfaceshader" type="surfaceshader" nodename="gltf_Shader" />
   </surfacematerial>
 </materialx>
