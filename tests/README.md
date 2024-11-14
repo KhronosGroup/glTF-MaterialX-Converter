@@ -17,7 +17,7 @@ This folder contains conversion tests scripts as well as test data and a schema 
         - `MaterialX` XML files produced from convertion og `glTF` files. Names of MaterialX files end with
         `_fromgltf.mtlx`.
         - `OpenUSD` files converted from `MaterialX` files if applicable.
-        Names of image files are the names of the  `MaterialX` file with `.mtlx` replaced with `.png`.
+    - Names of reference image files are the names of the  `MaterialX` file with `.mtlx` replaced with `.png`.
 
     - Folder breakdown:
         - The main folder contains test data for basic graph variations, and variations on connectivity to materials 
