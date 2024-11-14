@@ -8,6 +8,7 @@ var classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter 
     [ "get_supported_source_type", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a6655ba551a415ed0a9a8f98b9e1cd75f", null ],
     [ "get_supported_target_type", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#aa5488bf06f17accb9f91229cc3256baf", null ],
     [ "glTF_graph_clear_names", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#ac3ba09709754ffbd498b8da653412950", null ],
+    [ "glTF_graph_create_names", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a5b22e038fc33f20e1c1e9affe9566c1c", null ],
     [ "glTF_graph_to_materialX", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#aab529be585fce671aa7634ef9f9022a4", null ],
     [ "gltf_string_to_materialX", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a7e6b462e0a5644dbfc6e98bd2a378804", null ],
     [ "glTF_to_materialX", "classgltf__materialx__converter_1_1converter_1_1gl_t_f_material_x_converter.html#a6a6fa05cc78ac3bdf41cf7e13ed9d8a1", null ],

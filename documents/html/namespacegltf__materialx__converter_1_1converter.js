@@ -26,7 +26,11 @@ var namespacegltf__materialx__converter_1_1converter =
     [ "KHR_TEXTURE_PROCEDURALS_TYPE", "namespacegltf__materialx__converter_1_1converter.html#a269e70d56b0886cb443398dd9acbd4a2", null ],
     [ "KHR_TEXTURE_PROCEDURALS_VALUE", "namespacegltf__materialx__converter_1_1converter.html#a7249c390d392cab2460c86bc8c204629", null ],
     [ "KHR_TEXTURES_BLOCK", "namespacegltf__materialx__converter_1_1converter.html#a2310e4db390ce09f9f4d8db2d507d57c", null ],
+    [ "MTLX_DEFAULT_GRAPH_NAME", "namespacegltf__materialx__converter_1_1converter.html#a5d50e625fe1ddad76ed83bf837d02840", null ],
+    [ "MTLX_DEFAULT_INPUT_NAME", "namespacegltf__materialx__converter_1_1converter.html#a704e685adda56a5b8f8ac173af7d3a39", null ],
     [ "MTLX_DEFAULT_MATERIAL_NAME", "namespacegltf__materialx__converter_1_1converter.html#a8d21a5e0daeca3f5e6387d503ae610fb", null ],
+    [ "MTLX_DEFAULT_NODE_NAME", "namespacegltf__materialx__converter_1_1converter.html#a5b05b5c794dfa8f42502d57c95a0d9b5", null ],
+    [ "MTLX_DEFAULT_OUTPUT_NAME", "namespacegltf__materialx__converter_1_1converter.html#a7c2ac58823e2de34a563bb7b25d6c1fd", null ],
     [ "MTLX_DEFAULT_SHADER_NAME", "namespacegltf__materialx__converter_1_1converter.html#a7366d80b202c7a5aca4e1ca045980e3f", null ],
     [ "MTLX_GLTF_PBR_CATEGORY", "namespacegltf__materialx__converter_1_1converter.html#ab8b6c5f4ebc7faac1b5e61ecb65a056e", null ],
     [ "MTLX_INTERFACEINPUT_NAME_ATTRIBUTE", "namespacegltf__materialx__converter_1_1converter.html#a7cd6bd17ec63a927345a024aa4c75c99", null ],
@@ -35,7 +39,6 @@ var namespacegltf__materialx__converter_1_1converter =
     [ "MTLX_NODEDEF_NAME_ATTRIBUTE", "namespacegltf__materialx__converter_1_1converter.html#a29c12110cce0b8cdea5dfb9888e5da67", null ],
     [ "MTLX_NODEGRAPH_NAME_ATTRIBUTE", "namespacegltf__materialx__converter_1_1converter.html#aeae2a530c3723a540e14704a05035c9a", null ],
     [ "MTLX_OUTPUT_ATTRIBUTE", "namespacegltf__materialx__converter_1_1converter.html#afee2556d71dc11ec86a2237280aaeacb", null ],
-    [ "MTLX_SHADER_PREFIX", "namespacegltf__materialx__converter_1_1converter.html#a4aeaa58fe506d9a2580ae9d634fa74fe", null ],
     [ "MTLX_UNLIT_CATEGORY_STRING", "namespacegltf__materialx__converter_1_1converter.html#a461f2d4b52e6fecfa808974fb2d71892", null ],
     [ "MULTI_OUTPUT_TYPE_STRING", "namespacegltf__materialx__converter_1_1converter.html#ab6c67a9b6ab1dafb7e3506635d655ba9", null ]
 ];
