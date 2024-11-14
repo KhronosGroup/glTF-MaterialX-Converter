@@ -607,6 +607,20 @@ graph LR
 </td>
 </tr>
 
+<tr>
+<td>Example glTF file which requires name identifier generation to convert to MaterialX (a named based system)
+
+<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_diagram.png?raw=true">
+
+</td>
+<td><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_fromgltf.mtlx">MTLX</a>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph.gltf">GLTF</a>
+</td>
+<td>
+<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_fromgltf.png?raw=true">
+</td>
+</tr>
+
 </table>
 
 </details>
