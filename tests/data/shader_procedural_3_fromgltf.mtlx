@@ -31,13 +31,13 @@
   <gltf_pbr name="gltf_shader_1" type="surfaceshader">
     <input name="base_color" type="color3" nodegraph="shared_procedural" output="out1" />
   </gltf_pbr>
-  <surfacematerial name="MAT_gltf_shader_1" type="material">
+  <surfacematerial name="MATERIAL_gltf_shader_1" type="material">
     <input name="surfaceshader" type="surfaceshader" nodename="gltf_shader_1" />
   </surfacematerial>
   <gltf_pbr name="gltf_shader_2" type="surfaceshader">
     <input name="base_color" type="color3" nodegraph="shared_procedural_2" output="out2" />
   </gltf_pbr>
-  <surfacematerial name="MAT_gltf_shader_2" type="material">
+  <surfacematerial name="MATERIAL_gltf_shader_2" type="material">
     <input name="surfaceshader" type="surfaceshader" nodename="gltf_shader_2" />
   </surfacematerial>
 </materialx>

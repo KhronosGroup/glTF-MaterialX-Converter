@@ -1,0 +1,262 @@
+{
+  "images": [
+    {
+      "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4z/AfAAQAAf/zKSWvAAAAAElFTkSuQmCC",
+      "name": "KHR_texture_procedural_fallback"
+    }
+  ],
+  "textures": [
+    {
+      "source": 0
+    }
+  ],
+  "extensions": {
+    "KHR_texture_procedurals": {
+      "procedurals": [
+        {
+          "name": "",
+          "nodetype": "nodegraph",
+          "type": "color3",
+          "inputs": [
+            {
+              "name": "mynode1",
+              "nodetype": "input",
+              "type": "vector2",
+              "value": [
+                8.0,
+                8.0
+              ]
+            },
+            {
+              "name": "mynode1",
+              "nodetype": "input",
+              "type": "color3",
+              "value": [
+                1.0,
+                0.094118,
+                0.031373
+              ]
+            },
+            {
+              "nodetype": "input",
+              "type": "color3",
+              "value": [
+                0.035294,
+                0.090196,
+                0.878431
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "name": "",
+              "nodetype": "output",
+              "type": "color3",
+              "node": 0
+            }
+          ],
+          "nodes": [
+            {
+              "nodetype": "mix",
+              "type": "color3",
+              "inputs": [
+                {
+                  "name": "fg",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "input": 1
+                },
+                {
+                  "name": "bg",
+                  "nodetype": "input",
+                  "type": "color3",
+                  "input": 2
+                },
+                {
+                  "name": "mix",
+                  "nodetype": "input",
+                  "type": "float",
+                  "node": 5
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "color3"
+                }
+              ]
+            },
+            {
+              "nodetype": "dotproduct",
+              "type": "float",
+              "inputs": [
+                {
+                  "name": "in1",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 4
+                },
+                {
+                  "name": "in2",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "float"
+                }
+              ]
+            },
+            {
+              "nodetype": "multiply",
+              "type": "vector2",
+              "inputs": [
+                {
+                  "name": "in1",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 6
+                },
+                {
+                  "name": "in2",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "input": 0
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector2"
+                }
+              ]
+            },
+            {
+              "nodetype": "subtract",
+              "type": "vector2",
+              "inputs": [
+                {
+                  "name": "in1",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 2
+                },
+                {
+                  "name": "in2",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "value": [
+                    0.0,
+                    0.0
+                  ]
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector2"
+                }
+              ]
+            },
+            {
+              "nodetype": "floor",
+              "type": "vector2",
+              "inputs": [
+                {
+                  "name": "in",
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 3
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector2"
+                }
+              ]
+            },
+            {
+              "nodetype": "modulo",
+              "type": "float",
+              "inputs": [
+                {
+                  "name": "in1",
+                  "nodetype": "input",
+                  "type": "float",
+                  "node": 1
+                },
+                {
+                  "name": "in2",
+                  "nodetype": "input",
+                  "type": "float",
+                  "value": 2.0
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "float"
+                }
+              ]
+            },
+            {
+              "nodetype": "texcoord",
+              "type": "vector2",
+              "inputs": [
+                {
+                  "name": "index",
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": 0
+                }
+              ],
+              "outputs": [
+                {
+                  "nodetype": "output",
+                  "name": "out",
+                  "type": "vector2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0,
+          "extensions": {
+            "KHR_texture_procedurals": {
+              "index": 0,
+              "output": 0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "asset": {
+    "version": "2.0",
+    "generator": "MaterialX 1.39 / glTF 2.0 Texture Procedural Converter"
+  },
+  "extensionsUsed": [
+    "KHR_texture_procedurals",
+    "EXT_texture_procedurals_mx_1_39"
+  ]
+}

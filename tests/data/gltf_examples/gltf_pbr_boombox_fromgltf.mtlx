@@ -13,7 +13,7 @@
   <gltf_pbr name="SR_boombox" type="surfaceshader">
     <input name="base_color" type="color3" nodegraph="boombox_graph" />
   </gltf_pbr>
-  <surfacematerial name="MAT_SR_boombox" type="material">
+  <surfacematerial name="MATERIAL_SR_boombox" type="material">
     <input name="surfaceshader" type="surfaceshader" nodename="SR_boombox" />
   </surfacematerial>
 </materialx>

@@ -12,7 +12,7 @@
   <gltf_pbr name="gltf_mat" type="surfaceshader">
     <input name="base_color" type="color3" nodegraph="graph1" />
   </gltf_pbr>
-  <surfacematerial name="MAT_gltf_mat" type="material">
+  <surfacematerial name="MATERIAL_gltf_mat" type="material">
     <input name="surfaceshader" type="surfaceshader" nodename="gltf_mat" />
   </surfacematerial>
 </materialx>
