@@ -4,13 +4,10 @@ import logging as lg
 
 import MaterialX as mx
 
-def remove_comments(doc):
-    comments = doc.getChildren()
-    for comment in comments:
-        if comment.getCategory() == 'comment':
-            doc.removeChild(comment.getName())
-
 def main():
+    '''
+    Perform functional equivalence testing on two MaterialX documents.
+    '''
     parser = argparse.ArgumentParser(description="Test if two documents are functionally equivalent.")
     parser.add_argument(dest="inputFilename", help="Filename of the input document.")
     parser.add_argument(dest="inputFilename2", help="Filename of the input document to compare against.")
@@ -18,7 +15,6 @@ def main():
     parser.add_argument('-sv', '--skipValueComparisons', action='store_true', help="Skip value comparisons. Default is False.")    
     parser.add_argument('-m', '--ignoreMaterials', action='store_true', help="Ignore materials in the comparison. Default is False.")
     parser.add_argument('-f', '--flattentFileNames', action='store_true', help="Flatten file names in the comparison. Default is False.")
-    parser.add_argument('-c', '--compareComments', action='store_true', help="Compare comments in the comparison. Default is False.")
     parser.add_argument('-p', '--precision', type=int, default=None, help="Specify the precision for floating-point comparisons.", )
 
     opts = parser.parse_args()
@@ -91,11 +87,6 @@ def main():
         logger.info('Flattening file names before comparison')
         mx.flattenFilenames(doc)
         mx.flattenFilenames(doc2)
-
-    # Remove any comments if requested
-    if not opts.compareComments:
-        remove_comments(doc)
-        remove_comments(doc2)
 
     equivalent, results = doc.isEquivalent(doc2, equivalence_opts)
     if equivalent:
