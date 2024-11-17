@@ -161,7 +161,7 @@ class TestConvertFromMtlx(unittest.TestCase):
 
                     equivalence_opts = mx.ElementEquivalenceOptions()
                     # Always skip doc strings
-                    equivalence_opts.skipAttributes = { 'doc', 'nodedef' } 
+                    equivalence_opts.attributeExclusionList = { 'doc', 'nodedef' } 
 
                     equivalent, errors = orig_doc.isEquivalent(compare_doc, equivalence_opts)
 
