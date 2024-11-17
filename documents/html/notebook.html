@@ -7650,7 +7650,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import support modules</span>
@@ -8039,7 +8039,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">converter</span><span class="o">.</span><span class="n">set_add_asset_info</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -8122,7 +8122,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Equivalency-Check">Equivalency Check<a class="anchor-link" href="#Equivalency-Check">¶</a></h3><p>As of MaterialX version 1.39.2 a "functional" equivalency test is available. We perform this test to check that the re-converted MaterialX file is functionally equivalent to the original document.</p>
-<p>We explicitly set the options to perform value comparisons via the <code>skipValueComparisons</code> option (as opposed to straight string comparisons) to perform the desired check. Note that this option is set by default. Additionally we ignore documentation and remove comment elements before performing the comparison using a provided <code>remove_comments</code> utility method.</p>
+<p>We explicitly set the options to perform value comparisons via the <code>performValueComparisons</code> option (as opposed to straight string comparisons) to perform the desired check. Note that this option is set by default.</p>
 </div>
 </div>
 </div>
@@ -8131,7 +8131,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">have_required_version</span> <span class="o">=</span> <span class="n">MxGLTFPTUtil</span><span class="o">.</span><span class="n">have_version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -8142,13 +8142,9 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
     <span class="c1"># Set up options</span>
     <span class="n">equivalence_opts</span> <span class="o">=</span> <span class="n">mx</span><span class="o">.</span><span class="n">ElementEquivalenceOptions</span><span class="p">()</span>
     <span class="c1"># Always use value comparisons vs string comparisons</span>
-    <span class="n">equivalence_opts</span><span class="o">.</span><span class="n">skipValueComparisons</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">equivalence_opts</span><span class="o">.</span><span class="n">performValueComparisons</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="c1"># Always skip documentation attributes</span>
-    <span class="n">equivalence_opts</span><span class="o">.</span><span class="n">skipAttributes</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">'doc'</span> <span class="p">}</span>
-
-    <span class="c1"># Remove comments and doc attributes</span>
-    <span class="n">MxGLTFPTUtil</span><span class="o">.</span><span class="n">remove_comments</span><span class="p">(</span><span class="n">mxdoc3</span><span class="p">)</span>
-    <span class="n">MxGLTFPTUtil</span><span class="o">.</span><span class="n">remove_comments</span><span class="p">(</span><span class="n">mxdoc2</span><span class="p">)</span>
+    <span class="n">equivalence_opts</span><span class="o">.</span><span class="n">attributeExclusionList</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">'doc'</span> <span class="p">}</span>
 
     <span class="c1"># Check for equivalence</span>
     <span class="n">equivalent</span><span class="p">,</span> <span class="n">results</span> <span class="o">=</span> <span class="n">mxdoc3</span><span class="o">.</span><span class="n">isEquivalent</span><span class="p">(</span><span class="n">mxdoc2</span><span class="p">,</span> <span class="n">equivalence_opts</span><span class="p">)</span>
@@ -8176,7 +8172,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>MaterialX version is 1.39.2 or higher. Perform equivalence check:
-[&lt;MaterialX.PyMaterialXCore.ElementEquivalenceResult object at 0x00000244696443F0&gt;]
+[&lt;MaterialX.PyMaterialXCore.ElementEquivalenceResult object at 0x107c962b0&gt;]
 - Documents are not functionally equivalent: 1 differences found
   - Difference[0] : Path: 'MATERIAL_Gltf_pbr' vs path: '&lt;NONE&gt;'. Difference Type: 'child name'. Attribute: 'MATERIAL_Gltf_pbr'
 </pre>
@@ -8201,7 +8197,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Remove names from JSON</span>
@@ -8502,7 +8498,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">mxdoc_cleared</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">gltf_string_to_materialX</span><span class="p">(</span><span class="n">json_string_cleared</span><span class="p">,</span> <span class="n">stdlib</span><span class="p">)</span>   
