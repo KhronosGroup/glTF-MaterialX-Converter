@@ -155,10 +155,6 @@ class TestConvertFromMtlx(unittest.TestCase):
                     # Flatten filenames for comparison
                     mx.flattenFilenames(orig_doc)
 
-                    # Remove any comments for comparison
-                    MxGLTFPTUtil.remove_comments(orig_doc)
-                    MxGLTFPTUtil.remove_comments(compare_doc)
-
                     equivalence_opts = mx.ElementEquivalenceOptions()
                     # Always skip doc strings
                     equivalence_opts.attributeExclusionList = { 'doc', 'nodedef' } 
