@@ -587,14 +587,18 @@ graph LR
 
 </td>
 <td>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/tests/data/shader_translation.mtlx">MTLX</a>,
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/tests/data/shader_translation.gltf">GLTF</a>,
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/tests/data/shader_translation_fromgltf.mtlx">MTLX from GLTF</a>
-<!-- <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/tests/data/shader_translation.usda">USD</a> -->
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation_fromgltf.mtlx">MTLX from GLTF</a>
+<!-- <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.usda">USD</a> -->
 </td>
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/tests/data/shader_translation.png">
+
+<td>
+<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.png?raw=true">
 </td>
 </tr>
+
+<tr>
 <td>Example MaterialX version of "boombox" example (from Khronos sample assets) that shows file name resolving.
 
 - Graph count: single
@@ -632,7 +636,8 @@ graph LR
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.usda">USD</a>
 </td>
 
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.png?raw=true">
+<td>
+<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.png?raw=true">
 </td>
 </tr>
 
