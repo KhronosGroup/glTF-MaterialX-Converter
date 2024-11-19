@@ -78,7 +78,8 @@ class TestConvertFromMtlx(unittest.TestCase):
 
         # The shaders are not translated over for these intentionally
         # As one shader is not a glTF PBR shader and the other has no shader. 
-        skip_diff = ['unsupported_stdsurf.mtlx', 'no_material.mtlx']
+        skip_diff = ['unsupported_stdsurf.mtlx', 'no_material.mtlx',
+                      'unsupported_stdsurf_gltf_pbr.mtlx']
 
         converter = MxGLTFPT.glTFMaterialXConverter()
 
@@ -187,7 +188,9 @@ class TestConvertToMtlx(unittest.TestCase):
         # The shaders are not translated over for these intentionally
         # unsupported_stdsurf.gltf : has a non-glTF shader 
         # no_material.gltf : has no materials 
-        skip_diff = ['unsupported_stdsurf.gltf', 'no_material.gltf' ]
+        # unsupported_stdsurf_gltf_pbr : has glTF and standard surface. 
+        skip_diff = ['unsupported_stdsurf.gltf', 'no_material.gltf',
+                     'unsupported_stdsurf_gltf_pbr.gltf']
 
         # Get all files in the data folder
         test_files = []
