@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709">
+  <nodegraph name="translation_graph">
+    <standard_surface_to_gltf_pbr name="ss_to_gltf" type="multioutput">
+      <input name="base" type="float" value="1" colorspace="lin_rec709" />
+      <input name="base_color" type="color3" value="1,0,0" colorspace="lin_rec709" />
+      <input name="metalness" type="float" value="0" />
+      <input name="specular_roughness" type="float" value="0" colorspace="lin_rec709" />
+      <input name="transmission" type="float" value="0" />
+      <input name="transmission_color" type="color3" value="1,1,1" />
+      <input name="transmission_depth" type="float" value="0" />
+      <input name="sheen" type="float" value="0" />
+      <input name="sheen_color" type="color3" value="1,1,1" />
+      <input name="sheen_roughness" type="float" value="0" />
+      <input name="coat" type="float" value="0" />
+      <input name="coat_color" type="color3" value="0,0,0" />
+      <input name="coat_roughness" type="float" value="0" />
+      <input name="emission" type="float" value="0" />
+      <input name="emission_color" type="color3" value="1,1,1" />
+    </standard_surface_to_gltf_pbr>
+    <output name="base_color_out" type="color3" nodename="ss_to_gltf" output="base_color_out" />
+    <output name="metallic_out" type="float" nodename="ss_to_gltf" output="metallic_out" />
+    <output name="roughness_out" type="float" nodename="ss_to_gltf" output="roughness_out" />
+    <output name="transmission_out" type="float" nodename="ss_to_gltf" output="transmission_out" />
+    <output name="thickness_out" type="float" nodename="ss_to_gltf" output="thickness_out" />
+    <output name="attenuation_color_out" type="color3" nodename="ss_to_gltf" output="attenuation_color_out" />
+    <output name="sheen_color_out" type="color3" nodename="ss_to_gltf" output="sheen_color_out" />
+    <output name="sheen_roughness_out" type="float" nodename="ss_to_gltf" output="sheen_roughness_out" />
+    <output name="clearcoat_out" type="float" nodename="ss_to_gltf" output="clearcoat_out" />
+    <output name="clearcoat_roughness_out" type="float" nodename="ss_to_gltf" output="clearcoat_roughness_out" />
+    <output name="emissive_out" type="color3" nodename="ss_to_gltf" output="emissive_out" />
+  </nodegraph>
+  <surfacematerial name="surfacematerial_material1" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="gltf_pbr" />
+  </surfacematerial>
+  <gltf_pbr name="gltf_pbr" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="translation_graph" output="base_color_out" />
+  </gltf_pbr>
+</materialx>
