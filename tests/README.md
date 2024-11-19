@@ -15,7 +15,7 @@ This folder contains conversion tests scripts as well as test data and a schema 
         - Reference renderings of `MaterialX` files produced using the `utilities\test_render.py` script. Names of image files are the names of the  `MaterialX` file with `.mtlx` replaced with `.png`.
         - `glTF` JSON produced from conversion of `MaterialX` files. Names of JSON files are the names of the  `MaterialX` file with `.mtlx` replaced with `.gltf`.
         - `MaterialX` XML files produced from convertion og `glTF` files. Names of MaterialX files end with
-        `_fromgltf.mtlx`.
+        `_fromgltf.mtlx`. The rendered images end with `_fromgltf.png`
         - `OpenUSD` files converted from `MaterialX` files if applicable.
     - Names of reference image files are the names of the  `MaterialX` file with `.mtlx` replaced with `.png`.
 

@@ -5,13 +5,10 @@ import logging as lg
 import MaterialX as mx
 
 def main():
-    '''
-    Perform functional equivalence testing on two MaterialX documents.
-    '''
     parser = argparse.ArgumentParser(description="Test if two documents are functionally equivalent.")
     parser.add_argument(dest="inputFilename", help="Filename of the input document.")
     parser.add_argument(dest="inputFilename2", help="Filename of the input document to compare against.")
-    parser.add_argument('-sa', '--skipAttributes', nargs='+', help="List of attributes to exclude from comparisons.")
+    parser.add_argument('-sa', '--attributeExclusionList', nargs='+', help="List of attributes to exclude from comparisons.")
     parser.add_argument('-sv', '--skipValueComparisons', action='store_true', help="Skip value comparisons. Default is False.")    
     parser.add_argument('-m', '--ignoreMaterials', action='store_true', help="Ignore materials in the comparison. Default is False.")
     parser.add_argument('-f', '--flattentFileNames', action='store_true', help="Flatten file names in the comparison. Default is False.")
@@ -63,16 +60,16 @@ def main():
         logger.info(f'Have supported version: {mx.getVersionString()}')
 
     equivalence_opts = mx.ElementEquivalenceOptions()
-    if opts.skipAttributes:
-        for attr in opts.skipAttributes:
-            equivalence_opts.skipAttributes.add(attr)
+    if opts.attributeExclusionList:
+        for attr in opts.attributeExclusionList:
+            equivalence_opts.attributeExclusionList.add(attr)
     if opts.skipValueComparisons:
-        equivalence_opts.skipValueComparisons = True
+        equivalence_opts.performValueComparisons = False
     if opts.precision:
         equivalence_opts.precision = opts.precision
 
     # Always skip doc strings
-    equivalence_opts.skipAttributes = { 'doc' }
+    equivalence_opts.attributeExclusionList = { 'doc' }
 
     # Remove material nodes if requested
     if opts.ignoreMaterials:
