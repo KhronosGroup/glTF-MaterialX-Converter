@@ -138,13 +138,13 @@ Setup</h2>
 <p>All dependencies listed will be installed if required.</p>
 <h3><a class="anchor" id="command-line-interfaces"></a>
 Command Line Interfaces</h3>
-<p>To convert from a MaterialX document to produce a glTF JSON document the <code><a class="el" href="materialx__to__gltf_8py.html">materialx_to_gltf.py</a></code> utility script may be used.</p>
+<p>To convert from a MaterialX document to produce a glTF JSON document the <code><a class="el" href="materialx__to__gltf_8py.html" title="Command line utility to convert from MaterialX documents to glTF Texture Procedurals documents&quot;.">materialx_to_gltf.py</a></code> utility script may be used.</p>
 <p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph.gltf</code>.</p>
-<p><code> python <a class="el" href="materialx__to__gltf_8py.html">source/gltf_materialx_converter/materialx_to_gltf.py</a> "tests/data/checkerboard_graph.mtlx" </code></p>
+<p><code> python <a class="el" href="materialx__to__gltf_8py.html" title="Command line utility to convert from MaterialX documents to glTF Texture Procedurals documents&quot;.">source/gltf_materialx_converter/materialx_to_gltf.py</a> "tests/data/checkerboard_graph.mtlx" </code></p>
 <hr  />
-<p>To convert from a document containing glTF procedural content to produce a MaterialX document the <code><a class="el" href="gltf__to__materialx_8py.html">gltf_to_materialx.py</a></code> utility script may be used.</p>
+<p>To convert from a document containing glTF procedural content to produce a MaterialX document the <code><a class="el" href="gltf__to__materialx_8py.html" title="Command line utility to convert from glTF Texture Procedurals documents to MaterialX documents&quot;.">gltf_to_materialx.py</a></code> utility script may be used.</p>
 <p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph_fromgltf.mtlx</code>.</p>
-<p><code> python <a class="el" href="gltf__to__materialx_8py.html">source/gltf_materialx_converter/gltf_to_materialx.py</a> "tests/data/checkerboard_graph.gltf" </code></p>
+<p><code> python <a class="el" href="gltf__to__materialx_8py.html" title="Command line utility to convert from glTF Texture Procedurals documents to MaterialX documents&quot;.">source/gltf_materialx_converter/gltf_to_materialx.py</a> "tests/data/checkerboard_graph.gltf" </code></p>
 <h3><a class="anchor" id="api-example"></a>
 API Example</h3>
 <p>The following is a simple example of using the API to convert from MaterialX to glTF and then back to MaterialX.</p>
@@ -589,6 +589,33 @@ graph LR
 <p class="intertd"></p>
 <p class="endtd"></p>
 </td><td><p class="starttd"><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.png?raw=true" alt="" class="inline"/>  </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><p class="starttd">Example where the root shader is an "unlit shader". Shader is mapped to a ramp.</p>
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: single</li>
+<li>Compound nodes: yes.</li>
+<li>Downstream shader: "unlit shader"</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
+    subgraph unlit_graph
+    unlit_graph_output_color4([output_color4:color3])
+    style unlit_graph_output_color4  fill:#09D, color:#FFF
+    unlit_graph_ramplr_color4[ramplr_color4:color3]
+    end
+    unlitshader[unlitshader:surfaceshader]
+    MAT_unlitshader([MAT_unlitshader:material])
+    style MAT_unlitshader   fill:#090, color:#FFF
+    unlit_graph_ramplr_color4 --&gt; unlit_graph_output_color4
+    unlit_graph_output_color4 --"emission_color"--&gt; unlitshader
+    unlitshader --"surfaceshader"--&gt; MAT_unlitshader
+</div></code></pre><p class="endtd"></p>
+</td><td><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.mtlx">MTLX</a>, <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.gltf">GLTF</a>, <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph_fromgltf.mtlx">MTLX from GLTF</a> <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.usda">USD</a>  </td><td><p class="starttd"><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.png?raw=true" alt="" class="inline"/>  </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>

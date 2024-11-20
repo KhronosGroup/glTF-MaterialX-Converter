@@ -619,6 +619,7 @@ class glTFMaterialXConverter():
             #   <MaterialX input name>, <gltf input name>, [<gltf parent block>]
             ['base_color', 'baseColorTexture', 'pbrMetallicRoughness']
         ]
+        input_maps[MTLX_UNLIT_CATEGORY_STRING] = [['emission_color', 'baseColorTexture', 'pbrMetallicRoughness']]
 
         pbr_nodes = {}
         fallback_texture_index = -1
@@ -637,8 +638,9 @@ class glTFMaterialXConverter():
                 category = shader_node.getCategory()
                 path = shader_node.getNamePath()
                 is_pbr = (category == MTLX_GLTF_PBR_CATEGORY)
+                is_unlit = (category == MTLX_UNLIT_CATEGORY_STRING)
 
-                if (is_pbr) and pbr_nodes.get(path) is None:
+                if (is_pbr or is_unlit) and pbr_nodes.get(path) is None:
                     # Add fallback if not already added
                     if fallback_texture_index == -1:
                         fallback_texture_index = self.add_fallback_texture(json_data, fallback_image_data)
@@ -649,6 +651,12 @@ class glTFMaterialXConverter():
                     material = {}
 
                     material[KHR_TEXTURE_PROCEDURALS_NAME] = path
+                    if is_unlit:
+                        material[KHR_EXTENSIONS_BLOCK] = {}
+                        material[KHR_EXTENSIONS_BLOCK][KHR_MATERIALX_UNLIT] = {}
+                        # Append if not found
+                        if KHR_MATERIALX_UNLIT not in extensions_used:
+                            extensions_used.append(KHR_MATERIALX_UNLIT)
 
                     shader_node_input = None
                     shader_node_output = ''
@@ -915,6 +923,7 @@ class glTFMaterialXConverter():
             input_maps[MTLX_GLTF_PBR_CATEGORY] = [
                 ['base_color', 'baseColorTexture', 'pbrMetallicRoughness']
             ]
+            input_maps[MTLX_UNLIT_CATEGORY_STRING] = [['emission_color', 'baseColorTexture', 'pbrMetallicRoughness']]
 
             for gltf_material in gltf_materials:
 
@@ -929,10 +938,16 @@ class glTFMaterialXConverter():
                 mtlx_shader_name = doc.createValidChildName(mtlx_shader_name)
                 mtlx_material_name = doc.createValidChildName(mtlx_material_name)
 
+                use_unlit = False
                 extensions = gltf_material.get('extensions', None)
+                if extensions and KHR_MATERIALX_UNLIT in extensions:
+                    use_unlit = True
 
                 shader_category = MTLX_GLTF_PBR_CATEGORY
                 #nodedef_string = 'ND_gltf_pbr_surfaceshader'
+                if use_unlit:
+                    shader_category = MTLX_UNLIT_CATEGORY_STRING
+                    nodedef_string = 'ND_surface_unlit'
                 
                 shader_node = doc.addNode(shader_category, mtlx_shader_name, mx.SURFACE_SHADER_TYPE_STRING)                
                 
