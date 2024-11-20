@@ -182,8 +182,9 @@ var NAVTREEINDEX0 =
 "namespacegltf__materialx__converter_1_1utilities.html#a8cf5924ef1449dfa635baf1b77a24e24":[5,0,0,4,4],
 "namespacegltf__materialx__converter_1_1utilities.html#a9ce615bc89d3ddaaebf0f29ebdfe6b52":[5,0,0,4,2],
 "namespacegltf__materialx__converter_1_1utilities.html#aa47eb4026dd517cdc1720d7ec5503237":[5,0,0,4,5],
+"namespacegltf__materialx__converter_1_1utilities.html#aac58e59bd09f1868b3730e8d49407cc6":[5,0,0,4,8],
 "namespacegltf__materialx__converter_1_1utilities.html#ab65e2143b894d1df4e5ba650cfabddfa":[5,0,0,4,3],
-"namespacegltf__materialx__converter_1_1utilities.html#af3d2eee4a5e44196c0e8129e07fd22fa":[5,0,0,4,8],
+"namespacegltf__materialx__converter_1_1utilities.html#af3d2eee4a5e44196c0e8129e07fd22fa":[5,0,0,4,9],
 "namespacegltf__materialx__converter_1_1utilities.html#afd53d89163491cd2b49952449b98617a":[5,0,0,4,7],
 "namespacemembers.html":[5,1,0],
 "namespacemembers_func.html":[5,1,1],
@@ -198,8 +199,9 @@ var NAVTREEINDEX0 =
 "utilities_8py.html#a8cf5924ef1449dfa635baf1b77a24e24":[7,0,0,0,5,4],
 "utilities_8py.html#a9ce615bc89d3ddaaebf0f29ebdfe6b52":[7,0,0,0,5,2],
 "utilities_8py.html#aa47eb4026dd517cdc1720d7ec5503237":[7,0,0,0,5,5],
+"utilities_8py.html#aac58e59bd09f1868b3730e8d49407cc6":[7,0,0,0,5,8],
 "utilities_8py.html#ab65e2143b894d1df4e5ba650cfabddfa":[7,0,0,0,5,3],
-"utilities_8py.html#af3d2eee4a5e44196c0e8129e07fd22fa":[7,0,0,0,5,8],
+"utilities_8py.html#af3d2eee4a5e44196c0e8129e07fd22fa":[7,0,0,0,5,9],
 "utilities_8py.html#afd53d89163491cd2b49952449b98617a":[7,0,0,0,5,7],
 "utilities_8py_source.html":[7,0,0,0,5]
 };
