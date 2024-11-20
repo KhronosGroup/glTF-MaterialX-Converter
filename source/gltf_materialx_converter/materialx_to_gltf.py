@@ -1,3 +1,7 @@
+'''
+@file materialx_to_gltf.py
+Command line utility to convert from MaterialX documents to glTF Texture Procedurals documents".
+'''
 import os
 import argparse
 import sys
@@ -33,12 +37,12 @@ def main():
     else:
         extension = os.path.splitext(opts.input)[1]
         if extension not in ['.mtlx']:
-            logger.error(f'Invalid file extension: {extension}. Must be .mtlx.')
+            logger.error(f'Invalid file extension: {extension}. Extension must be .mtlx.')
             return
         file_list.append(opts.input)
 
     if not file_list:
-        logger.info(f'No MaterialX files found in: {opts.input}')
+        logger.warning(f'No MaterialX files found in: {opts.input}')
         return
     
     stdlib, libFiles = MxGLTFPTUtil.load_standard_libraries()
@@ -67,7 +71,7 @@ def main():
         valid, errors = MxGLTFPTUtil.validate_document(mxdoc)
 
         if not valid:
-            logger.error(f'MaterialX document: {input_file} is invalid. Erors: {errors}')
+            logger.warning(f'MaterialX document: {input_file} is invalid. Erors: {errors}')
             continue
 
         # Convert to glTF JSON
@@ -88,7 +92,7 @@ def main():
                 f.write(json_string)
 
         else:
-            logger.error(f'Error: {status}')
+            logger.warning(f'Error: {status}')
 
 if __name__ == '__main__':
     main()

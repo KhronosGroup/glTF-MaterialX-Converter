@@ -887,6 +887,39 @@ Procedural graph with intermediary node for shader translation (from standard su
 </td>
 </tr>
 <tr>
+<td>Example where the root shader is an "unlit shader". Shader is mapped to a ramp. 
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: single</li>
+<li>Compound nodes: yes.</li>
+<li>Downstream shader: &quot;unlit shader&quot;</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph TB
+    subgraph unlit_graph
+    unlit_graph_output_color4([output_color4:color3])
+    style unlit_graph_output_color4  fill:#09D, color:#FFF
+    unlit_graph_ramplr_color4[ramplr_color4:color3]
+    end
+    unlitshader[unlitshader:surfaceshader]
+    MAT_unlitshader([MAT_unlitshader:material])
+    style MAT_unlitshader   fill:#090, color:#FFF
+    unlit_graph_ramplr_color4 --> unlit_graph_output_color4
+    unlit_graph_output_color4 --"emission_color"--> unlitshader
+    unlitshader --"surfaceshader"--> MAT_unlitshader
+</div></code></pre>
+</td>
+<td>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph_fromgltf.mtlx">MTLX from GLTF</a>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.usda">USD</a>
+</td>
+<td>
+<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.png?raw=true">
+</td>
+</tr>
+<tr>
 <td>Example MaterialX version of "boombox" example (from Khronos sample assets) that shows file name resolving.
 <ul>
 <li>Graph count: single</li>

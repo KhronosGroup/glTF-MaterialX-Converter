@@ -8,5 +8,6 @@ var utilities_8py =
     [ "load_standard_libraries", "utilities_8py.html#aa47eb4026dd517cdc1720d7ec5503237", null ],
     [ "materialX_doc_to_string", "utilities_8py.html#a3efdd41d9970f17e1f4febfc449bf7df", null ],
     [ "read_materialX_document", "utilities_8py.html#afd53d89163491cd2b49952449b98617a", null ],
+    [ "remove_comments", "utilities_8py.html#aac58e59bd09f1868b3730e8d49407cc6", null ],
     [ "validate_document", "utilities_8py.html#af3d2eee4a5e44196c0e8129e07fd22fa", null ]
 ];
