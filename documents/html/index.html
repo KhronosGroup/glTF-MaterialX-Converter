@@ -192,7 +192,7 @@ Tests</h2>
 Supported MaterialX Configurations</h2>
 <p>Only specific configurations of MaterialX can be mapped to glTF Texture Procedurals.</p><ol type="1">
 <li>There must be a <code>surfacematerial</code> material node</li>
-<li>There must be a <code>glTF PBR</code> node connected to the surface shader input of the material.</li>
+<li>There must be a <code>glTF PBR</code> or <code>unlit</code> node connected to the surface shader input of the material.</li>
 <li>A single <code>nodegraph</code> with a <code>color3</code> output node which is connected to the base color on the surface shader. The constant node can be replaced with the desired set of nodes, and one or more inputs may be specified to route data into the <code>nodegraph</code>.</li>
 </ol>
 <p>Any document level qualifiers must be pre-resolved when converting rom MaterialX. This includes any <code>fileprefix</code> qualifiers for image file names.</p>

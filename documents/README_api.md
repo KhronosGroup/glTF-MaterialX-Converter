@@ -108,7 +108,7 @@ python -m unittest discover -s tests -p "test_*.py"
 
 Only specific configurations of MaterialX can be mapped to glTF Texture Procedurals.
 1. There must be a `surfacematerial` material node
-2. There must be a `glTF PBR` node connected to the surface shader input of the material.
+2. There must be a `glTF PBR` or `unlit` node connected to the surface shader input of the material.
 3. A single `nodegraph` with a `color3` output node which is connected to the base color on the surface shader. The constant node can be replaced with the desired set of
 nodes, and one or more inputs may be specified to route data into the `nodegraph`. 
 
