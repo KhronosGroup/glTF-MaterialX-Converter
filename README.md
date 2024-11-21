@@ -27,27 +27,31 @@ All dependencies listed will be installed if required.
 
 #### Command Line Interfaces
 
-To convert from a MaterialX document to produce a glTF JSON document the
-`materialx_to_gltf.py` utility script may be used.
+To convert from a MaterialX document to produce a glTF JSON document the `materialx_to_gltf.py` utility script may be used.
 
-The following is an example converting a sample file found in the test folder.
-The results are saved to a file called `checkerboard_graph.gltf`.
+The following is an example converting a sample file found in the test folder. The results are saved to a file called `checkerboard_graph.gltf`.
 
-<code>
-python source/gltf_materialx_converter/materialx_to_gltf.py "tests/data/checkerboard_graph.mtlx"
-</code>
+`python -m gltf_materialx_converter mtlx "tests/data/checkerboard_graph.mtlx"`
+
+or
+
+`python source/gltf_materialx_converter/materialx_to_gltf.py "tests/data/checkerboard_graph.mtlx"`
+
+to run the local script.
 
 <hr>
 
-To convert from a document containing glTF procedural content to produce a MaterialX document the
-`gltf_to_materialx.py` utility script may be used.
+To convert from a document containing glTF procedural content to produce a MaterialX document the `gltf_to_materialx.py` utility script may be used.
 
-The following is an example converting a sample file found in the test folder.
-The results are saved to a file called `checkerboard_graph_fromgltf.mtlx`.
+The following is an example converting a sample file found in the test folder. The results are saved to a file called `checkerboard_graph_fromgltf.mtlx`.
 
-<code>
-python source/gltf_materialx_converter/gltf_to_materialx.py "tests/data/checkerboard_graph.gltf" 
-</code>
+`python -m gltf_materialx_converter gltf "tests/data/checkerboard_graph.gltf"`
+
+or
+
+`python source/gltf_materialx_converter/gltf_to_materialx.py "tests/data/checkerboard_graph.gltf"`
+
+to run the local script.
 
 #### API Example
 
@@ -100,9 +104,9 @@ It is assumed that `Doxygen` has been installed locally.
 
 The following command can be used to run tests from the root folder:
 
-<code>
+<pre>
 python -m unittest discover -s tests -p "test_*.py"
-</code>
+</pre>
 
 ### Supported MaterialX Configurations
 
