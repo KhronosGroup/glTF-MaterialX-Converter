@@ -617,7 +617,11 @@ class glTFMaterialXConverter():
         input_maps[MTLX_GLTF_PBR_CATEGORY] = [
             # Contains:
             #   <MaterialX input name>, <gltf input name>, [<gltf parent block>]
-            ['base_color', 'baseColorTexture', 'pbrMetallicRoughness']
+            # Note that this ordering must match the order of the inputs in the MaterialX shader
+            # in order produce an instance which matches the definition.
+            ['base_color', 'baseColorTexture', 'pbrMetallicRoughness'],
+            ['normal', 'normalTexture', ''],
+            ['emissive', 'emissiveTexture', '']
         ]
         input_maps[MTLX_UNLIT_CATEGORY_STRING] = [['emission_color', 'baseColorTexture', 'pbrMetallicRoughness']]
 
@@ -921,7 +925,9 @@ class glTFMaterialXConverter():
 
             input_maps = {}
             input_maps[MTLX_GLTF_PBR_CATEGORY] = [
-                ['base_color', 'baseColorTexture', 'pbrMetallicRoughness']
+                ['base_color', 'baseColorTexture', 'pbrMetallicRoughness'],
+                ['normal', 'normalTexture', ''],
+                ['emissive', 'emissiveTexture', '']
             ]
             input_maps[MTLX_UNLIT_CATEGORY_STRING] = [['emission_color', 'baseColorTexture', 'pbrMetallicRoughness']]
 

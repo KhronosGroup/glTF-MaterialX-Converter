@@ -140,11 +140,17 @@ Setup</h2>
 Command Line Interfaces</h3>
 <p>To convert from a MaterialX document to produce a glTF JSON document the <code><a class="el" href="materialx__to__gltf_8py.html" title="Command line utility to convert from MaterialX documents to glTF Texture Procedurals documents&quot;.">materialx_to_gltf.py</a></code> utility script may be used.</p>
 <p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph.gltf</code>.</p>
-<p><code> python <a class="el" href="materialx__to__gltf_8py.html" title="Command line utility to convert from MaterialX documents to glTF Texture Procedurals documents&quot;.">source/gltf_materialx_converter/materialx_to_gltf.py</a> "tests/data/checkerboard_graph.mtlx" </code></p>
+<p><code>python -m <a class="el" href="namespacegltf__materialx__converter.html">gltf_materialx_converter</a> mtlx "tests/data/checkerboard_graph.mtlx"</code></p>
+<p>or</p>
+<p><code>python <a class="el" href="materialx__to__gltf_8py.html" title="Command line utility to convert from MaterialX documents to glTF Texture Procedurals documents&quot;.">source/gltf_materialx_converter/materialx_to_gltf.py</a> "tests/data/checkerboard_graph.mtlx"</code></p>
+<p>to run the local script.</p>
 <hr  />
 <p>To convert from a document containing glTF procedural content to produce a MaterialX document the <code><a class="el" href="gltf__to__materialx_8py.html" title="Command line utility to convert from glTF Texture Procedurals documents to MaterialX documents&quot;.">gltf_to_materialx.py</a></code> utility script may be used.</p>
 <p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph_fromgltf.mtlx</code>.</p>
-<p><code> python <a class="el" href="gltf__to__materialx_8py.html" title="Command line utility to convert from glTF Texture Procedurals documents to MaterialX documents&quot;.">source/gltf_materialx_converter/gltf_to_materialx.py</a> "tests/data/checkerboard_graph.gltf" </code></p>
+<p><code>python -m <a class="el" href="namespacegltf__materialx__converter.html">gltf_materialx_converter</a> gltf "tests/data/checkerboard_graph.gltf"</code></p>
+<p>or</p>
+<p><code>python <a class="el" href="gltf__to__materialx_8py.html" title="Command line utility to convert from glTF Texture Procedurals documents to MaterialX documents&quot;.">source/gltf_materialx_converter/gltf_to_materialx.py</a> "tests/data/checkerboard_graph.gltf"</code></p>
+<p>to run the local script.</p>
 <h3><a class="anchor" id="api-example"></a>
 API Example</h3>
 <p>The following is a simple example of using the API to convert from MaterialX to glTF and then back to MaterialX.</p>
@@ -187,9 +193,11 @@ API</h3>
 <h2><a class="anchor" id="tests"></a>
 Tests</h2>
 <p>The following command can be used to run tests from the root folder:</p>
-<p><code> python -m unittest discover -s tests -p "test_*.py" </code></p>
-<h2><a class="anchor" id="supported-materialx-configurations"></a>
-Supported MaterialX Configurations</h2>
+<pre>
+python -m unittest discover -s tests -p "test_*.py"
+</pre><p>#</p>
+<h1><a class="anchor" id="supported-materialx-configurations"></a>
+Supported MaterialX Configurations</h1>
 <p>Only specific configurations of MaterialX can be mapped to glTF Texture Procedurals.</p><ol type="1">
 <li>There must be a <code>surfacematerial</code> material node</li>
 <li>There must be a <code>glTF PBR</code> or <code>unlit</code> node connected to the surface shader input of the material.</li>
@@ -649,6 +657,45 @@ graph LR
 </td><td><p class="starttd"><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.mtlx">MTLX</a>, <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.gltf">GLTF</a>, <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox_fromgltf.mtlx">MTLX from GLTF</a>, <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.usda">USD</a> </p>
 <p class="endtd"></p>
 </td><td><p class="starttd"><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.png?raw=true" alt="" class="inline"/>  </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><p class="starttd">Example MaterialX version of "boombox" example (from Khronos sample assets) with more than one channel mapped to different outputs from the same procedural.</p>
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: multiple</li>
+<li>Compound nodes: no</li>
+<li>Downstream shader: glTF PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph LR
+    subgraph NG_boombox
+    NG_boombox_base_color([output:color3])
+    style NG_boombox_base_color  fill:#09D, color:#FFF
+    NG_boombox_emission([output:color3])
+    style NG_boombox_emission  fill:#09D, color:#FFF
+    NG_boombox_normal([output:vector3])
+    style NG_boombox_normal  fill:#09D, color:#FFF
+    NG_boombox_image_emission1[gltf_image:color3]
+    NG_boombox_image_normal1[gltf_normalmap:vector3]
+    NG_boombox_image_basecolor1[gltf_colorimage:multioutput]
+    end
+    SR_boombox[gltf_pbr:surfaceshader]
+    Boombox([surfacematerial:material])
+    style Boombox   fill:#090, color:#FFF
+    NG_boombox_image_basecolor1 --"outcolor"--&gt; NG_boombox_base_color
+    NG_boombox_image_emission1 --&gt; NG_boombox_emission
+    NG_boombox_image_normal1 --&gt; NG_boombox_normal
+    NG_boombox_base_color --"base_color"--&gt; SR_boombox
+    NG_boombox_normal --"normal"--&gt; SR_boombox
+    NG_boombox_emission --"emissive"--&gt; SR_boombox
+    SR_boombox --"surfaceshader"--&gt; Boombox
+</div></code></pre><p class="endtd"></p>
+</td><td><p class="starttd"><a href="../../tests/data/gltf_examples/gltf_boombox_graph.mtlx">MTLX</a>, <a href="../../tests/data/gltf_examples/gltf_boombox_graph.gltf">GLTF</a>, <a href="../../tests/data/gltf_examples/gltf_boombox_graph_fromgltf.mtlx">MTLX from GLTF</a>, </p>
+<p class="endtd"></p>
+</td><td><p class="starttd"><img src="../../tests/data/gltf_examples/gltf_boombox_graph.png?raw=true" alt="" class="inline"/>  </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>

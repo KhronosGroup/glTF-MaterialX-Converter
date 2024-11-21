@@ -1,17 +1,18 @@
 var index =
 [
-    [ "Documentation", "index.html#autotoc_md14", [
-      [ "Introduction", "index.html#autotoc_md9", null ],
-      [ "Dependencies", "index.html#autotoc_md10", null ],
-      [ "Setup", "index.html#autotoc_md11", [
-        [ "Command Line Interfaces", "index.html#autotoc_md12", null ],
-        [ "API Example", "index.html#autotoc_md13", null ],
-        [ "API", "index.html#autotoc_md15", null ]
+    [ "Supported MaterialX Configurations", "index.html#supported-materialx-configurations", [
+      [ "Introduction", "index.html#introduction", null ],
+      [ "Dependencies", "index.html#dependencies", null ],
+      [ "Setup", "index.html#setup", [
+        [ "Command Line Interfaces", "index.html#command-line-interfaces", null ],
+        [ "API Example", "index.html#api-example", null ]
       ] ],
-      [ "Tests", "index.html#autotoc_md16", null ],
-      [ "Supported MaterialX Configurations", "index.html#autotoc_md17", [
-        [ "Test Data", "index.html#autotoc_md18", null ]
+      [ "Documentation", "index.html#documentation-1", [
+        [ "API", "index.html#api", null ]
       ] ],
-      [ "Development Information", "index.html#autotoc_md19", null ]
+      [ "Tests", "index.html#tests", [
+        [ "Test Data", "index.html#test-data", null ]
+      ] ],
+      [ "Development Information", "index.html#development-information", null ]
     ] ]
 ];

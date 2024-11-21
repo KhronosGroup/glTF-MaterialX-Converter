@@ -389,21 +389,19 @@ code {
 <p><code>pip install .</code></p>
 <p>All dependencies listed will be installed if required.</p>
 <h4 id="command-line-interfaces">Command Line Interfaces</h4>
-<p>To convert from a MaterialX document to produce a glTF JSON document the<br>
-<code>materialx_to_gltf.py</code> utility script may be used.</p>
-<p>The following is an example converting a sample file found in the test folder.<br>
-The results are saved to a file called <code>checkerboard_graph.gltf</code>.</p>
-<code>
-python source/gltf_materialx_converter/materialx_to_gltf.py "tests/data/checkerboard_graph.mtlx"
-</code>
+<p>To convert from a MaterialX document to produce a glTF JSON document the <code>materialx_to_gltf.py</code> utility script may be used.</p>
+<p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph.gltf</code>.</p>
+<p><code>python -m gltf_materialx_converter mtlx &quot;tests/data/checkerboard_graph.mtlx&quot;</code></p>
+<p>or</p>
+<p><code>python source/gltf_materialx_converter/materialx_to_gltf.py &quot;tests/data/checkerboard_graph.mtlx&quot;</code></p>
+<p>to run the local script.</p>
 <hr>
-<p>To convert from a document containing glTF procedural content to produce a MaterialX document the<br>
-<code>gltf_to_materialx.py</code> utility script may be used.</p>
-<p>The following is an example converting a sample file found in the test folder.<br>
-The results are saved to a file called <code>checkerboard_graph_fromgltf.mtlx</code>.</p>
-<code>
-python source/gltf_materialx_converter/gltf_to_materialx.py "tests/data/checkerboard_graph.gltf" 
-</code>
+<p>To convert from a document containing glTF procedural content to produce a MaterialX document the <code>gltf_to_materialx.py</code> utility script may be used.</p>
+<p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph_fromgltf.mtlx</code>.</p>
+<p><code>python -m gltf_materialx_converter gltf &quot;tests/data/checkerboard_graph.gltf&quot;</code></p>
+<p>or</p>
+<p><code>python source/gltf_materialx_converter/gltf_to_materialx.py &quot;tests/data/checkerboard_graph.gltf&quot;</code></p>
+<p>to run the local script.</p>
 <h4 id="api-example">API Example</h4>
 <p>The following is a simple example of using the API to convert from MaterialX to glTF<br>
 and then back to MaterialX.</p>
@@ -445,9 +443,9 @@ mxdoc2 = converter.gltf_string_to_materialX(json_string, stdlib)
 It is assumed that <code>Doxygen</code> has been installed locally.</p>
 <h3 id="tests">Tests</h3>
 <p>The following command can be used to run tests from the root folder:</p>
-<code>
+<pre>
 python -m unittest discover -s tests -p "test_*.py"
-</code>
+</pre>
 <h3 id="supported-materialx-configurations">Supported MaterialX Configurations</h3>
 <p>Only specific configurations of MaterialX can be mapped to glTF Texture Procedurals.</p>
 <ol>
@@ -954,6 +952,49 @@ Procedural graph with intermediary node for shader translation (from standard su
 </td>
 <td>
 <img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.png?raw=true">
+</td>
+</tr>
+<tr>
+<td>Example MaterialX version of "boombox" example (from Khronos sample assets) with more than one channel mapped
+to different outputs from the same procedural.
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: multiple</li>
+<li>Compound nodes: no</li>
+<li>Downstream shader: glTF PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph LR
+    subgraph NG_boombox
+    NG_boombox_base_color([output:color3])
+    style NG_boombox_base_color  fill:#09D, color:#FFF
+    NG_boombox_emission([output:color3])
+    style NG_boombox_emission  fill:#09D, color:#FFF
+    NG_boombox_normal([output:vector3])
+    style NG_boombox_normal  fill:#09D, color:#FFF
+    NG_boombox_image_emission1[gltf_image:color3]
+    NG_boombox_image_normal1[gltf_normalmap:vector3]
+    NG_boombox_image_basecolor1[gltf_colorimage:multioutput]
+    end
+    SR_boombox[gltf_pbr:surfaceshader]
+    Boombox([surfacematerial:material])
+    style Boombox   fill:#090, color:#FFF
+    NG_boombox_image_basecolor1 --"outcolor"--> NG_boombox_base_color
+    NG_boombox_image_emission1 --> NG_boombox_emission
+    NG_boombox_image_normal1 --> NG_boombox_normal
+    NG_boombox_base_color --"base_color"--> SR_boombox
+    NG_boombox_normal --"normal"--> SR_boombox
+    NG_boombox_emission --"emissive"--> SR_boombox
+    SR_boombox --"surfaceshader"--> Boombox
+</div></code></pre>
+</td>
+<td>
+<a href="./tests/data/gltf_examples/gltf_boombox_graph.mtlx">MTLX</a>,
+<a href="./tests/data/gltf_examples/gltf_boombox_graph.gltf">GLTF</a>,
+<a href="./tests/data/gltf_examples/gltf_boombox_graph_fromgltf.mtlx">MTLX from GLTF</a>,
+</td>
+<td>
+<img src="./tests/data/gltf_examples/gltf_boombox_graph.png?raw=true">
 </td>
 </tr>
 <tr>
