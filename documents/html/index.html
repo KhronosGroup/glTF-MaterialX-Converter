@@ -140,11 +140,17 @@ Setup</h2>
 Command Line Interfaces</h3>
 <p>To convert from a MaterialX document to produce a glTF JSON document the <code><a class="el" href="materialx__to__gltf_8py.html" title="Command line utility to convert from MaterialX documents to glTF Texture Procedurals documents&quot;.">materialx_to_gltf.py</a></code> utility script may be used.</p>
 <p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph.gltf</code>.</p>
-<p><code> python <a class="el" href="materialx__to__gltf_8py.html" title="Command line utility to convert from MaterialX documents to glTF Texture Procedurals documents&quot;.">source/gltf_materialx_converter/materialx_to_gltf.py</a> "tests/data/checkerboard_graph.mtlx" </code></p>
+<p><code>python -m <a class="el" href="namespacegltf__materialx__converter.html">gltf_materialx_converter</a> mtlx "tests/data/checkerboard_graph.mtlx"</code></p>
+<p>or</p>
+<p><code>python <a class="el" href="materialx__to__gltf_8py.html" title="Command line utility to convert from MaterialX documents to glTF Texture Procedurals documents&quot;.">source/gltf_materialx_converter/materialx_to_gltf.py</a> "tests/data/checkerboard_graph.mtlx"</code></p>
+<p>to run the local script.</p>
 <hr  />
 <p>To convert from a document containing glTF procedural content to produce a MaterialX document the <code><a class="el" href="gltf__to__materialx_8py.html" title="Command line utility to convert from glTF Texture Procedurals documents to MaterialX documents&quot;.">gltf_to_materialx.py</a></code> utility script may be used.</p>
 <p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph_fromgltf.mtlx</code>.</p>
-<p><code> python <a class="el" href="gltf__to__materialx_8py.html" title="Command line utility to convert from glTF Texture Procedurals documents to MaterialX documents&quot;.">source/gltf_materialx_converter/gltf_to_materialx.py</a> "tests/data/checkerboard_graph.gltf" </code></p>
+<p><code>python -m <a class="el" href="namespacegltf__materialx__converter.html">gltf_materialx_converter</a> gltf "tests/data/checkerboard_graph.gltf"</code></p>
+<p>or</p>
+<p><code>python <a class="el" href="gltf__to__materialx_8py.html" title="Command line utility to convert from glTF Texture Procedurals documents to MaterialX documents&quot;.">source/gltf_materialx_converter/gltf_to_materialx.py</a> "tests/data/checkerboard_graph.gltf"</code></p>
+<p>to run the local script.</p>
 <h3><a class="anchor" id="api-example"></a>
 API Example</h3>
 <p>The following is a simple example of using the API to convert from MaterialX to glTF and then back to MaterialX.</p>
@@ -187,9 +193,11 @@ API</h3>
 <h2><a class="anchor" id="tests"></a>
 Tests</h2>
 <p>The following command can be used to run tests from the root folder:</p>
-<p><code> python -m unittest discover -s tests -p "test_*.py" </code></p>
-<h2><a class="anchor" id="supported-materialx-configurations"></a>
-Supported MaterialX Configurations</h2>
+<pre>
+python -m unittest discover -s tests -p "test_*.py"
+</pre><p>#</p>
+<h1><a class="anchor" id="supported-materialx-configurations"></a>
+Supported MaterialX Configurations</h1>
 <p>Only specific configurations of MaterialX can be mapped to glTF Texture Procedurals.</p><ol type="1">
 <li>There must be a <code>surfacematerial</code> material node</li>
 <li>There must be a <code>glTF PBR</code> or <code>unlit</code> node connected to the surface shader input of the material.</li>
