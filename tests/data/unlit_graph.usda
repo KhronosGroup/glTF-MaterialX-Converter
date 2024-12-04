@@ -1,0 +1,71 @@
+#usda 1.0
+(
+    doc = """Generated from Composed Stage of root layer 
+"""
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "MAT_unlitshader"
+        {
+            float inputs:emission = 1
+            color3f inputs:emission_color = (1, 1, 1)
+            float inputs:opacity = 1
+            float inputs:transmission = 0
+            color3f inputs:transmission_color = (1, 1, 1)
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/MAT_unlitshader/ND_surface_unlit.outputs:surface>
+
+            def Shader "ND_surface_unlit"
+            {
+                uniform token info:id = "ND_surface_unlit"
+                float inputs:emission.connect = </MaterialX/Materials/MAT_unlitshader.inputs:emission>
+                color3f inputs:emission_color.connect = </MaterialX/Materials/MAT_unlitshader/unlit_graph.outputs:output_color4>
+                float inputs:opacity.connect = </MaterialX/Materials/MAT_unlitshader.inputs:opacity>
+                float inputs:transmission.connect = </MaterialX/Materials/MAT_unlitshader.inputs:transmission>
+                color3f inputs:transmission_color.connect = </MaterialX/Materials/MAT_unlitshader.inputs:transmission_color>
+                token outputs:surface
+            }
+
+            def NodeGraph "unlit_graph"
+            {
+                color3f outputs:output_color4.connect = </MaterialX/Materials/MAT_unlitshader/unlit_graph/ramplr_color4.outputs:out>
+
+                def Shader "ramplr_color4"
+                {
+                    uniform token info:id = "ND_ramplr_color3"
+                    color3f inputs:valuel = (1, 0.8, 0)
+                    color3f inputs:valuer = (0, 0.5, 1)
+                    color3f outputs:out
+                }
+            }
+        }
+    }
+
+    def "Shaders"
+    {
+        def Shader "ND_surface_unlit"
+        {
+            uniform token info:id = "ND_surface_unlit"
+            token outputs:surface
+        }
+    }
+
+    def "NodeGraphs"
+    {
+        def NodeGraph "unlit_graph"
+        {
+            color3f outputs:output_color4.connect = </MaterialX/NodeGraphs/unlit_graph/ramplr_color4.outputs:out>
+
+            def Shader "ramplr_color4"
+            {
+                uniform token info:id = "ND_ramplr_color3"
+                color3f inputs:valuel = (1, 0.8, 0)
+                color3f inputs:valuer = (0, 0.5, 1)
+                color3f outputs:out
+            }
+        }
+    }
+}
+

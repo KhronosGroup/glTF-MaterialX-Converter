@@ -209,7 +209,12 @@ class glTFMaterialXConverter():
         self.supported_types = ['boolean', 'string', 'integer', 'matrix33', 'matrix44', 'vector2', 'vector3', 'vector4', 'float', 'color3', 'color4']
         self.supported_scalar_types = ['integer', 'matrix33', 'matrix44', 'vector2', 'vector3', 'vector4', 'float', 'color3', 'color4']
         self.supported_array_types = ['matrix33', 'matrix44', 'vector2', 'vector3', 'vector4', 'color3', 'color4']
-        self.supported_metadata = ['colorspace', 'unit', 'unittype', 'uiname', 'uimin', 'uimax', 'uisoftmin', 'uisoftmax', 'uifolder', 'doc', 'xpos', 'ypos']
+        self.standard_ui_metadata = ['xpos', 'ypos', 'width', 'height', 'uicolor']
+        self.supported_metadata = ['colorspace', 'unit', 'unittype', 
+                                   'uiname', 'uimin', 'uimax', 'uisoftmin', 'uisoftmax', 'uistep', 'uifolder', 'uiadvanced', 'uivisible',
+                                   'defaultgeomprop', 'uniform', 
+                                   'doc'] + self.standard_ui_metadata
+        self.supported_graph_metadata = ['colorspace', 'unit', 'unittype', 'uiname', 'doc'] + self.standard_ui_metadata
 
     def set_debug(self, debug):
         '''
@@ -220,6 +225,13 @@ class glTFMaterialXConverter():
             self.logger.setLevel(lg.DEBUG)
         else:
             self.logger.setLevel(lg.INFO)
+
+    def get_standard_ui_metadata(self):
+        '''
+        Get the standard UI metadata defined by MaterialX.
+        @return The standard UI metadata.
+        '''
+        return self.standard_ui_metadata
 
     def set_metadata(self, metadata):
         '''
@@ -234,6 +246,13 @@ class glTFMaterialXConverter():
         @return The metadata.
         '''
         return self.supported_metadata
+
+    def get_graph_metadata(self):
+        '''
+        Get the supported graph metadata for the converter.
+        @return The metadata.
+        '''
+        return self.supported_graph_metadata
 
     def get_supported_target_type(self):
         '''
@@ -393,6 +412,12 @@ class glTFMaterialXConverter():
         procs.append(nodegraph)
 
         metadata = self.get_metadata()
+
+        # Set nodegraph metadata
+        graph_metadata = self.get_graph_metadata()
+        for meta in graph_metadata:
+            if graph.getAttribute(meta):
+                nodegraph[meta] = graph.getAttribute(meta)
 
         # Add nodes to to dictonary. Use path as this is globally unique
         #
@@ -619,6 +644,7 @@ class glTFMaterialXConverter():
             #   <MaterialX input name>, <gltf input name>, [<gltf parent block>]
             ['base_color', 'baseColorTexture', 'pbrMetallicRoughness']
         ]
+        input_maps[MTLX_UNLIT_CATEGORY_STRING] = [['emission_color', 'baseColorTexture', 'pbrMetallicRoughness']]
 
         pbr_nodes = {}
         fallback_texture_index = -1
@@ -637,8 +663,9 @@ class glTFMaterialXConverter():
                 category = shader_node.getCategory()
                 path = shader_node.getNamePath()
                 is_pbr = (category == MTLX_GLTF_PBR_CATEGORY)
+                is_unlit = (category == MTLX_UNLIT_CATEGORY_STRING)
 
-                if (is_pbr) and pbr_nodes.get(path) is None:
+                if (is_pbr or is_unlit) and pbr_nodes.get(path) is None:
                     # Add fallback if not already added
                     if fallback_texture_index == -1:
                         fallback_texture_index = self.add_fallback_texture(json_data, fallback_image_data)
@@ -649,6 +676,12 @@ class glTFMaterialXConverter():
                     material = {}
 
                     material[KHR_TEXTURE_PROCEDURALS_NAME] = path
+                    if is_unlit:
+                        material[KHR_EXTENSIONS_BLOCK] = {}
+                        material[KHR_EXTENSIONS_BLOCK][KHR_MATERIALX_UNLIT] = {}
+                        # Append if not found
+                        if KHR_MATERIALX_UNLIT not in extensions_used:
+                            extensions_used.append(KHR_MATERIALX_UNLIT)
 
                     shader_node_input = None
                     shader_node_output = ''
@@ -915,6 +948,7 @@ class glTFMaterialXConverter():
             input_maps[MTLX_GLTF_PBR_CATEGORY] = [
                 ['base_color', 'baseColorTexture', 'pbrMetallicRoughness']
             ]
+            input_maps[MTLX_UNLIT_CATEGORY_STRING] = [['emission_color', 'baseColorTexture', 'pbrMetallicRoughness']]
 
             for gltf_material in gltf_materials:
 
@@ -929,10 +963,16 @@ class glTFMaterialXConverter():
                 mtlx_shader_name = doc.createValidChildName(mtlx_shader_name)
                 mtlx_material_name = doc.createValidChildName(mtlx_material_name)
 
+                use_unlit = False
                 extensions = gltf_material.get('extensions', None)
+                if extensions and KHR_MATERIALX_UNLIT in extensions:
+                    use_unlit = True
 
                 shader_category = MTLX_GLTF_PBR_CATEGORY
                 #nodedef_string = 'ND_gltf_pbr_surfaceshader'
+                if use_unlit:
+                    shader_category = MTLX_UNLIT_CATEGORY_STRING
+                    nodedef_string = 'ND_surface_unlit'
                 
                 shader_node = doc.addNode(shader_category, mtlx_shader_name, mx.SURFACE_SHADER_TYPE_STRING)                
                 
@@ -1160,9 +1200,16 @@ class glTFMaterialXConverter():
             graph_name = doc.createValidChildName(graph_name)
             proc['name'] = graph_name
             
-            # Create new nodegraph
+            # Create new nodegraph and add metadata
             self.logger.info(f'> Create new nodegraph: {graph_name}')
             mtlx_graph = doc.addNodeGraph(graph_name)
+            graph_metadata= self.get_graph_metadata()
+            for meta in graph_metadata:
+                if meta in proc:
+                    proc_meta_data = proc[meta]
+                    self.logger.debug(f'> Add extra graph attribute: {meta}, {proc_meta_data}')
+                    mtlx_graph.setAttribute(meta, proc_meta_data)
+
             root_mtlx = mtlx_graph
 
             inputs = proc.get(KHR_TEXTURE_PROCEDURALS_INPUTS_BLOCK, [])

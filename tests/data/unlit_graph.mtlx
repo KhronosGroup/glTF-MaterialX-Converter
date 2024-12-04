@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709">
+  <nodegraph name="unlit_graph">
+    <ramplr name="ramplr_color4" type="color3">
+      <input name="valuel" type="color3" value="1, 0.8, 0" />
+      <input name="valuer" type="color3" value="0, 0.5, 1" />
+      <input name="texcoord" type="vector2" value="0, 0" />
+    </ramplr>
+    <output name="output_color4" type="color3" nodename="ramplr_color4" />
+  </nodegraph>
+  <surface_unlit name="unlitshader" type="surfaceshader">
+    <input name="emission_color" type="color3" nodegraph="unlit_graph" />
+  </surface_unlit>
+  <surfacematerial name="MAT_unlitshader" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="unlitshader" />
+  </surfacematerial>
+</materialx>

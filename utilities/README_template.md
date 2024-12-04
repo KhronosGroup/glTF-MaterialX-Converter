@@ -27,27 +27,31 @@ All dependencies listed will be installed if required.
 
 #### Command Line Interfaces
 
-To convert from a MaterialX document to produce a glTF JSON document the
-`materialx_to_gltf.py` utility script may be used.
+To convert from a MaterialX document to produce a glTF JSON document the `materialx_to_gltf.py` utility script may be used.
 
-The following is an example converting a sample file found in the test folder.
-The results are saved to a file called `checkerboard_graph.gltf`.
+The following is an example converting a sample file found in the test folder. The results are saved to a file called `checkerboard_graph.gltf`.
 
-<code>
-python source/gltf_materialx_converter/materialx_to_gltf.py "tests/data/checkerboard_graph.mtlx"
-</code>
+`python -m gltf_materialx_converter mtlx "tests/data/checkerboard_graph.mtlx"`
+
+or
+
+`python source/gltf_materialx_converter/materialx_to_gltf.py "tests/data/checkerboard_graph.mtlx"`
+
+to run the local script.
 
 <hr>
 
-To convert from a document containing glTF procedural content to produce a MaterialX document the
-`gltf_to_materialx.py` utility script may be used.
+To convert from a document containing glTF procedural content to produce a MaterialX document the `gltf_to_materialx.py` utility script may be used.
 
-The following is an example converting a sample file found in the test folder.
-The results are saved to a file called `checkerboard_graph_fromgltf.mtlx`.
+The following is an example converting a sample file found in the test folder. The results are saved to a file called `checkerboard_graph_fromgltf.mtlx`.
 
-<code>
-python source/gltf_materialx_converter/gltf_to_materialx.py "tests/data/checkerboard_graph.gltf" 
-</code>
+`python -m gltf_materialx_converter gltf "tests/data/checkerboard_graph.gltf"`
+
+or
+
+`python source/gltf_materialx_converter/gltf_to_materialx.py "tests/data/checkerboard_graph.gltf"`
+
+to run the local script.
 
 #### API Example
 
@@ -100,15 +104,15 @@ It is assumed that `Doxygen` has been installed locally.
 
 The following command can be used to run tests from the root folder:
 
-<code>
+<pre>
 python -m unittest discover -s tests -p "test_*.py"
-</code>
+</pre>
 
 ### Supported MaterialX Configurations
 
 Only specific configurations of MaterialX can be mapped to glTF Texture Procedurals.
 1. There must be a `surfacematerial` material node
-2. There must be a `glTF PBR` node connected to the surface shader input of the material.
+2. There must be a `glTF PBR` or `unlit` node connected to the surface shader input of the material.
 3. A single `nodegraph` with a `color3` output node which is connected to the base color on the surface shader. The constant node can be replaced with the desired set of
 nodes, and one or more inputs may be specified to route data into the `nodegraph`. 
 
@@ -142,11 +146,13 @@ graph TB
 ```
 </td>
 <td>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/minimal_graph.mtlx">MTLX</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/minimal_graph.gltf">GLTF</a>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/minimal_graph.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/minimal_graph.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/minimal_graph_fromgltf.mtlx">MTLX from GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/minimal_graph.usda">USD</a>
 </td>
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/minimal_graph.png?raw=true">
+<td>
+<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/minimal_graph.png?raw=true">
 </td>
 </tr>
 </table>
@@ -200,11 +206,13 @@ graph TB
 ```
 </td>
 <td>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph.mtlx">MTLX</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph.gltf">GLTF</a>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph_fromgltf.mtlx">MTLX from GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph.usda">USD</a>
 </td>
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph.png?raw=true">
+<td>
+<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph.png?raw=true">
 </td>
 </tr>
 
@@ -258,8 +266,9 @@ graph TB
 ```
 </td>
 <td>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/checkerboard_graph.mtlx">MTLX</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/checkerboard_graph.gltf">GLTF</a>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/checkerboard_graph.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/checkerboard_graph.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/checkerboard_graph_fromgltf.mtlx">MTLX from GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/checkerboard_graph.usda">USD</a>
 </td>
 <td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/checkerboard_graph.png?raw=true">
@@ -297,8 +306,11 @@ graph TB
 ```
 
 </td>
-<td><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.mtlx">MTLX</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.gltf">GLTF</a>
+<td>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material_fromgltf.mtlx">MTLX from GLTF</a>,
+
 <td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.png?raw=true">
 </tr>
 
@@ -344,9 +356,11 @@ graph TB
 ```
 
 </td>
-<td><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf.mtlx">MTLX</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf.gltf">GLTF</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf.usda">USD</a>
+<td>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf_fromgltf.mtlx">MTLX from GLTF</a>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf.usda">USD</a>,
 </td>
 <td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf.png?raw=true"> (original)
 <img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.png?raw=true"> (skipping material )
@@ -383,9 +397,11 @@ graph TB
 ```
 
 </td>
-<td><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture.mtlx">MTLX</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture.gltf">GLTF</a>
+<td><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture_fromgltf.mtlx">MTLX from GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture.usda">USD</a>
+
 <td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture.png?raw=true">
 </tr>
 
@@ -427,9 +443,12 @@ graph TB
 ```
 
 </td>
-<td><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture.mtlx">MTLX</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture.gltf">GLTF</a>
+<td>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_fromgtlf.mtlx">MTLX from GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture.usda">USD</a>
+
 <td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture.png?raw=true">
 </tr>
 
@@ -477,10 +496,128 @@ graph TB
 ```
 
 </td>
-<td><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2.mtlx">MTLX</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2.gltf">GLTF</a>
+<td>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2_fromgltf.mtlx">MTLX from GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2.usda">USD</a>
+
 <td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2.png?raw=true">
+</tr>
+
+<tr>
+<td>
+Procedural graph with intermediary node for shader translation (from standard surface to glTF PBR)
+
+- Graph count: multiple
+- Graph inputs: none
+- Graph outputs: single
+- Compound nodes: yes
+- Translation node: yes
+- Downstream shader: gltf PBR
+
+```mermaid
+graph LR
+    surfacematerial_material1([surfacematerial_material1])
+    style surfacematerial_material1   fill:#090, color:#FFF
+    gltf_pbr[gltf_pbr]
+    subgraph translation_graph
+    translation_graph_base_color_out([base_color_out])
+    style translation_graph_base_color_out  fill:#09D, color:#FFF
+    translation_graph_metallic_out([metallic_out])
+    style translation_graph_metallic_out  fill:#09D, color:#FFF
+    translation_graph_roughness_out([roughness_out])
+    style translation_graph_roughness_out  fill:#09D, color:#FFF
+    translation_graph_transmission_out([transmission_out])
+    style translation_graph_transmission_out  fill:#09D, color:#FFF
+    translation_graph_thickness_out([thickness_out])
+    style translation_graph_thickness_out  fill:#09D, color:#FFF
+    translation_graph_attenuation_color_out([attenuation_color_out])
+    style translation_graph_attenuation_color_out  fill:#09D, color:#FFF
+    translation_graph_sheen_color_out([sheen_color_out])
+    style translation_graph_sheen_color_out  fill:#09D, color:#FFF
+    translation_graph_sheen_roughness_out([sheen_roughness_out])
+    style translation_graph_sheen_roughness_out  fill:#09D, color:#FFF
+    translation_graph_clearcoat_out([clearcoat_out])
+    style translation_graph_clearcoat_out  fill:#09D, color:#FFF
+    translation_graph_clearcoat_roughness_out([clearcoat_roughness_out])
+    style translation_graph_clearcoat_roughness_out  fill:#09D, color:#FFF
+    translation_graph_emissive_out([emissive_out])
+    style translation_graph_emissive_out  fill:#09D, color:#FFF
+    translation_graph_ss_to_gltf[ss_to_gltf]
+    end
+    gltf_pbr --"surfaceshader"--> surfacematerial_material1
+    translation_graph_base_color_out --"base_color"--> gltf_pbr
+    translation_graph_metallic_out --"metallic"--> gltf_pbr
+    translation_graph_roughness_out --"roughness"--> gltf_pbr
+    translation_graph_transmission_out --"transmission"--> gltf_pbr
+    translation_graph_sheen_color_out --"sheen_color"--> gltf_pbr
+    translation_graph_sheen_roughness_out --"sheen_roughness"--> gltf_pbr
+    translation_graph_clearcoat_out --"clearcoat"--> gltf_pbr
+    translation_graph_clearcoat_roughness_out --"clearcoat_roughness"--> gltf_pbr
+    translation_graph_emissive_out --"emissive"--> gltf_pbr
+    translation_graph_thickness_out --"thickness"--> gltf_pbr
+    translation_graph_attenuation_color_out --"attenuation_color"--> gltf_pbr
+    translation_graph_ss_to_gltf --"base_color_out"--> translation_graph_base_color_out
+    translation_graph_ss_to_gltf --"metallic_out"--> translation_graph_metallic_out
+    translation_graph_ss_to_gltf --"roughness_out"--> translation_graph_roughness_out
+    translation_graph_ss_to_gltf --"transmission_out"--> translation_graph_transmission_out
+    translation_graph_ss_to_gltf --"thickness_out"--> translation_graph_thickness_out
+    translation_graph_ss_to_gltf --"attenuation_color_out"--> translation_graph_attenuation_color_out
+    translation_graph_ss_to_gltf --"sheen_color_out"--> translation_graph_sheen_color_out
+    translation_graph_ss_to_gltf --"sheen_roughness_out"--> translation_graph_sheen_roughness_out
+    translation_graph_ss_to_gltf --"clearcoat_out"--> translation_graph_clearcoat_out
+    translation_graph_ss_to_gltf --"clearcoat_roughness_out"--> translation_graph_clearcoat_roughness_out
+    translation_graph_ss_to_gltf --"emissive_out"--> translation_graph_emissive_out
+```
+
+</td>
+<td>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation_fromgltf.mtlx">MTLX from GLTF</a>
+<!-- <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.usda">USD</a> -->
+</td>
+
+<td>
+<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.png?raw=true">
+</td>
+</tr>
+
+<tr>
+<td>Example where the root shader is an "unlit shader". Shader is mapped to a ramp. 
+
+- Graph count: single
+- Graph inputs: none
+- Graph outputs: single
+- Compound nodes: yes. 
+- Downstream shader: "unlit shader"
+
+```mermaid
+graph TB
+    subgraph unlit_graph
+    unlit_graph_output_color4([output_color4:color3])
+    style unlit_graph_output_color4  fill:#09D, color:#FFF
+    unlit_graph_ramplr_color4[ramplr_color4:color3]
+    end
+    unlitshader[unlitshader:surfaceshader]
+    MAT_unlitshader([MAT_unlitshader:material])
+    style MAT_unlitshader   fill:#090, color:#FFF
+    unlit_graph_ramplr_color4 --> unlit_graph_output_color4
+    unlit_graph_output_color4 --"emission_color"--> unlitshader
+    unlitshader --"surfaceshader"--> MAT_unlitshader
+```
+
+</td>
+<td>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph_fromgltf.mtlx">MTLX from GLTF</a>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.usda">USD</a>
+</td>
+<td>
+<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.png?raw=true">
+</td>
 </tr>
 
 <tr>
@@ -512,11 +649,15 @@ graph LR
 ```
 
 </td>
-<td><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.mtlx">MTLX</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.gltf">GLTF</a>
+<td>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox_fromgltf.mtlx">MTLX from GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.usda">USD</a>
 </td>
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.png?raw=true">
+
+<td>
+<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.png?raw=true">
 </td>
 </tr>
 
@@ -599,10 +740,13 @@ graph LR
 ```
 
 </td>
-<td><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/supported_types.mtlx">MTLX</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/supported_types.gltf">GLTF</a>
+<td>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/supported_types.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/supported_types.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/supported_types_fromgltf.mtlx">MTLX from GLTF</a>
 <!-- <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/supported_types.usda">USD</a> -->
 </td>
+
 <td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/supported_types.png?raw=true">
 </td>
 </tr>
@@ -610,12 +754,15 @@ graph LR
 <tr>
 <td>Example glTF file which requires name identifier generation to convert to MaterialX (a named based system)
 
-<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_diagram.png?raw=true">
+<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_diagram.svg?raw=true">
 
 </td>
-<td><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_fromgltf.mtlx">MTLX</a>
-<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph.gltf">GLTF</a>
+<td>
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_fromgltf.mtlx">MTLX</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph.gltf">GLTF</a>,
+<a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_fromgltf.mtlx">MTLX from GLTF</a>
 </td>
+
 <td>
 <img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_fromgltf.png?raw=true">
 </td>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <materialx version="1.39" colorspace="lin_rec709">
-  <nodegraph name="NG_main">
+  <nodegraph name="NG_main" xpos="-1.2309688043141684" ypos="3.189328265723073">
     <input name="uvtiling" type="vector2" value="8,8" />
     <input name="color1" type="color3" value="1,0.094118,0.031373" />
     <input name="color2" type="color3" value="0.035294,0.090196,0.878431" />

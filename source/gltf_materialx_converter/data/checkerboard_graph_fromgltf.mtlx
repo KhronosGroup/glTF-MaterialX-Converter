@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709">
+  <nodegraph name="NG_main">
+    <input name="uvtiling" type="vector2" value="8, 8" />
+    <input name="color1" type="color3" value="1, 0.094118, 0.031373" />
+    <input name="color2" type="color3" value="0.035294, 0.090196, 0.878431" />
+    <mix name="N_mtlxmix" type="color3">
+      <input name="fg" type="color3" interfacename="color1" />
+      <input name="bg" type="color3" interfacename="color2" />
+      <input name="mix" type="float" nodename="N_modulo" />
+    </mix>
+    <dotproduct name="N_mtlxdotproduct" type="float">
+      <input name="in1" type="vector2" nodename="N_mtlxfloor" />
+      <input name="in2" type="vector2" value="1, 1" />
+    </dotproduct>
+    <multiply name="N_mtlxmult" type="vector2">
+      <input name="in1" type="vector2" nodename="Texcoord" />
+      <input name="in2" type="vector2" interfacename="uvtiling" />
+    </multiply>
+    <subtract name="N_mtlxsubtract" type="vector2">
+      <input name="in1" type="vector2" nodename="N_mtlxmult" />
+      <input name="in2" type="vector2" value="0, 0" />
+    </subtract>
+    <floor name="N_mtlxfloor" type="vector2">
+      <input name="in" type="vector2" nodename="N_mtlxsubtract" />
+    </floor>
+    <modulo name="N_modulo" type="float">
+      <input name="in1" type="float" nodename="N_mtlxdotproduct" />
+      <input name="in2" type="float" value="2" />
+    </modulo>
+    <texcoord name="Texcoord" type="vector2">
+      <input name="index" type="integer" value="0" />
+    </texcoord>
+    <output name="output_N_mtlxmix_out" type="color3" nodename="N_mtlxmix" />
+  </nodegraph>
+  <gltf_pbr name="Gltf_pbr" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="NG_main" />
+  </gltf_pbr>
+  <surfacematerial name="MATERIAL_Gltf_pbr" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Gltf_pbr" />
+  </surfacematerial>
+</materialx>
