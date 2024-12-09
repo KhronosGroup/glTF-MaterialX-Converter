@@ -1,18 +1,27 @@
+# @file mxequivalent
+# @brief Sample wrapper script to test if two documents are functionally equivalent.
+#
 import argparse
-import sys, os
+import sys
+import os
 import logging as lg
 
 import MaterialX as mx
 
 def main():
-    parser = argparse.ArgumentParser(description="Test if two documents are functionally equivalent.")
-    parser.add_argument(dest="inputFilename", help="Filename of the input document.")
-    parser.add_argument(dest="inputFilename2", help="Filename of the input document to compare against.")
-    parser.add_argument('-sa', '--attributeExclusionList', nargs='+', help="List of attributes to exclude from comparisons.")
-    parser.add_argument('-sv', '--skipValueComparisons', action='store_true', help="Skip value comparisons. Default is False.")    
-    parser.add_argument('-m', '--ignoreMaterials', action='store_true', help="Ignore materials in the comparison. Default is False.")
-    parser.add_argument('-f', '--flattentFileNames', action='store_true', help="Flatten file names in the comparison. Default is False.")
-    parser.add_argument('-p', '--precision', type=int, default=None, help="Specify the precision for floating-point comparisons.", )
+    # Sample wrapper script to test if two documents are functionally equivalent.
+    # Uses the MaterialX Python API to read two documents from file and compare them.
+    # The comparison can be customized by specifying a list of attributes to exclude from comparisons,
+    # skipping value comparisons, ignoring materials, flattening file names, and specifying the precision for floating-point comparisons.
+    # The script logs the results of the comparison to the console.
+    parser = argparse.ArgumentParser(description='Test if two documents are functionally equivalent.')
+    parser.add_argument(dest='inputFilename', help='Filename of the input document.')
+    parser.add_argument(dest='inputFilename2', help='Filename of the input document to compare against.')
+    parser.add_argument('-sa', '--attributeExclusionList', nargs='+', help='List of attributes to exclude from comparisons.')
+    parser.add_argument('-sv', '--skipValueComparisons', action='store_true', help='Skip value comparisons. Default is False.')    
+    parser.add_argument('-m', '--ignoreMaterials', action='store_true', help='Ignore materials in the comparison. Default is False.')
+    parser.add_argument('-f', '--flattentFileNames', action='store_true', help='Flatten file names in the comparison. Default is False.')
+    parser.add_argument('-p', '--precision', type=int, default=None, help='Specify the precision for floating-point comparisons.', )
 
     opts = parser.parse_args()
 
@@ -26,10 +35,10 @@ def main():
 
     # Check if both files exist
     if not os.path.isfile(opts.inputFilename):
-        logger.error(f"File {(opts.inputFilename)} does not exist.")
+        logger.error(f'File {(opts.inputFilename)} does not exist.')
         sys.exit(0)
     if not os.path.isfile(opts.inputFilename2):
-        logger.error(f"File {(opts.inputFilename2)} does not exist.")
+        logger.error(f'File {(opts.inputFilename2)} does not exist.')
         sys.exit(0)
 
     doc = mx.createDocument()
@@ -85,17 +94,12 @@ def main():
         mx.flattenFilenames(doc)
         mx.flattenFilenames(doc2)
 
-    equivalent, results = doc.isEquivalent(doc2, equivalence_opts)
+    equivalent, message = doc.isEquivalent(doc2, equivalence_opts)
     if equivalent:
-        logger.info(f"Documents are equivalent: {opts.inputFilename} and {opts.inputFilename2}")
+        logger.info(f'Documents are equivalent: {opts.inputFilename} and {opts.inputFilename2}')
     else:
-        print(results)
-        logger.info(f"Documents are not equivalent: {len(results)} differences found")
-        for i in range(0, len(results)):
-            difference = results[i]
-            logger.info(f"  - Difference[{i}] : Path: '{difference.path1}' vs path: '{difference.path2}'. Difference Type: '{difference.differenceType}'"
-                  + (f". Attribute: '{difference.attributeName}'" if difference.attributeName else "")) 
-            sys.exit(-1)
+        logger.info(f'Documents are not equivalent: "{message}"')
+        sys.exit(-1)
     
 if __name__ == '__main__':
     main()
