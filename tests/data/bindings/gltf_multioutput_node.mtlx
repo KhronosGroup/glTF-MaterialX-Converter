@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<materialx version="1.38">
+  <nodegraph name="Nodegraph" xpos="0.9137658957355556" ypos="5.011704275726809">
+    <checkerboard name="Checkerboard" type="color3" xpos="2.6484388609576195" ypos="2.0402610775419423">
+      <input name="color1" type="color3" value="0.14902, 1, 0.945098" />
+      <input name="color2" type="color3" value="0.858824, 0.152941, 0.011765" />
+      <input name="uvtiling" type="vector2" value="10, 2" />
+      <input name="uvoffset" type="vector2" value="0, 0" />
+      <input name="texcoord" type="vector2" nodename="Texcoord" />
+    </checkerboard>
+    <texcoord name="Texcoord" type="vector2" xpos="-0.8397642640423806" ypos="-0.09473892245805758">
+      <input name="index" type="integer" value="0" />
+    </texcoord>
+    <ramplr name="Ramplr" type="color3" xpos="2.6484388609576195" ypos="-0.09473892245805758">
+      <input name="valuel" type="color3" output="outcolor" nodename="Gltf_colorimage" />
+      <input name="valuer" type="color3" value="0.929412, 0.898039, 0.937255" />
+      <input name="texcoord" type="vector2" nodename="Texcoord" />
+    </ramplr>
+    <multiply name="Multiply" type="color3" xpos="6.04843886095762" ypos="-0.09473892245805758">
+      <input name="in1" type="color3" nodename="Ramplr" />
+      <input name="in2" type="color3" nodename="Checkerboard" />
+    </multiply>
+    <gltf_colorimage name="Gltf_colorimage" type="multioutput" xpos="-0.8220400471923701" ypos="3.8882610775419426">
+      <input name="file" type="filename" value="grid.png" colorspace="srgb_texture" />
+      <input name="default" type="color4" value="0, 0, 0, 0" />
+      <input name="pivot" type="vector2" value="0, 1" />
+      <input name="scale" type="vector2" value="1, 1" />
+      <input name="rotate" type="float" value="0" />
+      <input name="offset" type="vector2" value="0, 0" />
+      <input name="operationorder" type="integer" value="1" />
+      <input name="uaddressmode" type="string" value="periodic" />
+      <input name="vaddressmode" type="string" value="periodic" />
+      <input name="filtertype" type="string" value="linear" />
+      <input name="color" type="color4" value="1, 1, 1, 1" />
+      <input name="geomcolor" type="color4" value="1, 1, 1, 1" />
+      <output name="outcolor" type="color3" />
+      <output name="outa" type="float" />
+    </gltf_colorimage>
+    <output name="out_Multiply_1" type="color3" nodename="Multiply" />
+  </nodegraph>
+  <gltf_pbr name="Gltf_pbr" type="surfaceshader" xpos="4.685284074783164" ypos="3.143475303472994">
+    <input name="base_color" type="color3" nodegraph="Nodegraph" />
+  </gltf_pbr>
+  <surfacematerial name="USD_Default" type="material" xpos="7.619874613318136" ypos="3.193034733981979">
+    <input name="surfaceshader" type="surfaceshader" nodename="Gltf_pbr" />
+  </surfacematerial>
+</materialx>
