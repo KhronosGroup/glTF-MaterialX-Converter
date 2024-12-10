@@ -147,10 +147,21 @@ class TestConvertFromMtlx(unittest.TestCase):
                     compare_doc = converter.gltf_string_to_materialX(json_string, stdlib)
                     self.assertIsNotNone(compare_doc)
 
+                    # Remove metadata from the document level
                     # Remove material nodes as they are generated from glTF
+                    # Remove metadata from shader nodes in both docs
+                    for metadata in converter.get_metadata():
+                        orig_doc.removeAttribute(metadata)
+                        compare_doc.removeAttribute(metadata)
                     for mnode in orig_doc.getMaterialNodes():
+                        for snode in mx.getShaderNodes(mnode):
+                            for metadata in converter.get_metadata():
+                                snode.removeAttribute(metadata)
                         orig_doc.removeNode(mnode.getName())
                     for mnode in compare_doc.getMaterialNodes():
+                        for snode in mx.getShaderNodes(mnode):
+                            for metadata in converter.get_metadata():
+                                snode.removeAttribute(metadata)
                         compare_doc.removeNode(mnode.getName())
 
                     # Flatten filenames for comparison
@@ -158,9 +169,9 @@ class TestConvertFromMtlx(unittest.TestCase):
 
                     equivalence_opts = mx.ElementEquivalenceOptions()
                     # Always skip doc strings
-                    equivalence_opts.attributeExclusionList = { 'doc', 'nodedef' } 
+                    equivalence_opts.attributeExclusionList = { 'doc', 'nodedef', 'xpos', 'ypos' } 
 
-                    equivalent, errors = orig_doc.isEquivalent(compare_doc, equivalence_opts)
+                    equivalent, results = orig_doc.isEquivalent(compare_doc, equivalence_opts)
 
                     if (not equivalent):                    
                         mx.writeToXmlFile(orig_doc, 'orig.mtlx')
