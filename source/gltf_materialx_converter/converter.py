@@ -1031,6 +1031,7 @@ class glTFMaterialXConverter():
                                                     if output_count > 1:
                                                         input_node.setAttribute('output', proc_output[KHR_TEXTURE_PROCEDURALS_NAME])
 
+
                 material_node = doc.addNode(mx.SURFACE_MATERIAL_NODE_STRING, mtlx_material_name, mx.MATERIAL_TYPE_STRING)
                 shader_input = material_node.addInput(mx.SURFACE_SHADER_TYPE_STRING, mx.SURFACE_SHADER_TYPE_STRING)
                 shader_input.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, mtlx_shader_name)
@@ -1285,12 +1286,14 @@ class glTFMaterialXConverter():
                 output_type = node.get(KHR_TEXTURE_PROCEDURALS_TYPE, None)
                 node_outputs = node.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])
 
-                # Check for multiple outputs on the node to use 'multioutput' as the type
-                if len(node_outputs) > 1:
-                    output_type = MULTI_OUTPUT_TYPE_STRING
-
                 # Create a new node in the graph
                 mtlx_node = mtlx_graph.addChildOfCategory(node_type, node_name)
+
+                # Check for multiple outputs on the node to use 'multioutput'
+                if len(node_outputs) > 1:
+                    output_type = MULTI_OUTPUT_TYPE_STRING
+                    #mtlx_node.setType(output_type)
+
                 #print('Set node name:', node_name)
                 #mtlx_node.setName(node_name)
                 if output_type:
@@ -1348,9 +1351,7 @@ class glTFMaterialXConverter():
                         
                         # Set any upstream node output connection
                         elif 'output' in input_item:
-                            if 'node' in input_item:
-                                mtlx_input.setAttribute('output', input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT])
-                            else:
+                            if 'node' not in input_item:
                                 connectable = outputs[input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT]] if input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT] < len(outputs) else None
                                 mtlx_input.setAttribute('output', connectable[KHR_TEXTURE_PROCEDURALS_NAME])
 
@@ -1359,15 +1360,36 @@ class glTFMaterialXConverter():
                             connectable = nodes[input_item[KHR_TEXTURE_PROCEDURALS_NODE]] if input_item[KHR_TEXTURE_PROCEDURALS_NODE] < len(nodes) else None
                             mtlx_input.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])
 
+                            if 'output' in input_item:
+                                # Get the node to connect to
+                                connectable = nodes[input_item[KHR_TEXTURE_PROCEDURALS_NODE]] if input_item[KHR_TEXTURE_PROCEDURALS_NODE] < len(nodes) else None
+                                if connectable:
+                                    # Get the output name to connect to
+                                    connected_outputs = connectable.get(KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK, [])
+                                    if connected_outputs:
+                                        output_index = input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT]
+                                        output_string = connected_outputs[output_index][KHR_TEXTURE_PROCEDURALS_NAME]
+                                        mtlx_input.setAttribute('output', output_string)
+                                        self.logger.debug(f'Set output specifier on input: {mtlx_input.getNamePath()}. Value: {input_item[KHR_TEXTURE_PROCEDURALS_OUTPUT]}')
+
                     # Add extra metadata to the input
                     for meta in metadata:
                         if meta in input_item:
                             self.logger.debug(f'> Add extra input attribute: {meta}, {input_item[meta]}')
                             mtlx_input.setAttribute(meta, input_item[meta])
 
+                # Add outputs for multioutput nodes
+                if len(node_outputs) > 1:
+                    for output in node_outputs:
+                        output_name = output.get('name')
+                        output_type = output.get(KHR_TEXTURE_PROCEDURALS_TYPE, None)
+                        mtlxoutput = mtlx_node.addOutput(output_name, output_type)
+                        self.logger.debug(f'Add multioutput output {mtlxoutput.getNamePath()} of type {output_type} to node {node_name}')
+
+
 
             # Scan for output interfaces in the nodegraph
-            self.logger.debug(f'> Scan {len(outputs)} outputs')
+            self.logger.info(f'> Scan {len(outputs)} procedural outputs')
             for output in outputs:
                 output_name = output.get('name', None)
                 output_type = output.get(KHR_TEXTURE_PROCEDURALS_TYPE, None)

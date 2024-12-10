@@ -17,6 +17,17 @@
       <input name="coat_roughness" type="float" value="0" />
       <input name="emission" type="float" value="0" />
       <input name="emission_color" type="color3" value="1,1,1" />
+      <output name="base_color_out" type="color3" />
+      <output name="metallic_out" type="float" />
+      <output name="roughness_out" type="float" />
+      <output name="transmission_out" type="float" />
+      <output name="thickness_out" type="float" />
+      <output name="attenuation_color_out" type="color3" />
+      <output name="sheen_color_out" type="color3" />
+      <output name="sheen_roughness_out" type="float" />
+      <output name="clearcoat_out" type="float" />
+      <output name="clearcoat_roughness_out" type="float" />
+      <output name="emissive_out" type="color3" />            
     </standard_surface_to_gltf_pbr>
     <output name="base_color_out" type="color3" nodename="ss_to_gltf" output="base_color_out" />
     <output name="metallic_out" type="float" nodename="ss_to_gltf" output="metallic_out" />
