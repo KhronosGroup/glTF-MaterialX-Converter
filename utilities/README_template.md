@@ -13,8 +13,8 @@ This package supports the bi-directional translation between MaterialX material 
 
 ### Dependencies
 
-- The 1.39 release (or patch releases) of MaterialX available on 
-<a href="https://pypi.org/project/MaterialX/">PyPi</a> is required.
+- The <code>1.39.2</code> (or higher) release of MaterialX (on
+<a href="https://pypi.org/project/MaterialX/">PyPi</a>).
 - The <code>jsonschema</code> package if Schema validation is desired
 
 ### Setup
