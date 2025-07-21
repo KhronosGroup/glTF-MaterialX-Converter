@@ -732,7 +732,6 @@ class glTFMaterialXConverter():
                                     graph_index = i
                                     outputs_length = len(nodegraph_output) 
                                     if  outputs_length > 0:
-                                        # TODO Check this.
                                         outputs_list = proc[KHR_TEXTURE_PROCEDURALS_OUTPUTS_BLOCK]
                                         for test_name, item in outputs_list.items():
                                             if test_name == nodegraph_output:
@@ -761,7 +760,6 @@ class glTFMaterialXConverter():
                             gltf_info = self.materialX_graph_to_glTF(graph, json_data)
                             procs = gltf_info[0]
                             output_nodes = gltf_info[1]
-                            #print('--- after graph conversion ---. output_nodes:', output_nodes)
 
                             # Add a fallback texture
                             shader_input_texture = parent[shader_node_output] = {}
@@ -776,7 +774,6 @@ class glTFMaterialXConverter():
                                 nodegraph_outputPath = f"{nodegraph_name}/{nodegraph_output}"
                                 if nodegraph_outputPath in output_nodes:
                                     output_name = output_nodes[nodegraph_outputPath]
-                                    #print('--- output_name:', output_name)
                                     lookup[KHR_TEXTURE_PROCEDURALS_OUTPUT] = output_name
                                 else:
                                     self.logger.error(f'> Failed to find output: {nodegraph_output} '
@@ -784,7 +781,6 @@ class glTFMaterialXConverter():
                             else:
                                 # Set to first key in output_nodes
                                 lookup[KHR_TEXTURE_PROCEDURALS_OUTPUT] = next(iter(output_nodes.values()))
-                                #print('--- default output name:', lookup[KHR_TEXTURE_PROCEDURALS_OUTPUT])
 
                     if KHR_TEXTURE_PROCEDURALS_NAME in material:
                         materials.append(material)
@@ -1042,14 +1038,11 @@ class glTFMaterialXConverter():
                                         output_count = len(graph_outputs)
                                         if graph_outputs:
                                             if output is not None:
-                                                #print('----- Look for output:', output, ' in:', graph_outputs)
                                                 proc_output = None
                                                 for key, value in graph_outputs.items():
                                                     if key == output:
                                                         proc_output = value
                                                         break
-                                                #print('------ found output:', proc_output)
-                                                #proc_output = graph_outputs[output]
                                             
                                             if proc_output:
                                                 input_node = shader_node.getInput(dest_input)
@@ -1328,8 +1321,6 @@ class glTFMaterialXConverter():
                     output_type = MULTI_OUTPUT_TYPE_STRING
                     #mtlx_node.setType(output_type)
 
-                #print('Set node name:', node_name)
-                #mtlx_node.setName(node_name)
                 if output_type:
                     mtlx_node.setType(output_type)
                 else:
@@ -1385,7 +1376,6 @@ class glTFMaterialXConverter():
                             input_key = input_item['input']
                             if input_key in inputs:
                                 connectable = inputs[input_key]
-                                #print('---------------- input connection = ', connectable[KHR_TEXTURE_PROCEDURALS_NAME])
                                 mtlx_input.setAttribute(MTLX_INTERFACEINPUT_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])
                             else:
                                 self.logger.error(f'Input key not found: {input_key}')
@@ -1398,7 +1388,6 @@ class glTFMaterialXConverter():
 
                         # Set and node connection
                         if 'node' in input_item:
-                            #print('input_item[KHR_TEXTURE_PROCEDURALS_NODE] = ', input_item[KHR_TEXTURE_PROCEDURALS_NODE])
                             connectable = nodes[input_item[KHR_TEXTURE_PROCEDURALS_NODE]] if input_item[KHR_TEXTURE_PROCEDURALS_NODE] < len(nodes) else None
                             mtlx_input.setAttribute(MTLX_NODE_NAME_ATTRIBUTE, connectable[KHR_TEXTURE_PROCEDURALS_NAME])
 
@@ -1424,7 +1413,6 @@ class glTFMaterialXConverter():
                 # Add outputs for multioutput nodes
                 if len(node_outputs) > 1:
                     for output_name, output in node_outputs.items():
-                        #print('Add outputs for multioutput node:', output_name, output)
                         output_type = output.get(KHR_TEXTURE_PROCEDURALS_TYPE, None)
                         mtlxoutput = mtlx_node.addOutput(output_name, output_type)
                         self.logger.debug(f'Add multioutput output {mtlxoutput.getNamePath()} of type {output_type} to node {node_name}')
