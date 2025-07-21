@@ -33,7 +33,7 @@ def main():
     file_list = []
     extension = '.mtlx'
     if os.path.isdir(opts.input): 
-        file_list = MxGLTFPT.get_files(opts.input, extension)
+        file_list = MxGLTFPTUtil.get_files(opts.input, extension)
     else:
         extension = os.path.splitext(opts.input)[1]
         if extension not in ['.mtlx']:

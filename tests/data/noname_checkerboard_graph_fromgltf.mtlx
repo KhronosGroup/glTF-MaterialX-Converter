@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <materialx version="1.39" colorspace="lin_rec709" doc="glTF version: 2.0. glTF generator: MaterialX 1.39 / glTF 2.0 Texture Procedural Converter. ">
-  <nodegraph name="GRAPH_0">
-    <input name="mynode1" type="vector2" value="8, 8" />
-    <input name="mynode2" type="color3" value="1, 0.094118, 0.031373" />
-    <input name="INPUT_0" type="color3" value="0.035294, 0.090196, 0.878431" />
+  <nodegraph name="GRAPH_0" xpos="-1.2309688043141684" ypos="3.189328265723073">
+    <input name="uvtiling" type="vector2" value="8, 8" />
+    <input name="color1" type="color3" value="1, 0.094118, 0.031373" />
+    <input name="color2" type="color3" value="0.035294, 0.090196, 0.878431" />
     <mix name="NODE_0" type="color3">
-      <input name="fg" type="color3" interfacename="mynode2" />
-      <input name="bg" type="color3" interfacename="INPUT_0" />
+      <input name="fg" type="color3" interfacename="color1" />
+      <input name="bg" type="color3" interfacename="color2" />
       <input name="mix" type="float" nodename="NODE_5" />
     </mix>
     <dotproduct name="NODE_1" type="float">
@@ -15,7 +15,7 @@
     </dotproduct>
     <multiply name="NODE_2" type="vector2">
       <input name="in1" type="vector2" nodename="NODE_6" />
-      <input name="in2" type="vector2" interfacename="mynode1" />
+      <input name="in2" type="vector2" interfacename="uvtiling" />
     </multiply>
     <subtract name="NODE_3" type="vector2">
       <input name="in1" type="vector2" nodename="NODE_2" />
@@ -31,7 +31,7 @@
     <texcoord name="NODE_6" type="vector2">
       <input name="index" type="integer" value="0" />
     </texcoord>
-    <output name="OUTPUT_0" type="color3" nodename="NODE_0" />
+    <output name="output_N_mtlxmix_out" type="color3" nodename="NODE_0" />
   </nodegraph>
   <gltf_pbr name="SHADER_0" type="surfaceshader">
     <input name="base_color" type="color3" nodegraph="GRAPH_0" />

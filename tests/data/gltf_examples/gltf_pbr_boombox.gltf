@@ -25,62 +25,58 @@
           "name": "boombox_graph",
           "nodetype": "nodegraph",
           "type": "color3",
-          "inputs": [],
-          "outputs": [
-            {
-              "name": "out_Image",
+          "inputs": {},
+          "outputs": {
+            "out_Image": {
               "nodetype": "output",
               "type": "color3",
               "node": 1
             }
-          ],
+          },
           "nodes": [
             {
               "name": "texcoord1",
               "nodetype": "texcoord",
               "type": "vector2",
-              "inputs": [
-                {
-                  "name": "index",
+              "inputs": {
+                "index": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 0
+                  "value": [
+                    0
+                  ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             },
             {
               "name": "Image",
               "nodetype": "image",
               "type": "color3",
-              "inputs": [
-                {
-                  "name": "file",
+              "inputs": {
+                "file": {
                   "nodetype": "input",
                   "colorspace": "srgb_texture",
                   "type": "filename",
                   "texture": 1
                 },
-                {
-                  "name": "texcoord",
+                "texcoord": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 0
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             }
           ]
         }
@@ -96,7 +92,7 @@
           "extensions": {
             "KHR_texture_procedurals": {
               "index": 0,
-              "output": 0
+              "output": "out_Image"
             }
           }
         }

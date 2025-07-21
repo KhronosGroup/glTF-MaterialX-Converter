@@ -17,6 +17,23 @@ from gltf_materialx_converter import utilities as MxGLTFPTUtil
 
 import importlib.util
 
+def get_module_path():
+
+    package_location = None
+    package_name = 'gltf_materialx_converter'
+    spec = importlib.util.find_spec(package_name)
+    if spec is None:
+        print(f"Package '{package_name}' not found.")
+    else:
+        if spec.origin:
+            package_location = spec.origin
+        elif spec.submodule_search_locations:
+            package_location = spec.submodule_search_locations[0]
+        else:
+            package_location = None
+
+    return package_location
+
 def get_materialX_document(test_case, input_file):
     '''
     Read in a MaterialX document from a file
@@ -86,9 +103,9 @@ class TestConvertFromMtlx(unittest.TestCase):
         # Read in schame file
         schema_file = os.path.join(current_folder, 'schema', 'schema.json')
         schema = None
-        if os.path.exists(schema_file):
-            with open(schema_file, 'r') as f:
-                schema = json.load(f)
+        #if os.path.exists(schema_file):
+        #    with open(schema_file, 'r') as f:
+        #        schema = json.load(f)
         logger.info(f'Schema file: {schema_file}')
 
         # Test each file
@@ -127,7 +144,7 @@ class TestConvertFromMtlx(unittest.TestCase):
                 except jsonschema.exceptions.ValidationError as e:
                     logger.info('> JSON validation error for: ' + file_name.replace('.mtlx', '.gltf'))
                     logger.info(e)                
-            self.assertTrue(valid_json)
+                self.assertTrue(valid_json)
 
             # Write to disk
             gltf_name = input_file.replace('.mtlx', '.gltf')
@@ -171,7 +188,7 @@ class TestConvertFromMtlx(unittest.TestCase):
                     # Always skip doc strings
                     equivalence_opts.attributeExclusionList = { 'doc', 'nodedef', 'xpos', 'ypos' } 
 
-                    equivalent, results = orig_doc.isEquivalent(compare_doc, equivalence_opts)
+                    equivalent, errors = orig_doc.isEquivalent(compare_doc, equivalence_opts)
 
                     if (not equivalent):                    
                         mx.writeToXmlFile(orig_doc, 'orig.mtlx')

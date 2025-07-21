@@ -25,15 +25,14 @@
           "name": "Nodegraph",
           "nodetype": "nodegraph",
           "type": "color3",
-          "inputs": [],
-          "outputs": [
-            {
-              "name": "out_Multiply_1",
+          "inputs": {},
+          "outputs": {
+            "out_Multiply_1": {
               "nodetype": "output",
               "type": "color3",
               "node": 3
             }
-          ],
+          },
           "nodes": [
             {
               "name": "Checkerboard",
@@ -41,9 +40,8 @@
               "type": "color3",
               "xpos": "2.6484388609576195",
               "ypos": "2.0402610775419423",
-              "inputs": [
-                {
-                  "name": "color1",
+              "inputs": {
+                "color1": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -52,8 +50,7 @@
                     0.945098
                   ]
                 },
-                {
-                  "name": "color2",
+                "color2": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -62,8 +59,7 @@
                     0.011765
                   ]
                 },
-                {
-                  "name": "uvtiling",
+                "uvtiling": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -71,8 +67,7 @@
                     2.0
                   ]
                 },
-                {
-                  "name": "uvoffset",
+                "uvoffset": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -80,20 +75,18 @@
                     0.0
                   ]
                 },
-                {
-                  "name": "texcoord",
+                "texcoord": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 1
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             },
             {
               "name": "Texcoord",
@@ -101,21 +94,21 @@
               "type": "vector2",
               "xpos": "-0.8397642640423806",
               "ypos": "-0.09473892245805758",
-              "inputs": [
-                {
-                  "name": "index",
+              "inputs": {
+                "index": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 0
+                  "value": [
+                    0
+                  ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             },
             {
               "name": "Ramplr",
@@ -123,16 +116,14 @@
               "type": "color3",
               "xpos": "2.6484388609576195",
               "ypos": "-0.09473892245805758",
-              "inputs": [
-                {
-                  "name": "valuel",
+              "inputs": {
+                "valuel": {
                   "nodetype": "input",
                   "type": "color3",
                   "node": 4,
-                  "output": 0
+                  "output": "outcolor"
                 },
-                {
-                  "name": "valuer",
+                "valuer": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -141,20 +132,18 @@
                     0.937255
                   ]
                 },
-                {
-                  "name": "texcoord",
+                "texcoord": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 1
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             },
             {
               "name": "Multiply",
@@ -162,27 +151,24 @@
               "type": "color3",
               "xpos": "6.04843886095762",
               "ypos": "-0.09473892245805758",
-              "inputs": [
-                {
-                  "name": "in1",
+              "inputs": {
+                "in1": {
                   "nodetype": "input",
                   "type": "color3",
                   "node": 2
                 },
-                {
-                  "name": "in2",
+                "in2": {
                   "nodetype": "input",
                   "type": "color3",
                   "node": 0
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             },
             {
               "name": "Gltf_colorimage",
@@ -190,16 +176,14 @@
               "type": "multioutput",
               "xpos": "-0.8220400471923701",
               "ypos": "3.8882610775419426",
-              "inputs": [
-                {
-                  "name": "file",
+              "inputs": {
+                "file": {
                   "nodetype": "input",
                   "colorspace": "srgb_texture",
                   "type": "filename",
                   "texture": 1
                 },
-                {
-                  "name": "default",
+                "default": {
                   "nodetype": "input",
                   "type": "color4",
                   "value": [
@@ -209,8 +193,7 @@
                     0.0
                   ]
                 },
-                {
-                  "name": "pivot",
+                "pivot": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -218,8 +201,7 @@
                     1.0
                   ]
                 },
-                {
-                  "name": "scale",
+                "scale": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -227,14 +209,14 @@
                     1.0
                   ]
                 },
-                {
-                  "name": "rotate",
+                "rotate": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 0.0
+                  "value": [
+                    0.0
+                  ]
                 },
-                {
-                  "name": "offset",
+                "offset": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -242,32 +224,29 @@
                     0.0
                   ]
                 },
-                {
-                  "name": "operationorder",
+                "operationorder": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 1
+                  "value": [
+                    1
+                  ]
                 },
-                {
-                  "name": "uaddressmode",
+                "uaddressmode": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "periodic"
                 },
-                {
-                  "name": "vaddressmode",
+                "vaddressmode": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "periodic"
                 },
-                {
-                  "name": "filtertype",
+                "filtertype": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "linear"
                 },
-                {
-                  "name": "color",
+                "color": {
                   "nodetype": "input",
                   "type": "color4",
                   "value": [
@@ -277,8 +256,7 @@
                     1.0
                   ]
                 },
-                {
-                  "name": "geomcolor",
+                "geomcolor": {
                   "nodetype": "input",
                   "type": "color4",
                   "value": [
@@ -288,19 +266,17 @@
                     1.0
                   ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "outcolor": {
                   "nodetype": "output",
-                  "name": "outcolor",
                   "type": "color3"
                 },
-                {
+                "outa": {
                   "nodetype": "output",
-                  "name": "outa",
                   "type": "float"
                 }
-              ]
+              }
             }
           ],
           "xpos": "0.9137658957355556",
@@ -318,7 +294,7 @@
           "extensions": {
             "KHR_texture_procedurals": {
               "index": 0,
-              "output": 0
+              "output": "out_Multiply_1"
             }
           }
         }

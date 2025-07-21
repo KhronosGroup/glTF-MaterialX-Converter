@@ -25,17 +25,16 @@
           "name": "nodegraph1",
           "nodetype": "nodegraph",
           "type": "color3",
-          "inputs": [],
-          "outputs": [
-            {
-              "name": "output_color3",
+          "inputs": {},
+          "outputs": {
+            "output_color3": {
               "nodetype": "output",
               "type": "color3",
               "xpos": "7.021739",
               "ypos": "-4.482759",
               "node": 0
             }
-          ],
+          },
           "nodes": [
             {
               "name": "image_color3",
@@ -43,28 +42,24 @@
               "type": "color3",
               "xpos": "4.724638",
               "ypos": "-6.482759",
-              "inputs": [
-                {
-                  "name": "file",
+              "inputs": {
+                "file": {
                   "nodetype": "input",
                   "colorspace": "srgb_texture",
                   "type": "filename",
                   "texture": 1
                 },
-                {
-                  "name": "uaddressmode",
+                "uaddressmode": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "clamp"
                 },
-                {
-                  "name": "vaddressmode",
+                "vaddressmode": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "clamp"
                 },
-                {
-                  "name": "default",
+                "default": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -73,38 +68,35 @@
                     0.0255797
                   ]
                 },
-                {
-                  "name": "framerange",
+                "framerange": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "100"
                 },
-                {
-                  "name": "frameoffset",
+                "frameoffset": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 1
+                  "value": [
+                    1
+                  ]
                 },
-                {
-                  "name": "layer",
+                "layer": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "0"
                 },
-                {
-                  "name": "texcoord",
+                "texcoord": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 1
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             },
             {
               "name": "place2d_vector2",
@@ -112,15 +104,13 @@
               "type": "vector2",
               "xpos": "2.521739",
               "ypos": "-6.051724",
-              "inputs": [
-                {
-                  "name": "texcoord",
+              "inputs": {
+                "texcoord": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 2
                 },
-                {
-                  "name": "pivot",
+                "pivot": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -128,8 +118,7 @@
                     0.5
                   ]
                 },
-                {
-                  "name": "scale",
+                "scale": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -137,14 +126,14 @@
                     0.4
                   ]
                 },
-                {
-                  "name": "rotate",
+                "rotate": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 45.0
+                  "value": [
+                    45.0
+                  ]
                 },
-                {
-                  "name": "offset",
+                "offset": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -152,20 +141,20 @@
                     0.01
                   ]
                 },
-                {
-                  "name": "operationorder",
+                "operationorder": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 1
+                  "value": [
+                    1
+                  ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             },
             {
               "name": "texcoord_vector2",
@@ -173,21 +162,21 @@
               "type": "vector2",
               "xpos": "0.086957",
               "ypos": "-6.327586",
-              "inputs": [
-                {
-                  "name": "index",
+              "inputs": {
+                "index": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 1
+                  "value": [
+                    1
+                  ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             }
           ]
         }
@@ -203,7 +192,7 @@
           "extensions": {
             "KHR_texture_procedurals": {
               "index": 0,
-              "output": 0
+              "output": "output_color3"
             }
           }
         }

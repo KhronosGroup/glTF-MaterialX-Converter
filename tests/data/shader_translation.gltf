@@ -17,101 +17,90 @@
           "name": "translation_graph",
           "nodetype": "nodegraph",
           "type": "multioutput",
-          "inputs": [],
-          "outputs": [
-            {
-              "name": "base_color_out",
+          "inputs": {},
+          "outputs": {
+            "base_color_out": {
               "nodetype": "output",
               "type": "color3",
               "node": 0,
               "output": "base_color_out"
             },
-            {
-              "name": "metallic_out",
+            "metallic_out": {
               "nodetype": "output",
               "type": "float",
               "node": 0,
               "output": "metallic_out"
             },
-            {
-              "name": "roughness_out",
+            "roughness_out": {
               "nodetype": "output",
               "type": "float",
               "node": 0,
               "output": "roughness_out"
             },
-            {
-              "name": "transmission_out",
+            "transmission_out": {
               "nodetype": "output",
               "type": "float",
               "node": 0,
               "output": "transmission_out"
             },
-            {
-              "name": "thickness_out",
+            "thickness_out": {
               "nodetype": "output",
               "type": "float",
               "node": 0,
               "output": "thickness_out"
             },
-            {
-              "name": "attenuation_color_out",
+            "attenuation_color_out": {
               "nodetype": "output",
               "type": "color3",
               "node": 0,
               "output": "attenuation_color_out"
             },
-            {
-              "name": "sheen_color_out",
+            "sheen_color_out": {
               "nodetype": "output",
               "type": "color3",
               "node": 0,
               "output": "sheen_color_out"
             },
-            {
-              "name": "sheen_roughness_out",
+            "sheen_roughness_out": {
               "nodetype": "output",
               "type": "float",
               "node": 0,
               "output": "sheen_roughness_out"
             },
-            {
-              "name": "clearcoat_out",
+            "clearcoat_out": {
               "nodetype": "output",
               "type": "float",
               "node": 0,
               "output": "clearcoat_out"
             },
-            {
-              "name": "clearcoat_roughness_out",
+            "clearcoat_roughness_out": {
               "nodetype": "output",
               "type": "float",
               "node": 0,
               "output": "clearcoat_roughness_out"
             },
-            {
-              "name": "emissive_out",
+            "emissive_out": {
               "nodetype": "output",
               "type": "color3",
               "node": 0,
               "output": "emissive_out"
             }
-          ],
+          },
           "nodes": [
             {
               "name": "ss_to_gltf",
               "nodetype": "standard_surface_to_gltf_pbr",
               "type": "multioutput",
-              "inputs": [
-                {
-                  "name": "base",
+              "inputs": {
+                "base": {
                   "nodetype": "input",
                   "colorspace": "lin_rec709",
                   "type": "float",
-                  "value": 1.0
+                  "value": [
+                    1.0
+                  ]
                 },
-                {
-                  "name": "base_color",
+                "base_color": {
                   "nodetype": "input",
                   "colorspace": "lin_rec709",
                   "type": "color3",
@@ -121,27 +110,29 @@
                     0.0
                   ]
                 },
-                {
-                  "name": "metalness",
+                "metalness": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 0.0
+                  "value": [
+                    0.0
+                  ]
                 },
-                {
-                  "name": "specular_roughness",
+                "specular_roughness": {
                   "nodetype": "input",
                   "colorspace": "lin_rec709",
                   "type": "float",
-                  "value": 0.0
+                  "value": [
+                    0.0
+                  ]
                 },
-                {
-                  "name": "transmission",
+                "transmission": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 0.0
+                  "value": [
+                    0.0
+                  ]
                 },
-                {
-                  "name": "transmission_color",
+                "transmission_color": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -150,20 +141,21 @@
                     1.0
                   ]
                 },
-                {
-                  "name": "transmission_depth",
+                "transmission_depth": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 0.0
+                  "value": [
+                    0.0
+                  ]
                 },
-                {
-                  "name": "sheen",
+                "sheen": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 0.0
+                  "value": [
+                    0.0
+                  ]
                 },
-                {
-                  "name": "sheen_color",
+                "sheen_color": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -172,20 +164,21 @@
                     1.0
                   ]
                 },
-                {
-                  "name": "sheen_roughness",
+                "sheen_roughness": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 0.0
+                  "value": [
+                    0.0
+                  ]
                 },
-                {
-                  "name": "coat",
+                "coat": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 0.0
+                  "value": [
+                    0.0
+                  ]
                 },
-                {
-                  "name": "coat_color",
+                "coat_color": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -194,20 +187,21 @@
                     0.0
                   ]
                 },
-                {
-                  "name": "coat_roughness",
+                "coat_roughness": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 0.0
+                  "value": [
+                    0.0
+                  ]
                 },
-                {
-                  "name": "emission",
+                "emission": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 0.0
+                  "value": [
+                    0.0
+                  ]
                 },
-                {
-                  "name": "emission_color",
+                "emission_color": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -216,64 +210,53 @@
                     1.0
                   ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "base_color_out": {
                   "nodetype": "output",
-                  "name": "base_color_out",
                   "type": "color3"
                 },
-                {
+                "metallic_out": {
                   "nodetype": "output",
-                  "name": "metallic_out",
                   "type": "float"
                 },
-                {
+                "roughness_out": {
                   "nodetype": "output",
-                  "name": "roughness_out",
                   "type": "float"
                 },
-                {
+                "transmission_out": {
                   "nodetype": "output",
-                  "name": "transmission_out",
                   "type": "float"
                 },
-                {
+                "thickness_out": {
                   "nodetype": "output",
-                  "name": "thickness_out",
                   "type": "float"
                 },
-                {
+                "attenuation_color_out": {
                   "nodetype": "output",
-                  "name": "attenuation_color_out",
                   "type": "color3"
                 },
-                {
+                "sheen_color_out": {
                   "nodetype": "output",
-                  "name": "sheen_color_out",
                   "type": "color3"
                 },
-                {
+                "sheen_roughness_out": {
                   "nodetype": "output",
-                  "name": "sheen_roughness_out",
                   "type": "float"
                 },
-                {
+                "clearcoat_out": {
                   "nodetype": "output",
-                  "name": "clearcoat_out",
                   "type": "float"
                 },
-                {
+                "clearcoat_roughness_out": {
                   "nodetype": "output",
-                  "name": "clearcoat_roughness_out",
                   "type": "float"
                 },
-                {
+                "emissive_out": {
                   "nodetype": "output",
-                  "name": "emissive_out",
                   "type": "color3"
                 }
-              ]
+              }
             }
           ]
         }
@@ -289,7 +272,7 @@
           "extensions": {
             "KHR_texture_procedurals": {
               "index": 0,
-              "output": 0
+              "output": "base_color_out"
             }
           }
         }

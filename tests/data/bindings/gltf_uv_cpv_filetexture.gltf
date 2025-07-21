@@ -1,0 +1,162 @@
+{
+  "images": [
+    {
+      "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4z/AfAAQAAf/zKSWvAAAAAElFTkSuQmCC",
+      "name": "KHR_texture_procedural_fallback"
+    },
+    {
+      "name": "nodegraph1/image_color3/file",
+      "uri": "grid.png"
+    }
+  ],
+  "textures": [
+    {
+      "source": 0
+    },
+    {
+      "name": "nodegraph1/image_color3/file",
+      "source": 1
+    }
+  ],
+  "extensions": {
+    "KHR_texture_procedurals": {
+      "procedurals": [
+        {
+          "name": "nodegraph1",
+          "nodetype": "nodegraph",
+          "type": "color3",
+          "inputs": {},
+          "outputs": {
+            "output_color3": {
+              "nodetype": "output",
+              "type": "color3",
+              "xpos": "9.666667",
+              "ypos": "-4.525862",
+              "node": 2
+            }
+          },
+          "nodes": [
+            {
+              "name": "image_color3",
+              "nodetype": "image",
+              "type": "color3",
+              "xpos": "0.949275",
+              "ypos": "-8.413794",
+              "inputs": {
+                "file": {
+                  "nodetype": "input",
+                  "type": "filename",
+                  "texture": 1
+                },
+                "texcoord": {
+                  "nodetype": "input",
+                  "type": "vector2",
+                  "node": 3
+                }
+              },
+              "outputs": {
+                "out": {
+                  "nodetype": "output",
+                  "type": "color3"
+                }
+              }
+            },
+            {
+              "name": "geomcolor_color3",
+              "nodetype": "geomcolor",
+              "type": "color3",
+              "xpos": "2.753623",
+              "ypos": "-2.172414",
+              "inputs": {
+                "index": {
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": [
+                    1
+                  ]
+                }
+              },
+              "outputs": {
+                "out": {
+                  "nodetype": "output",
+                  "type": "color3"
+                }
+              }
+            },
+            {
+              "name": "multiply_color3",
+              "nodetype": "multiply",
+              "type": "color3",
+              "xpos": "7.173913",
+              "ypos": "-4.163793",
+              "inputs": {
+                "in1": {
+                  "nodetype": "input",
+                  "type": "color3",
+                  "node": 0
+                },
+                "in2": {
+                  "nodetype": "input",
+                  "type": "color3",
+                  "node": 1
+                }
+              },
+              "outputs": {
+                "out": {
+                  "nodetype": "output",
+                  "type": "color3"
+                }
+              }
+            },
+            {
+              "name": "texcoord_vector2",
+              "nodetype": "texcoord",
+              "type": "vector2",
+              "xpos": "-2.731884",
+              "ypos": "-7.767241",
+              "inputs": {
+                "index": {
+                  "nodetype": "input",
+                  "type": "integer",
+                  "value": [
+                    0
+                  ]
+                }
+              },
+              "outputs": {
+                "out": {
+                  "nodetype": "output",
+                  "type": "vector2"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "materials": [
+    {
+      "name": "gltf_pbr_surfaceshader",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0,
+          "extensions": {
+            "KHR_texture_procedurals": {
+              "index": 0,
+              "output": "output_color3"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "asset": {
+    "version": "2.0",
+    "generator": "MaterialX 1.39 / glTF 2.0 Texture Procedural Converter"
+  },
+  "extensionsUsed": [
+    "KHR_texture_procedurals",
+    "EXT_texture_procedurals_mx_1_39"
+  ]
+}

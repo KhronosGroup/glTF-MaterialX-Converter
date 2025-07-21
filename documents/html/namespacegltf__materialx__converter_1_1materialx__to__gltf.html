@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="glTF_100px_June16.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MaterialX / glTF Texture Procedurals
-   &#160;<span id="projectnumber">0.0.1</span>
+   &#160;<span id="projectnumber">0.0.2</span>
    </div>
    <div id="projectbrief">Utilities for interoperability between MaterialX and glTF Texture Procedurals</div>
   </td>
@@ -147,14 +147,14 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   26</span>    logger = lg.getLogger(<span class="stringliteral">&#39;gltfCmd&#39;</span>)</div>
 <div class="line"><span class="lineno">   27</span>    lg.basicConfig(level=lg.INFO)  </div>
 <div class="line"><span class="lineno">   28</span> </div>
-<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> MxGLTFPTUtil.have_version(1, 39, 1):</div>
-<div class="line"><span class="lineno">   30</span>        logger.error(<span class="stringliteral">&quot;MaterialX version 1.39.1 or higher is required.&quot;</span>)</div>
-<div class="line"><span class="lineno">   31</span>        sys.exit(-1)</div>
+<div class="line"><span class="lineno">   29</span>    <span class="comment">#if not MxGLTFPTUtil.have_version(1, 39, 1):</span></div>
+<div class="line"><span class="lineno">   30</span>    <span class="comment">#    logger.error(&quot;MaterialX version 1.39.1 or higher is required.&quot;)</span></div>
+<div class="line"><span class="lineno">   31</span>    <span class="comment">#    sys.exit(-1)</span></div>
 <div class="line"><span class="lineno">   32</span> </div>
 <div class="line"><span class="lineno">   33</span>    file_list = []</div>
 <div class="line"><span class="lineno">   34</span>    extension = <span class="stringliteral">&#39;.mtlx&#39;</span></div>
 <div class="line"><span class="lineno">   35</span>    <span class="keywordflow">if</span> os.path.isdir(opts.input): </div>
-<div class="line"><span class="lineno">   36</span>        file_list = MxGLTFPT.get_files(opts.input, extension)</div>
+<div class="line"><span class="lineno">   36</span>        file_list = MxGLTFPTUtil.get_files(opts.input, extension)</div>
 <div class="line"><span class="lineno">   37</span>    <span class="keywordflow">else</span>:</div>
 <div class="line"><span class="lineno">   38</span>        extension = os.path.splitext(opts.input)[1]</div>
 <div class="line"><span class="lineno">   39</span>        <span class="keywordflow">if</span> extension <span class="keywordflow">not</span> <span class="keywordflow">in</span> [<span class="stringliteral">&#39;.mtlx&#39;</span>]:</div>

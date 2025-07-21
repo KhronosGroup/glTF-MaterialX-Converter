@@ -380,8 +380,8 @@ code {
 </ul>
 <h3 id="dependencies">Dependencies</h3>
 <ul>
-<li>The <code>1.39.2</code> (or higher) release of MaterialX (on<br>
-<a href="https://pypi.org/project/MaterialX/">PyPi</a>).</li>
+<li>The 1.39 release (or patch releases) of MaterialX available on<br>
+<a href="https://pypi.org/project/MaterialX/">PyPi</a> is required.</li>
 <li>The <code>jsonschema</code> package if Schema validation is desired</li>
 </ul>
 <h3 id="setup">Setup</h3>
@@ -952,6 +952,49 @@ Procedural graph with intermediary node for shader translation (from standard su
 </td>
 <td>
 <img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.png?raw=true">
+</td>
+</tr>
+<tr>
+<td>Example MaterialX version of "boombox" example (from Khronos sample assets) with more than one channel mapped
+to different outputs from the same procedural.
+<ul>
+<li>Graph count: single</li>
+<li>Graph inputs: none</li>
+<li>Graph outputs: multiple</li>
+<li>Compound nodes: no</li>
+<li>Downstream shader: glTF PBR</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">graph LR
+    subgraph NG_boombox
+    NG_boombox_base_color([output:color3])
+    style NG_boombox_base_color  fill:#09D, color:#FFF
+    NG_boombox_emission([output:color3])
+    style NG_boombox_emission  fill:#09D, color:#FFF
+    NG_boombox_normal([output:vector3])
+    style NG_boombox_normal  fill:#09D, color:#FFF
+    NG_boombox_image_emission1[gltf_image:color3]
+    NG_boombox_image_normal1[gltf_normalmap:vector3]
+    NG_boombox_image_basecolor1[gltf_colorimage:multioutput]
+    end
+    SR_boombox[gltf_pbr:surfaceshader]
+    Boombox([surfacematerial:material])
+    style Boombox   fill:#090, color:#FFF
+    NG_boombox_image_basecolor1 --"outcolor"--> NG_boombox_base_color
+    NG_boombox_image_emission1 --> NG_boombox_emission
+    NG_boombox_image_normal1 --> NG_boombox_normal
+    NG_boombox_base_color --"base_color"--> SR_boombox
+    NG_boombox_normal --"normal"--> SR_boombox
+    NG_boombox_emission --"emissive"--> SR_boombox
+    SR_boombox --"surfaceshader"--> Boombox
+</div></code></pre>
+</td>
+<td>
+<a href="./tests/data/gltf_examples/gltf_boombox_graph.mtlx">MTLX</a>,
+<a href="./tests/data/gltf_examples/gltf_boombox_graph.gltf">GLTF</a>,
+<a href="./tests/data/gltf_examples/gltf_boombox_graph_fromgltf.mtlx">MTLX from GLTF</a>,
+</td>
+<td>
+<img src="./tests/data/gltf_examples/gltf_boombox_graph.png?raw=true">
 </td>
 </tr>
 <tr>

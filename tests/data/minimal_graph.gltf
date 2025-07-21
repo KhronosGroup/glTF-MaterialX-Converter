@@ -17,23 +17,21 @@
           "name": "gltf_procedural",
           "nodetype": "nodegraph",
           "type": "color3",
-          "inputs": [],
-          "outputs": [
-            {
-              "name": "output_color4",
+          "inputs": {},
+          "outputs": {
+            "output_color4": {
               "nodetype": "output",
               "type": "color3",
               "node": 0
             }
-          ],
+          },
           "nodes": [
             {
               "name": "constant_color4",
               "nodetype": "constant",
               "type": "color3",
-              "inputs": [
-                {
-                  "name": "value",
+              "inputs": {
+                "value": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -42,14 +40,13 @@
                     1.0
                   ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             }
           ]
         }
@@ -65,7 +62,7 @@
           "extensions": {
             "KHR_texture_procedurals": {
               "index": 0,
-              "output": 0
+              "output": "output_color4"
             }
           }
         }
