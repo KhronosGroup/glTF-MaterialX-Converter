@@ -1,373 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>README.md</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
-<style>
-/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-body {
-	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
-	font-size: var(--vscode-markdown-font-size, 14px);
-	padding: 0 26px;
-	line-height: var(--vscode-markdown-line-height, 22px);
-	word-wrap: break-word;
-}
-
-#code-csp-warning {
-	position: fixed;
-	top: 0;
-	right: 0;
-	color: white;
-	margin: 16px;
-	text-align: center;
-	font-size: 12px;
-	font-family: sans-serif;
-	background-color:#444444;
-	cursor: pointer;
-	padding: 6px;
-	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
-}
-
-#code-csp-warning:hover {
-	text-decoration: none;
-	background-color:#007acc;
-	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
-}
-
-body.scrollBeyondLastLine {
-	margin-bottom: calc(100vh - 22px);
-}
-
-body.showEditorSelection .code-line {
-	position: relative;
-}
-
-body.showEditorSelection .code-active-line:before,
-body.showEditorSelection .code-line:hover:before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	left: -12px;
-	height: 100%;
-}
-
-body.showEditorSelection li.code-active-line:before,
-body.showEditorSelection li.code-line:hover:before {
-	left: -30px;
-}
-
-.vscode-light.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.15);
-}
-
-.vscode-light.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.40);
-}
-
-.vscode-light.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-dark.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.4);
-}
-
-.vscode-dark.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.60);
-}
-
-.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-high-contrast.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 160, 0, 0.7);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 160, 0, 1);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-img {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-a {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-a:focus,
-input:focus,
-select:focus,
-textarea:focus {
-	outline: 1px solid -webkit-focus-ring-color;
-	outline-offset: -1px;
-}
-
-hr {
-	border: 0;
-	height: 2px;
-	border-bottom: 2px solid;
-}
-
-h1 {
-	padding-bottom: 0.3em;
-	line-height: 1.2;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-}
-
-h1, h2, h3 {
-	font-weight: normal;
-}
-
-table {
-	border-collapse: collapse;
-}
-
-table > thead > tr > th {
-	text-align: left;
-	border-bottom: 1px solid;
-}
-
-table > thead > tr > th,
-table > thead > tr > td,
-table > tbody > tr > th,
-table > tbody > tr > td {
-	padding: 5px 10px;
-}
-
-table > tbody > tr + tr > td {
-	border-top: 1px solid;
-}
-
-blockquote {
-	margin: 0 7px 0 5px;
-	padding: 0 16px 0 10px;
-	border-left-width: 5px;
-	border-left-style: solid;
-}
-
-code {
-	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 1em;
-	line-height: 1.357em;
-}
-
-body.wordWrap pre {
-	white-space: pre-wrap;
-}
-
-pre:not(.hljs),
-pre.hljs code > div {
-	padding: 16px;
-	border-radius: 3px;
-	overflow: auto;
-}
-
-pre code {
-	color: var(--vscode-editor-foreground);
-	tab-size: 4;
-}
-
-/** Theming */
-
-.vscode-light pre {
-	background-color: rgba(220, 220, 220, 0.4);
-}
-
-.vscode-dark pre {
-	background-color: rgba(10, 10, 10, 0.4);
-}
-
-.vscode-high-contrast pre {
-	background-color: rgb(0, 0, 0);
-}
-
-.vscode-high-contrast h1 {
-	border-color: rgb(0, 0, 0);
-}
-
-.vscode-light table > thead > tr > th {
-	border-color: rgba(0, 0, 0, 0.69);
-}
-
-.vscode-dark table > thead > tr > th {
-	border-color: rgba(255, 255, 255, 0.69);
-}
-
-.vscode-light h1,
-.vscode-light hr,
-.vscode-light table > tbody > tr + tr > td {
-	border-color: rgba(0, 0, 0, 0.18);
-}
-
-.vscode-dark h1,
-.vscode-dark hr,
-.vscode-dark table > tbody > tr + tr > td {
-	border-color: rgba(255, 255, 255, 0.18);
-}
-
-</style>
-
-<style>
-/* Tomorrow Theme */
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
-/* Original theme - https://github.com/chriskempson/tomorrow-theme */
-
-/* Tomorrow Comment */
-.hljs-comment,
-.hljs-quote {
-	color: #8e908c;
-}
-
-/* Tomorrow Red */
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-regexp,
-.hljs-deletion {
-	color: #c82829;
-}
-
-/* Tomorrow Orange */
-.hljs-number,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-meta,
-.hljs-link {
-	color: #f5871f;
-}
-
-/* Tomorrow Yellow */
-.hljs-attribute {
-	color: #eab700;
-}
-
-/* Tomorrow Green */
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition {
-	color: #718c00;
-}
-
-/* Tomorrow Blue */
-.hljs-title,
-.hljs-section {
-	color: #4271ae;
-}
-
-/* Tomorrow Purple */
-.hljs-keyword,
-.hljs-selector-tag {
-	color: #8959a8;
-}
-
-.hljs {
-	display: block;
-	overflow-x: auto;
-	color: #4d4d4c;
-	padding: 0.5em;
-}
-
-.hljs-emphasis {
-	font-style: italic;
-}
-
-.hljs-strong {
-	font-weight: bold;
-}
-</style>
-
-<style>
-/*
- * Markdown PDF CSS
- */
-
- body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-	padding: 0 12px;
-}
-
-pre {
-	background-color: #f8f8f8;
-	border: 1px solid #cccccc;
-	border-radius: 3px;
-	overflow-x: auto;
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
-}
-
-pre:not(.hljs) {
-	padding: 23px;
-	line-height: 19px;
-}
-
-blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.emoji {
-	height: 1.4em;
-}
-
-code {
-	font-size: 14px;
-	line-height: 19px;
-}
-
-/* for inline code */
-:not(pre):not(.hljs) > code {
-	color: #C9AE75; /* Change the old color so it seems less like an error */
-	font-size: inherit;
-}
-
-/* Page Break : use <div class="page"/> to insert page break
--------------------------------------------------------- */
-.page {
-	page-break-after: always;
-}
-
-</style>
-
-<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <!-- Bootstrap 5.3.2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Custom styles -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            padding: 3rem;
+        }
+        .toc {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        code {
+            background-color: #f1f3f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 1rem;
+        }
+        blockquote {
+            border-left: 4px solid #007bff;
+            padding-left: 1rem;
+            margin-left: 0;
+            color: #6c757d;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 0.5rem;
+        }
+        table {
+            margin: 1rem 0;
+        }
+    </style>
+    <!-- Mermaid.js CDN -->
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
 </head>
 <body>
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
-          ? 'dark'
-          : 'default'
-    });
-  </script>
-<h2 id="materialx--gltf-procedurals-interop">MaterialX / glTF Procedurals Interop</h2>
-<p><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/actions?query=branch%3Amain"><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/workflows/main/badge.svg" alt="Build Status"></a></p>
-<h3 id="introduction">Introduction</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>MaterialX / glTF Procedurals Interop</h2>
+<p><a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/actions?query=branch%3Amain"><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/workflows/main/badge.svg" alt="Build Status" /></a></p>
+<h3>Introduction</h3>
 <p>This package supports the bi-directional translation between MaterialX material graphs and the glTF Procedural Textures extension.</p>
 <ul>
 <li>The Khronos extensions can be found here:
@@ -378,32 +78,30 @@ code {
 </li>
 <li>The MaterialX specification documents can be found <a href="https://github.com/AcademySoftwareFoundation/MaterialX/tree/main/documents/Specification">here</a></li>
 </ul>
-<h3 id="dependencies">Dependencies</h3>
+<h3>Dependencies</h3>
 <ul>
-<li>The <code>1.39.2</code> (or higher) release of MaterialX (on<br>
+<li>The <code>1.39.2</code> (or higher) release of MaterialX (on
 <a href="https://pypi.org/project/MaterialX/">PyPi</a>).</li>
 <li>The <code>jsonschema</code> package if Schema validation is desired</li>
 </ul>
-<h3 id="setup">Setup</h3>
+<h3>Setup</h3>
 <p>The <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/">Github repository</a> can be forked / cloned locally and the package built using <code>pip</code> as follows from the root folder:</p>
 <p><code>pip install .</code></p>
 <p>All dependencies listed will be installed if required.</p>
-<h4 id="command-line-interfaces">Command Line Interfaces</h4>
-<p>To convert from a MaterialX document to produce a glTF JSON document the <code>materialx_to_gltf.py</code> utility script may be used.</p>
-<p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph.gltf</code>.</p>
+<h4>Command Line Interfaces</h4>
+<p>To convert from a MaterialX document to produce a glTF JSON document the <code>materialx_to_gltf.py</code> utility script may be used. The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph.gltf</code>.</p>
 <p><code>python -m gltf_materialx_converter mtlx &quot;tests/data/checkerboard_graph.mtlx&quot;</code></p>
 <p>or</p>
 <p><code>python source/gltf_materialx_converter/materialx_to_gltf.py &quot;tests/data/checkerboard_graph.mtlx&quot;</code></p>
 <p>to run the local script.</p>
 <hr>
-<p>To convert from a document containing glTF procedural content to produce a MaterialX document the <code>gltf_to_materialx.py</code> utility script may be used.</p>
-<p>The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph_fromgltf.mtlx</code>.</p>
+<p>To convert from a document containing glTF procedural content to produce a MaterialX document the <code>gltf_to_materialx.py</code> utility script may be used. The following is an example converting a sample file found in the test folder. The results are saved to a file called <code>checkerboard_graph_fromgltf.mtlx</code>.</p>
 <p><code>python -m gltf_materialx_converter gltf &quot;tests/data/checkerboard_graph.gltf&quot;</code></p>
 <p>or</p>
 <p><code>python source/gltf_materialx_converter/gltf_to_materialx.py &quot;tests/data/checkerboard_graph.gltf&quot;</code></p>
 <p>to run the local script.</p>
-<h4 id="api-example">API Example</h4>
-<p>The following is a simple example of using the API to convert from MaterialX to glTF<br>
+<h4>API Example</h4>
+<p>The following is a simple example of using the API to convert from MaterialX to glTF
 and then back to MaterialX.</p>
 <pre>
 # Import support modules
@@ -436,22 +134,22 @@ with open(gltf_file, 'w') as f:
 mxdoc2 = converter.gltf_string_to_materialX(json_string, stdlib)
 </pre>
 <p>A sample <code>Jupyter</code> notebook which can be run interactively is available <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/documents/notebook.ipynb">here</a></p>
-<h3 id="documentation">Documentation</h3>
-<h4 id="api">API</h4>
+<h3>Documentation</h3>
+<h4>API</h4>
 <p>API documentation can be found <a href="https://github.khronos.org/glTF-MaterialX-Converter/documents/html/index.html">here</a></p>
-<p>Documentation can be generated by running <code>doxygen</code> from the &quot;documents&quot; folder.<br>
-It is assumed that <code>Doxygen</code> has been installed locally.</p>
-<h3 id="tests">Tests</h3>
+<p>Documentation can be generated by running <code>doxygen</code> from the &quot;documents&quot; folder.</p>
+<p>It is assumed that <code>Doxygen</code> has been installed locally.</p>
+<h3>Tests</h3>
 <p>The following command can be used to run tests from the root folder:</p>
 <pre>
 python -m unittest discover -s tests -p "test_*.py"
 </pre>
-<h3 id="supported-materialx-configurations">Supported MaterialX Configurations</h3>
+<h3>Supported MaterialX Configurations</h3>
 <p>Only specific configurations of MaterialX can be mapped to glTF Texture Procedurals.</p>
 <ol>
 <li>There must be a <code>surfacematerial</code> material node</li>
 <li>There must be a <code>glTF PBR</code> or <code>unlit</code> node connected to the surface shader input of the material.</li>
-<li>A single <code>nodegraph</code> with a <code>color3</code> output node which is connected to the base color on the surface shader. The constant node can be replaced with the desired set of<br>
+<li>A single <code>nodegraph</code> with a <code>color3</code> output node which is connected to the base color on the surface shader. The constant node can be replaced with the desired set of
 nodes, and one or more inputs may be specified to route data into the <code>nodegraph</code>.</li>
 </ol>
 <p>Any document level qualifiers must be pre-resolved when converting rom MaterialX. This includes any <code>fileprefix</code> qualifiers for image file names.</p>
@@ -462,9 +160,10 @@ nodes, and one or more inputs may be specified to route data into the <code>node
 <th>Reference Image
 <tr>
 <td> 
-A sample minimal graph routing a constant color to the downstream shader.
-There are no inputs specified on the `nodegraph`.
-<pre><code class="language-mermaid"><div class="mermaid">graph TB
+A sample minimal graph routing a constant color to the downstream shader. There are no inputs specified on the `nodegraph`.
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
     gltf_Material([surfacematerial:material])
     style gltf_Material   fill:#090, color:#FFF
     gltf_Shader[gltf_pbr:surfaceshader]
@@ -486,15 +185,13 @@ There are no inputs specified on the `nodegraph`.
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/minimal_graph.usda">USD</a>
 </td>
 <td>
-<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/minimal_graph.png?raw=true">
+<img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/minimal_graph.png?raw=true">
 </td>
 </tr>
 </table>
-<h4 id="test-data">Test Data</h4>
-<p>The following is a set of example files used for unit testing. The term &quot;Compound nodes&quot; refers to nodes<br>
-which are implemented as node graphs themselves (&quot;functional graphs&quot; in MaterialX terminology)</p>
-<p>For each <code>MaterialX</code> file the resulting <code>glTF</code> file is given, along with a diagram of how the graph looks and reference image.<br>
-A sample conversion from MaterialX to <code>USDShade</code> network is provided where applicable.</p>
+<h4>Test Data</h4>
+<p>The following is a set of example files used for unit testing. The term &quot;Compound nodes&quot; refers to nodes which are implemented as node graphs themselves (&quot;functional graphs&quot; in MaterialX terminology)</p>
+<p>For each <code>MaterialX</code> file the resulting <code>glTF</code> file is given, along with a diagram of how the graph looks and reference image. A sample conversion from MaterialX to <code>USDShade</code> network is provided where applicable.</p>
 <details open><summary>Examples</summary>
 <table>
 <tr>
@@ -512,7 +209,9 @@ The following is a simple graph which adds two colors together.
 <li>Compound nodes: none</li>
 <li>Downstream shader: glTF PBR</li>
 </ul>
-<pre><code class="language-mermaid"><div class="mermaid">graph TB
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
     subgraph graph1
     graph1_myin1([input:1,0,0])
     style graph1_myin1  fill:#09D, color:#FFF
@@ -539,12 +238,12 @@ The following is a simple graph which adds two colors together.
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph.usda">USD</a>
 </td>
 <td>
-<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph.png?raw=true">
+<img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/add_graph.png?raw=true">
 </td>
 </tr>
 <tr>
 <td>
-<p>The following is a pattern graph that produces a checkerboard pattern.<br>
+<p>The following is a pattern graph that produces a checkerboard pattern.
 The two input colors, and a texture coordinate tiling option are exposed on the node graph. The output is a color which is routed to a downstream glTF PBR shading node (glTF material).</p>
 <ul>
 <li>Graph count: single</li>
@@ -554,7 +253,9 @@ The two input colors, and a texture coordinate tiling option are exposed on the 
 <li>Compound nodes: none</li>
 <li>Downstream shader: glTF PBR</li>
 </ul>
-<pre><code class="language-mermaid"><div class="mermaid">graph TB
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
     subgraph NG_main
     NG_main_uvtiling([input:vector2:8,8])
     style NG_main_uvtiling  fill:#09D, color:#FFF
@@ -595,7 +296,7 @@ The two input colors, and a texture coordinate tiling option are exposed on the 
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/checkerboard_graph_fromgltf.mtlx">MTLX from GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/checkerboard_graph.usda">USD</a>
 </td>
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/checkerboard_graph.png?raw=true">
+<td><img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/checkerboard_graph.png?raw=true">
 </td>
 </tr>
 <tr>
@@ -608,7 +309,9 @@ The two input colors, and a texture coordinate tiling option are exposed on the 
 <li>Compound nodes: yes</li>
 <li>Downstream shader: none</li>
 </ul>
-<pre><code class="language-mermaid"><div class="mermaid">graph TB
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
     subgraph splittb_graph
     splittb_graph_output_color4([output_color4])
     style splittb_graph_output_color4  fill:#09D, color:#FFF
@@ -631,7 +334,7 @@ The two input colors, and a texture coordinate tiling option are exposed on the 
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.mtlx">MTLX</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.gltf">GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material_fromgltf.mtlx">MTLX from GLTF</a>,
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.png?raw=true">
+<td><img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.png?raw=true">
 </tr>
 <tr>
 <td>
@@ -644,7 +347,9 @@ Pattern connected to an unsupported (non-glTF) PBR downstream shader.
 <li>Compound nodes: yes</li>
 <li>Downstream shader: &quot;standard surface&quot;</li>
 </ul>
-<pre><code class="language-mermaid"><div class="mermaid">graph TB
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
     subgraph splittb_graph
     splittb_graph_output_color4([output_color4])
     style splittb_graph_output_color4  fill:#09D, color:#FFF
@@ -679,8 +384,8 @@ Pattern connected to an unsupported (non-glTF) PBR downstream shader.
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf_fromgltf.mtlx">MTLX from GLTF</a>
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf.usda">USD</a>,
 </td>
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf.png?raw=true"> (original)
-<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.png?raw=true"> (skipping material )
+<td><img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unsupported_stdsurf.png?raw=true"> (original)
+<img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/no_material.png?raw=true"> (skipping material )
 </td>
 <tr>
 <td>Pattern graph using a file texture
@@ -693,7 +398,9 @@ Pattern connected to an unsupported (non-glTF) PBR downstream shader.
 <li>Compound nodes: yes. UV placement.</li>
 <li>Downstream shader: gltf PBR</li>
 </ul>
-<pre><code class="language-mermaid"><div class="mermaid">graph TB
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
     subgraph nodegraph1
     nodegraph1_output_color3([output_color3:color3])
     style nodegraph1_output_color3  fill:#09D, color:#FFF
@@ -715,7 +422,7 @@ Pattern connected to an unsupported (non-glTF) PBR downstream shader.
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture.gltf">GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture_fromgltf.mtlx">MTLX from GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture.usda">USD</a>
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture.png?raw=true">
+<td><img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_simple_filetexture.png?raw=true">
 </tr>
 <tr>
 <td>Pattern graph using using multiple file textures with different texture placements and a shared input stream.
@@ -728,7 +435,9 @@ Pattern connected to an unsupported (non-glTF) PBR downstream shader.
 <li>Compound nodes: yes.</li>
 <li>Downstream shader: gltf PBR</li>
 </ul>
-<pre><code class="language-mermaid"><div class="mermaid">graph TB
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
     gltf_pbr_surfaceshader[gltf_pbr:surfaceshader]
     surfacematerial([surfacematerial:material])
     style surfacematerial   fill:#090, color:#FFF
@@ -758,7 +467,7 @@ Pattern connected to an unsupported (non-glTF) PBR downstream shader.
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture.gltf">GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_fromgtlf.mtlx">MTLX from GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture.usda">USD</a>
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture.png?raw=true">
+<td><img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture.png?raw=true">
 </tr>
 <tr>
 <td>Pattern graph using using multiple file textures routed to different outputs. Each output
@@ -772,7 +481,9 @@ is connected to a different downstream shader.
 <li>Compound nodes: yes.</li>
 <li>Downstream shader: gltf PBR</li>
 </ul>
-<pre><code class="language-mermaid"><div class="mermaid">graph TB
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
     gltf_pbr_surfaceshader[gltf_pbr:surfaceshader]
     surfacematerial([surfacematerial:material])
     style surfacematerial   fill:#090, color:#FFF
@@ -807,7 +518,7 @@ is connected to a different downstream shader.
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2.gltf">GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2_fromgltf.mtlx">MTLX from GLTF</a>,
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2.usda">USD</a>
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2.png?raw=true">
+<td><img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/bindings/gltf_shared_filetexture_2.png?raw=true">
 </tr>
 <tr>
 <td>
@@ -820,7 +531,9 @@ Procedural graph with intermediary node for shader translation (from standard su
 <li>Translation node: yes</li>
 <li>Downstream shader: gltf PBR</li>
 </ul>
-<pre><code class="language-mermaid"><div class="mermaid">graph LR
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph LR
     surfacematerial_material1([surfacematerial_material1])
     style surfacematerial_material1   fill:#090, color:#FFF
     gltf_pbr[gltf_pbr]
@@ -881,7 +594,7 @@ Procedural graph with intermediary node for shader translation (from standard su
 <!-- <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.usda">USD</a> -->
 </td>
 <td>
-<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.png?raw=true">
+<img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/shader_translation.png?raw=true">
 </td>
 </tr>
 <tr>
@@ -893,7 +606,9 @@ Procedural graph with intermediary node for shader translation (from standard su
 <li>Compound nodes: yes.</li>
 <li>Downstream shader: &quot;unlit shader&quot;</li>
 </ul>
-<pre><code class="language-mermaid"><div class="mermaid">graph TB
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph TB
     subgraph unlit_graph
     unlit_graph_output_color4([output_color4:color3])
     style unlit_graph_output_color4  fill:#09D, color:#FFF
@@ -914,7 +629,7 @@ Procedural graph with intermediary node for shader translation (from standard su
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.usda">USD</a>
 </td>
 <td>
-<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.png?raw=true">
+<img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/unlit_graph.png?raw=true">
 </td>
 </tr>
 <tr>
@@ -928,7 +643,9 @@ Procedural graph with intermediary node for shader translation (from standard su
 <li>Compound nodes: no</li>
 <li>Downstream shader: glTF PBR</li>
 </ul>
-<pre><code class="language-mermaid"><div class="mermaid">graph LR
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph LR
     subgraph boombox_graph
     boombox_graph_out_Image([out_Image])
     style boombox_graph_out_Image  fill:#09D, color:#FFF
@@ -951,7 +668,7 @@ Procedural graph with intermediary node for shader translation (from standard su
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.usda">USD</a>
 </td>
 <td>
-<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.png?raw=true">
+<img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/gltf_examples/gltf_pbr_boombox.png?raw=true">
 </td>
 </tr>
 <tr>
@@ -964,7 +681,9 @@ Procedural graph with intermediary node for shader translation (from standard su
 <li>Compound nodes: no</li>
 <li>Downstream shader: glTF PBR</li>
 </ul>
-<pre><code class="language-mermaid"><div class="mermaid">graph LR
+<pre><code class="language-mermaid"><div class="mermaid">
+
+graph LR
     glTF_Material([surfacematerial:material])
     style glTF_Material   fill:#090, color:#FFF
     glTF_Shader[gltf_pbr:surfaceshader]
@@ -1037,12 +756,12 @@ Procedural graph with intermediary node for shader translation (from standard su
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/supported_types_fromgltf.mtlx">MTLX from GLTF</a>
 <!-- <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/supported_types.usda">USD</a> -->
 </td>
-<td><img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/supported_types.png?raw=true">
+<td><img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/supported_types.png?raw=true">
 </td>
 </tr>
 <tr>
 <td>Example glTF file which requires name identifier generation to convert to MaterialX (a named based system)
-<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_diagram.svg?raw=true">
+<img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_diagram.svg?raw=true">
 </td>
 <td>
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_fromgltf.mtlx">MTLX</a>,
@@ -1050,22 +769,20 @@ Procedural graph with intermediary node for shader translation (from standard su
 <a href="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_fromgltf.mtlx">MTLX from GLTF</a>
 </td>
 <td>
-<img src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_fromgltf.png?raw=true">
+<img width="100%" src="https://github.com/KhronosGroup/glTF-MaterialX-Converter/blob/main/tests/data/noname_checkerboard_graph_fromgltf.png?raw=true">
 </td>
 </tr>
 </table>
 </details>
-<h3 id="development-information">Development Information</h3>
+<h3>Development Information</h3>
 <details><summary><h4>Reference Rendering</h4></summary>
-<p>All reference images are rendered using the <code>MaterialXView</code> sample application which is available as part of<br>
-<a href="https://github.com/AcademySoftwareFoundation/MaterialX/releases">MaterialX releases</a>. The release<br>
-version used matches the version requirement for this package.</p>
-<p>A sample utility called <code>test_render</code> is provided which will scan all files MaterialX XML files in a given folder hierarchy and use the path to <code>MaterialXView</code> to<br>
-render into the same folder.</p>
+<p>All reference images are rendered using the <code>MaterialXView</code> sample application which is available as part of <a href="https://github.com/AcademySoftwareFoundation/MaterialX/releases">MaterialX releases</a>. The release version used matches the version requirement for this package.</p>
+<p>A sample utility called <code>test_render</code> is provided which will scan all files MaterialX XML files in a given folder hierarchy and use the path to <code>MaterialXView</code> to render into the same folder.</p>
 <p>Example:</p>
-<pre class="hljs"><code><div>python utilities/test_render.py tests/data -r 512 -c &lt;path to MaterialXView&gt;
 </div></code></pre>
-<p>where <code>&lt;path to MaterialXView&gt;</code> is the path to the MaterialXView executable with<br>
+<p>python utilities/test_render.py tests/data -r 512 -c <path to MaterialXView></p>
+</div></code></pre>
+<p>where <code>&lt;path to MaterialXView&gt;</code> is the path to the MaterialXView executable with
 a the resolution set to 512 by 512.</p>
 </details>
 <details><summary><h4>Build Scripts</h4></summary>
@@ -1078,5 +795,10 @@ a the resolution set to 512 by 512.</p>
 <p><code>build.sh</code> is called within the check-in workflow defined in <code>.github/workflows/main.yml</code></p>
 </details>
 
+            </div>
+        </div>
+    </div>
+      <!-- Bootstrap 5.3.2 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -21,6 +21,11 @@ dependencies = [
     "jsonschema"
 ]
 
+[project.optional-dependencies]
+dev = [
+    "markdown_it-py"
+]
+
 [tool.setuptools.packages.find]
 where = ["source"]
 [tool.setuptools.package-data]
