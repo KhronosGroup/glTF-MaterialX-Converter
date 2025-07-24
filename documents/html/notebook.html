@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="glTF_100px_June16.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MaterialX / glTF Texture Procedurals
-   &#160;<span id="projectnumber">0.0.1</span>
+   &#160;<span id="projectnumber">0.0.2</span>
    </div>
    <div id="projectbrief">Utilities for interoperability between MaterialX and glTF Texture Procedurals</div>
   </td>
@@ -7426,6 +7426,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7650,17 +7651,17 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import support modules</span>
-<span class="kn">import</span> <span class="nn">MaterialX</span> <span class="k">as</span> <span class="nn">mx</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">MaterialX</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
 
 <span class="c1"># Import conversion module utilities</span>
-<span class="kn">from</span> <span class="nn">gltf_materialx_converter</span> <span class="kn">import</span> <span class="n">converter</span> <span class="k">as</span> <span class="n">MxGLTFPT</span>
-<span class="kn">from</span> <span class="nn">gltf_materialx_converter</span> <span class="kn">import</span> <span class="n">utilities</span> <span class="k">as</span> <span class="n">MxGLTFPTUtil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gltf_materialx_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">converter</span> <span class="k">as</span> <span class="n">MxGLTFPT</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gltf_materialx_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">utilities</span> <span class="k">as</span> <span class="n">MxGLTFPTUtil</span>
 
 <span class="n">input_file</span> <span class="o">=</span> <span class="s2">"../tests/data/checkerboard_graph.mtlx"</span> <span class="c1"># Replace with desired file name</span>
 
@@ -7718,9 +7719,8 @@ a.anchor-link {
 <span class="w">          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NG_main"</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nodegraph"</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uvtiling"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"uvtiling"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -7728,8 +7728,7 @@ a.anchor-link {
 <span class="w">                </span><span class="mf">8.0</span>
 <span class="w">              </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color1"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"color1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -7738,8 +7737,7 @@ a.anchor-link {
 <span class="w">                </span><span class="mf">0.031373</span>
 <span class="w">              </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color2"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"color2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -7748,61 +7746,54 @@ a.anchor-link {
 <span class="w">                </span><span class="mf">0.878431</span>
 <span class="w">              </span><span class="p">]</span>
 <span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">],</span>
-<span class="w">          </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output_N_mtlxmix_out"</span><span class="p">,</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"output_N_mtlxmix_out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="p">},</span>
 <span class="w">          </span><span class="nt">"nodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N_mtlxmix"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mix"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fg"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"fg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color1"</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bg"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"bg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color2"</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mix"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"mix"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N_mtlxdotproduct"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dotproduct"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in1"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"in1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in2"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"in2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -7810,54 +7801,48 @@ a.anchor-link {
 <span class="w">                    </span><span class="mf">1.0</span>
 <span class="w">                  </span><span class="p">]</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N_mtlxmult"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"multiply"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in1"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"in1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in2"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"in2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uvtiling"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N_mtlxsubtract"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subtract"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in1"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"in1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in2"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"in2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -7865,80 +7850,76 @@ a.anchor-link {
 <span class="w">                    </span><span class="mf">0.0</span>
 <span class="w">                  </span><span class="p">]</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N_mtlxfloor"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"floor"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N_modulo"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"modulo"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in1"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"in1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in2"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"in2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="mf">2.0</span>
+<span class="w">                  </span><span class="p">]</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Texcoord"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"texcoord"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"index"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="mi">0</span>
+<span class="w">                  </span><span class="p">]</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">],</span>
 <span class="w">          </span><span class="nt">"xpos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1.2309688043141684"</span><span class="p">,</span>
@@ -7956,7 +7937,7 @@ a.anchor-link {
 <span class="w">          </span><span class="nt">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">"KHR_texture_procedurals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"output"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">              </span><span class="nt">"output"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output_N_mtlxmix_out"</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
@@ -8041,7 +8022,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">converter</span><span class="o">.</span><span class="n">set_add_asset_info</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -8134,13 +8115,13 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">have_required_version</span> <span class="o">=</span> <span class="n">MxGLTFPTUtil</span><span class="o">.</span><span class="n">have_version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">have_required_version</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'MaterialX version is 1.39.2 or higher. Perform equivalence check:'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'MaterialX version </span><span class="si">{</span><span class="n">mx</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s1"> meets minimal requirements. Perform equivalence check:'</span><span class="p">)</span>
 
     <span class="c1"># Set up options</span>
     <span class="n">equivalence_opts</span> <span class="o">=</span> <span class="n">mx</span><span class="o">.</span><span class="n">ElementEquivalenceOptions</span><span class="p">()</span>
@@ -8162,7 +8143,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Documents are not functionally equivalent: '</span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">'."</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Cannot compare documents because MaterialX version is less than 1.39.2"</span><span class="p">)</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Cannot compare documents because MaterialX version </span><span class="si">{</span><span class="n">mx</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2"> is less than required version"</span><span class="p">)</span>    
 </pre></div>
 </div>
 </div>
@@ -8175,7 +8156,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>MaterialX version is 1.39.2 or higher. Perform equivalence check:
+<pre>MaterialX version 1.39.4 meets minimal requirements. Perform equivalence check:
 - Documents are functionally equivalent.
 </pre>
 </div>
@@ -8199,7 +8180,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Remove names from JSON</span>
@@ -8238,8 +8219,8 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <span class="w">        </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nodegraph"</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"uvtiling"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -8247,7 +8228,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <span class="w">                </span><span class="mf">8.0</span>
 <span class="w">              </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"color1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -8256,7 +8237,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <span class="w">                </span><span class="mf">0.031373</span>
 <span class="w">              </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"color2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -8265,58 +8246,52 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <span class="w">                </span><span class="mf">0.878431</span>
 <span class="w">              </span><span class="p">]</span>
 <span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">],</span>
-<span class="w">          </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"output_N_mtlxmix_out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="p">},</span>
 <span class="w">          </span><span class="nt">"nodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mix"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fg"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"fg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color1"</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bg"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"bg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color2"</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mix"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"mix"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color3"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dotproduct"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in1"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"in1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in2"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"in2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -8324,52 +8299,46 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <span class="w">                    </span><span class="mf">1.0</span>
 <span class="w">                  </span><span class="p">]</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"multiply"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in1"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"in1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in2"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"in2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">                  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uvtiling"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subtract"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in1"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"in1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in2"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"in2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -8377,77 +8346,73 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <span class="w">                    </span><span class="mf">0.0</span>
 <span class="w">                  </span><span class="p">]</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"floor"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"modulo"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in1"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"in1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in2"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"in2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="mf">2.0</span>
+<span class="w">                  </span><span class="p">]</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"texcoord"</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"index"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="mi">0</span>
+<span class="w">                  </span><span class="p">]</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"nodetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector2"</span>
 <span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">],</span>
 <span class="w">          </span><span class="nt">"xpos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1.2309688043141684"</span><span class="p">,</span>
@@ -8464,7 +8429,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <span class="w">          </span><span class="nt">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">"KHR_texture_procedurals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"output"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">              </span><span class="nt">"output"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output_N_mtlxmix_out"</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
@@ -8502,7 +8467,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_Gltf_pbr. Shader: Gltf_pbr
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">mxdoc_cleared</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">gltf_string_to_materialX</span><span class="p">(</span><span class="n">json_string_cleared</span><span class="p">,</span> <span class="n">stdlib</span><span class="p">)</span>   
@@ -8533,12 +8498,12 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_SHADER_0. Shader: SHADER_0
 <h4 id="MaterialX-With-Generated-Names">MaterialX With Generated Names<a class="anchor-link" href="#MaterialX-With-Generated-Names">¶</a></h4><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version="1.0"?&gt;</span>
 <span class="nt">&lt;materialx</span><span class="w"> </span><span class="na">version=</span><span class="s">"1.39"</span><span class="w"> </span><span class="na">colorspace=</span><span class="s">"lin_rec709"</span><span class="w"> </span><span class="na">doc=</span><span class="s">"glTF version: 2.0. glTF generator: MaterialX 1.39 / glTF 2.0 Texture Procedural Converter. "</span><span class="nt">&gt;</span>
 <span class="w">  </span><span class="nt">&lt;nodegraph</span><span class="w"> </span><span class="na">name=</span><span class="s">"GRAPH_0"</span><span class="w"> </span><span class="na">xpos=</span><span class="s">"-1.2309688043141684"</span><span class="w"> </span><span class="na">ypos=</span><span class="s">"3.189328265723073"</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"INPUT_0"</span><span class="w"> </span><span class="na">type=</span><span class="s">"vector2"</span><span class="w"> </span><span class="na">value=</span><span class="s">"8, 8"</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="w">    </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"INPUT_1"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="w"> </span><span class="na">value=</span><span class="s">"1, 0.094118, 0.031373"</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="w">    </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"INPUT_2"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="w"> </span><span class="na">value=</span><span class="s">"0.035294, 0.090196, 0.878431"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"uvtiling"</span><span class="w"> </span><span class="na">type=</span><span class="s">"vector2"</span><span class="w"> </span><span class="na">value=</span><span class="s">"8, 8"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"color1"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="w"> </span><span class="na">value=</span><span class="s">"1, 0.094118, 0.031373"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"color2"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="w"> </span><span class="na">value=</span><span class="s">"0.035294, 0.090196, 0.878431"</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">    </span><span class="nt">&lt;mix</span><span class="w"> </span><span class="na">name=</span><span class="s">"NODE_0"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="nt">&gt;</span>
-<span class="w">      </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"fg"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="w"> </span><span class="na">interfacename=</span><span class="s">"INPUT_1"</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="w">      </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"bg"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="w"> </span><span class="na">interfacename=</span><span class="s">"INPUT_2"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"fg"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="w"> </span><span class="na">interfacename=</span><span class="s">"color1"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"bg"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="w"> </span><span class="na">interfacename=</span><span class="s">"color2"</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">      </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"mix"</span><span class="w"> </span><span class="na">type=</span><span class="s">"float"</span><span class="w"> </span><span class="na">nodename=</span><span class="s">"NODE_5"</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/mix&gt;</span>
 <span class="w">    </span><span class="nt">&lt;dotproduct</span><span class="w"> </span><span class="na">name=</span><span class="s">"NODE_1"</span><span class="w"> </span><span class="na">type=</span><span class="s">"float"</span><span class="nt">&gt;</span>
@@ -8547,7 +8512,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_SHADER_0. Shader: SHADER_0
 <span class="w">    </span><span class="nt">&lt;/dotproduct&gt;</span>
 <span class="w">    </span><span class="nt">&lt;multiply</span><span class="w"> </span><span class="na">name=</span><span class="s">"NODE_2"</span><span class="w"> </span><span class="na">type=</span><span class="s">"vector2"</span><span class="nt">&gt;</span>
 <span class="w">      </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"in1"</span><span class="w"> </span><span class="na">type=</span><span class="s">"vector2"</span><span class="w"> </span><span class="na">nodename=</span><span class="s">"NODE_6"</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="w">      </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"in2"</span><span class="w"> </span><span class="na">type=</span><span class="s">"vector2"</span><span class="w"> </span><span class="na">interfacename=</span><span class="s">"INPUT_0"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"in2"</span><span class="w"> </span><span class="na">type=</span><span class="s">"vector2"</span><span class="w"> </span><span class="na">interfacename=</span><span class="s">"uvtiling"</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/multiply&gt;</span>
 <span class="w">    </span><span class="nt">&lt;subtract</span><span class="w"> </span><span class="na">name=</span><span class="s">"NODE_3"</span><span class="w"> </span><span class="na">type=</span><span class="s">"vector2"</span><span class="nt">&gt;</span>
 <span class="w">      </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"in1"</span><span class="w"> </span><span class="na">type=</span><span class="s">"vector2"</span><span class="w"> </span><span class="na">nodename=</span><span class="s">"NODE_2"</span><span class="w"> </span><span class="nt">/&gt;</span>
@@ -8563,7 +8528,7 @@ INFO:glTFMtlx:&gt; Import material: MATERIAL_SHADER_0. Shader: SHADER_0
 <span class="w">    </span><span class="nt">&lt;texcoord</span><span class="w"> </span><span class="na">name=</span><span class="s">"NODE_6"</span><span class="w"> </span><span class="na">type=</span><span class="s">"vector2"</span><span class="nt">&gt;</span>
 <span class="w">      </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"index"</span><span class="w"> </span><span class="na">type=</span><span class="s">"integer"</span><span class="w"> </span><span class="na">value=</span><span class="s">"0"</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/texcoord&gt;</span>
-<span class="w">    </span><span class="nt">&lt;output</span><span class="w"> </span><span class="na">name=</span><span class="s">"OUTPUT_0"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="w"> </span><span class="na">nodename=</span><span class="s">"NODE_0"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;output</span><span class="w"> </span><span class="na">name=</span><span class="s">"output_N_mtlxmix_out"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="w"> </span><span class="na">nodename=</span><span class="s">"NODE_0"</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;/nodegraph&gt;</span>
 <span class="w">  </span><span class="nt">&lt;gltf_pbr</span><span class="w"> </span><span class="na">name=</span><span class="s">"SHADER_0"</span><span class="w"> </span><span class="na">type=</span><span class="s">"surfaceshader"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">name=</span><span class="s">"base_color"</span><span class="w"> </span><span class="na">type=</span><span class="s">"color3"</span><span class="w"> </span><span class="na">nodegraph=</span><span class="s">"GRAPH_0"</span><span class="w"> </span><span class="nt">/&gt;</span>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<materialx version="1.38" colorspace="lin_rec709">
+  <nodegraph name="nodegraph1">
+    <output name="output_color3" type="color3" nodename="multiply_color3" xpos="9.666667" ypos="-4.525862" />
+    <image name="image_color3" type="color3" xpos="0.949275" ypos="-8.413794">
+      <input name="file" type="filename" value="grid.png" />
+      <input name="texcoord" type="vector2" nodename="texcoord_vector2" />
+    </image>
+    <geomcolor name="geomcolor_color3" type="color3" xpos="2.753623" ypos="-2.172414">
+      <input name="index" type="integer" value="1" />
+    </geomcolor>
+    <multiply name="multiply_color3" type="color3" xpos="7.173913" ypos="-4.163793">
+      <input name="in1" type="color3" nodename="image_color3" />
+      <input name="in2" type="color3" nodename="geomcolor_color3" />
+    </multiply>
+    <texcoord name="texcoord_vector2" type="vector2" xpos="-2.731884" ypos="-7.767241">
+      <input name="index" type="integer" value="0" />
+    </texcoord>
+  </nodegraph>
+  <gltf_pbr name="gltf_pbr_surfaceshader" type="surfaceshader">
+    <input name="base_color" type="color3" nodegraph="nodegraph1" />
+  </gltf_pbr>
+  <surfacematerial name="surfacematerial" type="material" xpos="11.246377" ypos="-7.413793">
+    <input name="surfaceshader" type="surfaceshader" nodename="gltf_pbr_surfaceshader" />
+  </surfacematerial>
+</materialx>

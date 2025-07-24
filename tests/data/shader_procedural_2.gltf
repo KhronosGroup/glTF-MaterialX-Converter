@@ -17,9 +17,8 @@
           "name": "shared_procedural",
           "nodetype": "nodegraph",
           "type": "multioutput",
-          "inputs": [
-            {
-              "name": "in2",
+          "inputs": {
+            "in2": {
               "nodetype": "input",
               "type": "color3",
               "value": [
@@ -28,8 +27,7 @@
                 0.3059
               ]
             },
-            {
-              "name": "in1",
+            "in1": {
               "nodetype": "input",
               "type": "color3",
               "value": [
@@ -38,73 +36,65 @@
                 0.3216
               ]
             }
-          ],
-          "outputs": [
-            {
-              "name": "out1",
+          },
+          "outputs": {
+            "out1": {
               "nodetype": "output",
               "type": "color3",
               "node": 0
             },
-            {
-              "name": "out2",
+            "out2": {
               "nodetype": "output",
               "type": "color3",
               "node": 1
             }
-          ],
+          },
           "nodes": [
             {
               "name": "add",
               "nodetype": "add",
               "type": "color3",
-              "inputs": [
-                {
-                  "name": "in1",
+              "inputs": {
+                "in1": {
                   "nodetype": "input",
                   "type": "color3",
-                  "input": 1
+                  "input": "in1"
                 },
-                {
-                  "name": "in2",
+                "in2": {
                   "nodetype": "input",
                   "type": "color3",
-                  "input": 0
+                  "input": "in2"
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             },
             {
               "name": "add2",
               "nodetype": "add",
               "type": "color3",
-              "inputs": [
-                {
-                  "name": "in1",
+              "inputs": {
+                "in1": {
                   "nodetype": "input",
                   "type": "color3",
-                  "input": 1
+                  "input": "in1"
                 },
-                {
-                  "name": "in2",
+                "in2": {
                   "nodetype": "input",
                   "type": "color3",
-                  "input": 0
+                  "input": "in2"
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             }
           ]
         }
@@ -120,7 +110,7 @@
           "extensions": {
             "KHR_texture_procedurals": {
               "index": 0,
-              "output": 0
+              "output": "out1"
             }
           }
         }
@@ -134,7 +124,7 @@
           "extensions": {
             "KHR_texture_procedurals": {
               "index": 0,
-              "output": 1
+              "output": "out2"
             }
           }
         }

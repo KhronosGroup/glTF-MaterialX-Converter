@@ -33,49 +33,46 @@
           "name": "nodegraph1",
           "nodetype": "nodegraph",
           "type": "color3",
-          "inputs": [],
-          "outputs": [
-            {
-              "name": "output_color3",
+          "inputs": {},
+          "outputs": {
+            "output_color3": {
               "nodetype": "output",
               "type": "color3",
               "node": 2
             }
-          ],
+          },
           "nodes": [
             {
               "name": "texcoord_vector2",
               "nodetype": "texcoord",
               "type": "vector2",
-              "inputs": [
-                {
-                  "name": "index",
+              "inputs": {
+                "index": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 0
+                  "value": [
+                    0
+                  ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             },
             {
               "name": "place2d_vector3",
               "nodetype": "place2d",
               "type": "vector2",
-              "inputs": [
-                {
-                  "name": "texcoord",
+              "inputs": {
+                "texcoord": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 0
                 },
-                {
-                  "name": "pivot",
+                "pivot": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -83,8 +80,7 @@
                     0.0
                   ]
                 },
-                {
-                  "name": "scale",
+                "scale": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -92,16 +88,16 @@
                     1.0
                   ]
                 },
-                {
-                  "name": "rotate",
+                "rotate": {
                   "nodetype": "input",
                   "unit": "degree",
                   "unittype": "angle",
                   "type": "float",
-                  "value": 0.0
+                  "value": [
+                    0.0
+                  ]
                 },
-                {
-                  "name": "offset",
+                "offset": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -109,67 +105,61 @@
                     0.0
                   ]
                 },
-                {
-                  "name": "operationorder",
+                "operationorder": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 1
+                  "value": [
+                    1
+                  ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             },
             {
               "name": "multiply_color4",
               "nodetype": "multiply",
               "type": "color3",
-              "inputs": [
-                {
-                  "name": "in1",
+              "inputs": {
+                "in1": {
                   "nodetype": "input",
                   "type": "color3",
                   "node": 4
                 },
-                {
-                  "name": "in2",
+                "in2": {
                   "nodetype": "input",
                   "type": "color3",
                   "node": 3
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             },
             {
               "name": "image_color4",
               "nodetype": "image",
               "type": "color3",
-              "inputs": [
-                {
-                  "name": "file",
+              "inputs": {
+                "file": {
                   "nodetype": "input",
                   "colorspace": "none",
                   "type": "filename",
                   "texture": 1
                 },
-                {
-                  "name": "layer",
+                "layer": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "0"
                 },
-                {
-                  "name": "default",
+                "default": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -178,77 +168,68 @@
                     0.0255797
                   ]
                 },
-                {
-                  "name": "texcoord",
+                "texcoord": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 1
                 },
-                {
-                  "name": "uaddressmode",
+                "uaddressmode": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "periodic"
                 },
-                {
-                  "name": "vaddressmode",
+                "vaddressmode": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "periodic"
                 },
-                {
-                  "name": "filtertype",
+                "filtertype": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "linear"
                 },
-                {
-                  "name": "framerange",
+                "framerange": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "100"
                 },
-                {
-                  "name": "frameoffset",
+                "frameoffset": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 1
+                  "value": [
+                    1
+                  ]
                 },
-                {
-                  "name": "frameendaction",
+                "frameendaction": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "constant"
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             },
             {
               "name": "image_color3",
               "nodetype": "image",
               "type": "color3",
-              "inputs": [
-                {
-                  "name": "file",
+              "inputs": {
+                "file": {
                   "nodetype": "input",
                   "colorspace": "srgb_texture",
                   "type": "filename",
                   "texture": 2
                 },
-                {
-                  "name": "layer",
+                "layer": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "0"
                 },
-                {
-                  "name": "default",
+                "default": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -257,70 +238,62 @@
                     0.0255797
                   ]
                 },
-                {
-                  "name": "texcoord",
+                "texcoord": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 5
                 },
-                {
-                  "name": "uaddressmode",
+                "uaddressmode": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "periodic"
                 },
-                {
-                  "name": "vaddressmode",
+                "vaddressmode": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "periodic"
                 },
-                {
-                  "name": "filtertype",
+                "filtertype": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "linear"
                 },
-                {
-                  "name": "framerange",
+                "framerange": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "100"
                 },
-                {
-                  "name": "frameoffset",
+                "frameoffset": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 1
+                  "value": [
+                    1
+                  ]
                 },
-                {
-                  "name": "frameendaction",
+                "frameendaction": {
                   "nodetype": "input",
                   "type": "string",
                   "value": "constant"
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             },
             {
               "name": "place2d_vector2",
               "nodetype": "place2d",
               "type": "vector2",
-              "inputs": [
-                {
-                  "name": "texcoord",
+              "inputs": {
+                "texcoord": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 0
                 },
-                {
-                  "name": "pivot",
+                "pivot": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -328,8 +301,7 @@
                     0.5
                   ]
                 },
-                {
-                  "name": "scale",
+                "scale": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -337,16 +309,16 @@
                     1.0
                   ]
                 },
-                {
-                  "name": "rotate",
+                "rotate": {
                   "nodetype": "input",
                   "unit": "degree",
                   "unittype": "angle",
                   "type": "float",
-                  "value": 45.0
+                  "value": [
+                    45.0
+                  ]
                 },
-                {
-                  "name": "offset",
+                "offset": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -354,20 +326,20 @@
                     0.0
                   ]
                 },
-                {
-                  "name": "operationorder",
+                "operationorder": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 1
+                  "value": [
+                    1
+                  ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             }
           ]
         }
@@ -383,7 +355,7 @@
           "extensions": {
             "KHR_texture_procedurals": {
               "index": 0,
-              "output": 0
+              "output": "output_color3"
             }
           }
         }

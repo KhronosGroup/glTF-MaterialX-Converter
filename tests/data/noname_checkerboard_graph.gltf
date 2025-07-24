@@ -17,9 +17,8 @@
           "name": "",
           "nodetype": "nodegraph",
           "type": "color3",
-          "inputs": [
-            {
-              "name": "mynode1",
+          "inputs": {
+            "uvtiling": {
               "nodetype": "input",
               "type": "vector2",
               "value": [
@@ -27,8 +26,7 @@
                 8.0
               ]
             },
-            {
-              "name": "mynode1",
+            "color1": {
               "nodetype": "input",
               "type": "color3",
               "value": [
@@ -37,7 +35,7 @@
                 0.031373
               ]
             },
-            {
+            "color2": {
               "nodetype": "input",
               "type": "color3",
               "value": [
@@ -46,59 +44,52 @@
                 0.878431
               ]
             }
-          ],
-          "outputs": [
-            {
-              "name": "",
+          },
+          "outputs": {
+            "output_N_mtlxmix_out": {
               "nodetype": "output",
               "type": "color3",
               "node": 0
             }
-          ],
+          },
           "nodes": [
             {
               "nodetype": "mix",
               "type": "color3",
-              "inputs": [
-                {
-                  "name": "fg",
+              "inputs": {
+                "fg": {
                   "nodetype": "input",
                   "type": "color3",
-                  "input": 1
+                  "input": "color1"
                 },
-                {
-                  "name": "bg",
+                "bg": {
                   "nodetype": "input",
                   "type": "color3",
-                  "input": 2
+                  "input": "color2"
                 },
-                {
-                  "name": "mix",
+                "mix": {
                   "nodetype": "input",
                   "type": "float",
                   "node": 5
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             },
             {
               "nodetype": "dotproduct",
               "type": "float",
-              "inputs": [
-                {
-                  "name": "in1",
+              "inputs": {
+                "in1": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 4
                 },
-                {
-                  "name": "in2",
+                "in2": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -106,52 +97,47 @@
                     1.0
                   ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "float"
                 }
-              ]
+              }
             },
             {
+              "name": "",
               "nodetype": "multiply",
               "type": "vector2",
-              "inputs": [
-                {
-                  "name": "in1",
+              "inputs": {
+                "in1": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 6
                 },
-                {
-                  "name": "in2",
+                "in2": {
                   "nodetype": "input",
                   "type": "vector2",
-                  "input": 0
+                  "input": "uvtiling"
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             },
             {
               "nodetype": "subtract",
               "type": "vector2",
-              "inputs": [
-                {
-                  "name": "in1",
+              "inputs": {
+                "in1": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 2
                 },
-                {
-                  "name": "in2",
+                "in2": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -159,79 +145,77 @@
                     0.0
                   ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             },
             {
               "nodetype": "floor",
               "type": "vector2",
-              "inputs": [
-                {
-                  "name": "in",
+              "inputs": {
+                "in": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 3
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             },
             {
               "nodetype": "modulo",
               "type": "float",
-              "inputs": [
-                {
-                  "name": "in1",
+              "inputs": {
+                "in1": {
                   "nodetype": "input",
                   "type": "float",
                   "node": 1
                 },
-                {
-                  "name": "in2",
+                "in2": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 2.0
+                  "value": [
+                    2.0
+                  ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "float"
                 }
-              ]
+              }
             },
             {
               "nodetype": "texcoord",
               "type": "vector2",
-              "inputs": [
-                {
-                  "name": "index",
+              "inputs": {
+                "index": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 0
+                  "value": [
+                    0
+                  ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             }
-          ]
+          ],
+          "xpos": "-1.2309688043141684",
+          "ypos": "3.189328265723073"
         }
       ]
     }
@@ -244,7 +228,7 @@
           "extensions": {
             "KHR_texture_procedurals": {
               "index": 0,
-              "output": 0
+              "output": "output_N_mtlxmix_out"
             }
           }
         }

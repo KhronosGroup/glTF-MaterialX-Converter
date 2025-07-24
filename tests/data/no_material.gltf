@@ -6,23 +6,21 @@
           "name": "splittb_graph",
           "nodetype": "nodegraph",
           "type": "color3",
-          "inputs": [],
-          "outputs": [
-            {
-              "name": "output_color4",
+          "inputs": {},
+          "outputs": {
+            "output_color4": {
               "nodetype": "output",
               "type": "color3",
               "node": 0
             }
-          ],
+          },
           "nodes": [
             {
               "name": "splittb_color4",
               "nodetype": "splittb",
               "type": "color3",
-              "inputs": [
-                {
-                  "name": "valuet",
+              "inputs": {
+                "valuet": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -31,8 +29,7 @@
                     0.0
                   ]
                 },
-                {
-                  "name": "valueb",
+                "valueb": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -41,46 +38,45 @@
                     1.0
                   ]
                 },
-                {
-                  "name": "center",
+                "center": {
                   "nodetype": "input",
                   "type": "float",
-                  "value": 0.5
+                  "value": [
+                    0.5
+                  ]
                 },
-                {
-                  "name": "texcoord",
+                "texcoord": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 1
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             },
             {
               "name": "texcoord_vector",
               "nodetype": "texcoord",
               "type": "vector2",
-              "inputs": [
-                {
-                  "name": "index",
+              "inputs": {
+                "index": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 0
+                  "value": [
+                    0
+                  ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             }
           ]
         },
@@ -88,23 +84,21 @@
           "name": "checker_graph",
           "nodetype": "nodegraph",
           "type": "color3",
-          "inputs": [],
-          "outputs": [
-            {
-              "name": "output_color5",
+          "inputs": {},
+          "outputs": {
+            "output_color5": {
               "nodetype": "output",
               "type": "color3",
               "node": 0
             }
-          ],
+          },
           "nodes": [
             {
               "name": "checkerboard_color4",
               "nodetype": "checkerboard",
               "type": "color3",
-              "inputs": [
-                {
-                  "name": "color1",
+              "inputs": {
+                "color1": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -113,8 +107,7 @@
                     1.0
                   ]
                 },
-                {
-                  "name": "color2",
+                "color2": {
                   "nodetype": "input",
                   "type": "color3",
                   "value": [
@@ -123,8 +116,7 @@
                     0.0
                   ]
                 },
-                {
-                  "name": "uvtiling",
+                "uvtiling": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -132,8 +124,7 @@
                     8.0
                   ]
                 },
-                {
-                  "name": "uvoffset",
+                "uvoffset": {
                   "nodetype": "input",
                   "type": "vector2",
                   "value": [
@@ -141,40 +132,38 @@
                     0.0
                   ]
                 },
-                {
-                  "name": "texcoord",
+                "texcoord": {
                   "nodetype": "input",
                   "type": "vector2",
                   "node": 1
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "color3"
                 }
-              ]
+              }
             },
             {
               "name": "texcoord_vector3",
               "nodetype": "texcoord",
               "type": "vector2",
-              "inputs": [
-                {
-                  "name": "index",
+              "inputs": {
+                "index": {
                   "nodetype": "input",
                   "type": "integer",
-                  "value": 0
+                  "value": [
+                    0
+                  ]
                 }
-              ],
-              "outputs": [
-                {
+              },
+              "outputs": {
+                "out": {
                   "nodetype": "output",
-                  "name": "out",
                   "type": "vector2"
                 }
-              ]
+              }
             }
           ]
         }

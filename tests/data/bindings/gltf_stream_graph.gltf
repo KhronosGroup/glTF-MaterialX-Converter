@@ -14,51 +14,51 @@
     "KHR_texture_procedurals": {
       "procedurals": [
         {
-          "name": "graph1",
+          "name": "position_stream_graph",
           "nodetype": "nodegraph",
           "type": "color3",
-          "inputs": {
-            "myin1": {
-              "nodetype": "input",
-              "type": "color3",
-              "value": [
-                1.0,
-                0.0,
-                0.0
-              ]
-            },
-            "myin2": {
-              "nodetype": "input",
-              "type": "color3",
-              "value": [
-                0.94902,
-                0.768627,
-                0.109804
-              ]
-            }
-          },
+          "inputs": {},
           "outputs": {
-            "output_color4": {
+            "output_color3": {
               "nodetype": "output",
               "type": "color3",
-              "node": 0
+              "xpos": "18.130434",
+              "ypos": "-0.370690",
+              "node": 1
             }
           },
           "nodes": [
             {
-              "name": "add_color4",
-              "nodetype": "add",
-              "type": "color3",
+              "name": "position_vector3",
+              "nodetype": "position",
+              "type": "vector3",
+              "xpos": "11.449275",
+              "ypos": "-0.250000",
               "inputs": {
-                "in1": {
+                "space": {
                   "nodetype": "input",
-                  "type": "color3",
-                  "input": "myin2"
-                },
-                "in2": {
+                  "type": "string",
+                  "value": "world"
+                }
+              },
+              "outputs": {
+                "out": {
+                  "nodetype": "output",
+                  "type": "vector3"
+                }
+              }
+            },
+            {
+              "name": "convert_vector3_color3",
+              "nodetype": "convert",
+              "type": "color3",
+              "xpos": "14.463768",
+              "ypos": "0.293103",
+              "inputs": {
+                "in": {
                   "nodetype": "input",
-                  "type": "color3",
-                  "input": "myin1"
+                  "type": "vector3",
+                  "node": 0
                 }
               },
               "outputs": {
@@ -75,14 +75,14 @@
   },
   "materials": [
     {
-      "name": "gltf_mat",
+      "name": "gltf_pbr_surfaceshader",
       "pbrMetallicRoughness": {
         "baseColorTexture": {
           "index": 0,
           "extensions": {
             "KHR_texture_procedurals": {
               "index": 0,
-              "output": "output_color4"
+              "output": "output_color3"
             }
           }
         }

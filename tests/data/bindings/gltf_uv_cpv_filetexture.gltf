@@ -30,9 +30,9 @@
             "output_color3": {
               "nodetype": "output",
               "type": "color3",
-              "xpos": "7.021739",
-              "ypos": "-4.482759",
-              "node": 0
+              "xpos": "9.666667",
+              "ypos": "-4.525862",
+              "node": 2
             }
           },
           "nodes": [
@@ -40,54 +40,64 @@
               "name": "image_color3",
               "nodetype": "image",
               "type": "color3",
-              "xpos": "4.724638",
-              "ypos": "-6.482759",
+              "xpos": "0.949275",
+              "ypos": "-8.413794",
               "inputs": {
                 "file": {
                   "nodetype": "input",
-                  "colorspace": "srgb_texture",
                   "type": "filename",
                   "texture": 1
                 },
-                "uaddressmode": {
+                "texcoord": {
                   "nodetype": "input",
-                  "type": "string",
-                  "value": "clamp"
-                },
-                "vaddressmode": {
-                  "nodetype": "input",
-                  "type": "string",
-                  "value": "clamp"
-                },
-                "default": {
-                  "nodetype": "input",
-                  "type": "color3",
-                  "value": [
-                    0.9511,
-                    0.0255797,
-                    0.0255797
-                  ]
-                },
-                "framerange": {
-                  "nodetype": "input",
-                  "type": "string",
-                  "value": "100"
-                },
-                "frameoffset": {
+                  "type": "vector2",
+                  "node": 3
+                }
+              },
+              "outputs": {
+                "out": {
+                  "nodetype": "output",
+                  "type": "color3"
+                }
+              }
+            },
+            {
+              "name": "geomcolor_color3",
+              "nodetype": "geomcolor",
+              "type": "color3",
+              "xpos": "2.753623",
+              "ypos": "-2.172414",
+              "inputs": {
+                "index": {
                   "nodetype": "input",
                   "type": "integer",
                   "value": [
                     1
                   ]
-                },
-                "layer": {
+                }
+              },
+              "outputs": {
+                "out": {
+                  "nodetype": "output",
+                  "type": "color3"
+                }
+              }
+            },
+            {
+              "name": "multiply_color3",
+              "nodetype": "multiply",
+              "type": "color3",
+              "xpos": "7.173913",
+              "ypos": "-4.163793",
+              "inputs": {
+                "in1": {
                   "nodetype": "input",
-                  "type": "string",
-                  "value": "0"
+                  "type": "color3",
+                  "node": 0
                 },
-                "texcoord": {
+                "in2": {
                   "nodetype": "input",
-                  "type": "vector2",
+                  "type": "color3",
                   "node": 1
                 }
               },
@@ -99,75 +109,17 @@
               }
             },
             {
-              "name": "place2d_vector2",
-              "nodetype": "place2d",
-              "type": "vector2",
-              "xpos": "2.521739",
-              "ypos": "-6.051724",
-              "inputs": {
-                "texcoord": {
-                  "nodetype": "input",
-                  "type": "vector2",
-                  "node": 2
-                },
-                "pivot": {
-                  "nodetype": "input",
-                  "type": "vector2",
-                  "value": [
-                    0.1,
-                    0.5
-                  ]
-                },
-                "scale": {
-                  "nodetype": "input",
-                  "type": "vector2",
-                  "value": [
-                    0.3,
-                    0.4
-                  ]
-                },
-                "rotate": {
-                  "nodetype": "input",
-                  "type": "float",
-                  "value": [
-                    45.0
-                  ]
-                },
-                "offset": {
-                  "nodetype": "input",
-                  "type": "vector2",
-                  "value": [
-                    0.01,
-                    0.01
-                  ]
-                },
-                "operationorder": {
-                  "nodetype": "input",
-                  "type": "integer",
-                  "value": [
-                    1
-                  ]
-                }
-              },
-              "outputs": {
-                "out": {
-                  "nodetype": "output",
-                  "type": "vector2"
-                }
-              }
-            },
-            {
               "name": "texcoord_vector2",
               "nodetype": "texcoord",
               "type": "vector2",
-              "xpos": "0.086957",
-              "ypos": "-6.327586",
+              "xpos": "-2.731884",
+              "ypos": "-7.767241",
               "inputs": {
                 "index": {
                   "nodetype": "input",
                   "type": "integer",
                   "value": [
-                    1
+                    0
                   ]
                 }
               },
