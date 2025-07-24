@@ -962,12 +962,7 @@ class glTFMaterialXConverter():
 
             input_maps = {}
             input_maps[MTLX_GLTF_PBR_CATEGORY] = [
-                ['base_color', 'baseColorTexture', 'pbrMetallicRoughness'],
-                ['metallic', 'metallicRoughnessTexture', 'pbrMetallicRoughness'],
-                ['roughness', 'metallicRoughnessTexture', 'pbrMetallicRoughness'],
-                ['occlusion', 'occlusionTexture', ''],
-                ['normal', 'normalTexture', ''],
-                ['emissive', 'emissiveTexture', '']
+                ['base_color', 'baseColorTexture', 'pbrMetallicRoughness']
             ]
             input_maps[MTLX_UNLIT_CATEGORY_STRING] = [['emission_color', 'baseColorTexture', 'pbrMetallicRoughness']]
 

@@ -684,55 +684,6 @@ graph LR
 </tr>
 
 <tr>
-<td>Example MaterialX version of "boombox" example (from Khronos sample assets) with more than one channel mapped
-to different outputs from the same procedural.
-
-- Graph count: single
-- Graph inputs: none
-- Graph outputs: multiple
-- Compound nodes: no
-- Downstream shader: glTF PBR
-
-<pre><code class="language-mermaid"><div class="mermaid">
-
-graph LR
-    subgraph NG_boombox
-    NG_boombox_base_color([output:color3])
-    style NG_boombox_base_color  fill:#09D, color:#FFF
-    NG_boombox_emission([output:color3])
-    style NG_boombox_emission  fill:#09D, color:#FFF
-    NG_boombox_normal([output:vector3])
-    style NG_boombox_normal  fill:#09D, color:#FFF
-    NG_boombox_image_emission1[gltf_image:color3]
-    NG_boombox_image_normal1[gltf_normalmap:vector3]
-    NG_boombox_image_basecolor1[gltf_colorimage:multioutput]
-    end
-    SR_boombox[gltf_pbr:surfaceshader]
-    Boombox([surfacematerial:material])
-    style Boombox   fill:#090, color:#FFF
-    NG_boombox_image_basecolor1 --"outcolor"--> NG_boombox_base_color
-    NG_boombox_image_emission1 --> NG_boombox_emission
-    NG_boombox_image_normal1 --> NG_boombox_normal
-    NG_boombox_base_color --"base_color"--> SR_boombox
-    NG_boombox_normal --"normal"--> SR_boombox
-    NG_boombox_emission --"emissive"--> SR_boombox
-    SR_boombox --"surfaceshader"--> Boombox
-</div></code></pre>
-
-
-</td>
-<td>
-<a href="$TOP/tests/data/gltf_examples/gltf_boombox_graph.mtlx">MTLX</a>,
-<a href="$TOP/tests/data/gltf_examples/gltf_boombox_graph.gltf">GLTF</a>,
-<a href="$TOP/tests/data/gltf_examples/gltf_boombox_graph_fromgltf.mtlx">MTLX from GLTF</a>,
-</td>
-
-<td>
-<img src="$TOP/tests/data/gltf_examples/gltf_boombox_graph.png?raw=true">
-</td>
-</tr>
-
-<tr>
 <td>Example with various port data types: integer, vec2, vec3, vec4, color3, color4, integer, matrix33, matrix44
 
 - Graph count: single
