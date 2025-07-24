@@ -18,8 +18,12 @@ classifiers = [
 ]
 dependencies = [
     "materialx>=1.39.3",
-    "markdown_it-py",
     "jsonschema"
+]
+
+[project.optional-dependencies]
+dev = [
+    "markdown_it-py"
 ]
 
 [tool.setuptools.packages.find]
